@@ -8,7 +8,7 @@ import BurgerConstructor from '../burger-constructor/burger-constructor.js';
 
 function App() {
   return (
-    <div className={styles.app}>
+    <>
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -29,7 +29,7 @@ function App() {
           <BurgerIngredients />
           <BurgerConstructor />
         </main>
-    </div>
+    </>
   );
 }
 

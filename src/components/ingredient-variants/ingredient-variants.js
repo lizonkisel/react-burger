@@ -1,9 +1,13 @@
 import ingredientVariants from './ingredient-variants.module.css';
+import PropTypes from 'prop-types';
 
 import {data} from '../../utils/data.js';
+import {ingredientPropTypes} from '../../utils/prop-types.js';
 
 import {Counter} from '@ya.praktikum/react-developer-burger-ui-components';
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
+
+
 
 export default function IngredientVariants(props) {
   const ingredients = [];
@@ -35,4 +39,9 @@ export default function IngredientVariants(props) {
       {/* <Card type={props.type}></Card> */}
     </section>
   )
+}
+
+IngredientVariants.propTypes = {
+  type: PropTypes.oneOf(['bun', 'sauce', 'main']).isRequired,
+  ingredientName: PropTypes.oneOf(['Булки', 'Соусы', 'Начинки']).isRequired
 }

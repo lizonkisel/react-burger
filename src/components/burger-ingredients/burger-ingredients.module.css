@@ -18,7 +18,7 @@
 
 .ingredients {
   /* max-height: calc(716/912 * 1080px); */
-  max-height: calc(716/912 * 100vh);
+  max-height: calc(716/1080 * 100vh);
   overflow-y: scroll;
   scrollbar-color: #8585AD #2F2F37;
   scrollbar-width: thin;
