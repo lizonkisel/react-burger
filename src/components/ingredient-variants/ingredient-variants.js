@@ -1,7 +1,6 @@
 import ingredientVariants from './ingredient-variants.module.css';
 import PropTypes from 'prop-types';
 
-import {data} from '../../utils/data.js';
 import {ingredientPropTypes} from '../../utils/prop-types.js';
 
 import {Counter} from '@ya.praktikum/react-developer-burger-ui-components';
@@ -10,13 +9,8 @@ import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 
 
 export default function IngredientVariants(props) {
-  const ingredients = [];
-  data.forEach(function(ingredient) {
-    if (ingredient.type === props.type) {
-      ingredients.push(ingredient);
-    }
-  })
-  console.log(ingredients);
+  const ingredients = props.listOfIngredients;
+
   return (
     <section>
       <h3 className="text text_type_main-medium">{props.ingredientName}</h3>
@@ -36,12 +30,11 @@ export default function IngredientVariants(props) {
         }
       </ul>
 
-      {/* <Card type={props.type}></Card> */}
     </section>
   )
 }
 
 IngredientVariants.propTypes = {
-  type: PropTypes.oneOf(['bun', 'sauce', 'main']).isRequired,
+  listOfIngredients: PropTypes.arrayOf(ingredientPropTypes.isRequired).isRequired,
   ingredientName: PropTypes.oneOf(['Булки', 'Соусы', 'Начинки']).isRequired
 }

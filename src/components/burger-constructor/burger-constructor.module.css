@@ -39,7 +39,8 @@
 }
 
 .currentIcon {
-  width: 36px;
-  height: 36px;
+  /* width: 36px;
+  height: 36px; */
   object-fit: cover;
+  object-position: center center;
 }
