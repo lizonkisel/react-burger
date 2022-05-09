@@ -1,0 +1,46 @@
+.section {
+
+}
+
+.compositionArea {
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  align-items: end;
+}
+
+.compositionChangebleList {
+  composes: compositionArea;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: calc(464/1080 * 100vh);
+  overflow-y: scroll;
+}
+
+.element {
+  display: flex;
+  column-gap: 8px;
+  align-items: center;
+}
+
+.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  column-gap: 40px;
+}
+
+.priceArea {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.currentIcon {
+  /* width: 36px;
+  height: 36px; */
+  object-fit: cover;
+  object-position: center center;
+}
