@@ -13,7 +13,20 @@
 
   background-color: #1C1C21;
   border-radius: 40px;
-  /* visibility: hidden; */
+}
+
+.header {
+  width: 100%;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  align-self: start;
 }
 
 .someContainer {

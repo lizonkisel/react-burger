@@ -8,6 +8,8 @@ import AppHeader from '../app-header/app-header.js'
 import BurgerIngredients from '../burger-ingredients/burger-ingredients.js';
 import BurgerConstructor from '../burger-constructor/burger-constructor.js';
 import Modal from '../modal/modal.js';
+import IngredientDetails from '../ingredient-details/ingredient-details.js';
+import OrderDetails from '../order-details/order-details.js';
 
 function App() {
 
@@ -27,9 +29,9 @@ function App() {
     []
   );
 
-  const [isIngredientDetailsOpened, setIsIngredientDetailsOpened] = React.useState(true);
+  const [isIngredientDetailsOpened, setIsIngredientDetailsOpened] = React.useState(false);
   const [isOrderDetailsOpened, setIsOrderDetailsOpened] = React.useState(false);
-  const [isOrderAcceptedOpened, setIsOrderAcceptedOpened] = React.useState(false);
+  const [isOrderAcceptedOpened, setIsOrderAcceptedOpened] = React.useState(true);
 
   function closeAllModals() {
     setIsIngredientDetailsOpened(false);
@@ -43,6 +45,9 @@ function App() {
     }
   }
 
+  function closeByCross() {
+    closeAllModals();
+  }
 
   return (
     <>
@@ -57,7 +62,25 @@ function App() {
             title="Детали ингредиента"
             onOverlayClick={closeAllModals}
             onEscapeClick={closeByEscape}
-          />
+            onCrossClick={closeByCross}
+          >
+            <IngredientDetails
+              ingredient={{
+                "_id":"60666c42cc7b410027a1a9b2",
+                "name":"Флюоресцентная булка R2-D3",
+                "type":"bun",
+                "proteins":44,
+                "fat":26,
+                "carbohydrates":85,
+                "calories":643,
+                "price":988,
+                "image":"https://code.s3.yandex.net/react/code/bun-01.png",
+                "image_mobile":"https://code.s3.yandex.net/react/code/bun-01-mobile.png",
+                "image_large":"https://code.s3.yandex.net/react/code/bun-01-large.png",
+                "__v":0
+              }}
+            />
+          </Modal>
         }
         {
           isOrderDetailsOpened &&
@@ -65,15 +88,21 @@ function App() {
             title="Детали заказа"
             onOverlayClick={closeAllModals}
             onEscapeClick={closeByEscape}
-          />
+            onCrossClick={closeByCross}
+          >
+
+          </Modal>
         }
         {
           isOrderAcceptedOpened &&
           <Modal
-            title="Заказ принят"
+            title=""
             onOverlayClick={closeAllModals}
             onEscapeClick={closeByEscape}
-          />
+            onCrossClick={closeByCross}
+          >
+            <OrderDetails />
+          </Modal>
         }
 
     </>
