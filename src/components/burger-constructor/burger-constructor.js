@@ -2,6 +2,9 @@ import React from 'react';
 
 import burgerConstructor from './burger-constructor.module.css';
 
+import PropTypes from 'prop-types';
+import {ingredientPropTypes} from '../../utils/prop-types.js';
+
 import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components';
 import {DragIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
@@ -78,4 +81,8 @@ export default function BurgerConstructor ({listOfIngredients}) {
       }
     </>
   )
+}
+
+BurgerConstructor.propTypes = {
+  listOfIngredients: PropTypes.arrayOf(ingredientPropTypes.isRequired).isRequired
 }

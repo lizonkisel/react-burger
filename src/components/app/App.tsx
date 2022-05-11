@@ -2,14 +2,10 @@ import React from 'react';
 import styles from './App.module.css';
 
 import {dataUrl} from '../../utils/data.js';
-import {data} from '../../utils/data.js';
 
 import AppHeader from '../app-header/app-header.js'
 import BurgerIngredients from '../burger-ingredients/burger-ingredients.js';
 import BurgerConstructor from '../burger-constructor/burger-constructor.js';
-import Modal from '../modal/modal.js';
-import IngredientDetails from '../ingredient-details/ingredient-details.js';
-import OrderDetails from '../order-details/order-details.js';
 
 function App() {
 
@@ -29,23 +25,23 @@ function App() {
     []
   );
 
-  const [isIngredientDetailsOpened, setIsIngredientDetailsOpened] = React.useState(false);
-  const [isOrderAcceptedOpened, setIsOrderAcceptedOpened] = React.useState(false);
+  // const [isIngredientDetailsOpened, setIsIngredientDetailsOpened] = React.useState(false);
+  // const [isOrderAcceptedOpened, setIsOrderAcceptedOpened] = React.useState(false);
 
-  function closeAllModals() {
-    setIsIngredientDetailsOpened(false);
-    setIsOrderAcceptedOpened(false);
-  }
+  // function closeAllModals() {
+  //   setIsIngredientDetailsOpened(false);
+  //   setIsOrderAcceptedOpened(false);
+  // }
 
-  function closeByEscape(event: KeyboardEvent) {
-    if (event.key === "Escape") {
-      closeAllModals();
-    }
-  }
+  // function closeByEscape(event: KeyboardEvent) {
+  //   if (event.key === "Escape") {
+  //     closeAllModals();
+  //   }
+  // }
 
-  function closeByCross() {
-    closeAllModals();
-  }
+  // function closeByCross() {
+  //   closeAllModals();
+  // }
 
   return (
     <>

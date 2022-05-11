@@ -8,10 +8,6 @@
   width: 480px;
 }
 
-.title {
-
-}
-
 .nutritionalValue {
   display: flex;
   flex-direction: row;
@@ -33,8 +29,4 @@
 
 .componentName {
   margin: 0;
-}
-
-.componentValue {
-
 }

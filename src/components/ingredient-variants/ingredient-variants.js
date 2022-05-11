@@ -41,5 +41,6 @@ export default function IngredientVariants(props) {
 
 IngredientVariants.propTypes = {
   listOfIngredients: PropTypes.arrayOf(ingredientPropTypes.isRequired).isRequired,
+  setIngredientInModal: PropTypes.func.isRequired,
   ingredientName: PropTypes.oneOf(['Булки', 'Соусы', 'Начинки']).isRequired
 }

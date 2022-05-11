@@ -2,9 +2,11 @@ import ReactDOM from 'react-dom';
 
 import modal from './modal.module.css'
 
+import PropTypes from 'prop-types';
+
+
 import {CloseIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import ModalOverlay from '../modal-overlay/modal-overlay.js';
-import IngredientDetails from '../ingredient-details/ingredient-details.js';
 
 import React from 'react';
 
@@ -13,7 +15,7 @@ const modalsContainer = document.querySelector('#modals');
 // export default function Modal({title, onOverlayClick, onEscapeClick, onCrossClick, children}) {
   export default function Modal({title, setData, children}) {
 
-    function closeAllModals() {
+  function closeAllModals() {
       setData(null)
   }
 
@@ -56,4 +58,10 @@ const modalsContainer = document.querySelector('#modals');
 
     modalsContainer
   )
+}
+
+Modal.propTypes = {
+  title: PropTypes.string,
+  setData: PropTypes.func.isRequired,
+  children: PropTypes.element.isRequired
 }

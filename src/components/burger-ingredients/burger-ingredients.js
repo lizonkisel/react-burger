@@ -29,7 +29,7 @@ export default function BurgerIngredients (props) {
     return (
       <>
         <section className={burgerIngredients.section}>
-          <h2 className={`text text_type_main-large mb-5 mt-10 ${burgerIngredients.title}`}>Соберите бургер</h2>
+          <h2 className='text text_type_main-large mb-5 mt-10'>Соберите бургер</h2>
           <nav className={`mb-10 ${burgerIngredients.menu}`}>
             <Tab value="Булки">
               Булки
