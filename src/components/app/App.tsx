@@ -30,12 +30,10 @@ function App() {
   );
 
   const [isIngredientDetailsOpened, setIsIngredientDetailsOpened] = React.useState(false);
-  const [isOrderDetailsOpened, setIsOrderDetailsOpened] = React.useState(false);
-  const [isOrderAcceptedOpened, setIsOrderAcceptedOpened] = React.useState(true);
+  const [isOrderAcceptedOpened, setIsOrderAcceptedOpened] = React.useState(false);
 
   function closeAllModals() {
     setIsIngredientDetailsOpened(false);
-    setIsOrderDetailsOpened(false);
     setIsOrderAcceptedOpened(false);
   }
 
@@ -56,7 +54,7 @@ function App() {
           <BurgerIngredients listOfIngredients={ingredients} />
           <BurgerConstructor listOfIngredients={ingredients}/>
         </main>
-        {
+        {/* {
           isIngredientDetailsOpened &&
           <Modal
             title="Детали ингредиента"
@@ -81,29 +79,18 @@ function App() {
               }}
             />
           </Modal>
-        }
-        {
-          isOrderDetailsOpened &&
-          <Modal
-            title="Детали заказа"
-            onOverlayClick={closeAllModals}
-            onEscapeClick={closeByEscape}
-            onCrossClick={closeByCross}
-          >
-
-          </Modal>
-        }
-        {
+        } */}
+        {/* {
           isOrderAcceptedOpened &&
           <Modal
             title=""
-            onOverlayClick={closeAllModals}
-            onEscapeClick={closeByEscape}
-            onCrossClick={closeByCross}
+            // onOverlayClick={closeAllModals}
+            // onEscapeClick={closeByEscape}
+            // onCrossClick={closeByCross}
           >
             <OrderDetails />
           </Modal>
-        }
+        } */}
 
     </>
   );
