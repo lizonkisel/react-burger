@@ -1,5 +1,9 @@
+import React from 'react';
+
 import burgerIngredients from './burger-ingredients.module.css';
-import IngredientVariants from '../ingredient-variants/ingredient-variants.js'
+import IngredientVariants from '../ingredient-variants/ingredient-variants.js';
+import Modal from '../modal/modal.js';
+import IngredientDetails from '../ingredient-details/ingredient-details.js';
 
 import PropTypes from 'prop-types';
 import {ingredientPropTypes} from '../../utils/prop-types.js';
@@ -20,26 +24,35 @@ export default function BurgerIngredients (props) {
       return ingredient.type === "main";
     })
 
+    const [ingredientInModal, setIngredientInModal] = React.useState(null);
+
     return (
-      <section className={burgerIngredients.section}>
-        <h2 className={`text text_type_main-large mb-5 mt-10 ${burgerIngredients.title}`}>Соберите бургер</h2>
-        <nav className={`mb-10 ${burgerIngredients.menu}`}>
-          <Tab value="Булки">
-            Булки
-          </Tab>
-          <Tab value="Соусы">
-            Соусы
-          </Tab>
-          <Tab value="Начинки">
-            Начинки
-          </Tab>
-        </nav>
-        <article className={burgerIngredients.ingredients}>
-          <IngredientVariants ingredientName='Булки' listOfIngredients={bunList}/>
-          <IngredientVariants ingredientName='Соусы' listOfIngredients={sauceList}/>
-          <IngredientVariants ingredientName='Начинки' listOfIngredients={mainList}/>
-        </article>
-      </section>
+      <>
+        <section className={burgerIngredients.section}>
+          <h2 className={`text text_type_main-large mb-5 mt-10 ${burgerIngredients.title}`}>Соберите бургер</h2>
+          <nav className={`mb-10 ${burgerIngredients.menu}`}>
+            <Tab value="Булки">
+              Булки
+            </Tab>
+            <Tab value="Соусы">
+              Соусы
+            </Tab>
+            <Tab value="Начинки">
+              Начинки
+            </Tab>
+          </nav>
+          <article className={burgerIngredients.ingredients}>
+            <IngredientVariants ingredientName='Булки' listOfIngredients={bunList} setIngredientInModal={setIngredientInModal}/>
+            <IngredientVariants ingredientName='Соусы' listOfIngredients={sauceList} setIngredientInModal={setIngredientInModal}/>
+            <IngredientVariants ingredientName='Начинки' listOfIngredients={mainList} setIngredientInModal={setIngredientInModal}/>
+          </article>
+        </section>
+
+        {ingredientInModal &&
+        <Modal title="Детали ингредиента" setData={setIngredientInModal}>
+          <IngredientDetails ingredient={ingredientInModal}/>
+        </Modal>}
+      </>
     )
 }
 
