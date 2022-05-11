@@ -54,7 +54,7 @@ function App() {
         <AppHeader />
         <main className={styles.main}>
           <BurgerIngredients listOfIngredients={ingredients} />
-          <BurgerConstructor />
+          <BurgerConstructor listOfIngredients={ingredients}/>
         </main>
         {
           isIngredientDetailsOpened &&
