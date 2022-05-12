@@ -31,24 +31,6 @@ function App() {
     []
   );
 
-  // const [isIngredientDetailsOpened, setIsIngredientDetailsOpened] = React.useState(false);
-  // const [isOrderAcceptedOpened, setIsOrderAcceptedOpened] = React.useState(false);
-
-  // function closeAllModals() {
-  //   setIsIngredientDetailsOpened(false);
-  //   setIsOrderAcceptedOpened(false);
-  // }
-
-  // function closeByEscape(event: KeyboardEvent) {
-  //   if (event.key === "Escape") {
-  //     closeAllModals();
-  //   }
-  // }
-
-  // function closeByCross() {
-  //   closeAllModals();
-  // }
-
   return (
     <>
         <AppHeader />
@@ -56,44 +38,6 @@ function App() {
           <BurgerIngredients listOfIngredients={ingredients} />
           <BurgerConstructor listOfIngredients={ingredients}/>
         </main>
-        {/* {
-          isIngredientDetailsOpened &&
-          <Modal
-            title="Детали ингредиента"
-            onOverlayClick={closeAllModals}
-            onEscapeClick={closeByEscape}
-            onCrossClick={closeByCross}
-          >
-            <IngredientDetails
-              ingredient={{
-                "_id":"60666c42cc7b410027a1a9b2",
-                "name":"Флюоресцентная булка R2-D3",
-                "type":"bun",
-                "proteins":44,
-                "fat":26,
-                "carbohydrates":85,
-                "calories":643,
-                "price":988,
-                "image":"https://code.s3.yandex.net/react/code/bun-01.png",
-                "image_mobile":"https://code.s3.yandex.net/react/code/bun-01-mobile.png",
-                "image_large":"https://code.s3.yandex.net/react/code/bun-01-large.png",
-                "__v":0
-              }}
-            />
-          </Modal>
-        } */}
-        {/* {
-          isOrderAcceptedOpened &&
-          <Modal
-            title=""
-            // onOverlayClick={closeAllModals}
-            // onEscapeClick={closeByEscape}
-            // onCrossClick={closeByCross}
-          >
-            <OrderDetails />
-          </Modal>
-        } */}
-
     </>
   );
 }
