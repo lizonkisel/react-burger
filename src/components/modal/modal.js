@@ -13,20 +13,20 @@ import React from 'react';
 const modalsContainer = document.querySelector('#modals');
 
 // export default function Modal({title, onOverlayClick, onEscapeClick, onCrossClick, children}) {
-  export default function Modal({title, setData, children}) {
+  export default function Modal({title, onClose, children}) {
 
-  function closeAllModals() {
-      setData(null)
+  function closeModal() {
+    onClose(null)
   }
 
   function onEscapeClick(event) {
     if (event.key === "Escape") {
-      closeAllModals();
+      closeModal();
     }
   }
 
   function onCrossClick() {
-    closeAllModals();
+    closeModal();
   }
 
   React.useEffect(
@@ -53,7 +53,7 @@ const modalsContainer = document.querySelector('#modals');
       </div>
 
 
-      <ModalOverlay onOverlayClick={closeAllModals}/>
+      <ModalOverlay onOverlayClick={closeModal}/>
     </>),
 
     modalsContainer
@@ -62,6 +62,6 @@ const modalsContainer = document.querySelector('#modals');
 
 Modal.propTypes = {
   title: PropTypes.string,
-  setData: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
   children: PropTypes.element.isRequired
 }

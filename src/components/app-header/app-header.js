@@ -7,7 +7,7 @@ import appHeader from './app-header.module.css';
 
 export default function AppHeader() {
   return (
-    <header className={`pt-10 ${appHeader.header}`}>
+    <header className={`mt-10 ${appHeader.header}`}>
       <nav className={`pb-4 pt-4 ${appHeader.menu}`} >
         <div className={appHeader.menuLeftColumn}>
           <a className={`pl-5 pr-5 pt-4 pb-4 ${appHeader.link}`}>

@@ -49,7 +49,7 @@ export default function BurgerIngredients (props) {
         </section>
 
         {ingredientInModal &&
-        <Modal title="Детали ингредиента" setData={setIngredientInModal}>
+        <Modal title="Детали ингредиента" onClose={setIngredientInModal}>
           <IngredientDetails ingredient={ingredientInModal}/>
         </Modal>}
       </>

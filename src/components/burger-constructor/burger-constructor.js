@@ -15,8 +15,11 @@ import OrderDetails from '../order-details/order-details.js';
 
 export default function BurgerConstructor ({listOfIngredients}) {
 
-  const [isOrderAccepted, setIsOrderAccepted] = React.useState(false);
+  const fillingList = listOfIngredients.filter((ingredient) => {
+    return ingredient.type === "sauce" || ingredient.type === "main";
+  })
 
+  const [isOrderAccepted, setIsOrderAccepted] = React.useState(false);
 
   return (
     <>
@@ -31,7 +34,7 @@ export default function BurgerConstructor ({listOfIngredients}) {
           />
           <ul className={burgerConstructor.compositionChangebleList}>
             {
-              listOfIngredients.map((ingredient, index) => (
+              fillingList.map((ingredient, index) => (
                 <li className={burgerConstructor.element} key={ingredient._id}>
                   <DragIcon type="primary" />
                   <ConstructorElement
@@ -55,7 +58,7 @@ export default function BurgerConstructor ({listOfIngredients}) {
           <div className={burgerConstructor.priceArea}>
             <p className="text text_type_digits-medium">
               {
-                listOfIngredients.reduce((prevVal, item) => {
+                fillingList.reduce((prevVal, item) => {
                   return prevVal + item.price
                 }, 0)
               }
@@ -74,7 +77,7 @@ export default function BurgerConstructor ({listOfIngredients}) {
         isOrderAccepted &&
         <Modal
           title=""
-          setData={setIsOrderAccepted}
+          onClose={setIsOrderAccepted}
         >
           <OrderDetails />
         </Modal>

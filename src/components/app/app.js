@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './App.module.css';
+import styles from './app.module.css';
 
 import {dataUrl} from '../../utils/data.js';
 
@@ -13,7 +13,13 @@ function App() {
 
   function getIngredients() {
     fetch(dataUrl)
-      .then(res => res.json())
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return Promise.reject(res.status);
+        }
+      })
       .then(data => setIngredients(data.data))
       .catch(err => console.log(`Ошибка ${err}: ${err.status}`))
   }
