@@ -1,9 +1,9 @@
 import React from 'react';
 
 import burgerIngredients from './burger-ingredients.module.css';
-import IngredientVariants from '../ingredient-variants/ingredient-variants.js';
-import Modal from '../modal/modal.js';
-import IngredientDetails from '../ingredient-details/ingredient-details.js';
+import IngredientVariants from '../ingredient-variants/ingredient-variants.jsx';
+import Modal from '../modal/modal.jsx';
+import IngredientDetails from '../ingredient-details/ingredient-details.jsx';
 
 import PropTypes from 'prop-types';
 import {ingredientPropTypes} from '../../utils/prop-types.js';

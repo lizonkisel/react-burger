@@ -9,8 +9,8 @@ import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-compon
 import {DragIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {Button} from '@ya.praktikum/react-developer-burger-ui-components';
-import Modal from '../modal/modal.js';
-import OrderDetails from '../order-details/order-details.js';
+import Modal from '../modal/modal.jsx';
+import OrderDetails from '../order-details/order-details.jsx';
 
 
 export default function BurgerConstructor ({listOfIngredients}) {
