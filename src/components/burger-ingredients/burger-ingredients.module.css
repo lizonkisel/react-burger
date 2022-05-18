@@ -7,10 +7,6 @@
   overflow-y: scroll; */
 }
 
-.title {
-  /* text-align: left; */
-}
-
 .menu {
   display: flex;
   flex-direction: row;
