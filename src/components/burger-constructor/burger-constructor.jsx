@@ -15,6 +15,24 @@ import OrderDetails from '../order-details/order-details.jsx';
 import {IngredientContext} from '../../utils/ingredient-context.js';
 
 
+const initialPrice = {price: 0};
+
+  function reducer(totalPrice, action) {
+
+    switch(action.type) {
+      case 'sum':
+        const bunsPrice = action.payload.bun.price * 2;
+
+        const sum = action.payload.filling.reduce((prevVal, item) => {
+          return prevVal + item.price
+        }, bunsPrice);
+        return {price: sum};
+      default:
+        // throw new Error(`Wrong type of action: ${action.type}`);
+        return totalPrice;
+    }
+  }
+
 export default function BurgerConstructor () {
 
   // const BurgerState = {
@@ -47,20 +65,21 @@ export default function BurgerConstructor () {
   });
 
 
-  const initialPrice = {price: 0};
+  // const initialPrice = {price: 0};
 
-  function reducer(totalPrice, action) {
+  // function reducer(totalPrice, action) {
 
-    switch(action.type) {
-      case 'sum':
-        const sum = fillingList.reduce((prevVal, item) => {
-          return prevVal + item.price
-        }, bunsPrice);
-        return {price: sum};
-      default:
-        throw new Error(`Wrong type of action: ${action.type}`);
-    }
-  }
+  //   switch(action.type) {
+  //     case 'sum':
+  //       const sum = fillingList.reduce((prevVal, item) => {
+  //         return prevVal + item.price
+  //       }, bunsPrice);
+  //       return {price: sum};
+  //     default:
+  //       // throw new Error(`Wrong type of action: ${action.type}`);
+  //       return totalPrice;
+  //   }
+  // }
 
   const [totalPrice, dispatchTotalPrice] = useReducer(reducer, initialPrice);
 
@@ -88,7 +107,7 @@ export default function BurgerConstructor () {
 
   React.useEffect(
     () => {
-      dispatchTotalPrice({type: 'sum'});
+      dispatchTotalPrice({type: 'sum', payload: {filling: fillingList, bun: bun}});
     }, [listOfIngredients]
   );
 
