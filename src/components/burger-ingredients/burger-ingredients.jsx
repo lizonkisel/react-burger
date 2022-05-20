@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import burgerIngredients from './burger-ingredients.module.css';
 import IngredientVariants from '../ingredient-variants/ingredient-variants.jsx';
@@ -10,17 +10,21 @@ import {ingredientPropTypes} from '../../utils/prop-types.js';
 
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
 
-export default function BurgerIngredients (props) {
+import {IngredientContext} from '../../utils/ingredient-context.js';
 
-    const bunList = props.listOfIngredients.filter((ingredient) => {
+export default function BurgerIngredients() {
+
+  const listOfIngredients = useContext(IngredientContext);
+
+    const bunList = listOfIngredients.filter((ingredient) => {
       return ingredient.type === "bun";
     })
 
-    const sauceList = props.listOfIngredients.filter((ingredient) => {
+    const sauceList = listOfIngredients.filter((ingredient) => {
       return ingredient.type === "sauce";
     })
 
-    const mainList = props.listOfIngredients.filter((ingredient) => {
+    const mainList = listOfIngredients.filter((ingredient) => {
       return ingredient.type === "main";
     })
 
@@ -57,5 +61,5 @@ export default function BurgerIngredients (props) {
 }
 
 BurgerIngredients.propTypes = {
-  listOfIngredients: PropTypes.arrayOf(ingredientPropTypes.isRequired).isRequired
+  // listOfIngredients: PropTypes.arrayOf(ingredientPropTypes.isRequired).isRequired
 }
