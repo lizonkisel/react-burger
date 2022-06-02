@@ -5,12 +5,21 @@ import App from './components/app/app.jsx';
 import reportWebVitals from './reportWebVitals';
 import {Button} from '@ya.praktikum/react-developer-burger-ui-components';
 
+// import { compose, createStore, applyMiddleware } from 'redux';
+// const composeEnhancers =
+//   typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+//     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
+//     : compose;
+
+// import thunk from 'redux-thunk';
+// const enhancer = composeEnhancers(applyMiddleware(thunk));
+
+// const store = createStore(rootReducer, enhancer);
+
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
-    {/* <Button type="primary" size="medium">
-      Я кнопка из UI системы Yandex
-    </Button> */}
   </React.StrictMode>,
   document.getElementById('root')
 );

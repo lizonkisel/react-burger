@@ -4,6 +4,8 @@ import done from '../../images/done.png';
 
 import PropTypes from 'prop-types';
 
+import React  from 'react';
+
 export default function OrderDetails({orderNumber}) {
 
   return (

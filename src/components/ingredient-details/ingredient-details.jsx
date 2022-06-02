@@ -3,6 +3,8 @@ import ingredientDetails from './ingredient-details.module.css';
 import PropTypes from 'prop-types';
 import {ingredientPropTypes} from '../../utils/prop-types.js';
 
+import React  from 'react';
+
 export default function IngredientDetails({ingredient}) {
   return (
     <article className={ingredientDetails.card}>

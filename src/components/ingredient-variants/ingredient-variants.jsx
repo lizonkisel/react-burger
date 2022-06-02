@@ -6,6 +6,7 @@ import {ingredientPropTypes} from '../../utils/prop-types.js';
 import {Counter} from '@ya.praktikum/react-developer-burger-ui-components';
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 
+import React  from 'react';
 
 
 export default function IngredientVariants(props) {
