@@ -22,7 +22,6 @@ const modalsContainer = document.querySelector('#modals');
   const dispatch = useDispatch();
 
   function closeModal() {
-    // onClose(null);
     dispatch(closeOrder());
     dispatch(getCurrentIngredient(null));
   }

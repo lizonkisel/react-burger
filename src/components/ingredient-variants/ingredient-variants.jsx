@@ -12,7 +12,8 @@ import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {getCurrentIngredient} from '../../services/actions/index.js';
 
 
-export default function IngredientVariants(props) {
+// export default function IngredientVariants(props) {
+  export const IngredientVariants = React.forwardRef((props, ref) => {
   const ingredients = props.listOfIngredients;
 
   const dispatch = useDispatch();
@@ -23,9 +24,9 @@ export default function IngredientVariants(props) {
 
 
   return (
-    <section>
+    <section id={props.titleId}>
       <h3 className="text text_type_main-medium">{props.ingredientName}</h3>
-      <ul className={`pl-4 pr-4 pb-10 pt-6 ${ingredientVariants.list}`}>
+      <ul className={`pl-4 pr-4 pb-10 pt-6 ${ingredientVariants.list}`} ref={ref}>
         {
           ingredients.map((ingredient, index) => (
             <li className={` ${ingredientVariants.card}`} key={ingredient._id} onClick={() => {chooseIngredient(ingredient)}}>
@@ -43,10 +44,11 @@ export default function IngredientVariants(props) {
 
     </section>
   )
-}
+})
 
 // IngredientVariants.propTypes = {
 //   listOfIngredients: PropTypes.arrayOf(ingredientPropTypes.isRequired).isRequired,
 //   setIngredientInModal: PropTypes.func.isRequired,
 //   ingredientName: PropTypes.oneOf(['Булки', 'Соусы', 'Начинки']).isRequired
 // }
+

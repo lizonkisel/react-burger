@@ -77,7 +77,6 @@ function getOrder(ingredientsIdArray) {
         return Promise.reject(res.status)
       }
     })
-    // .then(res => {setOrderNumber(res.order.number); setIsOrderAccepted(true)})
     .then(res => {
       dispatch({
         type: GET_ORDER_SUCCESS,

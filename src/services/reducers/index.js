@@ -3,8 +3,14 @@ import {GET_ALL_INGREDIENTS, GET_ALL_INGREDIENTS_SUCCESS, GET_ALL_INGREDIENTS_FA
   GET_CURRENT_INGREDIENT, GET_CURRENT_INGREDIENT_SUCCESS, GET_CURRENT_INGREDIENT_FAILED,
   GET_ORDER, GET_ORDER_SUCCESS, CLOSE_ORDER} from '../actions/index.js';
 
+
 const initialState = {};
 
+const orderInitialState = {
+  isOrderAccepted: false,
+  number: null,
+  isReadyForNewOrder: true
+};
 
 const allIngredientsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -62,12 +68,6 @@ const currentIngredientReducer = (state = null, action) => {
     default:
       return state
   }
-};
-
-const orderInitialState = {
-  isOrderAccepted: false,
-  number: null,
-  isReadyForNewOrder: true
 };
 
 const orderReducer = (state = orderInitialState, action) => {

@@ -25,30 +25,6 @@ function App() {
 
   const listOfIngredients = useSelector(store => store.allIngredients.items);
 
-
-
-  // const [ingredients, setIngredients] = React.useState(null);
-
-  // function getIngredients() {
-  //   fetch(dataUrl)
-  //     .then(res => {
-  //       if (res.ok) {
-  //         return res.json();
-  //       } else {
-  //         return Promise.reject(res.status);
-  //       }
-  //     })
-  //     .then(data => setIngredients(data.data))
-  //     .catch(err => console.log(`Ошибка ${err}: ${err.status}`))
-  // }
-
-  // React.useEffect(
-  //   () => {
-  //     getIngredients();
-  //   },
-  //   []
-  // );
-
   return (
     <>
         <AppHeader />

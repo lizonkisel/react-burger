@@ -13,44 +13,28 @@ import {Button} from '@ya.praktikum/react-developer-burger-ui-components';
 import Modal from '../modal/modal.jsx';
 import OrderDetails from '../order-details/order-details.jsx';
 
-import {IngredientContext} from '../../utils/ingredient-context.js';
-
 import {getAllIngredients, getOrder} from '../../services/actions/index.js';
 
 
 const initialPrice = {price: 0};
 
-  function reducer(totalPrice, action) {
+function reducer(totalPrice, action) {
 
-    switch(action.type) {
-      case 'sum':
-        const bunsPrice = action.payload.bun.price * 2;
+  switch(action.type) {
+    case 'sum':
+      const bunsPrice = action.payload.bun.price * 2;
 
-        const sum = action.payload.filling.reduce((prevVal, item) => {
-          return prevVal + item.price
-        }, bunsPrice);
-        return {price: sum};
-      default:
-        // throw new Error(`Wrong type of action: ${action.type}`);
-        return totalPrice;
-    }
+      const sum = action.payload.filling.reduce((prevVal, item) => {
+        return prevVal + item.price
+      }, bunsPrice);
+      return {price: sum};
+    default:
+      // throw new Error(`Wrong type of action: ${action.type}`);
+      return totalPrice;
   }
+}
 
 export default function BurgerConstructor () {
-
-  // const BurgerState = {
-  //   bun: null,
-  //   ingredients: [],
-  // };
-
-  // const listOfIngredients = useContext(IngredientContext);
-
-//   const dispatch = useDispatch();
-
-//   useEffect(()=> {
-//     // Отправляем экшен-функцию
-//     dispatch(getAllIngredients())
-// }, [])
 
   const listOfIngredients = useSelector(store => store.allIngredients.items);
 
@@ -67,9 +51,6 @@ export default function BurgerConstructor () {
   });
 
 
-  // const [isOrderAccepted, setIsOrderAccepted] = React.useState(false);
-  // const [orderNumber, setOrderNumber] = React.useState(null);
-
   const isOrderAccepted = useSelector(store => store.order.isOrderAccepted);
   const isReadyForNewOrder = useSelector(store => store.order.isReadyForNewOrder);
   const orderNumber = useSelector(store => store.order.number);
@@ -82,24 +63,22 @@ export default function BurgerConstructor () {
 
   const dispatch = useDispatch();
 
-  // dispatch(getOrder(ingredientsIdArray));
-
 
   // const initialPrice = {price: 0};
 
-  // function reducer(totalPrice, action) {
+  function reducer(totalPrice, action) {
 
-  //   switch(action.type) {
-  //     case 'sum':
-  //       const sum = fillingList.reduce((prevVal, item) => {
-  //         return prevVal + item.price
-  //       }, bunsPrice);
-  //       return {price: sum};
-  //     default:
-  //       // throw new Error(`Wrong type of action: ${action.type}`);
-  //       return totalPrice;
-  //   }
-  // }
+    switch(action.type) {
+      case 'sum':
+        const sum = fillingList.reduce((prevVal, item) => {
+          return prevVal + item.price
+        }, bunsPrice);
+        return {price: sum};
+      default:
+        // throw new Error(`Wrong type of action: ${action.type}`);
+        return totalPrice;
+    }
+  }
 
   const [totalPrice, dispatchTotalPrice] = useReducer(reducer, initialPrice);
 
@@ -125,11 +104,11 @@ export default function BurgerConstructor () {
   //   .catch(err => console.log(`${err}: ${err.status}`))
   // }
 
-  // React.useEffect(
-  //   () => {
-  //     dispatchTotalPrice({type: 'sum', payload: {filling: fillingList, bun: bun}});
-  //   }, [listOfIngredients]
-  // );
+  React.useEffect(
+    () => {
+      dispatchTotalPrice({type: 'sum', payload: {filling: fillingList, bun: bun}});
+    }, [listOfIngredients]
+  );
 
 
   return (
@@ -192,8 +171,6 @@ export default function BurgerConstructor () {
         isOrderAccepted && !isReadyForNewOrder &&
         <Modal
           title=""
-          // onClose={setIsOrderAccepted}
-
         >
           <OrderDetails
             orderNumber={orderNumber}
