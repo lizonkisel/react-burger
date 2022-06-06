@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import burgerIngredients from './burger-ingredients.module.css';
 import IngredientVariants from '../ingredient-variants/ingredient-variants.jsx';
@@ -12,9 +13,20 @@ import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
 
 import {IngredientContext} from '../../utils/ingredient-context.js';
 
+import {getAllIngredients} from '../../services/actions/index.js';
+
 export default function BurgerIngredients() {
 
-  const listOfIngredients = useContext(IngredientContext);
+//   const dispatch = useDispatch();
+
+//   useEffect(()=> {
+//     // Отправляем экшен-функцию
+//     dispatch(getAllIngredients())
+// }, []);
+
+  const listOfIngredients = useSelector(store => store.allIngredients.items);
+
+  // const listOfIngredients = useContext(IngredientContext);
 
     const bunList = listOfIngredients.filter((ingredient) => {
       return ingredient.type === "bun";
@@ -28,7 +40,7 @@ export default function BurgerIngredients() {
       return ingredient.type === "main";
     })
 
-    const [ingredientInModal, setIngredientInModal] = React.useState(null);
+    const ingredientInModal = useSelector(store => store.currentIngredient);
 
     return (
       <>
@@ -46,15 +58,15 @@ export default function BurgerIngredients() {
             </Tab>
           </nav>
           <article className={burgerIngredients.ingredients}>
-            <IngredientVariants ingredientName='Булки' listOfIngredients={bunList} setIngredientInModal={setIngredientInModal}/>
-            <IngredientVariants ingredientName='Соусы' listOfIngredients={sauceList} setIngredientInModal={setIngredientInModal}/>
-            <IngredientVariants ingredientName='Начинки' listOfIngredients={mainList} setIngredientInModal={setIngredientInModal}/>
+            <IngredientVariants ingredientName='Булки' listOfIngredients={bunList} />
+            <IngredientVariants ingredientName='Соусы' listOfIngredients={sauceList} />
+            <IngredientVariants ingredientName='Начинки' listOfIngredients={mainList} />
           </article>
         </section>
 
         {ingredientInModal &&
-        <Modal title="Детали ингредиента" onClose={setIngredientInModal}>
-          <IngredientDetails ingredient={ingredientInModal}/>
+        <Modal title="Детали ингредиента" >
+          <IngredientDetails />
         </Modal>}
       </>
     )

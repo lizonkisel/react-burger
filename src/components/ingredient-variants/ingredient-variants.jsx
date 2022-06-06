@@ -1,3 +1,6 @@
+import React  from 'react';
+import { useDispatch } from 'react-redux';
+
 import ingredientVariants from './ingredient-variants.module.css';
 import PropTypes from 'prop-types';
 
@@ -6,16 +9,18 @@ import {ingredientPropTypes} from '../../utils/prop-types.js';
 import {Counter} from '@ya.praktikum/react-developer-burger-ui-components';
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 
-import React  from 'react';
+import {getCurrentIngredient} from '../../services/actions/index.js';
 
 
 export default function IngredientVariants(props) {
   const ingredients = props.listOfIngredients;
 
+  const dispatch = useDispatch();
+
   function chooseIngredient(ingredient) {
-    console.log(ingredient);
-    props.setIngredientInModal(ingredient);
+    dispatch(getCurrentIngredient(ingredient));
   }
+
 
   return (
     <section>
@@ -40,8 +45,8 @@ export default function IngredientVariants(props) {
   )
 }
 
-IngredientVariants.propTypes = {
-  listOfIngredients: PropTypes.arrayOf(ingredientPropTypes.isRequired).isRequired,
-  setIngredientInModal: PropTypes.func.isRequired,
-  ingredientName: PropTypes.oneOf(['Булки', 'Соусы', 'Начинки']).isRequired
-}
+// IngredientVariants.propTypes = {
+//   listOfIngredients: PropTypes.arrayOf(ingredientPropTypes.isRequired).isRequired,
+//   setIngredientInModal: PropTypes.func.isRequired,
+//   ingredientName: PropTypes.oneOf(['Булки', 'Соусы', 'Начинки']).isRequired
+// }

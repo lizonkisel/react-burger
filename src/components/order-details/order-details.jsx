@@ -22,6 +22,6 @@ export default function OrderDetails({orderNumber}) {
   )
 }
 
-OrderDetails.propTypes = {
-  orderNumber: PropTypes.number.isRequired
-}
+// OrderDetails.propTypes = {
+//   orderNumber: PropTypes.number.isRequired
+// }

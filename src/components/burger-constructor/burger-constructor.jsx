@@ -1,4 +1,5 @@
-import React, { useContext, useReducer } from 'react';
+import React, { useContext, useReducer, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import burgerConstructor from './burger-constructor.module.css';
 
@@ -13,6 +14,8 @@ import Modal from '../modal/modal.jsx';
 import OrderDetails from '../order-details/order-details.jsx';
 
 import {IngredientContext} from '../../utils/ingredient-context.js';
+
+import {getAllIngredients, getOrder} from '../../services/actions/index.js';
 
 
 const initialPrice = {price: 0};
@@ -40,8 +43,16 @@ export default function BurgerConstructor () {
   //   ingredients: [],
   // };
 
-  const listOfIngredients = useContext(IngredientContext);
+  // const listOfIngredients = useContext(IngredientContext);
 
+//   const dispatch = useDispatch();
+
+//   useEffect(()=> {
+//     // Отправляем экшен-функцию
+//     dispatch(getAllIngredients())
+// }, [])
+
+  const listOfIngredients = useSelector(store => store.allIngredients.items);
 
   /* На данном этапе просто находим первую булку из списка ингредиентов */
 
@@ -56,13 +67,22 @@ export default function BurgerConstructor () {
   });
 
 
-  const [isOrderAccepted, setIsOrderAccepted] = React.useState(false);
-  const [orderNumber, setOrderNumber] = React.useState(null);
+  // const [isOrderAccepted, setIsOrderAccepted] = React.useState(false);
+  // const [orderNumber, setOrderNumber] = React.useState(null);
+
+  const isOrderAccepted = useSelector(store => store.order.isOrderAccepted);
+  const isReadyForNewOrder = useSelector(store => store.order.isReadyForNewOrder);
+  const orderNumber = useSelector(store => store.order.number);
+
 
 
   const ingredientsIdArray = listOfIngredients.map((item) => {
     return item._id
   });
+
+  const dispatch = useDispatch();
+
+  // dispatch(getOrder(ingredientsIdArray));
 
 
   // const initialPrice = {price: 0};
@@ -84,32 +104,32 @@ export default function BurgerConstructor () {
   const [totalPrice, dispatchTotalPrice] = useReducer(reducer, initialPrice);
 
 
-  function postOrder() {
-    fetch('https://norma.nomoreparties.space/api/orders', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8'
-      },
-      body: JSON.stringify({
-        "ingredients": ingredientsIdArray
-      })
-    })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        return Promise.reject(res.status)
-      }
-    })
-    .then(res => {setOrderNumber(res.order.number); setIsOrderAccepted(true)})
-    .catch(err => console.log(`${err}: ${err.status}`))
-  }
+  // function postOrder() {
+  //   fetch('https://norma.nomoreparties.space/api/orders', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json;charset=utf-8'
+  //     },
+  //     body: JSON.stringify({
+  //       "ingredients": ingredientsIdArray
+  //     })
+  //   })
+  //   .then(res => {
+  //     if (res.ok) {
+  //       return res.json();
+  //     } else {
+  //       return Promise.reject(res.status)
+  //     }
+  //   })
+  //   .then(res => {setOrderNumber(res.order.number); setIsOrderAccepted(true)})
+  //   .catch(err => console.log(`${err}: ${err.status}`))
+  // }
 
-  React.useEffect(
-    () => {
-      dispatchTotalPrice({type: 'sum', payload: {filling: fillingList, bun: bun}});
-    }, [listOfIngredients]
-  );
+  // React.useEffect(
+  //   () => {
+  //     dispatchTotalPrice({type: 'sum', payload: {filling: fillingList, bun: bun}});
+  //   }, [listOfIngredients]
+  // );
 
 
   return (
@@ -162,17 +182,17 @@ export default function BurgerConstructor () {
               <CurrencyIcon type="primary" />
             </div>
           </div>
-          <Button type="primary" size="large" onClick={() => postOrder()}>
+          <Button type="primary" size="large" onClick={() => /* postOrder() */ dispatch(getOrder(ingredientsIdArray))}>
             Оформить заказ
           </Button>
         </article>
       </section>
 
       {
-        isOrderAccepted &&
+        isOrderAccepted && !isReadyForNewOrder &&
         <Modal
           title=""
-          onClose={setIsOrderAccepted}
+          // onClose={setIsOrderAccepted}
 
         >
           <OrderDetails
