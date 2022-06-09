@@ -144,7 +144,7 @@ const constructorIngredientsReducer = (state = constructorInitialState, action) 
 
       return {
         ...state,
-        ingredients: {bun: {...state.ingredients.bun}, fillings: spliceArr},
+        ingredients: {...state.ingredients, fillings: spliceArr},
         ingredientsCount: arr
       }
     }

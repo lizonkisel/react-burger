@@ -1,4 +1,4 @@
-import React, { useContext, useReducer, useEffect } from 'react';
+import React, { useContext, useReducer, useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useDrop } from 'react-dnd';
 
@@ -17,7 +17,7 @@ import OrderDetails from '../order-details/order-details.jsx';
 import {getAllIngredients, getOrder, ADD_TO_CONSTRUCTOR, DELETE_FROM_CONSTRUCTOR} from '../../services/actions/index.js';
 
 
-const initialPrice = {price: 0};
+// const initialPrice = {price: 0};
 
 // function reducer(totalPrice, action) {
 
@@ -42,6 +42,10 @@ export default function BurgerConstructor () {
   const constructorIngredients = useSelector(store => store.constructorIngredients.ingredients.fillings);
 
   const bun = useSelector(store => store.constructorIngredients.ingredients.bun);
+
+  const bunsPrice = bun === null ?
+  0 :
+  bun.price * 2;
 
   /* На данном этапе просто находим первую булку из списка ингредиентов */
 
@@ -75,7 +79,7 @@ export default function BurgerConstructor () {
 
   //   switch(action.type) {
   //     case 'sum':
-  //       const sum = fillingList.reduce((prevVal, item) => {
+  //       const sum = constructorIngredients.reduce((prevVal, item) => {
   //         return prevVal + item.price
   //       }, bunsPrice);
   //       return {price: sum};
@@ -88,32 +92,17 @@ export default function BurgerConstructor () {
   // const [totalPrice, dispatchTotalPrice] = useReducer(reducer, initialPrice);
 
 
-  // function postOrder() {
-  //   fetch('https://norma.nomoreparties.space/api/orders', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json;charset=utf-8'
-  //     },
-  //     body: JSON.stringify({
-  //       "ingredients": ingredientsIdArray
-  //     })
-  //   })
-  //   .then(res => {
-  //     if (res.ok) {
-  //       return res.json();
-  //     } else {
-  //       return Promise.reject(res.status)
-  //     }
-  //   })
-  //   .then(res => {setOrderNumber(res.order.number); setIsOrderAccepted(true)})
-  //   .catch(err => console.log(`${err}: ${err.status}`))
-  // }
-
   // React.useEffect(
   //   () => {
-  //     dispatchTotalPrice({type: 'sum', payload: {filling: fillingList, bun: bun}});
+  //     dispatchTotalPrice({type: 'sum', payload: {filling: constructorIngredients, bun: bun}});
   //   }, [listOfIngredients]
   // );
+
+  const price = useMemo(() => {
+    return (
+      constructorIngredients.reduce((prevVal, curVal) => prevVal + curVal.price, bunsPrice)
+    );
+  }, [constructorIngredients]);
 
   const [, dropRef] = useDrop({
     accept: 'ingredient',
@@ -127,15 +116,11 @@ export default function BurgerConstructor () {
 
     function deleteFromConstructor(item, key) {
     console.log(key);
-    // console.log(e.target);
-    // e.target.classList.contains('constructor-element__action') ?
     dispatch({
       type: DELETE_FROM_CONSTRUCTOR,
       item: item,
       key: key
     })
-    // :
-    // console.log('No')
   };
 
   return (
@@ -182,14 +167,14 @@ export default function BurgerConstructor () {
           <div className={burgerConstructor.priceArea}>
             <p className="text text_type_digits-medium">
               {
-                // totalPrice.price
+                price
               }
             </p>
             <div className={burgerConstructor.currentIcon}>
               <CurrencyIcon type="primary" />
             </div>
           </div>
-          <Button type="primary" size="large" onClick={() => /* postOrder() */ dispatch(getOrder(ingredientsIdArray))}>
+          <Button type="primary" size="large" onClick={() => dispatch(getOrder(ingredientsIdArray))}>
             Оформить заказ
           </Button>
         </article>
