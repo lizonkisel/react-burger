@@ -39,12 +39,16 @@ export default function BurgerConstructor () {
 
   const listOfIngredients = useSelector(store => store.allIngredients.items);
 
+  const constructorIngredients = useSelector(store => store.constructorIngredients.ingredients.fillings);
+
+  const bun = useSelector(store => store.constructorIngredients.ingredients.bun);
+
   /* На данном этапе просто находим первую булку из списка ингредиентов */
 
-  const bun = listOfIngredients.find((ingredient) =>
-    ingredient.type === "bun"
-  );
-  const bunsPrice = bun.price * 2;
+  // const bun = bunIngredient.find((ingredient) =>
+  //   ingredient.type === "bun"
+  // );
+  // const bunsPrice = bun.price * 2;
 
 
   // const fillingList = listOfIngredients.filter((ingredient) => {
@@ -121,9 +125,7 @@ export default function BurgerConstructor () {
     }
   });
 
-  const constructorIngredients = useSelector(store => store.constructorIngredients.ingredients);
-
-  function deleteFromConstructor(item, key) {
+    function deleteFromConstructor(item, key) {
     console.log(key);
     // console.log(e.target);
     // e.target.classList.contains('constructor-element__action') ?
@@ -151,21 +153,8 @@ export default function BurgerConstructor () {
             />
           }
           <ul className={burgerConstructor.compositionChangebleList}>
-            {/* {
-              fillingList.map((ingredient, index) => (
-                <li className={burgerConstructor.element} key={ingredient._id}>
-                  <DragIcon type="primary" />
-                  <ConstructorElement
-                    text={ingredient.name}
-                    price={ingredient.price}
-                    thumbnail={ingredient.image}
-                  />
-                </li>
-              ))
-            } */}
 
               {constructorIngredients && constructorIngredients.map((ingredient, i) => (
-
                 <li className={burgerConstructor.element} key={i}>
                   <DragIcon type="primary" />
                   <ConstructorElement
@@ -185,7 +174,7 @@ export default function BurgerConstructor () {
             isLocked={true}
             text={`${bun.name} (низ)`}
             price={bun.price}
-            thumbnail={'https://code.s3.yandex.net/react/code/bun-02.png'}
+            thumbnail={bun.image}
             />
           }
         </article>

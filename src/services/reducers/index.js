@@ -95,15 +95,19 @@ const orderReducer = (state = orderInitialState, action) => {
 };
 
 const constructorInitialState = {
-  ingredients: [],
+  // ingredients: [],
+  ingredients: {
+    bun: null,
+    fillings: []
+  },
   ingredientsCount: []
 }
 
 const constructorIngredientsReducer = (state = constructorInitialState, action) => {
   switch (action.type) {
     case ADD_TO_CONSTRUCTOR: {
-      let arr = [...state.ingredientsCount];
 
+      let arr = [...state.ingredientsCount];
       const sameIndex = arr.findIndex(element => element.itemId === action.item._id);
       const sameElement = arr[sameIndex];
       sameIndex === -1 ?
@@ -112,12 +116,22 @@ const constructorIngredientsReducer = (state = constructorInitialState, action) 
 
       return {
         ...state,
-        ingredients: [...state.ingredients, action.item],
-        ingredientsCount: arr
+        // ingredients: [...state.ingredients, action.item],
+        ingredients: (
+          action.item.type === 'bun' ?
+          {bun: action.item, fillings: [...state.ingredients.fillings]} :
+          {...state.ingredients, fillings: [...state.ingredients.fillings, action.item]}
+        ),
+        // ingredients: {...state.ingredients, action.item},
+        ingredientsCount: (
+          action.item.type === 'bun' ?
+          [...state.ingredientsCount] :
+          arr
+        )
       }
     }
     case DELETE_FROM_CONSTRUCTOR: {
-      const spliceArr = [...state.ingredients];
+      const spliceArr = [...state.ingredients.fillings];
       spliceArr.splice(action.key, 1);
 
       let arr = [...state.ingredientsCount];
@@ -130,7 +144,7 @@ const constructorIngredientsReducer = (state = constructorInitialState, action) 
 
       return {
         ...state,
-        ingredients: spliceArr,
+        ingredients: {bun: {...state.ingredients.bun}, fillings: spliceArr},
         ingredientsCount: arr
       }
     }

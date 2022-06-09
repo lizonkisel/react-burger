@@ -12,17 +12,23 @@ import {getCurrentIngredient} from '../../services/actions/index.js';
 export default function DraggableIngredient({ingredient}) {
 
   const ingredientsCount = useSelector(store => store.constructorIngredients.ingredientsCount);
+  const bun = useSelector(store => store.constructorIngredients.ingredients.bun);
+  console.log(bun);
 
   // console.log(ingredientsCount);
 
-  // let count;
-
   function setCount() {
+    if (bun !== null && bun._id === ingredient._id) {
+      const count = 1;
+      return count;
+    }
     const count = ingredientsCount.find(element => element.itemId === ingredient._id) === undefined ?
-    0 :
+    null :
     ingredientsCount.find(element => element.itemId === ingredient._id).count;
     return count;
-  }
+  };
+
+  const startCount = setCount();
 
   // useEffect(() => {
   //   console.log('Use effect');
@@ -50,7 +56,9 @@ export default function DraggableIngredient({ingredient}) {
   return (
     <li className={` ${styles.card}`} onClick={() => {chooseIngredient(ingredient)}} ref={dragRef}>
       <img className={`ml-4 mr-4 ${styles.image}`} src={ingredient.image} />
-      <Counter count={setCount()} size="default" />
+      { startCount &&
+        <Counter count={setCount()} size="default" />
+      }
       <div className={styles.priceArea}>
         <p className={`text text_type_digits-default ${styles.price}`}>{ingredient.price}</p>
         <CurrencyIcon type="primary" />
