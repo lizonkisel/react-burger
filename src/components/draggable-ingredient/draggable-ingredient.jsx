@@ -7,7 +7,7 @@ import styles from './draggable-ingredient.module.css';
 import {Counter} from '@ya.praktikum/react-developer-burger-ui-components';
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 
-import {getCurrentIngredient} from '../../services/actions/index.js';
+import {getCurrentIngredient} from '../../services/actions/current-ingredient.js';
 
 export default function DraggableIngredient({ingredient}) {
 
@@ -37,8 +37,6 @@ export default function DraggableIngredient({ingredient}) {
   //   console.log(count);
   // }, [ingredientsCount]);
 
-  // console.log(count);
-
   const dispatch = useDispatch();
 
   function chooseIngredient(ingredient) {
@@ -46,13 +44,14 @@ export default function DraggableIngredient({ingredient}) {
     dispatch(getCurrentIngredient(ingredient));
   };
 
+
   const [, dragRef] = useDrag({
     type: 'ingredient',
     item: ingredient
   });
 
   return (
-    <li className={` ${styles.card}`} onClick={() => {chooseIngredient(ingredient)}} ref={dragRef}>
+    <li className={` ${styles.card}`} onClick={() => {chooseIngredient(ingredient)}} ref={dragRef} draggable>
       <img className={`ml-4 mr-4 ${styles.image}`} src={ingredient.image} />
       { startCount &&
         <Counter count={setCount()} size="default" />

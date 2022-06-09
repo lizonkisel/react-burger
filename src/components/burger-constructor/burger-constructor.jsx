@@ -1,8 +1,10 @@
-import React, { useContext, useReducer, useEffect, useMemo } from 'react';
+import React, { useContext, useReducer, useEffect, useMemo, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useDrop } from 'react-dnd';
 
 import burgerConstructor from './burger-constructor.module.css';
+
+import FillingIngredient from '../filling-ingredient/filling-ingredient';
 
 import PropTypes from 'prop-types';
 import {ingredientPropTypes} from '../../utils/prop-types.js';
@@ -14,26 +16,8 @@ import {Button} from '@ya.praktikum/react-developer-burger-ui-components';
 import Modal from '../modal/modal.jsx';
 import OrderDetails from '../order-details/order-details.jsx';
 
-import {getAllIngredients, getOrder, ADD_TO_CONSTRUCTOR, DELETE_FROM_CONSTRUCTOR} from '../../services/actions/index.js';
-
-
-// const initialPrice = {price: 0};
-
-// function reducer(totalPrice, action) {
-
-//   switch(action.type) {
-//     case 'sum':
-//       const bunsPrice = action.payload.bun.price * 2;
-
-//       const sum = action.payload.filling.reduce((prevVal, item) => {
-//         return prevVal + item.price
-//       }, bunsPrice);
-//       return {price: sum};
-//     default:
-//       // throw new Error(`Wrong type of action: ${action.type}`);
-//       return totalPrice;
-//   }
-// }
+import {ADD_TO_CONSTRUCTOR} from '../../services/actions/constructor-ingredients.js';
+import {getOrder} from '../../services/actions/order.js';
 
 export default function BurgerConstructor () {
 
@@ -47,24 +31,9 @@ export default function BurgerConstructor () {
   0 :
   bun.price * 2;
 
-  /* На данном этапе просто находим первую булку из списка ингредиентов */
-
-  // const bun = bunIngredient.find((ingredient) =>
-  //   ingredient.type === "bun"
-  // );
-  // const bunsPrice = bun.price * 2;
-
-
-  // const fillingList = listOfIngredients.filter((ingredient) => {
-  //   return ingredient.type === "sauce" || ingredient.type === "main";
-  // });
-
-
   const isOrderAccepted = useSelector(store => store.order.isOrderAccepted);
   const isReadyForNewOrder = useSelector(store => store.order.isReadyForNewOrder);
   const orderNumber = useSelector(store => store.order.number);
-
-
 
   const ingredientsIdArray = listOfIngredients.map((item) => {
     return item._id
@@ -72,31 +41,7 @@ export default function BurgerConstructor () {
 
   const dispatch = useDispatch();
 
-
-  // const initialPrice = {price: 0};
-
-  // function reducer(totalPrice, action) {
-
-  //   switch(action.type) {
-  //     case 'sum':
-  //       const sum = constructorIngredients.reduce((prevVal, item) => {
-  //         return prevVal + item.price
-  //       }, bunsPrice);
-  //       return {price: sum};
-  //     default:
-  //       // throw new Error(`Wrong type of action: ${action.type}`);
-  //       return totalPrice;
-  //   }
-  // }
-
-  // const [totalPrice, dispatchTotalPrice] = useReducer(reducer, initialPrice);
-
-
-  // React.useEffect(
-  //   () => {
-  //     dispatchTotalPrice({type: 'sum', payload: {filling: constructorIngredients, bun: bun}});
-  //   }, [listOfIngredients]
-  // );
+  // const price = 0;
 
   const price = useMemo(() => {
     return (
@@ -107,6 +52,7 @@ export default function BurgerConstructor () {
   const [, dropRef] = useDrop({
     accept: 'ingredient',
     drop(item) {
+      console.log('New Drop item')
       dispatch({
         type: ADD_TO_CONSTRUCTOR,
         item: item
@@ -114,14 +60,18 @@ export default function BurgerConstructor () {
     }
   });
 
-    function deleteFromConstructor(item, key) {
-    console.log(key);
-    dispatch({
-      type: DELETE_FROM_CONSTRUCTOR,
-      item: item,
-      key: key
-    })
-  };
+  // const [] = useDrag({
+  //   type: 'ingredient'
+  // });
+
+  // function deleteFromConstructor(item, key) {
+  //   console.log(key);
+  //   dispatch({
+  //     type: DELETE_FROM_CONSTRUCTOR,
+  //     item: item,
+  //     key: key
+  //   })
+  // };
 
   return (
     <>
@@ -140,15 +90,19 @@ export default function BurgerConstructor () {
           <ul className={burgerConstructor.compositionChangebleList}>
 
               {constructorIngredients && constructorIngredients.map((ingredient, i) => (
-                <li className={burgerConstructor.element} key={i}>
-                  <DragIcon type="primary" />
-                  <ConstructorElement
-                    text={ingredient.name}
-                    price={ingredient.price}
-                    thumbnail={ingredient.image}
-                    handleClose={() => deleteFromConstructor(ingredient, i)}
-                  />
-                </li>
+
+                <FillingIngredient item={ingredient} index={i} key={i}>
+
+                </FillingIngredient>
+                // <li className={burgerConstructor.element} key={i} draggable>
+                //   <DragIcon type="primary" />
+                //   <ConstructorElement
+                //     text={ingredient.name}
+                //     price={ingredient.price}
+                //     thumbnail={ingredient.image}
+                //     handleClose={() => deleteFromConstructor(ingredient, i)}
+                //   />
+                // </li>
               ))}
 
           </ul>

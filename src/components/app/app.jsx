@@ -14,7 +14,7 @@ import BurgerConstructor from '../burger-constructor/burger-constructor.jsx';
 
 import {IngredientContext} from '../../utils/ingredient-context.js';
 
-import {getAllIngredients} from '../../services/actions/index.js';
+import {getAllIngredients} from '../../services/actions/all-ingredients.js';
 
 
 function App() {

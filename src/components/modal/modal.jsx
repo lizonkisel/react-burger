@@ -10,7 +10,8 @@ import PropTypes from 'prop-types';
 import {CloseIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import ModalOverlay from '../modal-overlay/modal-overlay.jsx';
 
-import { getCurrentIngredient, closeOrder} from '../../services/actions/index.js';
+import {getCurrentIngredient} from '../../services/actions/current-ingredient.js'
+import { closeOrder} from '../../services/actions/order.js';
 
 
 
