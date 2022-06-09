@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 import {GET_ALL_INGREDIENTS, GET_ALL_INGREDIENTS_SUCCESS, GET_ALL_INGREDIENTS_FAILED,
   GET_CURRENT_INGREDIENT, GET_CURRENT_INGREDIENT_SUCCESS, GET_CURRENT_INGREDIENT_FAILED,
-  GET_ORDER, GET_ORDER_SUCCESS, CLOSE_ORDER} from '../actions/index.js';
+  GET_ORDER, GET_ORDER_SUCCESS, CLOSE_ORDER, ADD_TO_CONSTRUCTOR, DELETE_FROM_CONSTRUCTOR, CHANGE_COUNT} from '../actions/index.js';
 
 
 const initialState = {};
@@ -94,11 +94,58 @@ const orderReducer = (state = orderInitialState, action) => {
   }
 };
 
+const constructorInitialState = {
+  ingredients: [],
+  ingredientsCount: []
+}
+
+const constructorIngredientsReducer = (state = constructorInitialState, action) => {
+  switch (action.type) {
+    case ADD_TO_CONSTRUCTOR: {
+      let arr = [...state.ingredientsCount];
+
+      const sameIndex = arr.findIndex(element => element.itemId === action.item._id);
+      const sameElement = arr[sameIndex];
+      sameIndex === -1 ?
+      arr.push({itemId: action.item._id, count: 1}) :
+      arr.splice(sameIndex, 1, {itemId: sameElement.itemId, count: sameElement.count + 1});
+
+      return {
+        ...state,
+        ingredients: [...state.ingredients, action.item],
+        ingredientsCount: arr
+      }
+    }
+    case DELETE_FROM_CONSTRUCTOR: {
+      const spliceArr = [...state.ingredients];
+      spliceArr.splice(action.key, 1);
+
+      let arr = [...state.ingredientsCount];
+      const sameIndex = arr.findIndex(element => element.itemId === action.item._id);
+      const sameElement = arr[sameIndex];
+      sameElement.count === 1 ?
+      arr.splice(sameIndex, 1) :
+      arr.splice(sameIndex, 1, {itemId: sameElement.itemId, count: sameElement.count - 1});
+
+
+      return {
+        ...state,
+        ingredients: spliceArr,
+        ingredientsCount: arr
+      }
+    }
+    default:
+      return state
+  }
+};
+
+
 
 const rootReducer = combineReducers({
   allIngredients: allIngredientsReducer,
   currentIngredient: currentIngredientReducer,
-  order: orderReducer
+  order: orderReducer,
+  constructorIngredients: constructorIngredientsReducer
 });
 
 export {rootReducer};

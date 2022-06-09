@@ -1,6 +1,9 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+
 import styles from './app.module.css';
 
 import {dataUrl} from '../../utils/data.js';
@@ -29,7 +32,7 @@ function App() {
     <>
         <AppHeader />
         <main className={styles.main}>
-            <>
+            <DndProvider backend={HTML5Backend}>
             {
               listOfIngredients &&
               <>
@@ -37,7 +40,7 @@ function App() {
                 <BurgerConstructor />
               </>
             }
-            </>
+            </DndProvider>
         </main>
     </>
   );

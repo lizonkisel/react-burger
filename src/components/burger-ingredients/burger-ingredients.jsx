@@ -49,21 +49,16 @@ export default function BurgerIngredients() {
 
   useEffect(() => {
     if (inViewBun) {
-      console.log('bun');
       setCurrentTab('buns');
     } else if (inViewSauce) {
-      console.log('sauce');
       setCurrentTab('sauces');
     } else if (inViewMain) {
-      console.log('main');
       setCurrentTab('mains');
     }
   }, [inViewBun, inViewSauce, inViewMain]);
 
 
   const listOfIngredients = useSelector(store => store.allIngredients.items);
-
-  // const listOfIngredients = useContext(IngredientContext);
 
     const bunList = listOfIngredients.filter((ingredient) => {
       return ingredient.type === "bun";

@@ -1,5 +1,6 @@
 import React, { useContext, useReducer, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useDrop } from 'react-dnd';
 
 import burgerConstructor from './burger-constructor.module.css';
 
@@ -13,26 +14,26 @@ import {Button} from '@ya.praktikum/react-developer-burger-ui-components';
 import Modal from '../modal/modal.jsx';
 import OrderDetails from '../order-details/order-details.jsx';
 
-import {getAllIngredients, getOrder} from '../../services/actions/index.js';
+import {getAllIngredients, getOrder, ADD_TO_CONSTRUCTOR, DELETE_FROM_CONSTRUCTOR} from '../../services/actions/index.js';
 
 
 const initialPrice = {price: 0};
 
-function reducer(totalPrice, action) {
+// function reducer(totalPrice, action) {
 
-  switch(action.type) {
-    case 'sum':
-      const bunsPrice = action.payload.bun.price * 2;
+//   switch(action.type) {
+//     case 'sum':
+//       const bunsPrice = action.payload.bun.price * 2;
 
-      const sum = action.payload.filling.reduce((prevVal, item) => {
-        return prevVal + item.price
-      }, bunsPrice);
-      return {price: sum};
-    default:
-      // throw new Error(`Wrong type of action: ${action.type}`);
-      return totalPrice;
-  }
-}
+//       const sum = action.payload.filling.reduce((prevVal, item) => {
+//         return prevVal + item.price
+//       }, bunsPrice);
+//       return {price: sum};
+//     default:
+//       // throw new Error(`Wrong type of action: ${action.type}`);
+//       return totalPrice;
+//   }
+// }
 
 export default function BurgerConstructor () {
 
@@ -46,9 +47,9 @@ export default function BurgerConstructor () {
   const bunsPrice = bun.price * 2;
 
 
-  const fillingList = listOfIngredients.filter((ingredient) => {
-    return ingredient.type === "sauce" || ingredient.type === "main";
-  });
+  // const fillingList = listOfIngredients.filter((ingredient) => {
+  //   return ingredient.type === "sauce" || ingredient.type === "main";
+  // });
 
 
   const isOrderAccepted = useSelector(store => store.order.isOrderAccepted);
@@ -66,21 +67,21 @@ export default function BurgerConstructor () {
 
   // const initialPrice = {price: 0};
 
-  function reducer(totalPrice, action) {
+  // function reducer(totalPrice, action) {
 
-    switch(action.type) {
-      case 'sum':
-        const sum = fillingList.reduce((prevVal, item) => {
-          return prevVal + item.price
-        }, bunsPrice);
-        return {price: sum};
-      default:
-        // throw new Error(`Wrong type of action: ${action.type}`);
-        return totalPrice;
-    }
-  }
+  //   switch(action.type) {
+  //     case 'sum':
+  //       const sum = fillingList.reduce((prevVal, item) => {
+  //         return prevVal + item.price
+  //       }, bunsPrice);
+  //       return {price: sum};
+  //     default:
+  //       // throw new Error(`Wrong type of action: ${action.type}`);
+  //       return totalPrice;
+  //   }
+  // }
 
-  const [totalPrice, dispatchTotalPrice] = useReducer(reducer, initialPrice);
+  // const [totalPrice, dispatchTotalPrice] = useReducer(reducer, initialPrice);
 
 
   // function postOrder() {
@@ -104,17 +105,41 @@ export default function BurgerConstructor () {
   //   .catch(err => console.log(`${err}: ${err.status}`))
   // }
 
-  React.useEffect(
-    () => {
-      dispatchTotalPrice({type: 'sum', payload: {filling: fillingList, bun: bun}});
-    }, [listOfIngredients]
-  );
+  // React.useEffect(
+  //   () => {
+  //     dispatchTotalPrice({type: 'sum', payload: {filling: fillingList, bun: bun}});
+  //   }, [listOfIngredients]
+  // );
 
+  const [, dropRef] = useDrop({
+    accept: 'ingredient',
+    drop(item) {
+      dispatch({
+        type: ADD_TO_CONSTRUCTOR,
+        item: item
+      })
+    }
+  });
+
+  const constructorIngredients = useSelector(store => store.constructorIngredients.ingredients);
+
+  function deleteFromConstructor(item, key) {
+    console.log(key);
+    // console.log(e.target);
+    // e.target.classList.contains('constructor-element__action') ?
+    dispatch({
+      type: DELETE_FROM_CONSTRUCTOR,
+      item: item,
+      key: key
+    })
+    // :
+    // console.log('No')
+  };
 
   return (
     <>
       <section className='pt-25'>
-        <article className={burgerConstructor.compositionArea}>
+        <article className={burgerConstructor.compositionArea} ref={dropRef}>
           {
             bun &&
             <ConstructorElement className={burgerConstructor.element}
@@ -126,7 +151,7 @@ export default function BurgerConstructor () {
             />
           }
           <ul className={burgerConstructor.compositionChangebleList}>
-            {
+            {/* {
               fillingList.map((ingredient, index) => (
                 <li className={burgerConstructor.element} key={ingredient._id}>
                   <DragIcon type="primary" />
@@ -137,7 +162,21 @@ export default function BurgerConstructor () {
                   />
                 </li>
               ))
-            }
+            } */}
+
+              {constructorIngredients && constructorIngredients.map((ingredient, i) => (
+
+                <li className={burgerConstructor.element} key={i}>
+                  <DragIcon type="primary" />
+                  <ConstructorElement
+                    text={ingredient.name}
+                    price={ingredient.price}
+                    thumbnail={ingredient.image}
+                    handleClose={() => deleteFromConstructor(ingredient, i)}
+                  />
+                </li>
+              ))}
+
           </ul>
           {
             bun &&
@@ -154,7 +193,7 @@ export default function BurgerConstructor () {
           <div className={burgerConstructor.priceArea}>
             <p className="text text_type_digits-medium">
               {
-                totalPrice.price
+                // totalPrice.price
               }
             </p>
             <div className={burgerConstructor.currentIcon}>
