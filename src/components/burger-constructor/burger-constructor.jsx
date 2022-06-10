@@ -5,23 +5,17 @@ import { useDrop } from 'react-dnd';
 import burgerConstructor from './burger-constructor.module.css';
 
 import FillingIngredient from '../filling-ingredient/filling-ingredient';
-
-import PropTypes from 'prop-types';
-import {ingredientPropTypes} from '../../utils/prop-types.js';
-
-import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components';
-import {DragIcon} from '@ya.praktikum/react-developer-burger-ui-components';
-import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
-import {Button} from '@ya.praktikum/react-developer-burger-ui-components';
 import Modal from '../modal/modal.jsx';
 import OrderDetails from '../order-details/order-details.jsx';
+
+import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components';
+import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
+import {Button} from '@ya.praktikum/react-developer-burger-ui-components';
 
 import {ADD_TO_CONSTRUCTOR} from '../../services/actions/constructor-ingredients.js';
 import {getOrder} from '../../services/actions/order.js';
 
 export default function BurgerConstructor () {
-
-  const listOfIngredients = useSelector(store => store.allIngredients.items);
 
   const constructorIngredients = useSelector(store => store.constructorIngredients.ingredients.fillings);
 
@@ -31,17 +25,26 @@ export default function BurgerConstructor () {
   0 :
   bun.price * 2;
 
-  const isOrderAccepted = useSelector(store => store.order.isOrderAccepted);
-  const isReadyForNewOrder = useSelector(store => store.order.isReadyForNewOrder);
+  const isOrderRejected = useSelector(store => store.order.isOrderRejected);
+  const isOrderModalClosed = useSelector(store => store.order.isOrderModalClosed);
   const orderNumber = useSelector(store => store.order.number);
 
-  const ingredientsIdArray = listOfIngredients.map((item) => {
-    return item._id
-  });
+  function getIngredientsIdArray() {
+    const ingredientsIdArray = [];
+    if (bun !== null) {
+      ingredientsIdArray.push(bun._id)
+    };
+    constructorIngredients.forEach((filling) => {
+      ingredientsIdArray.push(filling._id);
+    });
+    if (bun !== null) {
+      ingredientsIdArray.push(bun._id)
+    };
+
+    return ingredientsIdArray;
+  };
 
   const dispatch = useDispatch();
-
-  // const price = 0;
 
   const price = useMemo(() => {
     return (
@@ -52,7 +55,6 @@ export default function BurgerConstructor () {
   const [, dropRef] = useDrop({
     accept: 'ingredient',
     drop(item) {
-      console.log('New Drop item')
       dispatch({
         type: ADD_TO_CONSTRUCTOR,
         item: item
@@ -60,23 +62,10 @@ export default function BurgerConstructor () {
     }
   });
 
-  // const [] = useDrag({
-  //   type: 'ingredient'
-  // });
-
-  // function deleteFromConstructor(item, key) {
-  //   console.log(key);
-  //   dispatch({
-  //     type: DELETE_FROM_CONSTRUCTOR,
-  //     item: item,
-  //     key: key
-  //   })
-  // };
-
   return (
     <>
-      <section className='pt-25'>
-        <article className={burgerConstructor.compositionArea} ref={dropRef}>
+      <section className={`${burgerConstructor.section} pt-20`}>
+        <article className={`${burgerConstructor.compositionArea} pt-5`} ref={dropRef}>
           {
             bun &&
             <ConstructorElement className={burgerConstructor.element}
@@ -90,19 +79,8 @@ export default function BurgerConstructor () {
           <ul className={burgerConstructor.compositionChangebleList}>
 
               {constructorIngredients && constructorIngredients.map((ingredient, i) => (
-
                 <FillingIngredient item={ingredient} index={i} key={i}>
-
                 </FillingIngredient>
-                // <li className={burgerConstructor.element} key={i} draggable>
-                //   <DragIcon type="primary" />
-                //   <ConstructorElement
-                //     text={ingredient.name}
-                //     price={ingredient.price}
-                //     thumbnail={ingredient.image}
-                //     handleClose={() => deleteFromConstructor(ingredient, i)}
-                //   />
-                // </li>
               ))}
 
           </ul>
@@ -128,26 +106,25 @@ export default function BurgerConstructor () {
               <CurrencyIcon type="primary" />
             </div>
           </div>
-          <Button type="primary" size="large" onClick={() => dispatch(getOrder(ingredientsIdArray))}>
+          <Button type="primary" size="large" onClick={() => {dispatch(getOrder(getIngredientsIdArray()))}}>
             Оформить заказ
           </Button>
         </article>
       </section>
 
       {
-        isOrderAccepted && !isReadyForNewOrder &&
-        <Modal
-          title=""
-        >
-          <OrderDetails
-            orderNumber={orderNumber}
-          />
-        </Modal>
+        !isOrderRejected &&
+        !isOrderModalClosed &&
+        (
+          <Modal
+            title=""
+          >
+            <OrderDetails
+              orderNumber={orderNumber}
+            />
+          </Modal>
+        )
       }
     </>
   )
-}
-
-BurgerConstructor.propTypes = {
-  // listOfIngredients: PropTypes.arrayOf(ingredientPropTypes.isRequired).isRequired
 }

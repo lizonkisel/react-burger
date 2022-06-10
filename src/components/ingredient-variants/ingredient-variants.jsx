@@ -1,10 +1,8 @@
 import React  from 'react';
-import { useDispatch } from 'react-redux';
-import { useDrag } from 'react-dnd';
 
 import ingredientVariants from './ingredient-variants.module.css';
-import PropTypes from 'prop-types';
 
+import PropTypes from 'prop-types';
 import {ingredientPropTypes} from '../../utils/prop-types.js';
 
 import DraggableIngredient from '../draggable-ingredient/draggable-ingredient.jsx';
@@ -30,9 +28,9 @@ export const IngredientVariants = React.forwardRef((props, ref) => {
   )
 })
 
-// IngredientVariants.propTypes = {
-//   listOfIngredients: PropTypes.arrayOf(ingredientPropTypes.isRequired).isRequired,
-//   setIngredientInModal: PropTypes.func.isRequired,
-//   ingredientName: PropTypes.oneOf(['Булки', 'Соусы', 'Начинки']).isRequired
-// }
+IngredientVariants.propTypes = {
+  listOfIngredients: PropTypes.arrayOf(ingredientPropTypes.isRequired).isRequired,
+  titleId: PropTypes.oneOf(['buns', 'sauces', 'mains']).isRequired,
+  ingredientName: PropTypes.oneOf(['Булки', 'Соусы', 'Начинки']).isRequired
+}
 

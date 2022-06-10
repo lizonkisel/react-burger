@@ -6,10 +6,9 @@ import modal from './modal.module.css'
 
 import PropTypes from 'prop-types';
 
-
 import {CloseIcon} from '@ya.praktikum/react-developer-burger-ui-components';
-import ModalOverlay from '../modal-overlay/modal-overlay.jsx';
 
+import ModalOverlay from '../modal-overlay/modal-overlay.jsx';
 import {getCurrentIngredient} from '../../services/actions/current-ingredient.js'
 import { closeOrder} from '../../services/actions/order.js';
 
@@ -17,8 +16,7 @@ import { closeOrder} from '../../services/actions/order.js';
 
 const modalsContainer = document.querySelector('#modals');
 
-// export default function Modal({title, onOverlayClick, onEscapeClick, onCrossClick, children}) {
-  export default function Modal({title, children}) {
+export default function Modal({title, children}) {
 
   const dispatch = useDispatch();
 
@@ -66,10 +64,9 @@ const modalsContainer = document.querySelector('#modals');
 
     modalsContainer
   )
-}
+};
 
-// Modal.propTypes = {
-//   title: PropTypes.string,
-//   onClose: PropTypes.func.isRequired,
-//   children: PropTypes.element.isRequired
-// }
+Modal.propTypes = {
+  title: PropTypes.string,
+  children: PropTypes.element.isRequired
+};

@@ -1,28 +1,45 @@
-import {GET_ORDER, GET_ORDER_SUCCESS, CLOSE_ORDER} from '../actions/order.js';
+import {GET_ORDER, GET_ORDER_SUCCESS, GET_ORDER_FAILED, CLOSE_ORDER} from '../actions/order.js';
 
 const orderInitialState = {
-  isOrderAccepted: false,
-  number: null,
-  isReadyForNewOrder: true
+  isOrderModalClosed: true,
+  isOrderSent: false,
+  isOrderRejected: false,
+  number: null
 };
 
 const orderReducer = (state = orderInitialState, action) => {
   switch (action.type) {
     case GET_ORDER: {
-      return state
+      return {
+        ...state,
+        isOrderModalClosed: action.isOrderModalClosed,
+        isOrderSent: action.isOrderSent,
+        isOrderRejected: action.isOrderRejected,
+      }
+
     }
     case GET_ORDER_SUCCESS: {
       return {
         ...state,
-        number: action.number,
-        isOrderAccepted: action.isOrderAccepted,
-        isReadyForNewOrder: false
+        isOrderModalClosed: action.isOrderModalClosed,
+        isOrderSent: action.isOrderSent,
+        isOrderRejected: action.isOrderRejected,
+        number: action.number
+      }
+    }
+    case GET_ORDER_FAILED: {
+      return {
+        ...state,
+        isOrderModalClosed: action.isOrderModalClosed,
+        isOrderSent: action.isOrderSent,
+        isOrderRejected: action.isOrderRejected
       }
     }
     case CLOSE_ORDER: {
       return {
         ...state,
-        isReadyForNewOrder: true
+        isOrderModalClosed: action.isOrderModalClosed,
+        number: action.number
       }
     }
     default:

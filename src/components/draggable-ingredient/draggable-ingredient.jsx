@@ -4,6 +4,9 @@ import { useDrag } from 'react-dnd';
 
 import styles from './draggable-ingredient.module.css';
 
+import PropTypes from 'prop-types';
+import {ingredientPropTypes} from '../../utils/prop-types.js';
+
 import {Counter} from '@ya.praktikum/react-developer-burger-ui-components';
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 
@@ -13,7 +16,6 @@ export default function DraggableIngredient({ingredient}) {
 
   const ingredientsCount = useSelector(store => store.constructorIngredients.ingredientsCount);
   const bun = useSelector(store => store.constructorIngredients.ingredients.bun);
-  console.log(bun);
 
   function setCount() {
     if (bun !== null && bun._id === ingredient._id) {
@@ -28,19 +30,9 @@ export default function DraggableIngredient({ingredient}) {
 
   const startCount = setCount();
 
-  // useEffect(() => {
-  //   console.log('Use effect');
-  //   count = ingredientsCount.find(element => element.itemId === ingredient._id) === undefined ?
-  //   0 :
-  //   ingredientsCount.find(element => element.itemId === ingredient._id).count;
-
-  //   console.log(count);
-  // }, [ingredientsCount]);
-
   const dispatch = useDispatch();
 
   function chooseIngredient(ingredient) {
-    console.log(ingredientsCount);
     dispatch(getCurrentIngredient(ingredient));
   };
 
@@ -64,3 +56,7 @@ export default function DraggableIngredient({ingredient}) {
     </li>
   )
 };
+
+DraggableIngredient.propTypes = {
+  ingredient: ingredientPropTypes.isRequired
+}

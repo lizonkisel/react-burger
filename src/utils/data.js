@@ -1,4 +1,6 @@
-const dataUrl = "https://norma.nomoreparties.space/api/ingredients";
+const dataUrl = 'https://norma.nomoreparties.space/api/ingredients';
+const ordersUrl ='https://norma.nomoreparties.space/api/orders';
+
 
 const data = [
     {
@@ -213,5 +215,5 @@ const data = [
     }
 ]
 
-export {dataUrl, data};
+export {dataUrl, ordersUrl, data};
 

@@ -1,3 +1,5 @@
+import {ordersUrl} from '../../utils/data.js';
+
 const GET_ORDER = 'GET_ORDER';
 const GET_ORDER_SUCCESS = 'GET_ORDER_SUCCESS';
 const GET_ORDER_FAILED = 'GET_ORDER_FAILED';
@@ -6,10 +8,13 @@ const CLOSE_ORDER = "CLOSE_ORDER";
 function getOrder(ingredientsIdArray) {
   return function(dispatch) {
     dispatch({
-      type: GET_ORDER
+      type: GET_ORDER,
+      isOrderModalClosed: true,
+      isOrderSent: true,
+      isOrderRejected: false,
     });
 
-    fetch('https://norma.nomoreparties.space/api/orders', {
+    fetch(ordersUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8'
@@ -22,24 +27,35 @@ function getOrder(ingredientsIdArray) {
       if (res.ok) {
         return res.json();
       } else {
+        console.log('Reject');
         return Promise.reject(res.status)
       }
     })
     .then(res => {
       dispatch({
         type: GET_ORDER_SUCCESS,
-        number: res.order.number,
-        isOrderAccepted: true
+        isOrderModalClosed: false,
+        isOrderSent: false,
+        isOrderRejectedd: false,
+        number: res.order.number
       })
     })
-    .catch(err => console.log(`${err}: ${err.status}`))
+    .catch(err => {console.log(err, err.status);
+      dispatch({
+        type: GET_ORDER_FAILED,
+        isOrderModalClosed: true,
+        isOrderSent: false,
+        isOrderRejected: true
+      })
+    })
   }
 }
 
 function closeOrder() {
   return {
     type: CLOSE_ORDER,
-    isReadyForNewOrder: true
+    isOrderModalClosed: true,
+    number: null
   }
 }
 

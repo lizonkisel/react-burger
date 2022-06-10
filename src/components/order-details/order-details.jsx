@@ -1,10 +1,10 @@
-import orderDetails from './order-details.module.css';
+import React  from 'react'
 
-import done from '../../images/done.png';
+import orderDetails from './order-details.module.css';
 
 import PropTypes from 'prop-types';
 
-import React  from 'react';
+import done from '../../images/done.png';
 
 export default function OrderDetails({orderNumber}) {
 
@@ -22,6 +22,6 @@ export default function OrderDetails({orderNumber}) {
   )
 }
 
-// OrderDetails.propTypes = {
-//   orderNumber: PropTypes.number.isRequired
-// }
+OrderDetails.propTypes = {
+  orderNumber: PropTypes.number.isRequired
+}

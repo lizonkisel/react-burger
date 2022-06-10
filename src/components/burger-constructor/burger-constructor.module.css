@@ -1,9 +1,17 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  width: calc(600/1920 * 100vw);
+}
+
 .compositionArea {
-  min-height: 200px;
+  height: calc(656/1080 * 100vh);
   display: flex;
   flex-direction: column;
   row-gap: 16px;
   align-items: end;
+  box-sizing: border-box;
 }
 
 .compositionChangebleList {
@@ -15,12 +23,13 @@
   overflow-y: scroll;
 }
 
-.element {
+/* .element {
   width: 100%;
+  min-width: calc(568/1920 * 100vw);
   display: flex;
   column-gap: 8px;
   align-items: center;
-}
+} */
 
 .info {
   display: flex;

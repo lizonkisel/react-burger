@@ -7,7 +7,9 @@ const GET_ALL_INGREDIENTS_FAILED = 'GET_ALL_INGREDIENTS_FAILED';
 function getAllIngredients() {
   return function(dispatch) {
     dispatch({
-      type: GET_ALL_INGREDIENTS
+      type: GET_ALL_INGREDIENTS,
+      isLoading: true,
+      isFailed: false,
     })
 
     fetch(dataUrl)
@@ -15,19 +17,21 @@ function getAllIngredients() {
         if (res.ok) {
           return res.json();
         } else {
-          dispatch({
-            type: GET_ALL_INGREDIENTS_FAILED
-          })
+          return Promise.reject(res.status)
         }
       })
       .then (res => {
         dispatch({
           type: GET_ALL_INGREDIENTS_SUCCESS,
-          data: res.data
+          isLoading: false,
+          isFailed: false,
+          items: res.data
         })
       })
       .catch(err => dispatch({
-        type: GET_ALL_INGREDIENTS_FAILED
+        type: GET_ALL_INGREDIENTS_FAILED,
+        isLoading: false,
+        isFailed: true,
       }))
   }
 };

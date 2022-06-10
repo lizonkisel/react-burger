@@ -4,6 +4,9 @@ import { useDrag, useDrop } from 'react-dnd';
 
 import styles from './filling-ingredient.module.css';
 
+import PropTypes from 'prop-types';
+import {ingredientPropTypes} from '../../utils/prop-types.js';
+
 import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components';
 import {DragIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 
@@ -23,8 +26,6 @@ export default function FillingIngredient({ item, index }) {
 
   const ref = useRef(null);
   const id = item.uId;
-  // console.log('ingredient id: ', ingredient);
-  // const id = ingredient._id;
 
   const [{ handlerId }, drop] = useDrop({
     accept: 'fillings',
@@ -39,9 +40,6 @@ export default function FillingIngredient({ item, index }) {
       }
       const dragIndex = item.index;
       const hoverIndex = index;
-
-      console.log('DragIndex item: ', item);
-      console.log('DragIndex dragIndex: ', dragIndex);
 
       if (dragIndex === hoverIndex) {
         return;
@@ -92,4 +90,9 @@ export default function FillingIngredient({ item, index }) {
       />
     </li>
   )
+}
+
+FillingIngredient.propTypes = {
+  item: ingredientPropTypes.isRequired,
+  index: PropTypes.number.isRequired
 }

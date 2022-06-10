@@ -25,16 +25,6 @@ const currentIngredientReducer = (state = null, action) => {
         }
       }
     }
-    case GET_CURRENT_INGREDIENT_SUCCESS: {
-      return {
-        ...state,
-        item: action.item
-      }
-    }
-    case GET_CURRENT_INGREDIENT_FAILED: {
-      console.log('Fail');
-      return state;
-    }
     default:
       return state
   }

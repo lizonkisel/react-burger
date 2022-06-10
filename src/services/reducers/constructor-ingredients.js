@@ -21,18 +21,13 @@ const constructorIngredientsReducer = (state = constructorInitialState, action) 
       arr.push({itemId: action.item._id, count: 1}) :
       arr.splice(sameIndex, 1, {itemId: sameElement.itemId, count: sameElement.count + 1});
 
-      // filling: [...state.filling, { ...action.item, uId: uuidv4() }],
-
       return {
         ...state,
-        // ingredients: [...state.ingredients, action.item],
         ingredients: (
           action.item.type === 'bun' ?
           {bun: action.item, fillings: [...state.ingredients.fillings]} :
           {...state.ingredients, fillings: [...state.ingredients.fillings, {...action.item, uId: uuidv4() }]}
-          // {...state.ingredients, fillings: [...state.ingredients.fillings, action.item]}
         ),
-        // ingredients: {...state.ingredients, action.item},
         ingredientsCount: (
           action.item.type === 'bun' ?
           [...state.ingredientsCount] :
@@ -61,10 +56,6 @@ const constructorIngredientsReducer = (state = constructorInitialState, action) 
     case REORDER_INGREDIENT: {
       return {
         ...state,
-        // update - Immutability Helper
-        //  $splice - работает следующим образом
-        // filling.splice(dragIndex, 1); // удаляем то что перетаскиваем
-        // filling.splice(hoverIndex, 0, dragFilling); // вставляем в позицию на которую навели.
         ingredients: { ...state.ingredients,
         fillings: update(state.ingredients.fillings, {
           $splice: [

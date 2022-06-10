@@ -3,28 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useInView } from 'react-intersection-observer';
 
 import burgerIngredients from './burger-ingredients.module.css';
+
 import {IngredientVariants} from '../ingredient-variants/ingredient-variants.jsx';
 import Modal from '../modal/modal.jsx';
 import IngredientDetails from '../ingredient-details/ingredient-details.jsx';
 
-import PropTypes from 'prop-types';
-import {ingredientPropTypes} from '../../utils/prop-types.js';
-
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
 
-import {IngredientContext} from '../../utils/ingredient-context.js';
-
-import {getAllIngredients} from '../../services/actions/index.js';
-
-
-  // export const BurgerIngredients = React.forwardRef((props, ref) => {
 export default function BurgerIngredients() {
-//   const dispatch = useDispatch();
-
-//   useEffect(()=> {
-//     // Отправляем экшен-функцию
-//     dispatch(getAllIngredients())
-// }, []);
 
   const [currentTab, setCurrentTab] = React.useState('buns');
 
@@ -60,50 +46,46 @@ export default function BurgerIngredients() {
 
   const listOfIngredients = useSelector(store => store.allIngredients.items);
 
-    const bunList = listOfIngredients.filter((ingredient) => {
-      return ingredient.type === "bun";
-    })
+  const bunList = listOfIngredients.filter((ingredient) => {
+    return ingredient.type === "bun";
+  })
 
-    const sauceList = listOfIngredients.filter((ingredient) => {
-      return ingredient.type === "sauce";
-    })
+  const sauceList = listOfIngredients.filter((ingredient) => {
+    return ingredient.type === "sauce";
+  })
 
-    const mainList = listOfIngredients.filter((ingredient) => {
-      return ingredient.type === "main";
-    })
+  const mainList = listOfIngredients.filter((ingredient) => {
+    return ingredient.type === "main";
+  })
 
-    const ingredientInModal = useSelector(store => store.currentIngredient);
+  const ingredientInModal = useSelector(store => store.currentIngredient);
 
-    return (
-      <>
-        <section className={burgerIngredients.section}>
-          <h2 className='text text_type_main-large mb-5 mt-10'>Соберите бургер</h2>
-          <nav className={`mb-10 ${burgerIngredients.menu}`}>
-            <Tab value="buns" active={currentTab === 'buns'} onClick={tabClick}>
-              Булки
-            </Tab>
-            <Tab value="sauces" active={currentTab === 'sauces'} onClick={tabClick}>
-              Соусы
-            </Tab>
-            <Tab value="mains" active={currentTab === 'mains'} onClick={tabClick}>
-              Начинки
-            </Tab>
-          </nav>
-          <article className={burgerIngredients.ingredients} >
-            <IngredientVariants ingredientName='Булки' listOfIngredients={bunList} titleId='buns' ref={bunRef}/>
-            <IngredientVariants ingredientName='Соусы' listOfIngredients={sauceList} titleId='sauces' ref={sauceRef}/>
-            <IngredientVariants ingredientName='Начинки' listOfIngredients={mainList} titleId='mains' ref={mainRef}/>
-          </article>
-        </section>
+  return (
+    <>
+      <section className={burgerIngredients.section}>
+        <h2 className='text text_type_main-large mb-5 mt-10'>Соберите бургер</h2>
+        <nav className={`mb-10 ${burgerIngredients.menu}`}>
+          <Tab value="buns" active={currentTab === 'buns'} onClick={tabClick}>
+            Булки
+          </Tab>
+          <Tab value="sauces" active={currentTab === 'sauces'} onClick={tabClick}>
+            Соусы
+          </Tab>
+          <Tab value="mains" active={currentTab === 'mains'} onClick={tabClick}>
+            Начинки
+          </Tab>
+        </nav>
+        <article className={burgerIngredients.ingredients} >
+          <IngredientVariants ingredientName='Булки' listOfIngredients={bunList} titleId='buns' ref={bunRef}/>
+          <IngredientVariants ingredientName='Соусы' listOfIngredients={sauceList} titleId='sauces' ref={sauceRef}/>
+          <IngredientVariants ingredientName='Начинки' listOfIngredients={mainList} titleId='mains' ref={mainRef}/>
+        </article>
+      </section>
 
-        {ingredientInModal &&
-        <Modal title="Детали ингредиента" >
-          <IngredientDetails />
-        </Modal>}
-      </>
-    )
-}
-
-BurgerIngredients.propTypes = {
-  // listOfIngredients: PropTypes.arrayOf(ingredientPropTypes.isRequired).isRequired
+      {ingredientInModal &&
+      <Modal title="Детали ингредиента" >
+        <IngredientDetails />
+      </Modal>}
+    </>
+  )
 }

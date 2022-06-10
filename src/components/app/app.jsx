@@ -6,13 +6,9 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import styles from './app.module.css';
 
-import {dataUrl} from '../../utils/data.js';
-
 import AppHeader from '../app-header/app-header.jsx'
 import BurgerIngredients from '../burger-ingredients/burger-ingredients.jsx';
 import BurgerConstructor from '../burger-constructor/burger-constructor.jsx';
-
-import {IngredientContext} from '../../utils/ingredient-context.js';
 
 import {getAllIngredients} from '../../services/actions/all-ingredients.js';
 
@@ -22,9 +18,10 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(()=> {
-    // Отправляем экшен-функцию
     dispatch(getAllIngredients())
-}, []); /* Тут мб нужно в скобки dispatch добавить. Надо понять, нужно ли */
+  }, []); /* Тут мб нужно в скобки dispatch добавить. Надо понять, нужно ли */
+
+  const {isLoading, isFailed} = useSelector(store => store.allIngredients)
 
   const listOfIngredients = useSelector(store => store.allIngredients.items);
 
@@ -33,6 +30,13 @@ function App() {
         <AppHeader />
         <main className={styles.main}>
             <DndProvider backend={HTML5Backend}>
+
+            {
+              isLoading && <p className="text text_type_main-medium">Загружаем данные...</p>
+            }
+            {
+              isFailed && <p className="text text_type_main-medium">Не удаётся загрузить данные. Пожалуйста, повторите попытку</p>
+            }
             {
               listOfIngredients &&
               <>

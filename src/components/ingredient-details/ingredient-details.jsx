@@ -3,9 +3,6 @@ import { useSelector } from 'react-redux';
 
 import ingredientDetails from './ingredient-details.module.css';
 
-import PropTypes from 'prop-types';
-import {ingredientPropTypes} from '../../utils/prop-types.js';
-
 export default function IngredientDetails() {
 
 const currentIngredient = useSelector(store => store.currentIngredient);
@@ -35,7 +32,3 @@ const currentIngredient = useSelector(store => store.currentIngredient);
     </article>
   )
 }
-
-// IngredientDetails.propTypes = {
-//   ingredient: ingredientPropTypes.isRequired
-// }
