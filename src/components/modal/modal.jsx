@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { useDispatch } from 'react-redux';
 
 import modal from './modal.module.css'
 
@@ -9,20 +8,14 @@ import PropTypes from 'prop-types';
 import {CloseIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 
 import ModalOverlay from '../modal-overlay/modal-overlay.jsx';
-import {getCurrentIngredient} from '../../services/actions/current-ingredient.js'
-import { closeOrder} from '../../services/actions/order.js';
-
 
 
 const modalsContainer = document.querySelector('#modals');
 
-export default function Modal({title, children}) {
-
-  const dispatch = useDispatch();
+export default function Modal({title, onClose, children}) {
 
   function closeModal() {
-    dispatch(closeOrder());
-    dispatch(getCurrentIngredient(null));
+    onClose();
   }
 
   function onEscapeClick(event) {
@@ -68,5 +61,6 @@ export default function Modal({title, children}) {
 
 Modal.propTypes = {
   title: PropTypes.string,
+  onClose: PropTypes.func.isRequired,
   children: PropTypes.element.isRequired
 };

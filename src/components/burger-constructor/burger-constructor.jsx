@@ -1,6 +1,7 @@
-import React, { useContext, useReducer, useEffect, useMemo, useRef } from 'react';
+import React, { useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useDrop } from 'react-dnd';
+// import { v4 as uuidv4 } from 'uuid';
 
 import burgerConstructor from './burger-constructor.module.css';
 
@@ -12,8 +13,9 @@ import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-compon
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {Button} from '@ya.praktikum/react-developer-burger-ui-components';
 
-import {ADD_TO_CONSTRUCTOR} from '../../services/actions/constructor-ingredients.js';
+import {ADD_TO_CONSTRUCTOR, addToConstructor} from '../../services/actions/constructor-ingredients.js';
 import {getOrder} from '../../services/actions/order.js';
+import { closeOrder} from '../../services/actions/order.js';
 
 export default function BurgerConstructor () {
 
@@ -55,12 +57,15 @@ export default function BurgerConstructor () {
   const [, dropRef] = useDrop({
     accept: 'ingredient',
     drop(item) {
-      dispatch({
-        type: ADD_TO_CONSTRUCTOR,
-        item: item
-      })
+      // dispatch({
+      //   type: ADD_TO_CONSTRUCTOR,
+      //   item: item,
+      //   uId: uuidv4()
+      // })
+      dispatch(addToConstructor(item))
     }
   });
+
 
   return (
     <>
@@ -79,7 +84,7 @@ export default function BurgerConstructor () {
           <ul className={burgerConstructor.compositionChangebleList}>
 
               {constructorIngredients && constructorIngredients.map((ingredient, i) => (
-                <FillingIngredient item={ingredient} index={i} key={i}>
+                <FillingIngredient item={ingredient} index={i} key={ingredient.uId}>
                 </FillingIngredient>
               ))}
 
@@ -118,6 +123,7 @@ export default function BurgerConstructor () {
         (
           <Modal
             title=""
+            onClose={() => dispatch(closeOrder())}
           >
             <OrderDetails
               orderNumber={orderNumber}

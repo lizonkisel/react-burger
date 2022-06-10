@@ -1,4 +1,4 @@
-import {dataUrl} from '../../utils/data.js';
+import {baseUrl, checkResponse} from '../../utils/data.js';
 
 const GET_ALL_INGREDIENTS = 'GET_ALL_INGREDIENTS';
 const GET_ALL_INGREDIENTS_SUCCESS = 'GET_ALL_INGREDIENTS_SUCCESS';
@@ -12,14 +12,8 @@ function getAllIngredients() {
       isFailed: false,
     })
 
-    fetch(dataUrl)
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(res.status)
-        }
-      })
+    fetch(`${baseUrl}/ingredients`)
+      .then(checkResponse)
       .then (res => {
         dispatch({
           type: GET_ALL_INGREDIENTS_SUCCESS,

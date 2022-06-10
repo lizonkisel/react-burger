@@ -1,6 +1,6 @@
 import { ADD_TO_CONSTRUCTOR, DELETE_FROM_CONSTRUCTOR, REORDER_INGREDIENT } from '../actions/constructor-ingredients.js';
 import update from 'immutability-helper'
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 
 const constructorInitialState = {
   ingredients: {
@@ -26,7 +26,7 @@ const constructorIngredientsReducer = (state = constructorInitialState, action) 
         ingredients: (
           action.item.type === 'bun' ?
           {bun: action.item, fillings: [...state.ingredients.fillings]} :
-          {...state.ingredients, fillings: [...state.ingredients.fillings, {...action.item, uId: uuidv4() }]}
+          {...state.ingredients, fillings: [...state.ingredients.fillings, {...action.item, uId: action.uId }]}
         ),
         ingredientsCount: (
           action.item.type === 'bun' ?

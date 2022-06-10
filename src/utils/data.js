@@ -1,5 +1,15 @@
-const dataUrl = 'https://norma.nomoreparties.space/api/ingredients';
-const ordersUrl ='https://norma.nomoreparties.space/api/orders';
+const baseUrl = 'https://norma.nomoreparties.space/api';
+
+function checkResponse(res) {
+  if (res.ok) {
+    return res.json();
+  } else {
+    return Promise.reject(res.status)
+  }
+};
+
+// const dataUrl = 'https://norma.nomoreparties.space/api/ingredients';
+// const ordersUrl ='https://norma.nomoreparties.space/api/orders';
 
 
 const data = [
@@ -215,5 +225,5 @@ const data = [
     }
 ]
 
-export {dataUrl, ordersUrl, data};
+export {baseUrl, checkResponse};
 

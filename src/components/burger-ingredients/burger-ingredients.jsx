@@ -8,9 +8,14 @@ import {IngredientVariants} from '../ingredient-variants/ingredient-variants.jsx
 import Modal from '../modal/modal.jsx';
 import IngredientDetails from '../ingredient-details/ingredient-details.jsx';
 
+import {getCurrentIngredient} from '../../services/actions/current-ingredient.js'
+// import { closeOrder} from '../../services/actions/order.js';
+
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
 
 export default function BurgerIngredients() {
+
+  const dispatch = useDispatch();
 
   const [currentTab, setCurrentTab] = React.useState('buns');
 
@@ -83,7 +88,7 @@ export default function BurgerIngredients() {
       </section>
 
       {ingredientInModal &&
-      <Modal title="Детали ингредиента" >
+      <Modal title="Детали ингредиента" onClose={() => dispatch(getCurrentIngredient(null))}>
         <IngredientDetails />
       </Modal>}
     </>

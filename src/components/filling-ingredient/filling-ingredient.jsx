@@ -10,19 +10,20 @@ import {ingredientPropTypes} from '../../utils/prop-types.js';
 import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components';
 import {DragIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 
-import {DELETE_FROM_CONSTRUCTOR, REORDER_INGREDIENT} from '../../services/actions/constructor-ingredients.js';
+import {DELETE_FROM_CONSTRUCTOR, REORDER_INGREDIENT, deleteFromConstructor, reorderIngredient} from '../../services/actions/constructor-ingredients.js';
 
 export default function FillingIngredient({ item, index }) {
 
   const dispatch = useDispatch();
 
-  function deleteFromConstructor(item, key) {
-    dispatch({
-      type: DELETE_FROM_CONSTRUCTOR,
-      item: item,
-      key: key
-    })
-  };
+
+  // function deleteFromConstructor(item, key) {
+  //   dispatch({
+  //     type: DELETE_FROM_CONSTRUCTOR,
+  //     item: item,
+  //     key: key
+  //   })
+  // };
 
   const ref = useRef(null);
   const id = item.uId;
@@ -56,11 +57,13 @@ export default function FillingIngredient({ item, index }) {
         return;
       }
 
-      dispatch({
-        type: REORDER_INGREDIENT,
-        dragIndex,
-        hoverIndex});
-        item.index = hoverIndex;
+      // dispatch({
+      //   type: REORDER_INGREDIENT,
+      //   dragIndex,
+      //   hoverIndex
+      // });
+      dispatch(reorderIngredient(dragIndex, hoverIndex));
+      item.index = hoverIndex;
     },
   });
 
@@ -86,7 +89,7 @@ export default function FillingIngredient({ item, index }) {
         text={item.name}
         price={item.price}
         thumbnail={item.image}
-        handleClose={() => deleteFromConstructor(item, index)}
+        handleClose={() => dispatch(deleteFromConstructor(item, index))}
       />
     </li>
   )

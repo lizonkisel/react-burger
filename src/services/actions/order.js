@@ -1,4 +1,4 @@
-import {ordersUrl} from '../../utils/data.js';
+import {baseUrl, checkResponse} from '../../utils/data.js';
 
 const GET_ORDER = 'GET_ORDER';
 const GET_ORDER_SUCCESS = 'GET_ORDER_SUCCESS';
@@ -14,7 +14,7 @@ function getOrder(ingredientsIdArray) {
       isOrderRejected: false,
     });
 
-    fetch(ordersUrl, {
+    fetch(`${baseUrl}/orders`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8'
@@ -23,14 +23,7 @@ function getOrder(ingredientsIdArray) {
         "ingredients": ingredientsIdArray
       })
     })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        console.log('Reject');
-        return Promise.reject(res.status)
-      }
-    })
+    .then(checkResponse)
     .then(res => {
       dispatch({
         type: GET_ORDER_SUCCESS,

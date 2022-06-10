@@ -19,7 +19,7 @@ function App() {
 
   useEffect(()=> {
     dispatch(getAllIngredients())
-  }, []); /* Тут мб нужно в скобки dispatch добавить. Надо понять, нужно ли */
+  }, []);
 
   const {isLoading, isFailed} = useSelector(store => store.allIngredients)
 
