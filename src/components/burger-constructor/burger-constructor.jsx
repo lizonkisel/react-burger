@@ -1,121 +1,76 @@
-import React, { useContext, useReducer } from 'react';
+import React, { useMemo } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useDrop } from 'react-dnd';
+// import { v4 as uuidv4 } from 'uuid';
 
 import burgerConstructor from './burger-constructor.module.css';
 
-import PropTypes from 'prop-types';
-import {ingredientPropTypes} from '../../utils/prop-types.js';
-
-import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components';
-import {DragIcon} from '@ya.praktikum/react-developer-burger-ui-components';
-import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
-import {Button} from '@ya.praktikum/react-developer-burger-ui-components';
+import FillingIngredient from '../filling-ingredient/filling-ingredient';
 import Modal from '../modal/modal.jsx';
 import OrderDetails from '../order-details/order-details.jsx';
 
-import {IngredientContext} from '../../utils/ingredient-context.js';
+import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components';
+import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
+import {Button} from '@ya.praktikum/react-developer-burger-ui-components';
 
-
-const initialPrice = {price: 0};
-
-  function reducer(totalPrice, action) {
-
-    switch(action.type) {
-      case 'sum':
-        const bunsPrice = action.payload.bun.price * 2;
-
-        const sum = action.payload.filling.reduce((prevVal, item) => {
-          return prevVal + item.price
-        }, bunsPrice);
-        return {price: sum};
-      default:
-        // throw new Error(`Wrong type of action: ${action.type}`);
-        return totalPrice;
-    }
-  }
+import {ADD_TO_CONSTRUCTOR, addToConstructor} from '../../services/actions/constructor-ingredients.js';
+import {getOrder} from '../../services/actions/order.js';
+import { closeOrder} from '../../services/actions/order.js';
 
 export default function BurgerConstructor () {
 
-  // const BurgerState = {
-  //   bun: null,
-  //   ingredients: [],
-  // };
+  const constructorIngredients = useSelector(store => store.constructorIngredients.ingredients.fillings);
 
-  const listOfIngredients = useContext(IngredientContext);
+  const bun = useSelector(store => store.constructorIngredients.ingredients.bun);
 
+  const bunsPrice = bun === null ?
+  0 :
+  bun.price * 2;
 
-  /* На данном этапе просто находим первую булку из списка ингредиентов */
+  const isOrderRejected = useSelector(store => store.order.isOrderRejected);
+  const isOrderModalClosed = useSelector(store => store.order.isOrderModalClosed);
+  const orderNumber = useSelector(store => store.order.number);
 
-  const bun = listOfIngredients.find((ingredient) =>
-    ingredient.type === "bun"
-  );
-  const bunsPrice = bun.price * 2;
+  function getIngredientsIdArray() {
+    const ingredientsIdArray = [];
+    if (bun !== null) {
+      ingredientsIdArray.push(bun._id)
+    };
+    constructorIngredients.forEach((filling) => {
+      ingredientsIdArray.push(filling._id);
+    });
+    if (bun !== null) {
+      ingredientsIdArray.push(bun._id)
+    };
 
+    return ingredientsIdArray;
+  };
 
-  const fillingList = listOfIngredients.filter((ingredient) => {
-    return ingredient.type === "sauce" || ingredient.type === "main";
+  const dispatch = useDispatch();
+
+  const price = useMemo(() => {
+    return (
+      constructorIngredients.reduce((prevVal, curVal) => prevVal + curVal.price, bunsPrice)
+    );
+  }, [constructorIngredients]);
+
+  const [, dropRef] = useDrop({
+    accept: 'ingredient',
+    drop(item) {
+      // dispatch({
+      //   type: ADD_TO_CONSTRUCTOR,
+      //   item: item,
+      //   uId: uuidv4()
+      // })
+      dispatch(addToConstructor(item))
+    }
   });
-
-
-  const [isOrderAccepted, setIsOrderAccepted] = React.useState(false);
-  const [orderNumber, setOrderNumber] = React.useState(null);
-
-
-  const ingredientsIdArray = listOfIngredients.map((item) => {
-    return item._id
-  });
-
-
-  // const initialPrice = {price: 0};
-
-  // function reducer(totalPrice, action) {
-
-  //   switch(action.type) {
-  //     case 'sum':
-  //       const sum = fillingList.reduce((prevVal, item) => {
-  //         return prevVal + item.price
-  //       }, bunsPrice);
-  //       return {price: sum};
-  //     default:
-  //       // throw new Error(`Wrong type of action: ${action.type}`);
-  //       return totalPrice;
-  //   }
-  // }
-
-  const [totalPrice, dispatchTotalPrice] = useReducer(reducer, initialPrice);
-
-
-  function postOrder() {
-    fetch('https://norma.nomoreparties.space/api/orders', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8'
-      },
-      body: JSON.stringify({
-        "ingredients": ingredientsIdArray
-      })
-    })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        return Promise.reject(res.status)
-      }
-    })
-    .then(res => {setOrderNumber(res.order.number); setIsOrderAccepted(true)})
-    .catch(err => console.log(`${err}: ${err.status}`))
-  }
-
-  React.useEffect(
-    () => {
-      dispatchTotalPrice({type: 'sum', payload: {filling: fillingList, bun: bun}});
-    }, [listOfIngredients]
-  );
 
 
   return (
     <>
-      <section className='pt-25'>
-        <article className={burgerConstructor.compositionArea}>
+      <section className={`${burgerConstructor.section} pt-20`}>
+        <article className={`${burgerConstructor.compositionArea} pt-5`} ref={dropRef}>
           {
             bun &&
             <ConstructorElement className={burgerConstructor.element}
@@ -127,18 +82,12 @@ export default function BurgerConstructor () {
             />
           }
           <ul className={burgerConstructor.compositionChangebleList}>
-            {
-              fillingList.map((ingredient, index) => (
-                <li className={burgerConstructor.element} key={ingredient._id}>
-                  <DragIcon type="primary" />
-                  <ConstructorElement
-                    text={ingredient.name}
-                    price={ingredient.price}
-                    thumbnail={ingredient.image}
-                  />
-                </li>
-              ))
-            }
+
+              {constructorIngredients && constructorIngredients.map((ingredient, i) => (
+                <FillingIngredient item={ingredient} index={i} key={ingredient.uId}>
+                </FillingIngredient>
+              ))}
+
           </ul>
           {
             bun &&
@@ -147,7 +96,7 @@ export default function BurgerConstructor () {
             isLocked={true}
             text={`${bun.name} (низ)`}
             price={bun.price}
-            thumbnail={'https://code.s3.yandex.net/react/code/bun-02.png'}
+            thumbnail={bun.image}
             />
           }
         </article>
@@ -155,35 +104,33 @@ export default function BurgerConstructor () {
           <div className={burgerConstructor.priceArea}>
             <p className="text text_type_digits-medium">
               {
-                totalPrice.price
+                price
               }
             </p>
             <div className={burgerConstructor.currentIcon}>
               <CurrencyIcon type="primary" />
             </div>
           </div>
-          <Button type="primary" size="large" onClick={() => postOrder()}>
+          <Button type="primary" size="large" onClick={() => {dispatch(getOrder(getIngredientsIdArray()))}}>
             Оформить заказ
           </Button>
         </article>
       </section>
 
       {
-        isOrderAccepted &&
-        <Modal
-          title=""
-          onClose={setIsOrderAccepted}
-
-        >
-          <OrderDetails
-            orderNumber={orderNumber}
-          />
-        </Modal>
+        !isOrderRejected &&
+        !isOrderModalClosed &&
+        (
+          <Modal
+            title=""
+            onClose={() => dispatch(closeOrder())}
+          >
+            <OrderDetails
+              orderNumber={orderNumber}
+            />
+          </Modal>
+        )
       }
     </>
   )
-}
-
-BurgerConstructor.propTypes = {
-  // listOfIngredients: PropTypes.arrayOf(ingredientPropTypes.isRequired).isRequired
 }

@@ -1,49 +1,50 @@
 import React from 'react';
-import styles from './app.module.css';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
-import {dataUrl} from '../../utils/data.js';
+import styles from './app.module.css';
 
 import AppHeader from '../app-header/app-header.jsx'
 import BurgerIngredients from '../burger-ingredients/burger-ingredients.jsx';
 import BurgerConstructor from '../burger-constructor/burger-constructor.jsx';
 
-import {IngredientContext} from '../../utils/ingredient-context.js';
+import {getAllIngredients} from '../../services/actions/all-ingredients.js';
+
 
 function App() {
 
-  const [ingredients, setIngredients] = React.useState(null);
+  const dispatch = useDispatch();
 
-  function getIngredients() {
-    fetch(dataUrl)
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(res.status);
-        }
-      })
-      .then(data => setIngredients(data.data))
-      .catch(err => console.log(`Ошибка ${err}: ${err.status}`))
-  }
+  useEffect(()=> {
+    dispatch(getAllIngredients())
+  }, []);
 
-  React.useEffect(
-    () => {
-      getIngredients();
-    },
-    []
-  );
+  const {isLoading, isFailed} = useSelector(store => store.allIngredients)
+
+  const listOfIngredients = useSelector(store => store.allIngredients.items);
 
   return (
     <>
         <AppHeader />
         <main className={styles.main}>
+            <DndProvider backend={HTML5Backend}>
+
             {
-              ingredients &&
-              <IngredientContext.Provider value={ingredients}>
+              isLoading && <p className="text text_type_main-medium">Загружаем данные...</p>
+            }
+            {
+              isFailed && <p className="text text_type_main-medium">Не удаётся загрузить данные. Пожалуйста, повторите попытку</p>
+            }
+            {
+              listOfIngredients &&
+              <>
                 <BurgerIngredients />
                 <BurgerConstructor />
-              </IngredientContext.Provider>
+              </>
             }
+            </DndProvider>
         </main>
     </>
   );

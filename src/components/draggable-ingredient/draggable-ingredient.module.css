@@ -1,0 +1,28 @@
+.card {
+  position: relative;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 4px;
+}
+
+.image {
+  width: 240px;
+}
+
+.priceArea {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  column-gap: 8px;
+}
+
+.price {
+  margin: 0;
+}
+
+.title{
+  text-align: center;
+  height: 48px;
+}

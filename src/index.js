@@ -1,16 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './components/app/app.jsx';
 import reportWebVitals from './reportWebVitals';
-import {Button} from '@ya.praktikum/react-developer-burger-ui-components';
+import { Provider } from 'react-redux';
+
+import App from './components/app/app.jsx';
+import {store} from './services/store.js';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
-    {/* <Button type="primary" size="medium">
-      Я кнопка из UI системы Yandex
-    </Button> */}
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

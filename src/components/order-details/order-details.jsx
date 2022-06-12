@@ -1,8 +1,10 @@
+import React  from 'react'
+
 import orderDetails from './order-details.module.css';
 
-import done from '../../images/done.png';
-
 import PropTypes from 'prop-types';
+
+import done from '../../images/done.png';
 
 export default function OrderDetails({orderNumber}) {
 
