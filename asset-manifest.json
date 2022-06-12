@@ -10,10 +10,10 @@
   "runtime~main.js": "/static/js/runtime~main.69b11a1d.js",
   "runtime~main.js.map": "/static/js/runtime~main.69b11a1d.js.map",
   "static/media/done.png": "/static/media/done.04891082.png",
-  "static/media/fonts.css": "/static/media/JetBrainsMono-Bold.a492f742.woff2",
+  "static/media/fonts.css": "/static/media/iceland.df042be2.woff",
   "static/css/main.d868b746.chunk.css.map": "/static/css/main.d868b746.chunk.css.map",
   "static/css/2.29c5ec67.chunk.css.map": "/static/css/2.29c5ec67.chunk.css.map",
   "index.html": "/index.html",
-  "precache-manifest.fcb9fe6de690f514a344e55a6aecd22d.js": "/precache-manifest.fcb9fe6de690f514a344e55a6aecd22d.js",
+  "precache-manifest.cf6b28f1c8fad0d5f37c425af1905e22.js": "/precache-manifest.cf6b28f1c8fad0d5f37c425af1905e22.js",
   "service-worker.js": "/service-worker.js"
 }
