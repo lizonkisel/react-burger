@@ -1,46 +1,42 @@
-# Getting Started with Create React App
+# <a id="top" /> Stellar Burger
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+## Оглавление
 
-In the project directory, you can run:
+- [Описание проекта] (#description)
+- [Технологии] (#technologies)
+- [Как запустить] (#instruction)
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## <a id="description" /> Описание проекта
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Учебный проект курса "Веб-разработчик+" от Яндекс.Практикума. Сайт космической бургерной, где пользователь может из ангредиентов собрать собственный бургер и оформить заказ.
 
-### `npm test`
+Потестить работу проекта: https://lizonkisel.github.io/react-burger/
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[Наверх](#top)
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## <a id="technologies" /> Технологии
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+:heavy_check_mark: HTML
+:heavy_check_mark: CSS
+:heavy_check_mark: JS
+:heavy_check_mark: React
+:heavy_check_mark: Redux
+:heavy_check_mark: React DnD
+:heavy_check_mark: Webpack
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[Наверх](#top)
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## <a id="instruction" /> Как запустить
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Скачайте и разархивируйте проект
+- В консоли перейдите в директорию проекта
+- Запустите команду `npm i`. Это позволит Вам устоновить все нужные для работы проекта зависимости
+- Запустите команду `npm start`. Проект автоматически запустится на локальном сервере. Здорово, вы великолепны! :mechanical_arm:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+[Наверх](#top)
