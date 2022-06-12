@@ -4,9 +4,9 @@
 
 ## Оглавление
 
-- [Описание проекта] (#description)
-- [Технологии] (#technologies)
-- [Как запустить] (#instruction)
+- [Описание проекта](#description)
+- [Технологии](#technologies)
+- [Как запустить](#instruction)
 
 ---
 
@@ -22,11 +22,17 @@
 ## <a id="technologies" /> Технологии
 
 :heavy_check_mark: HTML
+
 :heavy_check_mark: CSS
+
 :heavy_check_mark: JS
+
 :heavy_check_mark: React
+
 :heavy_check_mark: Redux
+
 :heavy_check_mark: React DnD
+
 :heavy_check_mark: Webpack
 
 [Наверх](#top)
