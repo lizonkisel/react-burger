@@ -3,32 +3,50 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { Switch, BrowserRouter, Route } from 'react-router-dom';
 
 import styles from './app.module.css';
 
 import AppHeader from '../app-header/app-header.jsx'
 import BurgerIngredients from '../burger-ingredients/burger-ingredients.jsx';
 import BurgerConstructor from '../burger-constructor/burger-constructor.jsx';
+import ConstructorPage from '../../pages/constructor-page.jsx';
+import LoginPage from '../../pages/login-page';
 
 import {getAllIngredients} from '../../services/actions/all-ingredients.js';
 
 
 function App() {
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(()=> {
-    dispatch(getAllIngredients())
-  }, []);
+  // useEffect(()=> {
+  //   dispatch(getAllIngredients())
+  // }, []);
 
-  const {isLoading, isFailed} = useSelector(store => store.allIngredients)
+  // const {isLoading, isFailed} = useSelector(store => store.allIngredients)
 
-  const listOfIngredients = useSelector(store => store.allIngredients.items);
+  // const listOfIngredients = useSelector(store => store.allIngredients.items);
 
   return (
     <>
         <AppHeader />
-        <main className={styles.main}>
+        <BrowserRouter>
+          <Switch>
+            <Route path='/' exact={true}>
+              <ConstructorPage>
+
+              </ConstructorPage>
+            </Route>
+            <Route path='/login' exact={true}>
+              <LoginPage>
+
+              </LoginPage>
+            </Route>
+          </Switch>
+        </BrowserRouter>
+
+        {/* <main className={styles.main}>
             <DndProvider backend={HTML5Backend}>
 
             {
@@ -45,7 +63,7 @@ function App() {
               </>
             }
             </DndProvider>
-        </main>
+        </main> */}
     </>
   );
 }
