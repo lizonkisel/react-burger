@@ -10,8 +10,8 @@ import styles from './app.module.css';
 import AppHeader from '../app-header/app-header.jsx'
 import BurgerIngredients from '../burger-ingredients/burger-ingredients.jsx';
 import BurgerConstructor from '../burger-constructor/burger-constructor.jsx';
-import ConstructorPage from '../../pages/constructor-page.jsx';
-import LoginPage from '../../pages/login-page';
+
+import {LoginPage, ConstructorPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage} from '../../pages/index.jsx';
 
 import {getAllIngredients} from '../../services/actions/all-ingredients.js';
 
@@ -34,14 +34,23 @@ function App() {
         <BrowserRouter>
           <Switch>
             <Route path='/' exact={true}>
-              <ConstructorPage>
-
-              </ConstructorPage>
+              <ConstructorPage/>
             </Route>
-            <Route path='/login' exact={true}>
-              <LoginPage>
 
-              </LoginPage>
+            <Route path='/login' exact={true}>
+              <LoginPage/>
+            </Route>
+
+            <Route path='/register' exact={true}>
+              <RegisterPage/>
+            </Route>
+
+            <Route path='/forgot-password' exact={true}>
+              <ForgotPasswordPage/>
+            </Route>
+
+            <Route path='/reset-password' exact={true}>
+              <ResetPasswordPage/>
             </Route>
           </Switch>
         </BrowserRouter>

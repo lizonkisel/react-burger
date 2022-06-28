@@ -1,8 +1,8 @@
 // Initital commit
-import React from "react";
-import {Link} from 'react-router-dom';
+import React, { useCallback } from "react";
+import {useHistory} from 'react-router-dom';
 
-import styles from './login-page.module.css';
+import styles from './inputs-pages.module.css';
 
 import {Button} from '@ya.praktikum/react-developer-burger-ui-components';
 
@@ -11,11 +11,20 @@ import CustomPasswordInput from '../components/inputs/custom-password-input/cust
 
 export default function LoginPage() {
 
-  // const [mailValue, setMailValue] = React.useState('bob@example.com');
-  // const onChange = e => {
-  //   setValue(e.target.value)
-  // };
-  // const [passwordValue, setPasswordValue] = React.useState('password');
+  const history = useHistory();
+
+  const register = useCallback(
+    () => {
+      history.replace({pathname: '/register'});
+    }, [history]
+  );
+
+  const forgotPassword = useCallback(
+    () => {
+      history.replace({pathname: '/forgot-password'})
+    }, [history]
+  );
+
 
   return (
     <main className={styles.main}>
@@ -34,13 +43,13 @@ export default function LoginPage() {
       <div className={styles.additional_actions}>
         <div className={styles.additional_action}>
           <p className="text text_type_main-default text_color_inactive">Вы — новый пользователь?</p>
-          <Button type="secondary" size="medium">
+          <Button type="secondary" size="medium" onClick={register}>
             Зарегистрироваться
           </Button>
         </div>
         <div className={styles.additional_action}>
           <p className="text text_type_main-default text_color_inactive">Забыли пароль?</p>
-          <Button type="secondary" size="medium">
+          <Button type="secondary" size="medium" onClick={forgotPassword}>
             Восстановить пароль
           </Button>
         </div>
