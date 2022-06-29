@@ -6,7 +6,7 @@
   justify-content: center;
 
   width: 100%;
-  height: calc(100vh - 88px - 40px);
+  height: calc(100vh - 88px - 40px - 10px);
   background-image: url(../images/page-404.webp);
   background-size: cover;
 }
@@ -29,4 +29,13 @@
   max-height: 1080px;
 
   z-index: 0;
+}
+
+.rights_link {
+  display: none;
+
+  font-size: 10px;
+  line-height: 10px;
+  text-decoration: none;
+  cursor: pointer;
 }
