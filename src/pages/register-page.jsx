@@ -20,6 +20,7 @@ export default function RegisterPage() {
     };
 
     const history = useHistory();
+    console.log(history);
 
     const login = useCallback(
       () => {
