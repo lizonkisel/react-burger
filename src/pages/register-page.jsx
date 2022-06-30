@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import {useHistory} from 'react-router-dom';
 
 import styles from './inputs-pages.module.css';
@@ -9,6 +9,8 @@ import CustomEmailInput from '../components/inputs/custom-email-input/custom-ema
 import CustomPasswordInput from '../components/inputs/custom-password-input/custom-password-input.jsx';
 
 import {baseUrl, checkResponse} from '../utils/data.js';
+import { register } from "../services/actions/register";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function RegisterPage() {
 
@@ -20,7 +22,6 @@ export default function RegisterPage() {
     };
 
     const history = useHistory();
-    console.log(history);
 
     const login = useCallback(
       () => {
@@ -28,24 +29,58 @@ export default function RegisterPage() {
       }, [history]
     );
 
+    const dispatch = useDispatch();
+    const { isAuth } = useSelector(store => store.register);
+
+    // console.log(isAuth);
+
+    // const registerRequest = async () => {
+    //   await dispatch(register());
+    //   if (isAuth) {
+    //     console.log('Tadam!!!')
+    //   }
+    // }
+
+    // Благодаря такой реализации (использованию history), сейчас при переходе
+    // на страницу регистрации происходит переброс на /login. Кажется, это решится после добавления защищённых маршрутов
+
+    useEffect(() => {
+      if (isAuth) {
+        console.log('Tadam!!!');
+        history.replace({pathname: '/login'})
+      }
+    }, [isAuth]);
+
     function createUser(e) {
       e.preventDefault();
-      fetch(`${baseUrl}/auth/register`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify({
-          "email": "lizonkisel5934@mail.ru",
-          "password": "test/1998",
-          "name": "test"
-        })
-      })
-      .then(checkResponse)
-      .then(data => {
-        console.log(data);
-      })
-      .catch(err => console.log(err))
+
+      // registerRequest();
+
+      dispatch(register());
+      // console.log(isAuth);
+      // if (isAuth) {
+      //   console.log('Tadam!!!')
+      // }
+
+
+
+
+      // fetch(`${baseUrl}/auth/register`, {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json;charset=utf-8'
+      //   },
+      //   body: JSON.stringify({
+      //     "email": "fdfddf@mail.ru",
+      //     "password": "test/1998",
+      //     "name": "testo"
+      //   })
+      // })
+      // .then(checkResponse)
+      // .then(data => {
+      //   console.log(data);
+      // })
+      // .catch(err => console.log(err))
     }
 
 

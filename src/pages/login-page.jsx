@@ -9,6 +9,9 @@ import {Button} from '@ya.praktikum/react-developer-burger-ui-components';
 import CustomEmailInput from '../components/inputs/custom-email-input/custom-email-input.jsx';
 import CustomPasswordInput from '../components/inputs/custom-password-input/custom-password-input.jsx';
 
+import { login } from "../services/actions/login";
+import { useDispatch } from "react-redux";
+
 export default function LoginPage() {
 
   const history = useHistory();
@@ -25,6 +28,14 @@ export default function LoginPage() {
     }, [history]
   );
 
+  const dispatch = useDispatch();
+
+  function loginUser(e) {
+    e.preventDefault();
+    console.log('Dispatch login');
+    dispatch(login());
+  }
+
 
   return (
     <main className={styles.main}>
@@ -35,7 +46,7 @@ export default function LoginPage() {
           <CustomEmailInput />
           <CustomPasswordInput />
         </fieldset>
-        <Button type="primary" size="medium">
+        <Button type="primary" size="medium" onClick={loginUser}>
           Войти
         </Button>
       </form>

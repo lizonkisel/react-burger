@@ -25,8 +25,6 @@ export default function ProfilePage() {
   const { url } = useRouteMatch();
   const { path } = useRouteMatch();
 
-  // console.log(path);
-
   return (
     <main className={styles.main}>
       <section className={styles.menu}>
@@ -39,7 +37,7 @@ export default function ProfilePage() {
               <Link to={`${url}/orders`}>История заказов</Link>
             </li>
             <li className={`text text_type_main-medium ${styles.nav_element}`}>
-              <a>Выход</a>
+              <Link to={'/'}>Выход</Link>
             </li>
           </ul>
         </nav>
@@ -51,7 +49,6 @@ export default function ProfilePage() {
 
       <Switch>
         <Route path={`${path}/orders`}>
-        {/* <Route path='/test' exact={true}> */}
           <OrdersPage />
         </Route>
       </Switch>
