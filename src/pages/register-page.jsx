@@ -3,10 +3,10 @@ import {useHistory} from 'react-router-dom';
 
 import styles from './inputs-pages.module.css';
 
-import {Input, Button} from '@ya.praktikum/react-developer-burger-ui-components';
+import {Input, Button, EmailInput, PasswordInput} from '@ya.praktikum/react-developer-burger-ui-components';
 
-import CustomEmailInput from '../components/inputs/custom-email-input/custom-email-input.jsx';
-import CustomPasswordInput from '../components/inputs/custom-password-input/custom-password-input.jsx';
+// import CustomEmailInput from '../components/inputs/custom-email-input/custom-email-input.jsx';
+// import CustomPasswordInput from '../components/inputs/custom-password-input/custom-password-input.jsx';
 
 import {baseUrl, checkResponse} from '../utils/data.js';
 import { register } from "../services/actions/register";
@@ -14,12 +14,17 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function RegisterPage() {
 
-    const [value, setValue] = React.useState('')
+    const [nameValue, setNameValue] = React.useState('')
     const inputRef = React.useRef(null)
     const onIconClick = () => {
       setTimeout(() => inputRef.current.focus(), 0)
       alert('Icon Click Callback')
     };
+
+    const [emailValue, setEmailValue] = React.useState('');
+    const [passwordValue, setPasswordValue] = React.useState('');
+
+
 
     const history = useHistory();
 
@@ -56,7 +61,7 @@ export default function RegisterPage() {
 
       // registerRequest();
 
-      dispatch(register());
+      dispatch(register(nameValue, emailValue, passwordValue));
       // console.log(isAuth);
       // if (isAuth) {
       //   console.log('Tadam!!!')
@@ -93,9 +98,9 @@ export default function RegisterPage() {
           <Input
               type={'text'}
               placeholder={'Имя'}
-              onChange={e => setValue(e.target.value)}
+              onChange={e => setNameValue(e.target.value)}
               icon={'CurrencyIcon'}
-              value={value}
+              value={nameValue}
               name={'name'}
               error={false}
               ref={inputRef}
@@ -103,8 +108,18 @@ export default function RegisterPage() {
               errorText={'Ошибка'}
               size={'default'}
             />
-          <CustomEmailInput />
-          <CustomPasswordInput />
+            <EmailInput
+              onChange={e => setEmailValue(e.target.value)}
+              value={emailValue}
+              name={'email'}
+            />
+            <PasswordInput
+              onChange={e => setPasswordValue(e.target.value)}
+              value={passwordValue}
+              name={'password'}
+            />
+          {/* <CustomEmailInput />
+          <CustomPasswordInput /> */}
         </fieldset>
         <Button type="primary" size="medium" onClick={createUser}>
           Зарегистрироваться

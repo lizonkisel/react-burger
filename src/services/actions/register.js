@@ -4,7 +4,9 @@ const REGISTER = 'REGISTER';
 const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 const REGISTER_FAILED = 'REGISTER_FAILED';
 
-function register() {
+function register(name, email, password) {
+  console.log(name, email, password);
+
   return function(dispatch) {
     dispatch({
       type: REGISTER,
@@ -25,9 +27,9 @@ function register() {
         redirect: 'follow',
         referrerPolicy: 'no-referrer',
         body: JSON.stringify({
-          "email": "lizonkisel9@mail.ru",
-          "password": "testtest",
-          "name": "test"
+          "email": email,
+          "password": password,
+          "name": name
         })
       }
     )

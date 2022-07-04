@@ -1,4 +1,5 @@
 import {REGISTER, REGISTER_SUCCESS, REGISTER_FAILED} from '../actions/register.js';
+import {setCookie, getCookie} from '../../utils/data.js';
 
 const initialState = {
   isLoading: false,
@@ -23,7 +24,8 @@ const registerReducer = (state = initialState, action) => {
     }
     case REGISTER_SUCCESS: {
       localStorage.setItem('refreshToken', action.refreshToken);
-
+      setCookie('token', action.accessToken);
+      console.log(getCookie('token'));
       return {
         ...state,
         isLoading: action.isLoading,
