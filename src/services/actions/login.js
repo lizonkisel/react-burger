@@ -4,7 +4,8 @@ const LOGIN = 'LOGIN';
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const LOGIN_FAILED = 'LOGIN_FAILED';
 
-function login() {
+function login(email, password) {
+
   return function(dispatch) {
     dispatch({
       type: LOGIN,
@@ -21,13 +22,12 @@ function login() {
         credentials: 'same-origin',
         headers: {
           'Content-Type': 'application/json',
-
         },
         redirect: 'follow',
         referrerPolicy: 'no-referrer',
         body: JSON.stringify({
-          "email": "lizonkisel9@mail.ru",
-          "password": "testtest"
+          "email": email,
+          "password": password
         })
       }
     )

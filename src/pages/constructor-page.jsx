@@ -11,15 +11,18 @@ import BurgerIngredients from '../components/burger-ingredients/burger-ingredien
 import BurgerConstructor from '../components/burger-constructor/burger-constructor.jsx';
 
 import {getAllIngredients} from '../services/actions/all-ingredients.js';
+import { getUser } from '../services/actions/user';
 
 
 export default function ConstructorPage() {
 
   console.log('Constructor Page');
+
   const dispatch = useDispatch();
 
   useEffect(()=> {
     dispatch(getAllIngredients())
+    dispatch(getUser());
   }, []);
 
   const {isLoading, isFailed} = useSelector(store => store.allIngredients)

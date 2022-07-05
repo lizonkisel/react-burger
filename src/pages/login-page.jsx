@@ -4,7 +4,7 @@ import {useHistory} from 'react-router-dom';
 
 import styles from './inputs-pages.module.css';
 
-import {Button} from '@ya.praktikum/react-developer-burger-ui-components';
+import {Button, EmailInput, PasswordInput} from '@ya.praktikum/react-developer-burger-ui-components';
 
 import CustomEmailInput from '../components/inputs/custom-email-input/custom-email-input.jsx';
 import CustomPasswordInput from '../components/inputs/custom-password-input/custom-password-input.jsx';
@@ -13,6 +13,9 @@ import { login } from "../services/actions/login";
 import { useDispatch } from "react-redux";
 
 export default function LoginPage() {
+
+  const [emailValue, setEmailValue] = React.useState('');
+  const [passwordValue, setPasswordValue] = React.useState('');
 
   const history = useHistory();
 
@@ -33,7 +36,9 @@ export default function LoginPage() {
   function loginUser(e) {
     e.preventDefault();
     console.log('Dispatch login');
-    dispatch(login());
+    dispatch(login(emailValue, passwordValue));
+    // Дальнейший код нужно исполнять только если данные введены правильно. Для этого потребуется работа со стейтом
+    history.replace({pathname: '/'});
   }
 
 
@@ -43,8 +48,18 @@ export default function LoginPage() {
 
       <form className={styles.form} action="">
         <fieldset className={styles.fieldset}>
-          <CustomEmailInput />
-          <CustomPasswordInput />
+          <EmailInput
+            onChange={e => setEmailValue(e.target.value)}
+            value={emailValue}
+            name={'email'}
+          />
+          <PasswordInput
+            onChange={e => setPasswordValue(e.target.value)}
+            value={passwordValue}
+            name={'password'}
+          />
+          {/* <CustomEmailInput />
+          <CustomPasswordInput /> */}
         </fieldset>
         <Button type="primary" size="medium" onClick={loginUser}>
           Войти

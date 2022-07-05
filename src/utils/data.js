@@ -39,7 +39,17 @@ function getCookie(name) {
     new RegExp('(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)')
   );
   return matches ? decodeURIComponent(matches[1]) : undefined;
+};
+
+function checkAccessToken() {
+  const cookieToken = getCookie('token');
+  if (cookieToken) {
+
+  } else {
+    return false
+  }
 }
+
 
 // const dataUrl = 'https://norma.nomoreparties.space/api/ingredients';
 // const ordersUrl ='https://norma.nomoreparties.space/api/orders';
