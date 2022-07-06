@@ -1,13 +1,25 @@
 import React from "react";
-import { Link, NavLink, Route, Switch, useParams, useRouteMatch } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { Link, NavLink, Route, Switch, useParams, useRouteMatch, useHistory } from 'react-router-dom';
 
 import styles from './profile-menu.module.css';
 
+import { logout } from "../../services/actions/logout";
+
 export default function ProfileMenu() {
 
-  const { url } = useRouteMatch();
-  const { path } = useRouteMatch();
+  const history = useHistory();
 
+  const dispatch = useDispatch();
+
+  const logoutFromAccount = async() => {
+    console.log('Exit click');
+    console.log('0')
+    const out = await dispatch(logout());
+    console.log('1');
+    history.replace({pathname: '/'});
+    console.log('2');
+  };
 
   return (
     <section className={styles.menu}>
@@ -17,10 +29,10 @@ export default function ProfileMenu() {
             <NavLink to={'/profile'} className={styles.nav_link} activeClassName={styles.active_nav_link}>Профиль</NavLink>
           </li>
           <li className={`text text_type_main-medium ${styles.nav_element}`}>
-            <NavLink to={`${url}/orders`} className={styles.nav_link} activeClassName={styles.active_nav_link}>История заказов</NavLink>
+            <NavLink to={'/profile/orders'} className={styles.nav_link} activeClassName={styles.active_nav_link}>История заказов</NavLink>
           </li>
           <li className={`text text_type_main-medium ${styles.nav_element}`}>
-            <Link to={'/'} className={styles.nav_link}>Выход</Link>
+            <button className={styles.nav_link} onClick={logoutFromAccount}>Выход</button>
           </li>
         </ul>
       </nav>

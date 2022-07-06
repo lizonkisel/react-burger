@@ -11,7 +11,7 @@ function logout() {
       type: LOGOUT,
     })
 
-    fetch(`${baseUrl}/auth/token`,
+    fetch(`${baseUrl}/auth/logout`,
       {
         method: 'POST',
         mode: 'cors',
@@ -29,7 +29,11 @@ function logout() {
     )
     .then(checkResponse)
     .then(res => dispatch({
-      type: LOGOUT_SUCCESS
+      type: LOGOUT_SUCCESS,
+      user: null,
+      accessToken: null,
+      isAuth: false,
+      isAuthChecked: false
     }))
     .catch(err => dispatch({
       type: LOGOUT_FAILED,

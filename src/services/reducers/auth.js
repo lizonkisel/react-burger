@@ -1,6 +1,7 @@
 import {REGISTER, REGISTER_SUCCESS, REGISTER_FAILED} from '../actions/register.js';
 import {LOGIN, LOGIN_SUCCESS, LOGIN_FAILED} from '../actions/login.js';
 import {GET_USER, GET_USER_SUCCESS, GET_USER_FAILED, EDIT_USER, EDIT_USER_SUCCESS, EDIT_USER_FAILED} from '../actions/user.js' ;
+import { LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAILED } from '../actions/logout.js';
 import {setCookie, getCookie} from '../../utils/data.js';
 
 const initialState = {
@@ -136,6 +137,30 @@ const authReducer = (state = initialState, action) => {
         // isLoading: action.isLoading,
         // isFailed: action.isFailed,
         // isAuth: action.isAuth
+      }
+    }
+
+    case LOGOUT: {
+      return {
+        ...state,
+      }
+    }
+    case LOGOUT_SUCCESS: {
+      setCookie('token', null, { expires: -1 });
+      localStorage.setItem('refreshToken', null);
+
+      console.log('logout');
+      return {
+        ...state,
+        user: action.user,
+        accessToken: action.accessToken,
+        isAuth: action.isAuth,
+        isAuthChecked: action.isAuthChecked
+      }
+    }
+    case LOGOUT_FAILED: {
+      return {
+        ...state,
       }
     }
 

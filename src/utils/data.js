@@ -48,7 +48,9 @@ function getCookie(name) {
 const fetchWithRefresh = async (url, options) => {
   try {
     const res = await fetch(url, options);
+    console.log(res);
     const data = await checkResponse(res);
+    console.log(data);
     return data;
   } catch (err) {
     console.log(err);
