@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Route, Switch, useParams, useRouteMatch } from 'react-router-dom';
 
 import styles from './profile-page.module.css';
 import formStyles from './inputs-pages.module.css';
 
-import { Tab, Input } from "@ya.praktikum/react-developer-burger-ui-components";
+import { Tab, Input, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import {LoginPage, OrdersPage} from './index.jsx';
 
@@ -26,8 +26,9 @@ export default function ProfilePage() {
   const [passwordValue, setPasswordValue] = React.useState('');
   const inputRef = React.useRef(null);
   const onIconClick = () => {
-    setTimeout(() => inputRef.current.focus(), 0)
-    alert('Icon Click Callback')
+    setIsButtonsVisible(true);
+    // setTimeout(() => inputRef.current.focus(), 0)
+    // alert('Icon Click Callback')
   };
 
   console.log(useParams());
@@ -35,6 +36,14 @@ export default function ProfilePage() {
 
   const { url } = useRouteMatch();
   const { path } = useRouteMatch();
+
+  const [isButtonsVisible, setIsButtonsVisible] = useState(false);
+
+  // useEffect(() => {
+  //   if (isButtonsVisible) {
+
+  //   }
+  // }, [isButtonsVisible])
 
   return (
     <main className={styles.main}>
@@ -108,7 +117,14 @@ export default function ProfilePage() {
             size={'default'}
           />
         </fieldset>
-
+        <div className={`${styles.buttons_wrapper} ${isButtonsVisible ? styles.buttons_wrapper_visible : null}`}>
+          <Button type="secondary" size="medium">
+            Отмена
+          </Button>
+          <Button type="primary" size="medium">
+            Сохранить
+          </Button>
+        </div>
       </form>
 
       {/* <div className={styles.additional_actions}>

@@ -8,6 +8,20 @@
   column-gap: 60px;
 }
 
+.buttons_wrapper {
+  visibility: hidden;
+  width: 480px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  column-gap: 20px;
+}
+
+.buttons_wrapper_visible {
+  visibility: visible;
+}
+
 /* .menu {
   display: flex;
   flex-direction: column;
