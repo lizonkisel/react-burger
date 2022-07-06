@@ -6,12 +6,10 @@ import {setCookie, getCookie} from '../../utils/data.js';
 const initialState = {
   isLoading: false,
   isFailed: false,
-  user: {
-    email: "",
-    name: ""
-  },
+  user: null,
   accessToken: null,
-  isAuth: false
+  isAuth: false,
+  isAuthChecked: false
 };
 
 const authReducer = (state = initialState, action) => {
@@ -94,13 +92,18 @@ const authReducer = (state = initialState, action) => {
         // isLoading: action.isLoading,
         // isFailed: action.isFailed,
         user: action.user,
+        isAuth: action.isAuth,
+        isAuthChecked: action.isAuthChecked
         // accessToken: action.accessToken,
         // isAuth: action.isAuth
       }
     }
     case GET_USER_FAILED: {
+
       return {
         ...state,
+        isAuth: action.isAuth,
+        isAuthChecked: action.isAuthChecked
         // isLoading: action.isLoading,
         // isFailed: action.isFailed,
         // isAuth: action.isAuth

@@ -8,6 +8,8 @@ import { Tab, Input } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import {LoginPage, OrdersPage} from './index.jsx';
 
+import ProfileMenu from '../components/profile-menu/profile-menu.jsx';
+
 export default function ProfilePage() {
 
   // const [nameValue, setNameValue] = React.useState('');
@@ -19,6 +21,15 @@ export default function ProfilePage() {
   //   alert('Icon Click Callback')
   // };
 
+  const [nameValue, setNameValue] = React.useState('');
+  const [loginValue, setLoginValue] = React.useState('');
+  const [passwordValue, setPasswordValue] = React.useState('');
+  const inputRef = React.useRef(null);
+  const onIconClick = () => {
+    setTimeout(() => inputRef.current.focus(), 0)
+    alert('Icon Click Callback')
+  };
+
   console.log(useParams());
   console.log(useRouteMatch());
 
@@ -27,7 +38,9 @@ export default function ProfilePage() {
 
   return (
     <main className={styles.main}>
-      <section className={styles.menu}>
+      <ProfileMenu />
+
+      {/* <section className={styles.menu}>
         <nav>
           <ul className={styles.nav_list}>
             <li className={`text text_type_main-medium ${styles.nav_element}`}>
@@ -45,15 +58,15 @@ export default function ProfilePage() {
         <p className={`${styles.info} text text_type_main-default text_color_inactive`}>
           В этом разделе вы можете изменить свои персональные данные
         </p>
-      </section>
+      </section> */}
 
-      <Switch>
+      {/* <Switch>
         <Route path={`${path}/orders`}>
           <OrdersPage />
         </Route>
-      </Switch>
+      </Switch> */}
 
-      {/* <form className={formStyles.form} action="">
+      <form className={formStyles.form} action="">
         <fieldset className={formStyles.fieldset}>
           <Input
             type={'text'}
@@ -96,7 +109,7 @@ export default function ProfilePage() {
           />
         </fieldset>
 
-      </form> */}
+      </form>
 
       {/* <div className={styles.additional_actions}>
         <div className={styles.additional_action}>

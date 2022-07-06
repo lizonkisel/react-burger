@@ -1,11 +1,15 @@
+import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
+import { refreshToken } from "../services/actions/refreshToken";
+
 const baseUrl = 'https://norma.nomoreparties.space/api';
 
 function checkResponse(res) {
-  if (res.ok) {
-    return res.json();
-  } else {
-    return Promise.reject(res.status)
-  }
+  return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
+  // if (res.ok) {
+  //   return res.json();
+  // } else {
+  //   return Promise.reject(res)
+  // }
 };
 
 // function setCookie(name, value, props) {
@@ -40,6 +44,42 @@ function getCookie(name) {
   );
   return matches ? decodeURIComponent(matches[1]) : undefined;
 };
+
+const fetchWithRefresh = async (url, options) => {
+  try {
+    const res = await fetch(url, options);
+    const data = await checkResponse(res);
+    return data;
+  } catch (err) {
+    console.log(err);
+    if (err.message === 'jwt expired') {
+      const currentRefreshToken = localStorage.getItem('refreshToken');
+      const refreshData = await refreshToken(currentRefreshToken);
+      console.log(refreshData);
+      if (!refreshData.success) {
+        return Promise.reject(refreshData);
+      } else {
+        localStorage.setItem('refreshToken', refreshData.refreshToken);
+        setCookie('token', refreshData.accessToken);
+
+        const res = await fetch(url, {
+          ...options,
+            headers: {
+              ...options.headers,
+              Authotization: 'Bearer ' + refreshData.accessToken
+            }
+        });
+        const data = await checkResponse(res);
+        console.log('Всё успешно');
+        return data;
+      }
+    } else {
+      return Promise.reject(err)
+    }
+  }
+}
+
+
 
 function checkAccessToken() {
   const cookieToken = getCookie('token');
@@ -268,5 +308,5 @@ const data = [
     }
 ]
 
-export {baseUrl, checkResponse, setCookie, getCookie};
+export {baseUrl, checkResponse, setCookie, getCookie, fetchWithRefresh};
 

@@ -11,7 +11,7 @@ import AppHeader from '../app-header/app-header.jsx'
 import BurgerIngredients from '../burger-ingredients/burger-ingredients.jsx';
 import BurgerConstructor from '../burger-constructor/burger-constructor.jsx';
 
-import {LoginPage, ConstructorPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, ProfilePage, Page404} from '../../pages/index.jsx';
+import {LoginPage, ConstructorPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, ProfilePage, OrdersPage, Page404} from '../../pages/index.jsx';
 
 import {getAllIngredients} from '../../services/actions/all-ingredients.js';
 
@@ -56,6 +56,10 @@ function App() {
 
             <Route path='/profile' exact={true}>
               <ProfilePage/>
+            </Route>
+
+            <Route path='/profile/orders' exact={true}>
+              <OrdersPage />
             </Route>
 
             <Route>

@@ -12,6 +12,7 @@ import BurgerConstructor from '../components/burger-constructor/burger-construct
 
 import {getAllIngredients} from '../services/actions/all-ingredients.js';
 import { getUser } from '../services/actions/user';
+import { getCookie } from '../utils/data';
 
 
 export default function ConstructorPage() {
@@ -20,10 +21,17 @@ export default function ConstructorPage() {
 
   const dispatch = useDispatch();
 
+  const { isAuth, isAuthChecked } = useSelector(store => store.auth);
+
   useEffect(()=> {
-    dispatch(getAllIngredients())
-    dispatch(getUser());
+    dispatch(getAllIngredients());
   }, []);
+
+  useEffect(()=> {
+    if (getCookie('token') !== null) {
+      dispatch(getUser());
+    }
+  }, [isAuth, isAuthChecked]);
 
   const {isLoading, isFailed} = useSelector(store => store.allIngredients)
 

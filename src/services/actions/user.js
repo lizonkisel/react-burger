@@ -1,4 +1,5 @@
-import {baseUrl, checkResponse, getCookie} from '../../utils/data.js';
+import {baseUrl, checkResponse, getCookie, fetchWithRefresh} from '../../utils/data.js';
+console.log(getCookie('token'));
 
 const GET_USER = 'GET_USER';
 const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
@@ -15,27 +16,39 @@ function getUser() {
       type: GET_USER
     })
 
-    fetch(`${baseUrl}/auth/user`,
-      {
-        method: 'GET',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-          authorization: getCookie('token')
-        },
-        redirect: 'follow',
-        referrerPolicy: 'no-referrer',
+    fetchWithRefresh(`${baseUrl}/auth/user`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + getCookie('token')
       }
-    )
-    .then(checkResponse)
+    })
+
+    // fetch(`${baseUrl}/auth/user`,
+    //   {
+    //     method: 'GET',
+    //     mode: 'cors',
+    //     cache: 'no-cache',
+    //     credentials: 'same-origin',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       authorization: 'Bearer ' + getCookie('token')
+    //     },
+    //     redirect: 'follow',
+    //     referrerPolicy: 'no-referrer',
+    //   }
+    // )
+    // .then(checkResponse)
     .then(res => dispatch({
       type: GET_USER_SUCCESS,
       user: res.user,
+      isAuth: true,
+      isAuthChecked: true
     }))
     .catch(err => dispatch({
       type: GET_USER_FAILED,
+      isAuth: false,
+      isAuthChecked: true
     }))
   }
 }

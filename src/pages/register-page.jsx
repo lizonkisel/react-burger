@@ -35,7 +35,7 @@ export default function RegisterPage() {
     );
 
     const dispatch = useDispatch();
-    const { isAuth } = useSelector(store => store.register);
+    const { isAuth } = useSelector(store => store.auth);
 
     // console.log(isAuth);
 
@@ -49,12 +49,12 @@ export default function RegisterPage() {
     // Благодаря такой реализации (использованию history), сейчас при переходе
     // на страницу регистрации происходит переброс на /login. Кажется, это решится после добавления защищённых маршрутов
 
-    useEffect(() => {
-      if (isAuth) {
-        console.log('Tadam!!!');
-        history.replace({pathname: '/login'})
-      }
-    }, [isAuth]);
+    // useEffect(() => {
+    //   if (isAuth) {
+    //     console.log('Tadam!!!');
+    //     history.replace({pathname: '/login'})
+    //   }
+    // }, [isAuth]);
 
     function createUser(e) {
       e.preventDefault();

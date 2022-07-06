@@ -1,6 +1,7 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useDrop } from 'react-dnd';
+import {useHistory} from 'react-router-dom';
 // import { v4 as uuidv4 } from 'uuid';
 
 import burgerConstructor from './burger-constructor.module.css';
@@ -16,6 +17,9 @@ import {Button} from '@ya.praktikum/react-developer-burger-ui-components';
 import {ADD_TO_CONSTRUCTOR, addToConstructor} from '../../services/actions/constructor-ingredients.js';
 import {getOrder} from '../../services/actions/order.js';
 import { closeOrder} from '../../services/actions/order.js';
+
+import { getCookie } from '../../utils/data';
+import { getUser } from '../../services/actions/user';
 
 export default function BurgerConstructor () {
 
@@ -66,6 +70,32 @@ export default function BurgerConstructor () {
     }
   });
 
+  const { isAuth, isAuthChecked } = useSelector(store => store.auth);
+  const history = useHistory();
+
+  // Сейчас тут не прописана возможность рефрешить токен
+
+  function placeOrder() {
+    if (!isAuth && isAuthChecked) {
+
+      history.replace({pathname: '/login'})
+    } else {
+      dispatch(getOrder(getIngredientsIdArray()))
+    }
+    // if (getCookie('token') !== null) {
+    //   dispatch(getUser());
+    // } else {
+    //   history.replace({pathname: '/login'})
+    // }
+  }
+
+  // useEffect(() => {
+  //   if (!isAuth && isAuthChecked) {
+  //     console.log("!isAuth");
+  //     history.replace({pathname: '/login'})
+  //   }
+  // }, [isAuth, isAuthChecked]);
+
 
   return (
     <>
@@ -111,7 +141,8 @@ export default function BurgerConstructor () {
               <CurrencyIcon type="primary" />
             </div>
           </div>
-          <Button type="primary" size="large" onClick={() => {dispatch(getOrder(getIngredientsIdArray()))}}>
+          {/* <Button type="primary" size="large" onClick={() => {dispatch(getOrder(getIngredientsIdArray()))}}> */}
+          <Button type="primary" size="large" onClick={() => {placeOrder()}}>
             Оформить заказ
           </Button>
         </article>
