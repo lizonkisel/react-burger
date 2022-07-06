@@ -53,7 +53,7 @@ function getUser() {
   }
 }
 
-function editUser(email, password) {
+function editUser(name, email, password) {
   return function(dispatch) {
     dispatch({
       type: EDIT_USER
@@ -67,11 +67,12 @@ function editUser(email, password) {
         credentials: 'same-origin',
         headers: {
           'Content-Type': 'application/json',
-          authorization: getCookie('token')
+          Authorization: 'Bearer ' + getCookie('token')
         },
         redirect: 'follow',
         referrerPolicy: 'no-referrer',
         body: JSON.stringify({
+          "name": name,
           "email": email,
           "password": password
         })

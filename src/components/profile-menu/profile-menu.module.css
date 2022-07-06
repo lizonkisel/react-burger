@@ -25,21 +25,7 @@
 
 .nav_element {
   padding: 0 0 34px 0;
-
-  font-size: 24px;
-  line-height: 30px;
-  text-align: left;
-  color: #8585AD;
-
   cursor: pointer
-}
-
-.nav_link {
-  text-decoration: none;
-}
-
-.active_nav_link {
-  color: #F2F2F3;
 }
 
 .nav_element:first-child {
@@ -48,6 +34,28 @@
 
 .nav_element:last-child {
   padding: 0 0 17px 0;
+}
+
+.nav_link {
+  text-decoration: none;
+  font-size: 24px;
+  line-height: 30px;
+  text-align: left;
+  color: #8585AD;
+}
+
+.active_nav_link {
+  color: #F2F2F3;
+}
+
+.nav_button {
+  background-color: transparent;
+  border: none;
+
+  font-size: 24px;
+  line-height: 30px;
+  text-align: left;
+  color: #8585AD;
 }
 
 .info {

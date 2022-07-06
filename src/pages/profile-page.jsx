@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, Route, Switch, useParams, useRouteMatch } from 'react-router-dom';
 
 import styles from './profile-page.module.css';
@@ -9,6 +10,8 @@ import { Tab, Input, Button } from "@ya.praktikum/react-developer-burger-ui-comp
 import {LoginPage, OrdersPage} from './index.jsx';
 
 import ProfileMenu from '../components/profile-menu/profile-menu.jsx';
+
+import { editUser } from "../services/actions/user";
 
 export default function ProfilePage() {
 
@@ -38,6 +41,14 @@ export default function ProfilePage() {
   const { path } = useRouteMatch();
 
   const [isButtonsVisible, setIsButtonsVisible] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const editCurrentUser = async (e) => {
+    e.preventDefault();
+    const res = await dispatch(editUser(nameValue));
+    console.log("Edit User");
+  }
 
   // useEffect(() => {
   //   if (isButtonsVisible) {
@@ -121,7 +132,7 @@ export default function ProfilePage() {
           <Button type="secondary" size="medium">
             Отмена
           </Button>
-          <Button type="primary" size="medium">
+          <Button type="primary" size="medium" onClick={editCurrentUser}>
             Сохранить
           </Button>
         </div>

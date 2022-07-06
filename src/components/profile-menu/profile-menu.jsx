@@ -25,14 +25,14 @@ export default function ProfileMenu() {
     <section className={styles.menu}>
       <nav>
         <ul className={styles.nav_list}>
-          <li className={`text text_type_main-medium ${styles.nav_element}`}>
-            <NavLink to={'/profile'} className={styles.nav_link} activeClassName={styles.active_nav_link}>Профиль</NavLink>
+          <li className={`${styles.nav_element}`}>
+            <NavLink to={'/profile'} className={`text text_type_main-medium ${styles.nav_link}`} activeClassName={styles.active_nav_link}>Профиль</NavLink>
           </li>
-          <li className={`text text_type_main-medium ${styles.nav_element}`}>
-            <NavLink to={'/profile/orders'} className={styles.nav_link} activeClassName={styles.active_nav_link}>История заказов</NavLink>
+          <li className={`${styles.nav_element}`}>
+            <NavLink to={'/profile/orders'} className={`text text_type_main-medium ${styles.nav_link}`} activeClassName={styles.active_nav_link}>История заказов</NavLink>
           </li>
-          <li className={`text text_type_main-medium ${styles.nav_element}`}>
-            <button className={styles.nav_link} onClick={logoutFromAccount}>Выход</button>
+          <li className={`${styles.nav_element}`}>
+            <button className={`text text_type_main-medium ${styles.nav_button}`} onClick={logoutFromAccount}>Выход</button>
           </li>
         </ul>
       </nav>

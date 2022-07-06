@@ -24,7 +24,7 @@ const refreshToken = (refreshToken) => {
     }
   )
   .then(checkResponse)
-}
+};
 
 // function refreshToken() {
 
