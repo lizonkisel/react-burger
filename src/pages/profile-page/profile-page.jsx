@@ -13,6 +13,9 @@ import { regExp } from "../../utils/utils";
 
 export default function ProfilePage() {
 
+  const currentName = useSelector(store => store.auth.user.name);
+  const currentEmail = useSelector(store => store.auth.user.email);
+
   const [nameValue, setNameValue] = React.useState(currentName);
   const [loginValue, setLoginValue] = React.useState(currentEmail);
   const [passwordValue, setPasswordValue] = React.useState('');
@@ -29,9 +32,6 @@ export default function ProfilePage() {
 
   const [isInvalidInputs, setIsInvalidInputs] = useState(false);
   const [isButtonsVisible, setIsButtonsVisible] = useState(false);
-
-  const currentName = useSelector(store => store.auth.user.name);
-  const currentEmail = useSelector(store => store.auth.user.email);
 
   const dispatch = useDispatch();
 

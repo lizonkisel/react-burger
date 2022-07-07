@@ -3,6 +3,7 @@ import { Switch, BrowserRouter, Route } from 'react-router-dom';
 
 import AppHeader from '../app-header/app-header.jsx';
 
+import ProtectedRoute from '../protected-route/protected-route.jsx';
 import {LoginPage, ConstructorPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, ProfilePage, OrdersPage, Page404} from '../../pages/index.jsx';
 
 function App() {
@@ -17,29 +18,41 @@ function App() {
               <ConstructorPage/>
             </Route>
 
-            <Route path='/login' exact={true}>
+            {/* <Route path='/login' exact={true}>
               <LoginPage/>
-            </Route>
+            </Route> */}
 
-            <Route path='/register' exact={true}>
+            <ProtectedRoute path='/login'>
+              <LoginPage/>
+            </ProtectedRoute>
+
+            <ProtectedRoute path='/register'>
               <RegisterPage/>
-            </Route>
+            </ProtectedRoute>
 
-            <Route path='/forgot-password' exact={true}>
+            <ProtectedRoute path='/forgot-password'>
               <ForgotPasswordPage/>
-            </Route>
+            </ProtectedRoute>
 
-            <Route path='/reset-password' exact={true}>
+            <ProtectedRoute path='/reset-password'>
               <ResetPasswordPage/>
-            </Route>
+            </ProtectedRoute>
 
-            <Route path='/profile' exact={true}>
+            <ProtectedRoute path='/profile'>
               <ProfilePage/>
-            </Route>
+            </ProtectedRoute>
 
-            <Route path='/profile/orders' exact={true}>
+            <ProtectedRoute path='/profile/orders'>
               <OrdersPage />
-            </Route>
+            </ProtectedRoute>
+
+            {/* <Route path='/profile' exact={true}>
+              <ProfilePage/>
+            </Route> */}
+
+            {/* <Route path='/profile/orders' exact={true}>
+              <OrdersPage />
+            </Route> */}
 
             <Route>
               <Page404/>

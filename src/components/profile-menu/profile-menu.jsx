@@ -14,11 +14,9 @@ export default function ProfileMenu() {
 
   const logoutFromAccount = async() => {
     console.log('Exit click');
-    console.log('0')
-    const out = await dispatch(logout());
-    console.log('1');
-    history.replace({pathname: '/'});
-    console.log('2');
+    await dispatch(logout());
+    history.replace({pathname: '/login'});
+
   };
 
   return (

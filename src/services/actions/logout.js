@@ -14,30 +14,34 @@ function logout() {
     fetch(`${baseUrl}/auth/logout`,
       {
         method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
+        // mode: 'cors',
+        // cache: 'no-cache',
+        // credentials: 'same-origin',
         headers: {
           'Content-Type': 'application/json'
         },
-        redirect: 'follow',
-        referrerPolicy: 'no-referrer',
+        // redirect: 'follow',
+        // referrerPolicy: 'no-referrer',
         body: JSON.stringify({
           "token": localStorage.getItem('refreshToken')
         })
       }
     )
     .then(checkResponse)
-    .then(res => dispatch({
-      type: LOGOUT_SUCCESS,
-      user: null,
-      accessToken: null,
-      isAuth: false,
-      isAuthChecked: false
-    }))
-    .catch(err => dispatch({
-      type: LOGOUT_FAILED,
-    }))
+    .then(res => {
+      console.log(res)
+      dispatch({
+        type: LOGOUT_SUCCESS,
+        user: null,
+        accessToken: null,
+        isAuth: false,
+        isAuthChecked: false
+    })})
+    .catch(err => {
+      console.log(err)
+      dispatch({
+        type: LOGOUT_FAILED,
+    })})
   }
 }
 

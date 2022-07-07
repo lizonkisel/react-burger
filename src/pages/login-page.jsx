@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
-import { useDispatch } from "react-redux";
-import {useHistory} from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import {useHistory, Redirect} from 'react-router-dom';
 
 import styles from './inputs-pages.module.css';
 
@@ -10,8 +10,23 @@ import { login } from "../services/actions/login";
 
 export default function LoginPage() {
 
+
   const [emailValue, setEmailValue] = React.useState('');
   const [passwordValue, setPasswordValue] = React.useState('');
+
+  const { user } = useSelector(store => store.auth);
+  console.log(user);
+
+  if (user) {
+    console.log('Redirect');
+    return (
+      <Redirect
+        to={{
+          pathname: '/'
+        }}
+      />
+    )
+  };
 
   const dispatch = useDispatch();
 
@@ -36,6 +51,14 @@ export default function LoginPage() {
     // Дальнейший код нужно исполнять только если данные введены правильно. Для этого потребуется работа со стейтом
     history.replace({pathname: '/'});
   }
+
+  // const loginUser = useCallback((e) => {
+  //   e.preventDefault();
+  //   console.log('Dispatch login');
+  //   dispatch(login(emailValue, passwordValue));
+  //   // Дальнейший код нужно исполнять только если данные введены правильно. Для этого потребуется работа со стейтом
+  //   history.replace({pathname: '/'});
+  // });
 
 
   return (

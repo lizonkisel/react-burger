@@ -24,6 +24,7 @@ export default function ConstructorPage() {
 
   const dispatch = useDispatch();
 
+
   useEffect(()=> {
     dispatch(getAllIngredients());
   }, []);

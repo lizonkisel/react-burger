@@ -1,6 +1,6 @@
 import React, { useCallback} from "react";
-import { useDispatch } from "react-redux";
-import {useHistory} from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import {useHistory, Redirect} from 'react-router-dom';
 
 import styles from './inputs-pages.module.css';
 
@@ -18,6 +18,19 @@ export default function RegisterPage() {
     const onIconClick = () => {
       // setTimeout(() => inputRef.current.focus(), 0)
       // alert('Icon Click Callback')
+    };
+
+    const { user } = useSelector(store => store.auth);
+
+    if (user) {
+      console.log('Redirect');
+      return (
+        <Redirect
+          to={{
+            pathname: '/'
+          }}
+        />
+      )
     };
 
     const dispatch = useDispatch();

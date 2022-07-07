@@ -1,5 +1,5 @@
-import React, { useCallback } from "react";
-import {useHistory} from 'react-router-dom';
+import React, { useCallback, useSelector } from "react";
+import {useHistory, Redirect} from 'react-router-dom';
 
 import styles from './inputs-pages.module.css';
 
@@ -10,6 +10,24 @@ import {baseUrl, checkResponse} from '../utils/utils.js';
 export default function ForgotPasswordPage() {
 
   const [value, setValue] = React.useState('')
+  const inputRef = React.useRef(null)
+  const onIconClick = () => {
+    // setTimeout(() => inputRef.current.focus(), 0)
+    // alert('Icon Click Callback')
+  }
+
+  const { user } = useSelector(store => store.auth);
+
+  if (user) {
+    console.log('Redirect');
+    return (
+      <Redirect
+        to={{
+          pathname: '/'
+        }}
+      />
+    )
+  };
 
   const history = useHistory();
 
@@ -18,12 +36,6 @@ export default function ForgotPasswordPage() {
       history.replace({pathname: '/login'})
     }, [history]
   );
-
-  const inputRef = React.useRef(null)
-  const onIconClick = () => {
-    // setTimeout(() => inputRef.current.focus(), 0)
-    // alert('Icon Click Callback')
-  }
 
   function recover(e) {
     e.preventDefault();
