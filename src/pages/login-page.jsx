@@ -1,21 +1,19 @@
-// Initital commit
 import React, { useCallback } from "react";
+import { useDispatch } from "react-redux";
 import {useHistory} from 'react-router-dom';
 
 import styles from './inputs-pages.module.css';
 
 import {Button, EmailInput, PasswordInput} from '@ya.praktikum/react-developer-burger-ui-components';
 
-import CustomEmailInput from '../components/inputs/custom-email-input/custom-email-input.jsx';
-import CustomPasswordInput from '../components/inputs/custom-password-input/custom-password-input.jsx';
-
 import { login } from "../services/actions/login";
-import { useDispatch } from "react-redux";
 
 export default function LoginPage() {
 
   const [emailValue, setEmailValue] = React.useState('');
   const [passwordValue, setPasswordValue] = React.useState('');
+
+  const dispatch = useDispatch();
 
   const history = useHistory();
 
@@ -30,8 +28,6 @@ export default function LoginPage() {
       history.replace({pathname: '/forgot-password'})
     }, [history]
   );
-
-  const dispatch = useDispatch();
 
   function loginUser(e) {
     e.preventDefault();

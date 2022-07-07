@@ -18,7 +18,7 @@ import {ADD_TO_CONSTRUCTOR, addToConstructor} from '../../services/actions/const
 import {getOrder} from '../../services/actions/order.js';
 import { closeOrder} from '../../services/actions/order.js';
 
-import { getCookie } from '../../utils/data';
+import { getCookie } from '../../utils/utils';
 import { getUser } from '../../services/actions/user';
 
 export default function BurgerConstructor () {

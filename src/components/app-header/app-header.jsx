@@ -1,23 +1,11 @@
-import React, { useCallback } from "react";
-import { Link, useHistory } from "react-router-dom";
-
-import { Logo } from '@ya.praktikum/react-developer-burger-ui-components';
-import { BurgerIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { ListIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import React from "react";
+import { Link } from "react-router-dom";
 
 import appHeader from './app-header.module.css';
 
+import { Logo, BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+
 export default function AppHeader() {
-
-  // const history = useHistory();
-  // console.log(history);
-
-  // const openProfile = useCallback(
-  //   () => {
-  //     history.replace({pathname: '/profile'});
-  //   }, [history]
-  // );
 
   return (
     <header className={`mt-10 ${appHeader.header}`}>
@@ -32,7 +20,6 @@ export default function AppHeader() {
             <span className="text text_type_main-default text_color_inactive pl-2">Лента заказов</span>
           </a>
         </div>
-        {/* <a className={`pl-5 pr-5 pt-4 pb-4 ${appHeader.link}`} onClick={openProfile}> */}
         <Link className={`pl-5 pr-5 pt-4 pb-4 ${appHeader.link}`} to='/profile'>
           <ProfileIcon type="secondary" />
           <span className="text text_type_main-default text_color_inactive pl-2">Личный кабинет</span>

@@ -5,11 +5,11 @@ import styles from './inputs-pages.module.css';
 
 import {Button, Input} from '@ya.praktikum/react-developer-burger-ui-components';
 
-import CustomEmailInput from '../components/inputs/custom-email-input/custom-email-input.jsx';
-
-import {baseUrl, checkResponse} from '../utils/data.js';
+import {baseUrl, checkResponse} from '../utils/utils.js';
 
 export default function ForgotPasswordPage() {
+
+  const [value, setValue] = React.useState('')
 
   const history = useHistory();
 
@@ -19,11 +19,10 @@ export default function ForgotPasswordPage() {
     }, [history]
   );
 
-  const [value, setValue] = React.useState('')
   const inputRef = React.useRef(null)
   const onIconClick = () => {
-    setTimeout(() => inputRef.current.focus(), 0)
-    alert('Icon Click Callback')
+    // setTimeout(() => inputRef.current.focus(), 0)
+    // alert('Icon Click Callback')
   }
 
   function recover(e) {

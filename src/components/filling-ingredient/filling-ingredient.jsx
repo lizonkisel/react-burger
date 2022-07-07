@@ -1,5 +1,5 @@
-import React, { useEffect, useRef }  from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useRef }  from 'react';
+import { useDispatch } from 'react-redux';
 import { useDrag, useDrop } from 'react-dnd';
 
 import styles from './filling-ingredient.module.css';
@@ -10,7 +10,7 @@ import {ingredientPropTypes} from '../../utils/prop-types.js';
 import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components';
 import {DragIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 
-import {DELETE_FROM_CONSTRUCTOR, REORDER_INGREDIENT, deleteFromConstructor, reorderIngredient} from '../../services/actions/constructor-ingredients.js';
+import {deleteFromConstructor, reorderIngredient} from '../../services/actions/constructor-ingredients.js';
 
 export default function FillingIngredient({ item, index }) {
 

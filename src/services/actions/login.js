@@ -1,4 +1,4 @@
-import {baseUrl, checkResponse} from '../../utils/data.js';
+import {baseUrl, checkResponse} from '../../utils/utils.js';
 
 const LOGIN = 'LOGIN';
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';

@@ -1,20 +1,15 @@
 .main {
-  /* position: relative; */
-
   display: flex;
   align-items: center;
   justify-content: center;
 
   width: 100%;
   height: calc(100vh - 88px - 40px - 10px);
-  background-image: url(../images/page-404.webp);
+  background-image: url(../../images/page-404.webp);
   background-size: cover;
 }
 
 .title {
-  /* position: relative;
-  z-index: 1; */
-
   max-width: 700px;
   line-height: 60px;
 

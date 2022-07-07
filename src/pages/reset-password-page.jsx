@@ -5,9 +5,18 @@ import styles from './inputs-pages.module.css';
 
 import {Button, Input} from '@ya.praktikum/react-developer-burger-ui-components';
 
-import {baseUrl, checkResponse} from '../utils/data.js';
+import {baseUrl, checkResponse} from '../utils/utils.js';
 
 export default function ResetPasswordPage() {
+
+  const [newPasswordValue, setNewPasswordValue] = React.useState('');
+  const [codeValue, setCodeValue] = React.useState('');
+
+  const inputRef = React.useRef(null)
+  const onIconClick = () => {
+    // setTimeout(() => inputRef.current.focus(), 0)
+    // alert('Icon Click Callback')
+  };
 
   const history = useHistory();
 
@@ -16,14 +25,6 @@ export default function ResetPasswordPage() {
       history.replace({pathname: '/login'})
     }, [history]
   );
-
-  const [newPasswordValue, setNewPasswordValue] = React.useState('');
-  const [codeValue, setCodeValue] = React.useState('');
-  const inputRef = React.useRef(null)
-  const onIconClick = () => {
-    setTimeout(() => inputRef.current.focus(), 0)
-    alert('Icon Click Callback')
-  };
 
   function changePassword(e) {
     e.preventDefault();
@@ -53,7 +54,6 @@ export default function ResetPasswordPage() {
 
       <form className={styles.form} action="">
         <fieldset className={styles.fieldset}>
-          {/* <CustomEmailInput /> */}
           <Input
             type={'password'}
             placeholder={'Введите новый пароль'}

@@ -2,7 +2,7 @@ import {REGISTER, REGISTER_SUCCESS, REGISTER_FAILED} from '../actions/register.j
 import {LOGIN, LOGIN_SUCCESS, LOGIN_FAILED} from '../actions/login.js';
 import {GET_USER, GET_USER_SUCCESS, GET_USER_FAILED, EDIT_USER, EDIT_USER_SUCCESS, EDIT_USER_FAILED} from '../actions/user.js' ;
 import { LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAILED } from '../actions/logout.js';
-import {setCookie, getCookie} from '../../utils/data.js';
+import {setCookie, getCookie} from '../../utils/utils.js';
 
 const initialState = {
   isLoading: false,

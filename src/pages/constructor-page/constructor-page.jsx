@@ -6,22 +6,23 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import styles from './constructor-page.module.css';
 
-import AppHeader from '../components/app-header/app-header.jsx';
-import BurgerIngredients from '../components/burger-ingredients/burger-ingredients.jsx';
-import BurgerConstructor from '../components/burger-constructor/burger-constructor.jsx';
+import BurgerIngredients from '../../components/burger-ingredients/burger-ingredients.jsx';
+import BurgerConstructor from '../../components/burger-constructor/burger-constructor.jsx';
 
-import {getAllIngredients} from '../services/actions/all-ingredients.js';
-import { getUser } from '../services/actions/user';
-import { getCookie } from '../utils/data';
+import {getAllIngredients} from '../../services/actions/all-ingredients.js';
+import { getUser } from '../../services/actions/user';
+import { getCookie } from '../../utils/utils';
 
 
 export default function ConstructorPage() {
 
   console.log('Constructor Page');
 
-  const dispatch = useDispatch();
-
   const { isAuth, isAuthChecked } = useSelector(store => store.auth);
+  const {isLoading, isFailed} = useSelector(store => store.allIngredients);
+  const listOfIngredients = useSelector(store => store.allIngredients.items);
+
+  const dispatch = useDispatch();
 
   useEffect(()=> {
     dispatch(getAllIngredients());
@@ -33,9 +34,6 @@ export default function ConstructorPage() {
     }
   }, [isAuth, isAuthChecked]);
 
-  const {isLoading, isFailed} = useSelector(store => store.allIngredients)
-
-  const listOfIngredients = useSelector(store => store.allIngredients.items);
 
   return (
     <main className={styles.main}>

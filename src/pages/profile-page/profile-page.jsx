@@ -1,33 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Route, Switch, useParams, useRouteMatch } from 'react-router-dom';
 
 import styles from './profile-page.module.css';
-import formStyles from './inputs-pages.module.css';
+import formStyles from '../inputs-pages.module.css';
 
-import { Tab, Input, PasswordInput, Button } from "@ya.praktikum/react-developer-burger-ui-components";
+import { Input, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 
-import {LoginPage, OrdersPage} from './index.jsx';
+import ProfileMenu from '../../components/profile-menu/profile-menu.jsx';
+import { editUser } from "../../services/actions/user";
+import { regExp } from "../../utils/utils";
 
-import ProfileMenu from '../components/profile-menu/profile-menu.jsx';
-
-import { editUser } from "../services/actions/user";
-
-const regExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function ProfilePage() {
-
-  // const [nameValue, setNameValue] = React.useState('');
-  // const [loginValue, setLoginValue] = React.useState('');
-  // const [passwordValue, setPasswordValue] = React.useState('');
-  // const inputRef = React.useRef(null);
-  // const onIconClick = () => {
-  //   setTimeout(() => inputRef.current.focus(), 0)
-  //   alert('Icon Click Callback')
-  // };
-
-  const currentName = useSelector(store => store.auth.user.name);
-  const currentEmail = useSelector(store => store.auth.user.email);
 
   const [nameValue, setNameValue] = React.useState(currentName);
   const [loginValue, setLoginValue] = React.useState(currentEmail);
@@ -44,6 +28,16 @@ export default function ProfilePage() {
   const [isPasswordError, setIsPasswordError] = useState(false);
 
   const [isInvalidInputs, setIsInvalidInputs] = useState(false);
+  const [isButtonsVisible, setIsButtonsVisible] = useState(false);
+
+  const currentName = useSelector(store => store.auth.user.name);
+  const currentEmail = useSelector(store => store.auth.user.email);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    (!isNameError && !isEmailError && !isPasswordError) ? setIsInvalidInputs(false) : setIsInvalidInputs(true)
+  }, [isNameError, isEmailError, isPasswordError]);
 
   function validateName() {
     if (nameValue.length >=2 && nameValue.length < 21) {
@@ -71,10 +65,6 @@ export default function ProfilePage() {
     }
   };
 
-  useEffect(() => {
-    (!isNameError && !isEmailError && !isPasswordError) ? setIsInvalidInputs(false) : setIsInvalidInputs(true)
-  }, [isNameError, isEmailError, isPasswordError]);
-
   function validatePassword() {
     // if (passwordValue.length === 0 || (passwordValue.length >=8 && passwordValue.length < 21)) {
     if ((passwordValue.length >=8 && passwordValue.length < 21)) {
@@ -94,7 +84,6 @@ export default function ProfilePage() {
 
   function clearEmailErrors() {
     setIsEmailError(false);
-    // setIsInvalidInputs(false);
   };
 
   function clearNameErrors() {
@@ -111,10 +100,6 @@ export default function ProfilePage() {
     clearPasswordErrors();
   };
 
-  const [isButtonsVisible, setIsButtonsVisible] = useState(false);
-
-  const dispatch = useDispatch();
-
   function resetNewData(e) {
     e.preventDefault();
     clearAllErrors();
@@ -122,8 +107,6 @@ export default function ProfilePage() {
     setLoginValue(currentEmail);
     setPasswordValue('');
   }
-
-
 
   const editCurrentUser = async (e) => {
     e.preventDefault();
@@ -137,41 +120,9 @@ export default function ProfilePage() {
     console.log("Edit User");
   };
 
-  // useEffect(() => {
-  //   if (isButtonsVisible) {
-
-  //   }
-  // }, [isButtonsVisible])
-
   return (
     <main className={styles.main}>
       <ProfileMenu />
-
-      {/* <section className={styles.menu}>
-        <nav>
-          <ul className={styles.nav_list}>
-            <li className={`text text_type_main-medium ${styles.nav_element}`}>
-              <Link to={`${url}`}>Профиль</Link>
-            </li>
-            <li className={`text text_type_main-medium ${styles.nav_element}`}>
-              <Link to={`${url}/orders`}>История заказов</Link>
-            </li>
-            <li className={`text text_type_main-medium ${styles.nav_element}`}>
-              <Link to={'/'}>Выход</Link>
-            </li>
-          </ul>
-        </nav>
-
-        <p className={`${styles.info} text text_type_main-default text_color_inactive`}>
-          В этом разделе вы можете изменить свои персональные данные
-        </p>
-      </section> */}
-
-      {/* <Switch>
-        <Route path={`${path}/orders`}>
-          <OrdersPage />
-        </Route>
-      </Switch> */}
 
       <form className={formStyles.form} action="">
         <fieldset className={formStyles.fieldset}>
@@ -205,7 +156,6 @@ export default function ProfilePage() {
             errorText={'Введите корректный адрес электронной почты'}
             size={'default'}
           />
-          {/* <PasswordInput onChange={e => setPasswordValue(e.target.value)} value={passwordValue} name={'password'}  placeholder={'Логин'}/> */}
           <Input
             type={'password'}
             placeholder={'Пароль'}
@@ -232,15 +182,6 @@ export default function ProfilePage() {
           </Button>
         </div>
       </form>
-
-      {/* <div className={styles.additional_actions}>
-        <div className={styles.additional_action}>
-          <p className="text text_type_main-default text_color_inactive">Вспомнили пароль?</p>
-          <Button type="secondary" size="medium" onClick={login}>
-            Войти
-          </Button>
-        </div>
-      </div> */}
     </main>
   )
 }

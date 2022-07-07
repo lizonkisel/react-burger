@@ -1,4 +1,4 @@
-import {baseUrl, checkResponse} from '../../utils/data.js';
+import {baseUrl, checkResponse} from '../../utils/utils.js';
 
 const LOGOUT = 'LOGOUT';
 const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';

@@ -1,4 +1,4 @@
-import {baseUrl, checkResponse} from '../../utils/data.js';
+import {baseUrl, checkResponse} from '../../utils/utils.js';
 
 const GET_ORDER = 'GET_ORDER';
 const GET_ORDER_SUCCESS = 'GET_ORDER_SUCCESS';

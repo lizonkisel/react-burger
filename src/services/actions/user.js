@@ -1,4 +1,4 @@
-import {baseUrl, checkResponse, getCookie, fetchWithRefresh} from '../../utils/data.js';
+import {baseUrl, checkResponse, getCookie, fetchWithRefresh} from '../../utils/utils.js';
 console.log(getCookie('token'));
 
 const GET_USER = 'GET_USER';
