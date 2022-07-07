@@ -53,31 +53,42 @@ function getUser() {
   }
 }
 
-function editUser(name, email, password) {
+function editUser(newUserData) {
+
+  console.log(newUserData);
   return function(dispatch) {
     dispatch({
       type: EDIT_USER
     })
 
-    fetch(`${baseUrl}/auth/user`,
-      {
-        method: 'PATCH',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + getCookie('token')
-        },
-        redirect: 'follow',
-        referrerPolicy: 'no-referrer',
-        body: JSON.stringify({
-          "name": name,
-          "email": email,
-          "password": password
-        })
-      }
-    )
+    fetchWithRefresh(`${baseUrl}/auth/user`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + getCookie('token')
+      },
+      body: JSON.stringify(
+        newUserData
+      )
+    })
+
+    // fetch(`${baseUrl}/auth/user`,
+    //   {
+    //     method: 'PATCH',
+    //     mode: 'cors',
+    //     cache: 'no-cache',
+    //     credentials: 'same-origin',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       Authorization: 'Bearer ' + getCookie('token')
+    //     },
+    //     redirect: 'follow',
+    //     referrerPolicy: 'no-referrer',
+    //     body: JSON.stringify(
+    //       newUserData
+    //     )
+    //   }
+    // )
     .then(checkResponse)
     .then(res => dispatch({
       type: EDIT_USER_SUCCESS,

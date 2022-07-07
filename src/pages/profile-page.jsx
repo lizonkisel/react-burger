@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, Route, Switch, useParams, useRouteMatch } from 'react-router-dom';
 
 import styles from './profile-page.module.css';
 import formStyles from './inputs-pages.module.css';
 
-import { Tab, Input, Button } from "@ya.praktikum/react-developer-burger-ui-components";
+import { Tab, Input, PasswordInput, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import {LoginPage, OrdersPage} from './index.jsx';
 
 import ProfileMenu from '../components/profile-menu/profile-menu.jsx';
 
 import { editUser } from "../services/actions/user";
+
+const regExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function ProfilePage() {
 
@@ -24,8 +26,11 @@ export default function ProfilePage() {
   //   alert('Icon Click Callback')
   // };
 
-  const [nameValue, setNameValue] = React.useState('');
-  const [loginValue, setLoginValue] = React.useState('');
+  const currentName = useSelector(store => store.auth.user.name);
+  const currentEmail = useSelector(store => store.auth.user.email);
+
+  const [nameValue, setNameValue] = React.useState(currentName);
+  const [loginValue, setLoginValue] = React.useState(currentEmail);
   const [passwordValue, setPasswordValue] = React.useState('');
   const inputRef = React.useRef(null);
   const onIconClick = () => {
@@ -34,21 +39,103 @@ export default function ProfilePage() {
     // alert('Icon Click Callback')
   };
 
-  console.log(useParams());
-  console.log(useRouteMatch());
+  const [isNameError, setIsNameError] = useState(false);
+  const [isEmailError, setIsEmailError] = useState(false);
+  const [isPasswordError, setIsPasswordError] = useState(false);
 
-  const { url } = useRouteMatch();
-  const { path } = useRouteMatch();
+  const [isInvalidInputs, setIsInvalidInputs] = useState(false);
+
+  function validateName() {
+    if (nameValue.length >=2 && nameValue.length < 21) {
+      setIsNameError(false)
+    } else {
+      setIsNameError(true);
+      setIsInvalidInputs(true)
+    }
+    // (nameValue.length >=2 && nameValue.length < 21) ? (setIsNameError(false)) : (setIsNameError(true), setIsInvalidInputs(true));
+  };
+
+  function validateEmail() {
+    // setIsEmailError(!regExp.test(loginValue));
+    // regExp.test(loginValue) ? (
+    //   setIsEmailError(false)
+    //   ) : (
+    //     setIsEmailError(true),
+    //     setIsInvalidInputs(true)
+    //   );
+    if (regExp.test(loginValue)) {
+      setIsEmailError(false)
+    } else {
+      setIsEmailError(true);
+      setIsInvalidInputs(true)
+    }
+  };
+
+  useEffect(() => {
+    (!isNameError && !isEmailError && !isPasswordError) ? setIsInvalidInputs(false) : setIsInvalidInputs(true)
+  }, [isNameError, isEmailError, isPasswordError]);
+
+  function validatePassword() {
+    // if (passwordValue.length === 0 || (passwordValue.length >=8 && passwordValue.length < 21)) {
+    if ((passwordValue.length >=8 && passwordValue.length < 21)) {
+      setIsPasswordError(false)
+    } else {
+      setIsPasswordError(true);
+      setIsInvalidInputs(true)
+    }
+    // (passwordValue.length >=8 && passwordValue.length < 21) ? (setIsPasswordError(false)) : (setIsPasswordError(true), setIsInvalidInputs(true));
+  }
+
+  function checkFormValidity() {
+    validateName();
+    validateEmail();
+    validatePassword();
+  }
+
+  function clearEmailErrors() {
+    setIsEmailError(false);
+    // setIsInvalidInputs(false);
+  };
+
+  function clearNameErrors() {
+    setIsNameError(false)
+  };
+
+  function clearPasswordErrors() {
+    setIsPasswordError(false)
+  };
+
+  function clearAllErrors() {
+    clearEmailErrors();
+    clearNameErrors();
+    clearPasswordErrors();
+  };
 
   const [isButtonsVisible, setIsButtonsVisible] = useState(false);
 
   const dispatch = useDispatch();
 
+  function resetNewData(e) {
+    e.preventDefault();
+    clearAllErrors();
+    setNameValue(currentName);
+    setLoginValue(currentEmail);
+    setPasswordValue('');
+  }
+
+
+
   const editCurrentUser = async (e) => {
     e.preventDefault();
-    const res = await dispatch(editUser(nameValue));
+    checkFormValidity();
+    const newUserData = {
+      'name': nameValue,
+      'email': loginValue,
+      'password': passwordValue
+    }
+    const res = await dispatch(editUser(newUserData));
     console.log("Edit User");
-  }
+  };
 
   // useEffect(() => {
   //   if (isButtonsVisible) {
@@ -92,47 +179,55 @@ export default function ProfilePage() {
             type={'text'}
             placeholder={'Имя'}
             onChange={e => setNameValue(e.target.value)}
+            onFocus={clearNameErrors}
+            onBlur={validateName}
             icon={'EditIcon'}
             value={nameValue}
             name={'name'}
-            error={false}
+            error={isNameError}
             ref={inputRef}
             onIconClick={onIconClick}
-            errorText={'Ошибка'}
+            errorText={'Длина имени должна быть от 2 до 20 символов'}
             size={'default'}
           />
           <Input
             type={'text'}
             placeholder={'Логин'}
             onChange={e => setLoginValue(e.target.value)}
+            onFocus={clearEmailErrors}
+            onBlur={validateEmail}
             icon={'EditIcon'}
             value={loginValue}
-            name={'name'}
-            error={false}
+            name={'email'}
+            error={isEmailError}
             ref={inputRef}
             onIconClick={onIconClick}
-            errorText={'Ошибка'}
+            errorText={'Введите корректный адрес электронной почты'}
             size={'default'}
           />
+          {/* <PasswordInput onChange={e => setPasswordValue(e.target.value)} value={passwordValue} name={'password'}  placeholder={'Логин'}/> */}
           <Input
             type={'password'}
             placeholder={'Пароль'}
             onChange={e => setPasswordValue(e.target.value)}
+            onFocus={clearPasswordErrors}
+            onBlur={validatePassword}
             icon={'EditIcon'}
             value={passwordValue}
             name={'name'}
-            error={false}
+            error={isPasswordError}
             ref={inputRef}
             onIconClick={onIconClick}
-            errorText={'Ошибка'}
+            errorText={'Пароль должен содержать от 8 до 20 символов'}
             size={'default'}
+            required={false}
           />
         </fieldset>
         <div className={`${styles.buttons_wrapper} ${isButtonsVisible ? styles.buttons_wrapper_visible : null}`}>
-          <Button type="secondary" size="medium">
+          <Button type="secondary" size="medium" onClick={resetNewData}>
             Отмена
           </Button>
-          <Button type="primary" size="medium" onClick={editCurrentUser}>
+          <Button type="primary" size="medium" onClick={editCurrentUser} disabled={isInvalidInputs}>
             Сохранить
           </Button>
         </div>
