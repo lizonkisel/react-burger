@@ -28,4 +28,16 @@
   align-items: center;
   cursor: pointer;
   text-decoration: none;
+  color: #8585AD;
+  transition: color 0.2s linear;
+  cursor: pointer;
+}
+
+.link:hover {
+  color: #F2F2F3;
+}
+
+.active_nav_link {
+  /* background-color: aqua; */
+  color: #F2F2F3;
 }

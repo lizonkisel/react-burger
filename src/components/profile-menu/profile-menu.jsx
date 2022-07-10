@@ -28,10 +28,10 @@ export default function ProfileMenu() {
       <nav>
         <ul className={styles.nav_list}>
           <li className={`${styles.nav_element}`}>
-            <NavLink to={'/profile'} className={`text text_type_main-medium ${styles.nav_link}`} activeClassName={styles.active_nav_link}>Профиль</NavLink>
+            <NavLink to={'/profile'} exact={true} className={`text text_type_main-medium ${styles.nav_link}`} activeClassName={styles.active_nav_link}>Профиль</NavLink>
           </li>
           <li className={`${styles.nav_element}`}>
-            <NavLink to={'/profile/orders'} className={`text text_type_main-medium ${styles.nav_link}`} activeClassName={styles.active_nav_link}>История заказов</NavLink>
+            <NavLink to={'/profile/orders'} exact={true} className={`text text_type_main-medium ${styles.nav_link}`} activeClassName={styles.active_nav_link}>История заказов</NavLink>
           </li>
           <li className={`${styles.nav_element}`}>
             <button className={`text text_type_main-medium ${styles.nav_button}`} onClick={logoutFromAccount}>Выход</button>
