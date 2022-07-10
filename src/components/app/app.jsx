@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Switch, BrowserRouter, Route } from 'react-router-dom';
 
 import AppHeader from '../app-header/app-header.jsx';
@@ -6,7 +7,29 @@ import AppHeader from '../app-header/app-header.jsx';
 import ProtectedRoute from '../protected-route/protected-route.jsx';
 import {LoginPage, ConstructorPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, ProfilePage, OrdersPage, Page404} from '../../pages/index.jsx';
 
+import { getUser } from '../../services/actions/user';
+import { getCookie } from '../../utils/utils';
+
 function App() {
+
+  // const { isAuth, isAuthChecked } = useSelector(store => store.auth);
+
+  const dispatch = useDispatch();
+
+  console.log(getCookie('token'));
+
+  const { user } = useSelector(store => store.auth);
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, []);
+
+  // useEffect(()=> {
+  //   if (getCookie('token') !== null) {
+  //     dispatch(getUser());
+  //     console.log(user);
+  //   }
+  // }, [isAuth, isAuthChecked]);
 
   return (
     <>
@@ -18,25 +41,38 @@ function App() {
               <ConstructorPage/>
             </Route>
 
-            {/* <Route path='/login' exact={true}>
+            <Route path='/login' exact={true}>
               <LoginPage/>
-            </Route> */}
+            </Route>
 
-            <ProtectedRoute path='/login'>
+            {/* <ProtectedRoute path='/login'>
               <LoginPage/>
-            </ProtectedRoute>
+            </ProtectedRoute> */}
 
-            <ProtectedRoute path='/register'>
+            {/* <ProtectedRoute path='/register'>
               <RegisterPage/>
-            </ProtectedRoute>
+            </ProtectedRoute> */}
 
-            <ProtectedRoute path='/forgot-password'>
+            <Route path='/register'>
+              <RegisterPage/>
+            </Route>
+
+
+            <Route path='/forgot-password'>
               <ForgotPasswordPage/>
-            </ProtectedRoute>
+            </Route>
 
-            <ProtectedRoute path='/reset-password'>
+            {/* <ProtectedRoute path='/forgot-password'>
+              <ForgotPasswordPage/>
+            </ProtectedRoute> */}
+
+            {/* <ProtectedRoute path='/reset-password'>
               <ResetPasswordPage/>
-            </ProtectedRoute>
+            </ProtectedRoute> */}
+
+            <Route path='/reset-password'>
+              <ResetPasswordPage/>
+            </Route>
 
             <ProtectedRoute path='/profile'>
               <ProfilePage/>

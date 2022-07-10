@@ -21,6 +21,7 @@ function getUser() {
       headers: {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + getCookie('token')
+        // Authorization: getCookie('token')
       }
     })
 

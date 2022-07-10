@@ -10,28 +10,56 @@ function checkResponse(res) {
 };
 
 // function setCookie(name, value, props) {
-  function setCookie(name, value) {
-  // props = props || {};
-  // let exp = props.expires;
-  // if (typeof exp == 'number' && exp) {
-  //   const d = new Date();
-  //   d.setTime(d.getTime() + exp * 1000);
-  //   exp = props.expires = d;
+  function setCookie(name, value, props) {
+  // // props = props || {};
+  // // let exp = props.expires;
+  // // if (typeof exp == 'number' && exp) {
+  // //   const d = new Date();
+  // //   d.setTime(d.getTime() + exp * 1000);
+  // //   exp = props.expires = d;
+  // // }
+  // // if (exp && exp.toUTCString) {
+  // //   props.expires = exp.toUTCString();
+  // // }
+  // value = value.split(' ')[1];
+  // value = encodeURIComponent(value);
+  // const updatedCookie = name + '=' + value;
+  // // let updatedCookie = name + '=' + value;
+  // // for (const propName in props) {
+  // //   updatedCookie += '; ' + propName;
+  // //   const propValue = props[propName];
+  // //   if (propValue !== true) {
+  // //     updatedCookie += '=' + propValue;
+  // //   }
+  // // }
+  // document.cookie = updatedCookie;
+
+  // console.log(value);
+  // if (value.indexOf('Bearer') === 0) {
+  //   // Отделяем схему авторизации от "полезной нагрузки токена",
+  //   // Стараемся экономить память в куках (доступно 4кб)
+  //   value = value.split('Bearer ')[1];
   // }
-  // if (exp && exp.toUTCString) {
-  //   props.expires = exp.toUTCString();
-  // }
-  value = value.split(' ')[1];
+
+  props = props || {};
+  let exp = props.expires;
+  if (typeof exp == 'number' && exp) {
+    const d = new Date();
+    d.setTime(d.getTime() + exp * 1000);
+    exp = props.expires = d;
+  }
+  if (exp && exp.toUTCString) {
+    props.expires = exp.toUTCString();
+  }
   value = encodeURIComponent(value);
-  const updatedCookie = name + '=' + value;
-  // let updatedCookie = name + '=' + value;
-  // for (const propName in props) {
-  //   updatedCookie += '; ' + propName;
-  //   const propValue = props[propName];
-  //   if (propValue !== true) {
-  //     updatedCookie += '=' + propValue;
-  //   }
-  // }
+  let updatedCookie = name + '=' + value;
+  for (const propName in props) {
+    updatedCookie += '; ' + propName;
+    const propValue = props[propName];
+    if (propValue !== true) {
+      updatedCookie += '=' + propValue;
+    }
+  }
   document.cookie = updatedCookie;
 };
 
@@ -59,12 +87,13 @@ const fetchWithRefresh = async (url, options) => {
         return Promise.reject(refreshData);
       } else {
         localStorage.setItem('refreshToken', refreshData.refreshToken);
-        setCookie('token', refreshData.accessToken);
+        setCookie('token', refreshData.accessToken.split('Bearer ')[1]);
 
         const res = await fetch(url, {
           ...options,
             headers: {
               ...options.headers,
+              // Authotization: 'Bearer ' + refreshData.accessToken
               Authotization: 'Bearer ' + refreshData.accessToken
             }
         });
@@ -76,7 +105,16 @@ const fetchWithRefresh = async (url, options) => {
       return Promise.reject(err)
     }
   }
-}
+};
+
+// const signOut = async () => {
+//   // Отправляем запрос на сервер
+// await logoutRequest();
+//   // Удаляем пользователя из хранилища
+// setUser(null);
+//   // Удаляем куку token
+// deleteCookie('token');
+// };
 
 
 export {baseUrl, regExp, checkResponse, setCookie, getCookie, fetchWithRefresh};

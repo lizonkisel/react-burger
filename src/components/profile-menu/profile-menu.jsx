@@ -5,6 +5,7 @@ import { Link, NavLink, Route, Switch, useParams, useRouteMatch, useHistory } fr
 import styles from './profile-menu.module.css';
 
 import { logout } from "../../services/actions/logout";
+import { setCookie } from "../../utils/utils";
 
 export default function ProfileMenu() {
 
@@ -12,9 +13,12 @@ export default function ProfileMenu() {
 
   const dispatch = useDispatch();
 
-  const logoutFromAccount = async() => {
+  const logoutFromAccount = async () => {
     console.log('Exit click');
     await dispatch(logout());
+
+    setCookie('token', null, { expires: -1 });
+
     history.replace({pathname: '/login'});
 
   };

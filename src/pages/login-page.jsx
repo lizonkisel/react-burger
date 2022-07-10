@@ -10,23 +10,11 @@ import { login } from "../services/actions/login";
 
 export default function LoginPage() {
 
-
-  const [emailValue, setEmailValue] = React.useState('');
-  const [passwordValue, setPasswordValue] = React.useState('');
-
   const { user } = useSelector(store => store.auth);
   console.log(user);
 
-  if (user) {
-    console.log('Redirect');
-    return (
-      <Redirect
-        to={{
-          pathname: '/'
-        }}
-      />
-    )
-  };
+  const [emailValue, setEmailValue] = React.useState('');
+  const [passwordValue, setPasswordValue] = React.useState('');
 
   const dispatch = useDispatch();
 
@@ -52,6 +40,17 @@ export default function LoginPage() {
     history.replace({pathname: '/'});
   }
 
+
+    if (user) {
+    console.log('Redirect');
+    return (
+      <Redirect
+        to={{
+          pathname: '/'
+        }}
+      />
+    )
+  };
   // const loginUser = useCallback((e) => {
   //   e.preventDefault();
   //   console.log('Dispatch login');

@@ -18,7 +18,7 @@ export default function ConstructorPage() {
 
   console.log('Constructor Page');
 
-  const { isAuth, isAuthChecked } = useSelector(store => store.auth);
+  // const { isAuth, isAuthChecked } = useSelector(store => store.auth);
   const {isLoading, isFailed} = useSelector(store => store.allIngredients);
   const listOfIngredients = useSelector(store => store.allIngredients.items);
 
@@ -29,11 +29,11 @@ export default function ConstructorPage() {
     dispatch(getAllIngredients());
   }, []);
 
-  useEffect(()=> {
-    if (getCookie('token') !== null) {
-      dispatch(getUser());
-    }
-  }, [isAuth, isAuthChecked]);
+  // useEffect(()=> {
+  //   if (getCookie('token') !== null) {
+  //     dispatch(getUser());
+  //   }
+  // }, [isAuth, isAuthChecked]);
 
 
   return (

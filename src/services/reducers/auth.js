@@ -25,7 +25,8 @@ const authReducer = (state = initialState, action) => {
     }
     case REGISTER_SUCCESS: {
       localStorage.setItem('refreshToken', action.refreshToken);
-      setCookie('token', action.accessToken);
+      setCookie('token', action.accessToken.split('Bearer ')[1]);
+
       console.log(getCookie('token'));
       return {
         ...state,
@@ -54,6 +55,7 @@ const authReducer = (state = initialState, action) => {
       }
     }
     case LOGIN_SUCCESS: {
+      setCookie('token', action.accessToken.split('Bearer ')[1]);
       localStorage.setItem('refreshToken', action.refreshToken);
 
       return {

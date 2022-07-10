@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {Redirect} from 'react-router-dom';
 
 import styles from './profile-page.module.css';
 import formStyles from '../inputs-pages.module.css';
@@ -12,6 +13,20 @@ import { regExp } from "../../utils/utils";
 
 
 export default function ProfilePage() {
+
+  // const { user } = useSelector(store => store.auth);
+  // console.log(user);
+
+  // if (user === null) {
+  //   console.log('Redirect');
+  //   return (
+  //     <Redirect
+  //       to={{
+  //         pathname: '/login'
+  //       }}
+  //     />
+  //   )
+  // };
 
   const currentName = useSelector(store => store.auth.user.name);
   const currentEmail = useSelector(store => store.auth.user.email);
