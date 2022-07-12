@@ -28,6 +28,7 @@ export default function ProfilePage() {
   //   )
   // };
 
+
   const currentName = useSelector(store => store.auth.user.name);
   const currentEmail = useSelector(store => store.auth.user.email);
 
@@ -137,6 +138,9 @@ export default function ProfilePage() {
 
   return (
     <main className={styles.main}>
+
+
+
       <ProfileMenu />
 
       <form className={formStyles.form} action="">

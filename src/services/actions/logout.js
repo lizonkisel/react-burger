@@ -35,7 +35,7 @@ function logout() {
         user: null,
         accessToken: null,
         isAuth: false,
-        isAuthChecked: false
+        isAuthChecked: true
     })})
     .catch(err => {
       console.log(err)

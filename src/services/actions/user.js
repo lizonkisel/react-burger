@@ -13,7 +13,9 @@ function getUser() {
 
   return function(dispatch) {
     dispatch({
-      type: GET_USER
+      type: GET_USER,
+      isAuth: false,
+      isAuthChecked: false
     })
 
     fetchWithRefresh(`${baseUrl}/auth/user`, {

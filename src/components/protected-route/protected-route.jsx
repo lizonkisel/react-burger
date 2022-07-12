@@ -6,39 +6,30 @@ import { getUser } from '../../services/actions/user.js';
 
 export default function ProtectedRoute({ children, ...rest }) {
 
-  // const [isUserLoaded, setIsUserLoaded] = useState(false);
-
   const { user } = useSelector(store => store.auth);
 
-  // const dispatch = useDispatch();
+  const {isAuthChecked} = useSelector(store => store.auth);
 
-  console.log(user);
+  console.log(`Is auth checked: ${isAuthChecked}`);
 
-  // const init = async () => {
-  //   await dispatch(getUser());
-  //   setIsUserLoaded(true);
-  //   console.log(setIsUserLoaded(true));
-  // };
+  if (!isAuthChecked) {
+    return ( <p className="text text_type_main-medium">Загружаем данные...</p>
+    )
+  };
 
-  // useEffect(() => {
-  //   init()
-  // }, []);
+  if (isAuthChecked) {
+    return (
+      <Route
+        {...rest}
+        render={() =>
+          user ? (
+            children
+          ) : (
+            <Redirect to='/login' />
+          )
+        }
+      />
+    )
+  };
 
-  // if (!isUserLoaded) {
-  //   console.log('There is no user');
-  //   return null
-  // }
-
-  return (
-    <Route
-      {...rest}
-      render={() =>
-        user ? (
-          children
-        ) : (
-          <Redirect to='/login' />
-        )
-      }
-    />
-  )
 }

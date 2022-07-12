@@ -82,7 +82,8 @@ const authReducer = (state = initialState, action) => {
         ...state,
         // isLoading: action.isLoading,
         // isFailed: action.isFailed,
-        // isAuth: action.isAuth
+        isAuth: action.isAuth,
+        isAuthChecked: action.isAuthChecked
       }
     }
     case GET_USER_SUCCESS: {
