@@ -85,10 +85,10 @@ export default function BurgerIngredients() {
         </article>
       </section>
 
-      {ingredientInModal &&
+      {/* {ingredientInModal &&
       <Modal title="Детали ингредиента" onClose={() => dispatch(getCurrentIngredient(null))}>
         <IngredientDetails />
-      </Modal>}
+      </Modal>} */}
     </>
   )
 }

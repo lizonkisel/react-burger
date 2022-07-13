@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link, useLocation } from 'react-router-dom';
 import { useDrag } from 'react-dnd';
 
 import styles from './draggable-ingredient.module.css';
@@ -16,6 +17,9 @@ export default function DraggableIngredient({ingredient}) {
 
   const ingredientsCount = useSelector(store => store.constructorIngredients.ingredientsCount);
   const bun = useSelector(store => store.constructorIngredients.ingredients.bun);
+
+  const id = ingredient._id;
+  console.log(id);
 
   function setCount() {
     if (bun !== null && bun._id === ingredient._id) {
@@ -36,6 +40,7 @@ export default function DraggableIngredient({ingredient}) {
     dispatch(getCurrentIngredient(ingredient));
   };
 
+  const location = useLocation();
 
   const [, dragRef] = useDrag({
     type: 'ingredient',
@@ -43,16 +48,19 @@ export default function DraggableIngredient({ingredient}) {
   });
 
   return (
-    <li className={` ${styles.card}`} onClick={() => {chooseIngredient(ingredient)}} ref={dragRef} draggable>
-      <img className={`ml-4 mr-4 ${styles.image}`} src={ingredient.image} />
-      { startCount &&
-        <Counter count={setCount()} size="default" />
-      }
-      <div className={styles.priceArea}>
-        <p className={`text text_type_digits-default ${styles.price}`}>{ingredient.price}</p>
-        <CurrencyIcon type="primary" />
-      </div>
-      <p className={`text text_type_main-default ${styles.title}`}>{ingredient.name}</p>
+    // <li className={` ${styles.card}`} onClick={() => {chooseIngredient(ingredient)}} ref={dragRef} draggable>
+    <li className={` ${styles.card}`} ref={dragRef} draggable>
+      <Link to={{pathname: `/ingredients/${id}`, state: { prevPath: location.pathname }}}>
+        <img className={`ml-4 mr-4 ${styles.image}`} src={ingredient.image} />
+        { startCount &&
+          <Counter count={setCount()} size="default" />
+        }
+        <div className={styles.priceArea}>
+          <p className={`text text_type_digits-default ${styles.price}`}>{ingredient.price}</p>
+          <CurrencyIcon type="primary" />
+        </div>
+        <p className={`text text_type_main-default ${styles.title}`}>{ingredient.name}</p>
+      </Link>
     </li>
   )
 };

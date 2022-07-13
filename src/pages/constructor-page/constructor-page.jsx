@@ -25,9 +25,9 @@ export default function ConstructorPage() {
   const dispatch = useDispatch();
 
 
-  useEffect(()=> {
-    dispatch(getAllIngredients());
-  }, []);
+  // useEffect(()=> {
+  //   dispatch(getAllIngredients());
+  // }, []);
 
   // useEffect(()=> {
   //   if (getCookie('token') !== null) {

@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {useHistory, Redirect} from 'react-router-dom';
+import {useHistory, useLocation, Redirect} from 'react-router-dom';
 
 import styles from './inputs-pages.module.css';
 
@@ -19,6 +19,10 @@ export default function LoginPage() {
   const dispatch = useDispatch();
 
   const history = useHistory();
+
+  const location = useLocation();
+  console.log(location);
+  // console.log(location.state?.from);
 
   const register = useCallback(
     () => {
@@ -48,6 +52,8 @@ export default function LoginPage() {
         to={{
           pathname: '/'
         }}
+        // to={ location.state?.from || '/' }
+        // to={location.state?.from || '/'}
       />
     )
   };
