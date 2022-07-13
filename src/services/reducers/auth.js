@@ -1,5 +1,6 @@
 import {REGISTER, REGISTER_SUCCESS, REGISTER_FAILED} from '../actions/register.js';
 import {LOGIN, LOGIN_SUCCESS, LOGIN_FAILED} from '../actions/login.js';
+import {RESET_PASSWORD, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_FAILED, RECOVER_PASSWORD, RECOVER_PASSWORD_SUCCESS, RECOVER_PASSWORD_FAILED, recoverPassword, resetPassword} from '../actions/password.js';
 import {GET_USER, GET_USER_SUCCESS, GET_USER_FAILED, EDIT_USER, EDIT_USER_SUCCESS, EDIT_USER_FAILED} from '../actions/user.js' ;
 import { LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAILED } from '../actions/logout.js';
 import {setCookie, getCookie} from '../../utils/utils.js';
@@ -73,6 +74,41 @@ const authReducer = (state = initialState, action) => {
         isLoading: action.isLoading,
         isFailed: action.isFailed,
         isAuth: action.isAuth
+      }
+    }
+
+    case RECOVER_PASSWORD: {
+      console.log('1');
+      return {
+        ...state,
+      }
+    }
+    case RECOVER_PASSWORD_SUCCESS: {
+      console.log('Recover success');
+      return {
+        ...state,
+      }
+    }
+    case RECOVER_PASSWORD_FAILED: {
+      console.log('Recover failed');
+      return {
+        ...state,
+      }
+    }
+
+    case RESET_PASSWORD: {
+      return {
+        ...state,
+      }
+    }
+    case RESET_PASSWORD_SUCCESS: {
+      return {
+        ...state,
+      }
+    }
+    case RESET_PASSWORD_FAILED: {
+      return {
+        ...state,
       }
     }
 

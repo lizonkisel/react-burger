@@ -1,4 +1,4 @@
-import React, { useCallback, useSelector } from "react";
+import React, { useCallback} from "react";
 import {useHistory, Redirect} from 'react-router-dom';
 
 import styles from './inputs-pages.module.css';
@@ -7,30 +7,24 @@ import {Button, Input} from '@ya.praktikum/react-developer-burger-ui-components'
 
 import {baseUrl, checkResponse} from '../utils/utils.js';
 
+import { resetPassword } from "../services/actions/password";
+import { useDispatch, useSelector } from "react-redux";
+
 export default function ResetPasswordPage() {
+
+  const { user } = useSelector(store => store.auth);
+  console.log(user);
 
   const [newPasswordValue, setNewPasswordValue] = React.useState('');
   const [codeValue, setCodeValue] = React.useState('');
 
-  const inputRef = React.useRef(null)
+  const inputRef = React.useRef(null);
   const onIconClick = () => {
     // setTimeout(() => inputRef.current.focus(), 0)
     // alert('Icon Click Callback')
   };
 
-  const { user } = useSelector(store => store.auth);
-
-  if (user) {
-    console.log('Redirect');
-    return (
-      <Redirect
-        to={{
-          pathname: '/'
-        }}
-      />
-    )
-  };
-
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const login = useCallback(
@@ -42,24 +36,40 @@ export default function ResetPasswordPage() {
   function changePassword(e) {
     e.preventDefault();
 
-    fetch(`${baseUrl}/password-reset/reset`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8'
-      },
-      body: JSON.stringify({
-        "password": newPasswordValue,
-        "token": codeValue
-      })
-    })
-    .then(checkResponse)
-    .then(data => {
-      console.log(data);
-      history.replace({pathname: '/reset-password'})
-    })
-    .catch(err => console.log(err))
-  }
+    (async () => {
+      await dispatch(resetPassword(newPasswordValue, codeValue));
+      console.log('test 2');
+      history.replace({pathname: '/profile'});
+    })();
 
+    // fetch(`${baseUrl}/password-reset/reset`, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json;charset=utf-8'
+    //   },
+    //   body: JSON.stringify({
+    //     "password": newPasswordValue,
+    //     "token": codeValue
+    //   })
+    // })
+    // .then(checkResponse)
+    // .then(data => {
+    //   console.log(data);
+    //   history.replace({pathname: '/reset-password'})
+    // })
+    // .catch(err => console.log(err))
+  };
+
+  if (user) {
+    console.log('Redirect');
+    return (
+      <Redirect
+        to={{
+          pathname: '/'
+        }}
+      />
+    )
+  };
 
   return (
     <main className={styles.main}>
@@ -109,4 +119,4 @@ export default function ResetPasswordPage() {
       </div>
     </main>
   )
-}
+};

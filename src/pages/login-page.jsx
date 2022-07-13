@@ -41,7 +41,7 @@ export default function LoginPage() {
   }
 
 
-    if (user) {
+  if (user) {
     console.log('Redirect');
     return (
       <Redirect

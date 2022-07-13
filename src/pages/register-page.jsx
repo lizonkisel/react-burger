@@ -10,44 +10,56 @@ import { register } from "../services/actions/register";
 
 export default function RegisterPage() {
 
-    const [nameValue, setNameValue] = React.useState('');
-    const [emailValue, setEmailValue] = React.useState('');
-    const [passwordValue, setPasswordValue] = React.useState('');
+  const { user } = useSelector(store => store.auth);
 
-    const inputRef = React.useRef(null);
-    const onIconClick = () => {
-      // setTimeout(() => inputRef.current.focus(), 0)
-      // alert('Icon Click Callback')
-    };
+  const [nameValue, setNameValue] = React.useState('');
+  const [emailValue, setEmailValue] = React.useState('');
+  const [passwordValue, setPasswordValue] = React.useState('');
 
-    // const { user } = useSelector(store => store.auth);
+  const inputRef = React.useRef(null);
+  const onIconClick = () => {
+    // setTimeout(() => inputRef.current.focus(), 0)
+    // alert('Icon Click Callback')
+  };
 
-    // if (user) {
-    //   console.log('Redirect');
-    //   return (
-    //     <Redirect
-    //       to={{
-    //         pathname: '/'
-    //       }}
-    //     />
-    //   )
-    // };
+  // const { user } = useSelector(store => store.auth);
 
-    const dispatch = useDispatch();
+  // if (user) {
+  //   console.log('Redirect');
+  //   return (
+  //     <Redirect
+  //       to={{
+  //         pathname: '/'
+  //       }}
+  //     />
+  //   )
+  // };
 
-    const history = useHistory();
+  const dispatch = useDispatch();
 
-    const login = useCallback(
-      () => {
-        history.replace({pathname: '/login'})
-      }, [history]
-    );
+  const history = useHistory();
 
-    function createUser(e) {
-      e.preventDefault();
-      dispatch(register(nameValue, emailValue, passwordValue));
-    }
+  const login = useCallback(
+    () => {
+      history.replace({pathname: '/login'})
+    }, [history]
+  );
 
+  function createUser(e) {
+    e.preventDefault();
+    dispatch(register(nameValue, emailValue, passwordValue));
+  }
+
+  if (user) {
+    console.log('Redirect');
+    return (
+      <Redirect
+        to={{
+          pathname: '/'
+        }}
+      />
+    )
+  };
 
   return (
     <main className={styles.main}>
