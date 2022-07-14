@@ -21,8 +21,6 @@ export default function LoginPage() {
   const history = useHistory();
 
   const location = useLocation();
-  // console.log(location);
-  // console.log(location.state?.from);
 
   const register = useCallback(
     () => {
@@ -40,41 +38,21 @@ export default function LoginPage() {
     e.preventDefault();
     console.log('Dispatch login');
     dispatch(login(emailValue, passwordValue));
-    // Дальнейший код нужно исполнять только если данные введены правильно. Для этого потребуется работа со стейтом
-    // history.replace({pathname: '/'});
   }
 
 
   const { from } = location.state || { from: { pathname: '/' } };
-  // const { from } = location.state || { pathname: '/' };
   console.log(location.state);
   console.log(from);
-  // return <Redirect to={from} />
 
   if (user) {
     console.log('Redirect');
     return (
       <Redirect
-        // to={{
-        //   pathname: '/'
-        // }}
-        // to={ location.state?.from || '/' }
-        // to={location?.state.from || '/'}
-
-        // to={from.pathname}
         to={from}
       />
     )
   };
-
-  // const loginUser = useCallback((e) => {
-  //   e.preventDefault();
-  //   console.log('Dispatch login');
-  //   dispatch(login(emailValue, passwordValue));
-  //   // Дальнейший код нужно исполнять только если данные введены правильно. Для этого потребуется работа со стейтом
-  //   history.replace({pathname: '/'});
-  // });
-
 
   return (
     <main className={styles.main}>
@@ -92,8 +70,6 @@ export default function LoginPage() {
             value={passwordValue}
             name={'password'}
           />
-          {/* <CustomEmailInput />
-          <CustomPasswordInput /> */}
         </fieldset>
         <Button type="primary" size="medium" onClick={loginUser}>
           Войти

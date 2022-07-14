@@ -83,12 +83,12 @@ function App() {
               <ResetPasswordPage/>
             </Route>
 
-            <ProtectedRoute path='/profile'>
+            <ProtectedRoute path='/profile' exact={true}>
               <ProfilePage/>
             </ProtectedRoute>
 
-            <ProtectedRoute path='/profile/orders'>
-              <OrdersPage />
+            <ProtectedRoute path='/profile/orders' exact={true}>
+              <OrdersPage/>
             </ProtectedRoute>
 
             <Route path='/ingredients/:id' exact={true}>
