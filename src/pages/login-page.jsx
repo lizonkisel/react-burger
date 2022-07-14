@@ -42,8 +42,8 @@ export default function LoginPage() {
 
 
   const { from } = location.state || { from: { pathname: '/' } };
-  console.log(location.state);
-  console.log(from);
+  // console.log(location.state);
+  // console.log(from);
 
   if (user) {
     console.log('Redirect');

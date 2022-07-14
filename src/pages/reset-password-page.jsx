@@ -1,5 +1,5 @@
 import React, { useCallback} from "react";
-import {useHistory, Redirect} from 'react-router-dom';
+import {useHistory, Redirect, useLocation} from 'react-router-dom';
 
 import styles from './inputs-pages.module.css';
 
@@ -26,6 +26,20 @@ export default function ResetPasswordPage() {
 
   const dispatch = useDispatch();
   const history = useHistory();
+  const location = useLocation();
+  console.log(location);
+
+  const { from } = location.state || { from: { pathname: '/' } };
+  console.log(from);
+
+  if (from.pathname !== '/forgot-password') {
+    console.log('Redirect');
+    return (
+      <Redirect
+        to={from}
+      />
+    )
+  };
 
   const login = useCallback(
     () => {

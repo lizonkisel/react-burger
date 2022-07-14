@@ -1,11 +1,11 @@
-import React, { useCallback } from "react";
-import {useHistory, Redirect} from 'react-router-dom';
+import React, { useState, useCallback } from "react";
+import {useHistory, Redirect, useLocation} from 'react-router-dom';
 
 import styles from './inputs-pages.module.css';
 
 import {Button, Input} from '@ya.praktikum/react-developer-burger-ui-components';
 
-import {baseUrl, checkResponse} from '../utils/utils.js';
+import {baseUrl, checkResponse, regExp} from '../utils/utils.js';
 
 import { recoverPassword } from "../services/actions/password";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,8 +20,19 @@ export default function ForgotPasswordPage() {
     // alert('Icon Click Callback')
   };
 
+  const [cantResetPassword, setCantResetPassword] = useState(true);
+
+  function validateEmail() {
+    if (regExp.test(value)) {
+      setCantResetPassword(false)
+    } else {
+      setCantResetPassword(true)
+    }
+  };
+
   const history = useHistory();
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const login = useCallback(
     () => {
@@ -34,7 +45,7 @@ export default function ForgotPasswordPage() {
     (async () => {
       await dispatch(recoverPassword(value));
       console.log('test');
-      history.replace({pathname: '/reset-password'})
+      history.replace({pathname: '/reset-password', state: { from: location }})
     })();
 
 
@@ -76,7 +87,7 @@ export default function ForgotPasswordPage() {
           <Input
             type={'email'}
             placeholder={'Укажите e-mail'}
-            onChange={e => setValue(e.target.value)}
+            onChange={e => {setValue(e.target.value); validateEmail()}}
             icon={'EditIcon'}
             value={value}
             name={'name'}
@@ -87,7 +98,7 @@ export default function ForgotPasswordPage() {
             size={'default'}
           />
         </fieldset>
-        <Button type="primary" size="medium" onClick={recover}>
+        <Button type="primary" size="medium" onClick={recover} disabled={cantResetPassword}>
           Восстановить
         </Button>
       </form>
