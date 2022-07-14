@@ -39,13 +39,15 @@ function login(email, password) {
       user: res.user,
       accessToken: res.accessToken,
       refreshToken: res.refreshToken,
-      isAuth: true
+      isAuth: true,
+      isLogout: true
     }))
     .catch(err => dispatch({
       type: LOGIN_FAILED,
       isLoading: false,
       isFailed: true,
-      isAuth: false
+      isAuth: false,
+      isLogout: true
     }))
   }
 }

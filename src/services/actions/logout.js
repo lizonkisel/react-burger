@@ -9,6 +9,7 @@ function logout() {
   return function(dispatch) {
     dispatch({
       type: LOGOUT,
+      isLogoutChecked: false
     })
 
     fetch(`${baseUrl}/auth/logout`,
@@ -35,12 +36,14 @@ function logout() {
         user: null,
         accessToken: null,
         isAuth: false,
-        isAuthChecked: true
+        isAuthChecked: true,
+        isLogout: true
     })})
     .catch(err => {
       console.log(err)
       dispatch({
         type: LOGOUT_FAILED,
+        isLogout: false
     })})
   }
 }

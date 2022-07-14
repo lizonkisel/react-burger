@@ -10,8 +10,9 @@ import { login } from "../services/actions/login";
 
 export default function LoginPage() {
 
+  console.log('Login');
+
   const { user } = useSelector(store => store.auth);
-  console.log(user);
 
   const [emailValue, setEmailValue] = React.useState('');
   const [passwordValue, setPasswordValue] = React.useState('');
@@ -45,6 +46,16 @@ export default function LoginPage() {
   // console.log(location.state);
   // console.log(from);
 
+  const {isLogout} = useSelector(store => store.auth);
+
+  console.log(`Is logout: ${isLogout}`);
+
+  if (!isLogout) {
+    return ( <p className="text text_type_main-medium">Загружаем данные...</p>
+    )
+  };
+
+  console.log(user);
   if (user) {
     console.log('Redirect');
     return (

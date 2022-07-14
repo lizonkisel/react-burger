@@ -46,12 +46,14 @@ function getUser() {
       type: GET_USER_SUCCESS,
       user: res.user,
       isAuth: true,
-      isAuthChecked: true
+      isAuthChecked: true,
+      isLogout: false
     }))
     .catch(err => dispatch({
       type: GET_USER_FAILED,
       isAuth: false,
-      isAuthChecked: true
+      isAuthChecked: true,
+      isLogout: true
     }))
   }
 }
