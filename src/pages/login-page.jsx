@@ -21,7 +21,7 @@ export default function LoginPage() {
   const history = useHistory();
 
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
   // console.log(location.state?.from);
 
   const register = useCallback(
@@ -41,9 +41,15 @@ export default function LoginPage() {
     console.log('Dispatch login');
     dispatch(login(emailValue, passwordValue));
     // Дальнейший код нужно исполнять только если данные введены правильно. Для этого потребуется работа со стейтом
-    history.replace({pathname: '/'});
+    // history.replace({pathname: '/'});
   }
 
+
+  const { from } = location.state || { from: { pathname: '/' } };
+  // const { from } = location.state || { pathname: '/' };
+  console.log(location.state);
+  console.log(from);
+  // return <Redirect to={from} />
 
   if (user) {
     console.log('Redirect');
@@ -53,7 +59,10 @@ export default function LoginPage() {
         //   pathname: '/'
         // }}
         // to={ location.state?.from || '/' }
-        to={location.state?.from || '/'}
+        // to={location?.state.from || '/'}
+
+        // to={from.pathname}
+        to={from}
       />
     )
   };

@@ -5,7 +5,7 @@ import { Link, NavLink, Route, Switch, useParams, useRouteMatch, useHistory } fr
 import styles from './profile-menu.module.css';
 
 import { logout } from "../../services/actions/logout";
-import { setCookie } from "../../utils/utils";
+import { setCookie, getCookie } from "../../utils/utils";
 
 export default function ProfileMenu() {
 
@@ -13,15 +13,36 @@ export default function ProfileMenu() {
 
   const dispatch = useDispatch();
 
-  const logoutFromAccount = async () => {
-    console.log('Exit click');
+  const signOut = async () => {
     await dispatch(logout());
-
     setCookie('token', null, { expires: -1 });
+  }
 
-    history.replace({pathname: '/login'});
+  const logoutFromAccount = () => {
+    console.log('Exit click');
+    signOut().then(() => {
+      history.replace({ pathname: '/login' });
+    });
+
+    // setCookie('token', null, { expires: -1 });
+
+    // console.log(getCookie('token'));
+
+    // history.replace({pathname: '/login'});
 
   };
+
+  // const logoutFromAccount = async () => {
+  //   console.log('Exit click');
+  //   await dispatch(logout());
+
+  //   // setCookie('token', null, { expires: -1 });
+
+  //   // console.log(getCookie('token'));
+
+  //   history.replace({pathname: '/login'});
+
+  // };
 
   return (
     <section className={styles.menu}>

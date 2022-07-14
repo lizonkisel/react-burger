@@ -19,7 +19,6 @@ export default function DraggableIngredient({ingredient}) {
   const bun = useSelector(store => store.constructorIngredients.ingredients.bun);
 
   const id = ingredient._id;
-  console.log(id);
 
   function setCount() {
     if (bun !== null && bun._id === ingredient._id) {

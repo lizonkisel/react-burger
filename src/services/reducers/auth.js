@@ -187,6 +187,7 @@ const authReducer = (state = initialState, action) => {
 
     case LOGOUT_SUCCESS: {
       // setCookie('token', null, { expires: -1 });
+      // console.log(getCookie('token'));
       // localStorage.setItem('refreshToken', null);
 
       // console.log('logout');
