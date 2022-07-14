@@ -29,6 +29,11 @@ export default function IngredientPage() {
 
   // const prevLocation = location.state.prevPath || null;
 
+  if (!allIngredients) {
+    return ( <p className="text text_type_main-medium">Загружаем данные...</p>
+    )
+  };
+
   if (location.state !== undefined && location.state.prevPath === '/') {
   // if (prevLocation === '/') {
     return (

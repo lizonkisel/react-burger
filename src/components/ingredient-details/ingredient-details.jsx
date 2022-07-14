@@ -13,7 +13,7 @@ export default function IngredientDetails() {
   const allIngredients = useSelector(store => store.allIngredients.items);
   const currentIngredient = allIngredients.find(function(ingredient) {
     return ingredient._id === id;
-  })
+  });
 
   return (
     <article className={ingredientDetails.card}>

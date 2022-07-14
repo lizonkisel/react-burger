@@ -49,14 +49,15 @@ export default function LoginPage() {
     console.log('Redirect');
     return (
       <Redirect
-        to={{
-          pathname: '/'
-        }}
+        // to={{
+        //   pathname: '/'
+        // }}
         // to={ location.state?.from || '/' }
-        // to={location.state?.from || '/'}
+        to={location.state?.from || '/'}
       />
     )
   };
+
   // const loginUser = useCallback((e) => {
   //   e.preventDefault();
   //   console.log('Dispatch login');
