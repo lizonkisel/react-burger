@@ -94,7 +94,6 @@ const fetchWithRefresh = async (url, options) => {
           ...options,
             headers: {
               ...options.headers,
-              // Authotization: 'Bearer ' + refreshData.accessToken
               Authotization: 'Bearer ' + refreshData.accessToken
             }
         });
@@ -107,15 +106,6 @@ const fetchWithRefresh = async (url, options) => {
     }
   }
 };
-
-// const signOut = async () => {
-//   // Отправляем запрос на сервер
-// await logoutRequest();
-//   // Удаляем пользователя из хранилища
-// setUser(null);
-//   // Удаляем куку token
-// deleteCookie('token');
-// };
 
 
 export {baseUrl, regExp, checkResponse, setCookie, getCookie, fetchWithRefresh};

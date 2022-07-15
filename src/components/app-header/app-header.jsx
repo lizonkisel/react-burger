@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 import appHeader from './app-header.module.css';
 
@@ -7,9 +7,7 @@ import { Logo, BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-dev
 
 export default function AppHeader() {
 
-  // const [isActive, setIsActive] = useState(true);
   const {pathname} = useLocation();
-  console.log(pathname);
 
   return (
     <header className={`mt-10 ${appHeader.header}`}>

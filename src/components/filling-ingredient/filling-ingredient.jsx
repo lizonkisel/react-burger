@@ -16,15 +16,6 @@ export default function FillingIngredient({ item, index }) {
 
   const dispatch = useDispatch();
 
-
-  // function deleteFromConstructor(item, key) {
-  //   dispatch({
-  //     type: DELETE_FROM_CONSTRUCTOR,
-  //     item: item,
-  //     key: key
-  //   })
-  // };
-
   const ref = useRef(null);
   const id = item.uId;
 
@@ -55,13 +46,8 @@ export default function FillingIngredient({ item, index }) {
       }
       if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
         return;
-      }
+      };
 
-      // dispatch({
-      //   type: REORDER_INGREDIENT,
-      //   dragIndex,
-      //   hoverIndex
-      // });
       dispatch(reorderIngredient(dragIndex, hoverIndex));
       item.index = hoverIndex;
     },

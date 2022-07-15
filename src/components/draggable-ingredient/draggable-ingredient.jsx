@@ -49,7 +49,7 @@ export default function DraggableIngredient({ingredient}) {
   return (
     // <li className={` ${styles.card}`} onClick={() => {chooseIngredient(ingredient)}} ref={dragRef} draggable>
     <li className={` ${styles.card}`} ref={dragRef} draggable>
-      <Link to={{pathname: `/ingredients/${id}`, state: { prevPath: location.pathname }}}>
+      <Link className={styles.link} to={{pathname: `/ingredients/${id}`, state: { prevPath: location.pathname }}}>
         <img className={`ml-4 mr-4 ${styles.image}`} src={ingredient.image} />
         { startCount &&
           <Counter count={setCount()} size="default" />

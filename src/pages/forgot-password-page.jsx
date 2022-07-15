@@ -1,14 +1,14 @@
 import React, { useState, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {useHistory, Redirect, useLocation} from 'react-router-dom';
 
 import styles from './inputs-pages.module.css';
 
 import {Button, Input} from '@ya.praktikum/react-developer-burger-ui-components';
 
-import {baseUrl, checkResponse, regExp} from '../utils/utils.js';
+import {regExp} from '../utils/utils.js';
 
 import { recoverPassword } from "../services/actions/password";
-import { useDispatch, useSelector } from "react-redux";
 
 export default function ForgotPasswordPage() {
 
@@ -47,23 +47,6 @@ export default function ForgotPasswordPage() {
       console.log('test');
       history.replace({pathname: '/reset-password', state: { from: location }})
     })();
-
-
-    // fetch(`${baseUrl}/password-reset`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json;charset=utf-8'
-    //   },
-    //   body: JSON.stringify({
-    //     "email": value
-    //   })
-    // })
-    // .then(checkResponse)
-    // .then(data => {
-    //   console.log(data);
-    //   history.replace({pathname: '/reset-password'})
-    // })
-    // .catch(err => console.log(err))
   };
 
   if (user) {
@@ -83,7 +66,6 @@ export default function ForgotPasswordPage() {
 
       <form className={styles.form} action="">
         <fieldset className={styles.fieldset}>
-          {/* <CustomEmailInput /> */}
           <Input
             type={'email'}
             placeholder={'Укажите e-mail'}

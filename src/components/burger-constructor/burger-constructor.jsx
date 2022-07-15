@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useDrop } from 'react-dnd';
 import {useHistory} from 'react-router-dom';
@@ -14,12 +14,10 @@ import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-compon
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {Button} from '@ya.praktikum/react-developer-burger-ui-components';
 
-import {ADD_TO_CONSTRUCTOR, addToConstructor} from '../../services/actions/constructor-ingredients.js';
+import { addToConstructor } from '../../services/actions/constructor-ingredients.js';
 import {getOrder} from '../../services/actions/order.js';
 import { closeOrder} from '../../services/actions/order.js';
 
-import { getCookie } from '../../utils/utils';
-import { getUser } from '../../services/actions/user';
 
 export default function BurgerConstructor () {
 
@@ -73,8 +71,6 @@ export default function BurgerConstructor () {
   const { isAuth, isAuthChecked } = useSelector(store => store.auth);
   const history = useHistory();
 
-  // Сейчас тут не прописана возможность рефрешить токен
-
   function placeOrder() {
     if (!isAuth && isAuthChecked) {
 
@@ -82,20 +78,7 @@ export default function BurgerConstructor () {
     } else {
       dispatch(getOrder(getIngredientsIdArray()))
     }
-    // if (getCookie('token') !== null) {
-    //   dispatch(getUser());
-    // } else {
-    //   history.replace({pathname: '/login'})
-    // }
   }
-
-  // useEffect(() => {
-  //   if (!isAuth && isAuthChecked) {
-  //     console.log("!isAuth");
-  //     history.replace({pathname: '/login'})
-  //   }
-  // }, [isAuth, isAuthChecked]);
-
 
   return (
     <>

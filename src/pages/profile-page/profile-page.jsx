@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {Redirect} from 'react-router-dom';
 
 import styles from './profile-page.module.css';
 import formStyles from '../inputs-pages.module.css';
@@ -14,21 +13,6 @@ import { regExp } from "../../utils/utils";
 
 export default function ProfilePage() {
 
-  // const { user } = useSelector(store => store.auth);
-  // console.log(user);
-
-  // if (user === null) {
-  //   console.log('Redirect');
-  //   return (
-  //     <Redirect
-  //       to={{
-  //         pathname: '/login'
-  //       }}
-  //     />
-  //   )
-  // };
-
-
   const currentName = useSelector(store => store.auth.user.name);
   const currentEmail = useSelector(store => store.auth.user.email);
 
@@ -38,8 +22,6 @@ export default function ProfilePage() {
   const inputRef = React.useRef(null);
   const onIconClick = () => {
     setIsButtonsVisible(true);
-    // setTimeout(() => inputRef.current.focus(), 0)
-    // alert('Icon Click Callback')
   };
 
   const [isNameError, setIsNameError] = useState(false);
@@ -66,13 +48,6 @@ export default function ProfilePage() {
   };
 
   function validateEmail() {
-    // setIsEmailError(!regExp.test(loginValue));
-    // regExp.test(loginValue) ? (
-    //   setIsEmailError(false)
-    //   ) : (
-    //     setIsEmailError(true),
-    //     setIsInvalidInputs(true)
-    //   );
     if (regExp.test(loginValue)) {
       setIsEmailError(false)
     } else {
@@ -126,11 +101,11 @@ export default function ProfilePage() {
     setLoginValue(currentEmail);
     setPasswordValue('');
     setIsButtonsVisible(false);
-  }
+  };
 
   const changeUserData = async (newUserData) => {
     await dispatch(editUser(newUserData));
-  }
+  };
 
   const editCurrentUser = async (e) => {
     e.preventDefault();
@@ -145,16 +120,11 @@ export default function ProfilePage() {
       setIsButtonsVisible(false);
       console.log("Edit User");
     });
-    // const res = await dispatch(editUser(newUserData));
-    // setIsButtonsVisible(false);
-    // console.log("Edit User");
   };
 
 
   return (
     <main className={styles.main}>
-
-
 
       <ProfileMenu />
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Link, NavLink, Route, Switch, useParams, useRouteMatch, useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 
 import styles from './profile-menu.module.css';
 
@@ -15,7 +15,6 @@ export default function ProfileMenu() {
 
   const signOut = async () => {
     await dispatch(logout());
-    // setCookie('token', null, { expires: -1 });
     console.log(getCookie('token'));
   }
 
@@ -25,26 +24,7 @@ export default function ProfileMenu() {
       setCookie('token', null, { expires: -1 });
       history.replace({ pathname: '/login' });
     });
-
-    // setCookie('token', null, { expires: -1 });
-
-    // console.log(getCookie('token'));
-
-    // history.replace({pathname: '/login'});
-
   };
-
-  // const logoutFromAccount = async () => {
-  //   console.log('Exit click');
-  //   await dispatch(logout());
-
-  //   // setCookie('token', null, { expires: -1 });
-
-  //   // console.log(getCookie('token'));
-
-  //   history.replace({pathname: '/login'});
-
-  // };
 
   return (
     <section className={styles.menu}>

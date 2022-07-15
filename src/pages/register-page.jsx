@@ -22,19 +22,6 @@ export default function RegisterPage() {
     // alert('Icon Click Callback')
   };
 
-  // const { user } = useSelector(store => store.auth);
-
-  // if (user) {
-  //   console.log('Redirect');
-  //   return (
-  //     <Redirect
-  //       to={{
-  //         pathname: '/'
-  //       }}
-  //     />
-  //   )
-  // };
-
   const dispatch = useDispatch();
 
   const history = useHistory();

@@ -120,8 +120,6 @@ const authReducer = (state = initialState, action) => {
 
       return {
         ...state,
-        // isLoading: action.isLoading,
-        // isFailed: action.isFailed,
         isAuth: action.isAuth,
         isAuthChecked: action.isAuthChecked
       }
@@ -133,14 +131,10 @@ const authReducer = (state = initialState, action) => {
 
       return {
         ...state,
-        // isLoading: action.isLoading,
-        // isFailed: action.isFailed,
         user: action.user,
         isAuth: action.isAuth,
         isAuthChecked: action.isAuthChecked,
         isLogoutChecked: action.isLogoutChecked
-        // accessToken: action.accessToken,
-        // isAuth: action.isAuth
       }
     }
     case GET_USER_FAILED: {
@@ -150,18 +144,12 @@ const authReducer = (state = initialState, action) => {
         isAuth: action.isAuth,
         isAuthChecked: action.isAuthChecked,
         isLogoutChecked: action.isLogoutChecked
-        // isLoading: action.isLoading,
-        // isFailed: action.isFailed,
-        // isAuth: action.isAuth
       }
     }
 
     case EDIT_USER: {
       return {
         ...state,
-        // isLoading: action.isLoading,
-        // isFailed: action.isFailed,
-        // isAuth: action.isAuth
       }
     }
     case EDIT_USER_SUCCESS: {
@@ -170,19 +158,12 @@ const authReducer = (state = initialState, action) => {
 
       return {
         ...state,
-        // isLoading: action.isLoading,
-        // isFailed: action.isFailed,
         user: action.user,
-        // accessToken: action.accessToken,
-        // isAuth: action.isAuth
       }
     }
     case EDIT_USER_FAILED: {
       return {
-        ...state,
-        // isLoading: action.isLoading,
-        // isFailed: action.isFailed,
-        // isAuth: action.isAuth
+        ...state
       }
     }
 

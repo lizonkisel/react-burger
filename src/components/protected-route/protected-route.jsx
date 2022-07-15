@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Route, Redirect, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
-
-import { getUser } from '../../services/actions/user.js';
+import { useSelector } from "react-redux";
 
 export default function ProtectedRoute({ children, ...rest }) {
 
@@ -11,8 +9,6 @@ export default function ProtectedRoute({ children, ...rest }) {
   const { user } = useSelector(store => store.auth);
 
   const {isAuthChecked} = useSelector(store => store.auth);
-
-  console.log(`Is auth checked: ${isAuthChecked}`);
 
   if (!isAuthChecked) {
     return ( <p className="text text_type_main-medium">Загружаем данные...</p>

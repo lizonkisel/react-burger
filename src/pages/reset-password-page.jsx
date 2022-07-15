@@ -1,14 +1,12 @@
 import React, { useCallback} from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {useHistory, Redirect, useLocation} from 'react-router-dom';
 
 import styles from './inputs-pages.module.css';
 
 import {Button, Input} from '@ya.praktikum/react-developer-burger-ui-components';
 
-import {baseUrl, checkResponse} from '../utils/utils.js';
-
 import { resetPassword } from "../services/actions/password";
-import { useDispatch, useSelector } from "react-redux";
 
 export default function ResetPasswordPage() {
 
@@ -27,10 +25,8 @@ export default function ResetPasswordPage() {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
-  console.log(location);
 
   const { from } = location.state || { from: { pathname: '/' } };
-  console.log(from);
 
   if (from.pathname !== '/forgot-password') {
     console.log('Redirect');
@@ -55,23 +51,6 @@ export default function ResetPasswordPage() {
       console.log('test 2');
       history.replace({pathname: '/profile'});
     })();
-
-    // fetch(`${baseUrl}/password-reset/reset`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json;charset=utf-8'
-    //   },
-    //   body: JSON.stringify({
-    //     "password": newPasswordValue,
-    //     "token": codeValue
-    //   })
-    // })
-    // .then(checkResponse)
-    // .then(data => {
-    //   console.log(data);
-    //   history.replace({pathname: '/reset-password'})
-    // })
-    // .catch(err => console.log(err))
   };
 
   if (user) {

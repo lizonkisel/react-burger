@@ -1,4 +1,4 @@
-import {baseUrl, checkResponse, getCookie, fetchWithRefresh} from '../../utils/utils.js';
+import {baseUrl, getCookie, fetchWithRefresh} from '../../utils/utils.js';
 console.log(getCookie('token'));
 
 const GET_USER = 'GET_USER';
@@ -26,22 +26,6 @@ function getUser() {
         // Authorization: getCookie('token')
       }
     })
-
-    // fetch(`${baseUrl}/auth/user`,
-    //   {
-    //     method: 'GET',
-    //     mode: 'cors',
-    //     cache: 'no-cache',
-    //     credentials: 'same-origin',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       authorization: 'Bearer ' + getCookie('token')
-    //     },
-    //     redirect: 'follow',
-    //     referrerPolicy: 'no-referrer',
-    //   }
-    // )
-    // .then(checkResponse)
     .then(res => dispatch({
       type: GET_USER_SUCCESS,
       user: res.user,
@@ -77,25 +61,6 @@ function editUser(newUserData) {
         newUserData
       )
     })
-
-    // fetch(`${baseUrl}/auth/user`,
-    //   {
-    //     method: 'PATCH',
-    //     mode: 'cors',
-    //     cache: 'no-cache',
-    //     credentials: 'same-origin',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       Authorization: 'Bearer ' + getCookie('token')
-    //     },
-    //     redirect: 'follow',
-    //     referrerPolicy: 'no-referrer',
-    //     body: JSON.stringify(
-    //       newUserData
-    //     )
-    //   }
-    // )
-    // .then(checkResponse)
     .then(res => dispatch({
       type: EDIT_USER_SUCCESS,
       user: res.user,

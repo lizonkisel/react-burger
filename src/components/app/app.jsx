@@ -13,13 +13,10 @@ import {getAllIngredients} from '../../services/actions/all-ingredients.js';
 
 function App() {
 
-  // const { isAuth, isAuthChecked } = useSelector(store => store.auth);
-
   const dispatch = useDispatch();
 
   console.log(getCookie('token'));
 
-  const { user } = useSelector(store => store.auth);
   const allIngredients = useSelector(store => store.allIngredients.items);
   console.log(allIngredients);
 
@@ -31,14 +28,6 @@ function App() {
   useEffect(() => {
     dispatch(getUser());
   }, []);
-
-
-  // useEffect(()=> {
-  //   if (getCookie('token') !== null) {
-  //     dispatch(getUser());
-  //     console.log(user);
-  //   }
-  // }, [isAuth, isAuthChecked]);
 
   return (
     <>
@@ -54,14 +43,6 @@ function App() {
               <LoginPage/>
             </Route>
 
-            {/* <ProtectedRoute path='/login'>
-              <LoginPage/>
-            </ProtectedRoute> */}
-
-            {/* <ProtectedRoute path='/register'>
-              <RegisterPage/>
-            </ProtectedRoute> */}
-
             <Route path='/register'>
               <RegisterPage/>
             </Route>
@@ -70,14 +51,6 @@ function App() {
             <Route path='/forgot-password'>
               <ForgotPasswordPage/>
             </Route>
-
-            {/* <ProtectedRoute path='/forgot-password'>
-              <ForgotPasswordPage/>
-            </ProtectedRoute> */}
-
-            {/* <ProtectedRoute path='/reset-password'>
-              <ResetPasswordPage/>
-            </ProtectedRoute> */}
 
             <Route path='/reset-password'>
               <ResetPasswordPage/>
@@ -94,10 +67,6 @@ function App() {
             <Route path='/ingredients/:id' exact={true}>
               <IngredientPage/>
             </Route>
-
-            {/* <Route path='/profile/orders' exact={true}>
-              <OrdersPage />
-            </Route> */}
 
             <Route>
               <Page404/>

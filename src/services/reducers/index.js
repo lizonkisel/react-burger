@@ -6,9 +6,6 @@ import { orderReducer } from "./order.js";
 import {constructorIngredientsReducer} from './constructor-ingredients.js';
 import { authReducer } from "./auth.js";
 
-// const routingReducer = combineReducers({
-
-// })
 
 const rootReducer = combineReducers({
   allIngredients: allIngredientsReducer,
