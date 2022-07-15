@@ -1,17 +1,15 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useInView } from 'react-intersection-observer';
 
 import burgerIngredients from './burger-ingredients.module.css';
 
+import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
+
 import {IngredientVariants} from '../ingredient-variants/ingredient-variants.jsx';
 import Modal from '../modal/modal.jsx';
 import IngredientDetails from '../ingredient-details/ingredient-details.jsx';
-
 import {getCurrentIngredient} from '../../services/actions/current-ingredient.js'
-// import { closeOrder} from '../../services/actions/order.js';
-
-import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
 
 export default function BurgerIngredients() {
 
@@ -87,10 +85,10 @@ export default function BurgerIngredients() {
         </article>
       </section>
 
-      {ingredientInModal &&
+      {/* {ingredientInModal &&
       <Modal title="Детали ингредиента" onClose={() => dispatch(getCurrentIngredient(null))}>
         <IngredientDetails />
-      </Modal>}
+      </Modal>} */}
     </>
   )
 }

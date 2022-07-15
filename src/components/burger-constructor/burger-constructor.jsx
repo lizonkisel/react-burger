@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useDrop } from 'react-dnd';
+import {useHistory} from 'react-router-dom';
 // import { v4 as uuidv4 } from 'uuid';
 
 import burgerConstructor from './burger-constructor.module.css';
@@ -13,9 +14,10 @@ import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-compon
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {Button} from '@ya.praktikum/react-developer-burger-ui-components';
 
-import {ADD_TO_CONSTRUCTOR, addToConstructor} from '../../services/actions/constructor-ingredients.js';
+import { addToConstructor } from '../../services/actions/constructor-ingredients.js';
 import {getOrder} from '../../services/actions/order.js';
 import { closeOrder} from '../../services/actions/order.js';
+
 
 export default function BurgerConstructor () {
 
@@ -66,6 +68,17 @@ export default function BurgerConstructor () {
     }
   });
 
+  const { isAuth, isAuthChecked } = useSelector(store => store.auth);
+  const history = useHistory();
+
+  function placeOrder() {
+    if (!isAuth && isAuthChecked) {
+
+      history.replace({pathname: '/login'})
+    } else {
+      dispatch(getOrder(getIngredientsIdArray()))
+    }
+  }
 
   return (
     <>
@@ -111,7 +124,8 @@ export default function BurgerConstructor () {
               <CurrencyIcon type="primary" />
             </div>
           </div>
-          <Button type="primary" size="large" onClick={() => {dispatch(getOrder(getIngredientsIdArray()))}}>
+          {/* <Button type="primary" size="large" onClick={() => {dispatch(getOrder(getIngredientsIdArray()))}}> */}
+          <Button type="primary" size="large" onClick={() => {placeOrder()}}>
             Оформить заказ
           </Button>
         </article>

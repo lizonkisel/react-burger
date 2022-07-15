@@ -1,4 +1,4 @@
-import {baseUrl, checkResponse} from '../../utils/data.js';
+import {baseUrl, checkResponse} from '../../utils/utils.js';
 
 const GET_ALL_INGREDIENTS = 'GET_ALL_INGREDIENTS';
 const GET_ALL_INGREDIENTS_SUCCESS = 'GET_ALL_INGREDIENTS_SUCCESS';

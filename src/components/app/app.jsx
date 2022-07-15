@@ -1,51 +1,79 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Switch, BrowserRouter, Route } from 'react-router-dom';
 
-import styles from './app.module.css';
+import AppHeader from '../app-header/app-header.jsx';
 
-import AppHeader from '../app-header/app-header.jsx'
-import BurgerIngredients from '../burger-ingredients/burger-ingredients.jsx';
-import BurgerConstructor from '../burger-constructor/burger-constructor.jsx';
+import ProtectedRoute from '../protected-route/protected-route.jsx';
+import {LoginPage, ConstructorPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, ProfilePage, OrdersPage, IngredientPage, Page404} from '../../pages/index.jsx';
 
+import { getUser } from '../../services/actions/user';
+import { getCookie } from '../../utils/utils';
 import {getAllIngredients} from '../../services/actions/all-ingredients.js';
-
 
 function App() {
 
   const dispatch = useDispatch();
 
+  console.log(getCookie('token'));
+
+  const allIngredients = useSelector(store => store.allIngredients.items);
+  console.log(allIngredients);
+
   useEffect(()=> {
-    dispatch(getAllIngredients())
+    dispatch(getAllIngredients());
+    console.log(allIngredients);
   }, []);
 
-  const {isLoading, isFailed} = useSelector(store => store.allIngredients)
-
-  const listOfIngredients = useSelector(store => store.allIngredients.items);
+  useEffect(() => {
+    dispatch(getUser());
+  }, []);
 
   return (
     <>
+        {/* <AppHeader /> */}
+        <BrowserRouter>
         <AppHeader />
-        <main className={styles.main}>
-            <DndProvider backend={HTML5Backend}>
+          <Switch>
+            <Route path='/' exact={true}>
+              <ConstructorPage/>
+            </Route>
 
-            {
-              isLoading && <p className="text text_type_main-medium">Загружаем данные...</p>
-            }
-            {
-              isFailed && <p className="text text_type_main-medium">Не удаётся загрузить данные. Пожалуйста, повторите попытку</p>
-            }
-            {
-              listOfIngredients &&
-              <>
-                <BurgerIngredients />
-                <BurgerConstructor />
-              </>
-            }
-            </DndProvider>
-        </main>
+            <Route path='/login' exact={true}>
+              <LoginPage/>
+            </Route>
+
+            <Route path='/register'>
+              <RegisterPage/>
+            </Route>
+
+
+            <Route path='/forgot-password'>
+              <ForgotPasswordPage/>
+            </Route>
+
+            <Route path='/reset-password'>
+              <ResetPasswordPage/>
+            </Route>
+
+            <ProtectedRoute path='/profile' exact={true}>
+              <ProfilePage/>
+            </ProtectedRoute>
+
+            <ProtectedRoute path='/profile/orders' exact={true}>
+              <OrdersPage/>
+            </ProtectedRoute>
+
+            <Route path='/ingredients/:id' exact={true}>
+              <IngredientPage/>
+            </Route>
+
+            <Route>
+              <Page404/>
+            </Route>
+          </Switch>
+        </BrowserRouter>
+
     </>
   );
 }

@@ -1,11 +1,19 @@
 import React  from 'react';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import ingredientDetails from './ingredient-details.module.css';
 
 export default function IngredientDetails() {
 
-const currentIngredient = useSelector(store => store.currentIngredient);
+  const {id} = useParams();
+
+  // const currentIngredient = useSelector(store => store.currentIngredient);
+
+  const allIngredients = useSelector(store => store.allIngredients.items);
+  const currentIngredient = allIngredients.find(function(ingredient) {
+    return ingredient._id === id;
+  });
 
   return (
     <article className={ingredientDetails.card}>
