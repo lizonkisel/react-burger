@@ -37,13 +37,14 @@ function logout() {
         accessToken: null,
         isAuth: false,
         isAuthChecked: true,
-        isLogout: true
+        isLogoutChecked: true
     })})
     .catch(err => {
       console.log(err)
       dispatch({
         type: LOGOUT_FAILED,
-        isLogout: false
+        // isLogoutChecked: false
+        isLogoutChecked: true
     })})
   }
 }

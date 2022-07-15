@@ -15,12 +15,14 @@ export default function ProfileMenu() {
 
   const signOut = async () => {
     await dispatch(logout());
-    setCookie('token', null, { expires: -1 });
+    // setCookie('token', null, { expires: -1 });
+    console.log(getCookie('token'));
   }
 
   const logoutFromAccount = () => {
     console.log('Exit click');
     signOut().then(() => {
+      setCookie('token', null, { expires: -1 });
       history.replace({ pathname: '/login' });
     });
 

@@ -119,9 +119,17 @@ export default function ProfilePage() {
   function resetNewData(e) {
     e.preventDefault();
     clearAllErrors();
+    if (isInvalidInputs) {
+      return null
+    };
     setNameValue(currentName);
     setLoginValue(currentEmail);
     setPasswordValue('');
+    setIsButtonsVisible(false);
+  }
+
+  const changeUserData = async (newUserData) => {
+    await dispatch(editUser(newUserData));
   }
 
   const editCurrentUser = async (e) => {
@@ -131,9 +139,15 @@ export default function ProfilePage() {
       'name': nameValue,
       'email': loginValue,
       'password': passwordValue
-    }
-    const res = await dispatch(editUser(newUserData));
-    console.log("Edit User");
+    };
+    console.log(newUserData);
+    changeUserData(newUserData).then(() => {
+      setIsButtonsVisible(false);
+      console.log("Edit User");
+    });
+    // const res = await dispatch(editUser(newUserData));
+    // setIsButtonsVisible(false);
+    // console.log("Edit User");
   };
 
 
@@ -149,7 +163,7 @@ export default function ProfilePage() {
           <Input
             type={'text'}
             placeholder={'Имя'}
-            onChange={e => setNameValue(e.target.value)}
+            onChange={e => {setIsButtonsVisible(true); setNameValue(e.target.value)}}
             onFocus={clearNameErrors}
             onBlur={validateName}
             icon={'EditIcon'}
@@ -164,7 +178,7 @@ export default function ProfilePage() {
           <Input
             type={'text'}
             placeholder={'Логин'}
-            onChange={e => setLoginValue(e.target.value)}
+            onChange={e => {setIsButtonsVisible(true); setLoginValue(e.target.value)}}
             onFocus={clearEmailErrors}
             onBlur={validateEmail}
             icon={'EditIcon'}
@@ -179,7 +193,7 @@ export default function ProfilePage() {
           <Input
             type={'password'}
             placeholder={'Пароль'}
-            onChange={e => setPasswordValue(e.target.value)}
+            onChange={e => {setIsButtonsVisible(true); setPasswordValue(e.target.value)}}
             onFocus={clearPasswordErrors}
             onBlur={validatePassword}
             icon={'EditIcon'}

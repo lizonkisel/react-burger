@@ -40,14 +40,14 @@ function login(email, password) {
       accessToken: res.accessToken,
       refreshToken: res.refreshToken,
       isAuth: true,
-      isLogout: true
+      isLogoutChecked: true
     }))
     .catch(err => dispatch({
       type: LOGIN_FAILED,
       isLoading: false,
       isFailed: true,
       isAuth: false,
-      isLogout: true
+      isLogoutChecked: true
     }))
   }
 }

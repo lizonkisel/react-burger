@@ -12,7 +12,7 @@ const initialState = {
   accessToken: null,
   isAuth: false,
   isAuthChecked: false,
-  isLogout: false
+  isLogoutChecked: false
   // isLogoutChecked: false
 };
 
@@ -68,7 +68,7 @@ const authReducer = (state = initialState, action) => {
         user: action.user,
         accessToken: action.accessToken,
         isAuth: action.isAuth,
-        isLogout: action.isLogout
+        isLogoutChecked: action.isLogoutChecked
       }
     }
     case LOGIN_FAILED: {
@@ -77,7 +77,7 @@ const authReducer = (state = initialState, action) => {
         isLoading: action.isLoading,
         isFailed: action.isFailed,
         isAuth: action.isAuth,
-        isLogout: action.isLogout
+        isLogoutChecked: action.isLogoutChecked
       }
     }
 
@@ -138,7 +138,7 @@ const authReducer = (state = initialState, action) => {
         user: action.user,
         isAuth: action.isAuth,
         isAuthChecked: action.isAuthChecked,
-        isLogout: action.isLogout
+        isLogoutChecked: action.isLogoutChecked
         // accessToken: action.accessToken,
         // isAuth: action.isAuth
       }
@@ -149,7 +149,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         isAuth: action.isAuth,
         isAuthChecked: action.isAuthChecked,
-        isLogout: action.isLogout
+        isLogoutChecked: action.isLogoutChecked
         // isLoading: action.isLoading,
         // isFailed: action.isFailed,
         // isAuth: action.isAuth
@@ -166,6 +166,7 @@ const authReducer = (state = initialState, action) => {
     }
     case EDIT_USER_SUCCESS: {
       // localStorage.setItem('refreshToken', action.refreshToken);
+
 
       return {
         ...state,
@@ -188,7 +189,7 @@ const authReducer = (state = initialState, action) => {
     case LOGOUT: {
       return {
         ...state,
-        isLogout: action.isLogout
+        isLogoutChecked: action.isLogoutChecked
       }
     }
 
@@ -204,13 +205,13 @@ const authReducer = (state = initialState, action) => {
         accessToken: action.accessToken,
         isAuth: action.isAuth,
         isAuthChecked: action.isAuthChecked,
-        isLogout: action.isLogout
+        isLogoutChecked: action.isLogoutChecked
       }
     }
     case LOGOUT_FAILED: {
       return {
         ...state,
-        isLogout: action.isLogout
+        isLogoutChecked: action.isLogoutChecked
       }
     }
 

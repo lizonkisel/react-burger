@@ -5,6 +5,7 @@ const baseUrl = 'https://norma.nomoreparties.space/api';
 const regExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function checkResponse(res) {
+  console.log(res);
   console.log(res.ok);
   return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
 };

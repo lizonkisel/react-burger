@@ -46,11 +46,12 @@ export default function LoginPage() {
   // console.log(location.state);
   // console.log(from);
 
-  const {isLogout} = useSelector(store => store.auth);
+  const {isLogoutChecked} = useSelector(store => store.auth);
+  const {isAuthChecked} = useSelector(store => store.auth);
 
-  console.log(`Is logout: ${isLogout}`);
+  console.log(`Is logout: ${isLogoutChecked}`);
 
-  if (!isLogout) {
+  if (!isLogoutChecked) {
     return ( <p className="text text_type_main-medium">Загружаем данные...</p>
     )
   };

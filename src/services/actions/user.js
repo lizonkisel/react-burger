@@ -47,16 +47,17 @@ function getUser() {
       user: res.user,
       isAuth: true,
       isAuthChecked: true,
-      isLogout: false
+      // isLogout: false
+      isLogoutChecked: true
     }))
     .catch(err => dispatch({
       type: GET_USER_FAILED,
       isAuth: false,
       isAuthChecked: true,
-      isLogout: true
+      isLogoutChecked: true
     }))
   }
-}
+};
 
 function editUser(newUserData) {
 
@@ -94,7 +95,7 @@ function editUser(newUserData) {
     //     )
     //   }
     // )
-    .then(checkResponse)
+    // .then(checkResponse)
     .then(res => dispatch({
       type: EDIT_USER_SUCCESS,
       user: res.user,
