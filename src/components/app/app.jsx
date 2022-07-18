@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Switch, BrowserRouter, Route } from 'react-router-dom';
+import { Switch, BrowserRouter, Route, useLocation, useHistory } from 'react-router-dom';
 
 import AppHeader from '../app-header/app-header.jsx';
 
@@ -11,14 +11,21 @@ import { getUser } from '../../services/actions/user';
 import { getCookie } from '../../utils/utils';
 import {getAllIngredients} from '../../services/actions/all-ingredients.js';
 
+import Modal from '../../components/modal/modal.jsx';
+import IngredientDetails from "../../components/ingredient-details/ingredient-details";
+
 function App() {
 
   const dispatch = useDispatch();
 
+  // console.log(location);
+  // const background = location.state?.background;
+  // const { background } = location.state || { background: location };
+
   console.log(getCookie('token'));
 
-  const allIngredients = useSelector(store => store.allIngredients.items);
-  console.log(allIngredients);
+  // const allIngredients = useSelector(store => store.allIngredients.items);
+  // console.log(allIngredients);
 
   useEffect(()=> {
     dispatch(getAllIngredients());
@@ -29,12 +36,31 @@ function App() {
     dispatch(getUser());
   }, []);
 
+  const allIngredients = useSelector(store => store.allIngredients.items);
+  console.log(allIngredients);
+
+  const history = useHistory();
+
+  const closeIngredientModal = useCallback(
+    () => {
+      history.replace({pathname: '/'})
+    }, [history]
+  );
+
+  const location = useLocation();
+  console.log(location);
+
+  // const background = location.state?.background;
+  const { background } = location.state || { location };
+  console.log(background);
+
   return (
     <>
         {/* <AppHeader /> */}
-        <BrowserRouter>
+        {/* <BrowserRouter> */}
         <AppHeader />
-          <Switch>
+          <Switch location={background}>
+          {/* <Switch> */}
             <Route path='/' exact={true}>
               <ConstructorPage/>
             </Route>
@@ -72,7 +98,19 @@ function App() {
               <Page404/>
             </Route>
           </Switch>
-        </BrowserRouter>
+
+          {background && (
+            <Route
+              path="/ingredients/:id"
+              children={
+                <Modal title="Детали ингредиента" onClose={closeIngredientModal} >
+                {/* <Modal title="Детали ингредиента"> */}
+                  <IngredientDetails />
+                </Modal>
+              }
+            />)
+          }
+        {/* </BrowserRouter> */}
 
     </>
   );
