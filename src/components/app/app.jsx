@@ -14,6 +14,7 @@ import {getAllIngredients} from '../../services/actions/all-ingredients.js';
 import Modal from '../../components/modal/modal.jsx';
 import IngredientDetails from "../../components/ingredient-details/ingredient-details";
 
+
 function App() {
 
   const dispatch = useDispatch();
