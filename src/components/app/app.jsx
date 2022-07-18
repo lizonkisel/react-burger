@@ -11,6 +11,8 @@ import { getUser } from '../../services/actions/user';
 import { getCookie } from '../../utils/utils';
 import {getAllIngredients} from '../../services/actions/all-ingredients.js';
 
+/* comment */
+
 function App() {
 
   const dispatch = useDispatch();
