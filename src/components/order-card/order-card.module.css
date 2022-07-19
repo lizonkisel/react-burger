@@ -1,0 +1,19 @@
+.card {
+  background: #1C1C21;
+  border-radius: 40px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+
+  padding: 24px;
+}
+
+.order_data {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.order_header {
+
+}

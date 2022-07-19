@@ -5,7 +5,7 @@ import { Switch, BrowserRouter, Route, useLocation, useHistory } from 'react-rou
 import AppHeader from '../app-header/app-header.jsx';
 
 import ProtectedRoute from '../protected-route/protected-route.jsx';
-import {LoginPage, ConstructorPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, ProfilePage, OrdersPage, IngredientPage, Page404} from '../../pages/index.jsx';
+import {LoginPage, ConstructorPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, ProfilePage, OrdersPage, IngredientPage, FeedPage, Page404} from '../../pages/index.jsx';
 
 import { getUser } from '../../services/actions/user';
 import { getCookie } from '../../utils/utils';
@@ -81,6 +81,10 @@ function App() {
 
             <Route path='/reset-password'>
               <ResetPasswordPage/>
+            </Route>
+
+            <Route path='/feed'>
+              <FeedPage/>
             </Route>
 
             <ProtectedRoute path='/profile' exact={true}>
