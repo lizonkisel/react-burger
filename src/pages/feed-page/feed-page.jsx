@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import OrderCard from "../../components/order-card/order-card";
 
+import styles from './feed-page.module.css';
+
 import { WS_CONNECTION_START } from "../../services/actions/wsActionTypes";
 
 export default function FeedPage() {
@@ -43,7 +45,7 @@ export default function FeedPage() {
       {
         wsConnected && orders &&
         <>
-          <section>
+          <section className={styles.order_feed}>
             {orders.map((order) => {
               return (
                 <OrderCard order={order}>

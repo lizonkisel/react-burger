@@ -1,0 +1,15 @@
+.order_feed {
+  width: calc(768px / 1920px * 100vw);
+  max-width: 768px;
+
+  height: calc(852px / 1080px * 100vh);;
+  max-height: 852px;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+
+  overflow: scroll;
+
+  padding: 0 20px;
+}

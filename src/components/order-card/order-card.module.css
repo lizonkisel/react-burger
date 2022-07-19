@@ -17,3 +17,10 @@
 .order_header {
 
 }
+
+.ingredients {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+
+}

@@ -2,6 +2,7 @@ import { refreshToken } from "../services/actions/refreshToken";
 
 const baseUrl = 'https://norma.nomoreparties.space/api';
 const wsUrl = 'wss://norma.nomoreparties.space/orders/all';
+const defaultBunUrl = "https://code.s3.yandex.net/react/code/bun-02.png";
 
 const regExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -109,5 +110,5 @@ const fetchWithRefresh = async (url, options) => {
 };
 
 
-export {baseUrl, wsUrl, regExp, checkResponse, setCookie, getCookie, fetchWithRefresh};
+export {baseUrl, wsUrl, defaultBunUrl, regExp, checkResponse, setCookie, getCookie, fetchWithRefresh};
 

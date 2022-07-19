@@ -1,0 +1,22 @@
+.image_wrapper {
+  width: 64px;
+  height: 64px;
+
+  margin-left: -16px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #131316;
+  border-radius: 100px;
+  overflow: hidden;
+
+  border: 2px solid #5345F3;
+  /* border-image: linear-gradient(63.18deg, #801AB3 0%, #4C4CFF 100%); */
+}
+
+.image {
+  width: 112px;
+  height: 56px;
+}
