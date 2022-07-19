@@ -17,7 +17,7 @@ export default function AppHeader() {
             <BurgerIcon type={pathname === '/' ? 'primary' : 'secondary'} />
             <span className="pl-2">Конструктор</span>
           </NavLink>
-          <NavLink to='/orders-history' exact={true} className={`text text_type_main-default pl-5 pr-5 pt-4 pb-4 ${appHeader.link}`} activeClassName={appHeader.active_nav_link}>
+          <NavLink to='/feed' exact={true} className={`text text_type_main-default pl-5 pr-5 pt-4 pb-4 ${appHeader.link}`} activeClassName={appHeader.active_nav_link}>
             <ListIcon type={pathname === '/orders-history' ? 'primary' : 'secondary'}/>
             <span className="pl-2">Лента заказов</span>
           </NavLink>
