@@ -1,4 +1,8 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
+import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+
 import IngredientMini from "../ingredient-mini/ingredient-mini.jsx";
 import moment from 'moment';
 import 'moment/locale/ru';
@@ -20,6 +24,32 @@ export default function OrderCard({ order }) {
   const name = order.name;
   const ingredients = order.ingredients;
 
+  let drawableIngredients;
+
+  if (ingredients.length < 5) {
+    drawableIngredients = ingredients;
+  } else {
+    drawableIngredients = ingredients.slice(0, 5);
+  };
+
+  console.log(drawableIngredients);
+
+
+  const allIngredients = useSelector(store => store.allIngredients.items);
+  const priceArray = [];
+
+  ingredients.forEach((ingredient) => {
+    const neededIngredient = allIngredients.find((element) => element._id === ingredient);
+    priceArray.push(neededIngredient.price);
+  })
+
+  const cost = priceArray.reduce((sum, price) => sum + price, 0);
+
+  // console.log(ingredients);
+
+  // const cost = ingredients.reduce((sum, ingredient) => sum + ingredient.price, 0);
+  // console.log(cost);
+
   return (
     <article className={styles.card}>
       <div className={styles.order_data}>
@@ -27,15 +57,31 @@ export default function OrderCard({ order }) {
         <time className="text text_type_main-default text_color_inactive">{`${moment(date).utcOffset("+03:00").calendar()} i-GMT+3`}</time>
       </div>
       <h2 className={`text text_type_main-medium ${styles.order_header}`}>{name}</h2>
-      <div className={styles.ingredients}>
-        {
-          ingredients.map((ingredient) => {
-            return (
-              <IngredientMini ingredient={ingredient}>
-              </IngredientMini>
-            )
-          })
-        }
+      <div className={styles.ingredients_and_cost}>
+        <div className={styles.ingredients}>
+          {
+            // ingredients.map((ingredient) => {
+              drawableIngredients.map((ingredient) => {
+              return (
+                <IngredientMini ingredient={ingredient}>
+                </IngredientMini>
+              )
+            })
+          } {
+            ingredients.length > 5 &&
+            <div className={styles.rest_ingredients}>
+              <div className={`text text_type_main-default ${styles.additional_quantity}`}>+{ingredients.length - 5}</div>
+              <div className={styles.shadow}>
+                <IngredientMini ingredient={ingredients[5]}>
+                </IngredientMini>
+              </div>
+            </div>
+          }
+        </div>
+        <div className={styles.cost_area}>
+          <div className='text text_type_digits-default'>{cost}</div>
+          <CurrencyIcon type="primary" />
+        </div>
       </div>
     </article>
   )

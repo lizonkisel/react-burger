@@ -39,9 +39,23 @@ export const wsReducer = (state = initialState, action) => {
       };
 
     case WS_GET_MESSAGE:
+
+      const allOrders = action.payload.orders;
+      const rightOrders = [];
+
+      allOrders.forEach((order) => {
+        if (!order.ingredients.includes(null)) {
+          rightOrders.push(order);
+        }
+      });
+
+      console.log(allOrders.length);
+      console.log(rightOrders.length);
+
       return {
         ...state,
-        orders: action.payload.orders,
+        orders: rightOrders,
+        // orders: action.payload.orders,
         total: action.payload.total,
         totalToday: action.payload.totalToday,
         error: undefined

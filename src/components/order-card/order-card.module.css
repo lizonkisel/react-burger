@@ -18,9 +18,39 @@
 
 }
 
+.ingredients_and_cost {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cost_area {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 8px;
+}
+
 .ingredients {
   display: flex;
   flex-direction: row;
   justify-content: start;
+}
 
+.rest_ingredients {
+  position: relative;
+}
+
+.additional_quantity {
+  position: absolute;
+  top: calc(50% - 12px);
+  left: calc(50% - 20px);
+  z-index: 100;
+}
+
+.shadow {
+  position: relative;
+  opacity: 0.6;
 }
