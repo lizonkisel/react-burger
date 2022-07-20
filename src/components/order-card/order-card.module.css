@@ -8,6 +8,11 @@
   padding: 24px;
 }
 
+.link {
+  text-decoration: none;
+  color: #F2F2F3;
+}
+
 .order_data {
   display: flex;
   flex-direction: row;

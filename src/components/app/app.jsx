@@ -5,7 +5,7 @@ import { Switch, BrowserRouter, Route, useLocation, useHistory } from 'react-rou
 import AppHeader from '../app-header/app-header.jsx';
 
 import ProtectedRoute from '../protected-route/protected-route.jsx';
-import {LoginPage, ConstructorPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, ProfilePage, OrdersPage, IngredientPage, FeedPage, Page404} from '../../pages/index.jsx';
+import {LoginPage, ConstructorPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, ProfilePage, OrdersPage, IngredientPage, FeedPage, OrderDetailsPage, Page404} from '../../pages/index.jsx';
 
 import { getUser } from '../../services/actions/user';
 import { getCookie } from '../../utils/utils';
@@ -13,6 +13,7 @@ import {getAllIngredients} from '../../services/actions/all-ingredients.js';
 
 import Modal from '../../components/modal/modal.jsx';
 import IngredientDetails from "../../components/ingredient-details/ingredient-details";
+import FullOrderCard from '../full-order-card/full-order-card.jsx';
 
 
 function App() {
@@ -47,6 +48,13 @@ function App() {
       history.replace({pathname: '/'})
     }, [history]
   );
+
+  const closeOrderModal = useCallback(
+    () => {
+      history.replace({pathname: '/feed'})
+    }, [history]
+  );
+
 
   const location = useLocation();
   console.log(location);
@@ -83,8 +91,12 @@ function App() {
               <ResetPasswordPage/>
             </Route>
 
-            <Route path='/feed'>
+            <Route path='/feed' exact={true}>
               <FeedPage/>
+            </Route>
+
+            <Route path='/feed:id' exact={true}>
+              <OrderDetailsPage/>
             </Route>
 
             <ProtectedRoute path='/profile' exact={true}>
@@ -111,6 +123,16 @@ function App() {
                 <Modal title="Детали ингредиента" onClose={closeIngredientModal} >
                 {/* <Modal title="Детали ингредиента"> */}
                   <IngredientDetails />
+                </Modal>
+              }
+            />)
+          }
+          {background && (
+            <Route
+              path="/feed/:id"
+              children={
+                <Modal title="Детали заказа" onClose={closeOrderModal}>
+                  <FullOrderCard></FullOrderCard>
                 </Modal>
               }
             />)
