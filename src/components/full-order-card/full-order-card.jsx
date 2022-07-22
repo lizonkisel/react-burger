@@ -100,18 +100,19 @@ export default function FullOrderCard() {
     <section className={styles.card}>
       <span className={`text text_type_digits-default ${styles.number}`}>#{number}</span>
       <h2 className={`text text_type_main-medium ${styles.order_header}`}>{name}</h2>
-      <span className={styles.status}>{status}</span>
+      <span className={`text text_type_main-default ${styles.status}`}>{status}</span>
 
       <div className={styles.composition}>
-        <span className="text text_type_main-medium mt-15 mb-6">Состав:</span>
-        {
-          uniqIngredients.map((ingredient) => {
-            return (
-              <IngredientCard order={currentOrder} ingredient={ingredient[0]} amount={ingredient[1]}></IngredientCard>
-            )
-          })
-
+        <span className={`text text_type_main-medium`}>Состав:</span>
+        <div className={styles.ingredients_area}>
+          {
+            uniqIngredients.map((ingredient) => {
+              return (
+                <IngredientCard order={currentOrder} ingredient={ingredient[0]} amount={ingredient[1]}></IngredientCard>
+              )
+            })
           }
+        </div>
       </div>
 
       <div className={styles.time_and_cost}>

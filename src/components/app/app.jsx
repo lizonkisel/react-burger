@@ -55,6 +55,12 @@ function App() {
     }, [history]
   );
 
+  // const closePersonalOrderModal = useCallback(
+  //   () => {
+  //     history.replace({pathname: '/profile/orders'})
+  //   }, [history]
+  // );
+
 
   const location = useLocation();
   console.log(location);
@@ -62,6 +68,13 @@ function App() {
   // const background = location.state?.background;
   const { background } = location.state || { location };
   console.log(background);
+  console.log(location.pathname);
+
+  // const closeOrderModal = useCallback(
+  //   () => {
+  //     history.replace({pathname: `${background.pathname}`})
+  //   }, [history]
+  // );
 
   return (
     <>
@@ -107,6 +120,10 @@ function App() {
               <OrdersPage/>
             </ProtectedRoute>
 
+            <ProtectedRoute path='/profile/orders/:id' exact={true}>
+              <OrderDetailsPage/>
+            </ProtectedRoute>
+
             <Route path='/ingredients/:id' exact={true}>
               <IngredientPage/>
             </Route>
@@ -131,7 +148,16 @@ function App() {
               <Route
                 path="/feed/:id"
                 children={
-                  <Modal title="Детали заказа" onClose={closeOrderModal}>
+                  <Modal title="" onClose={closeOrderModal}>
+                    <FullOrderCard></FullOrderCard>
+                  </Modal>
+                }
+              />
+
+              <Route
+                path="/profile/orders/:id"
+                children={
+                  <Modal title="" onClose={closeOrderModal}>
                     <FullOrderCard></FullOrderCard>
                   </Modal>
                 }

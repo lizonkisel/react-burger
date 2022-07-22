@@ -1,4 +1,4 @@
-import {baseUrl, checkResponse} from '../../utils/utils.js';
+import {baseUrl, getCookie, checkResponse} from '../../utils/utils.js';
 
 const GET_ORDER = 'GET_ORDER';
 const GET_ORDER_SUCCESS = 'GET_ORDER_SUCCESS';
@@ -17,7 +17,8 @@ function getOrder(ingredientsIdArray) {
     fetch(`${baseUrl}/orders`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json;charset=utf-8'
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: 'Bearer ' + getCookie('token')
       },
       body: JSON.stringify({
         "ingredients": ingredientsIdArray

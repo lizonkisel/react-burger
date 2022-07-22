@@ -26,7 +26,7 @@ export default function IngredientCard({ingredient, order, amount}) {
   return (
     <div className={styles.card}>
       <IngredientMini ingredient={ingredient}></IngredientMini>
-      <p>{name}</p>
+      <p className={`text text_type_main-default ${styles.name}`}>{name}</p>
       <div className={styles.amount_and_price}>
         <span className="text text_type_digits-default">{amount}</span>
         <span className="text text_type_digits-default">x</span>

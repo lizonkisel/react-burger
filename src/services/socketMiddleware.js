@@ -5,11 +5,24 @@ export const socketMiddleware = (wsUrl, wsActions) => {
     return next => action => {
       const { dispatch } = store;
       const { type, payload } = action;
-      const { wsInit, onOpen, onClose, onError, onMessage } = wsActions;
+      const { wsInit, wsInitWithToken, onOpen, onClose, onError, onMessage } = wsActions;
 
       if (type === wsInit) {
         socket = new WebSocket(`${wsUrl}`);
-      }
+      };
+
+      console.log(payload);
+
+      if (type === wsInitWithToken) {
+        socket = new WebSocket(payload);
+      };
+
+      console.log(socket);
+
+      if (type === onClose) {
+        socket.close();
+      };
+
       if (socket) {
         socket.onopen = event => {
           dispatch({ type: onOpen, payload: event });
@@ -23,6 +36,8 @@ export const socketMiddleware = (wsUrl, wsActions) => {
           const { data } = event;
           const parsedData = JSON.parse(data);
           const { success, ...restParsedData } = parsedData;
+
+          console.log(parsedData);
 
           dispatch({ type: onMessage, payload: restParsedData });
         };

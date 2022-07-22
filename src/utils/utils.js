@@ -96,7 +96,8 @@ const fetchWithRefresh = async (url, options) => {
           ...options,
             headers: {
               ...options.headers,
-              Authotization: 'Bearer ' + refreshData.accessToken
+              // Authotization: 'Bearer ' + refreshData.accessToken
+              Authotization: refreshData.accessToken
             }
         });
         const data = await checkResponse(res);

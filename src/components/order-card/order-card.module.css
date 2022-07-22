@@ -5,7 +5,11 @@
   flex-direction: column;
   row-gap: 24px;
 
+  box-sizing: border-box;
   padding: 24px;
+
+  width: calc(584/1920) * 100vw;
+  max-width: 584px;
 }
 
 .link {
@@ -42,6 +46,7 @@
   display: flex;
   flex-direction: row;
   justify-content: start;
+  margin-left: 16px;
 }
 
 .rest_ingredients {

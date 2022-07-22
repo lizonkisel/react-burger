@@ -1,4 +1,6 @@
 import {
+  WS_CONNECTION_START,
+  WS_CONNECTION_START_WITH_TOKEN,
   WS_CONNECTION_SUCCESS,
   WS_CONNECTION_ERROR,
   WS_CONNECTION_CLOSED,
@@ -17,6 +19,21 @@ const initialState = {
 
 export const wsReducer = (state = initialState, action) => {
   switch (action.type) {
+
+    // case WS_CONNECTION_START:
+    //   return {
+    //     ...state,
+    //     wsConnected: true,
+    //     error: undefined
+    // };
+
+    // case WS_CONNECTION_START_WITH_TOKEN:
+    //   return {
+    //     ...state,
+    //     wsConnected: true,
+    //     error: undefined
+    // };
+
     case WS_CONNECTION_SUCCESS:
       return {
         ...state,
@@ -41,6 +58,7 @@ export const wsReducer = (state = initialState, action) => {
     case WS_GET_MESSAGE:
 
       const allOrders = action.payload.orders;
+      console.log(allOrders);
       const rightOrders = [];
 
       allOrders.forEach((order) => {

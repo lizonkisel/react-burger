@@ -7,6 +7,8 @@ import { socketMiddleware } from './socketMiddleware.js';
 import { wsUrl } from '../utils/utils.js';
 import { wsActions } from './actions/wsActions.js';
 
+console.log(wsActions);
+
 const composeEnhancers =
 typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
   ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})

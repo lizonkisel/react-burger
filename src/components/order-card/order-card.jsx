@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link, useLocation} from 'react-router-dom';
+import { Link, useLocation, useRouteMatch} from 'react-router-dom';
+
 
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
@@ -50,14 +51,19 @@ export default function OrderCard({ order }) {
 
   const location = useLocation();
 
+  const { path } = useRouteMatch();
+
+  console.log(path);
+
   // console.log(ingredients);
 
   // const cost = ingredients.reduce((sum, ingredient) => sum + ingredient.price, 0);
   // console.log(cost);
 
   return (
-    <article className={styles.card}>
-      <Link className={styles.link} to={{pathname: `/feed/${id}`, state: {background: location}}}>
+      // <Link className={styles.link} to={{pathname: `/feed/${id}`, state: {background: location}}}>
+      <Link className={styles.link} to={{pathname: `${path}/${id}`, state: {background: location}}}>
+        <article className={styles.card}>
         <div className={styles.order_data}>
           <span className="text text_type_digits-default">#{number}</span>
           <time className="text text_type_main-default text_color_inactive">{`${moment(date).utcOffset("+03:00").calendar()} i-GMT+3`}</time>
@@ -89,8 +95,8 @@ export default function OrderCard({ order }) {
             <CurrencyIcon type="primary" />
           </div>
         </div>
+        </article>
       </Link>
-    </article>
   )
 }
 
