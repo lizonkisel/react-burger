@@ -1,11 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import PropTypes from 'prop-types';
 
 import styles from './orders-list.module.css';
 
 export default function OrdersList({status}) {
-
-
 
   const {orders} = useSelector(store => store.ws);
 
@@ -20,8 +19,6 @@ export default function OrdersList({status}) {
       inProgressOrders.push(order.number);
     }
   });
-
-  console.log(inProgressOrders);
 
   return (
 
@@ -38,4 +35,8 @@ export default function OrdersList({status}) {
       }
     </div>
   )
+};
+
+OrdersList.propTypes = {
+  status: PropTypes.string.isRequired
 }

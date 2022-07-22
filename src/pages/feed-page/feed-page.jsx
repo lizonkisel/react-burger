@@ -10,8 +10,6 @@ import { WS_CONNECTION_START } from "../../services/actions/wsActionTypes";
 
 export default function FeedPage() {
 
-  console.log('La-la-la');
-
   const dispatch = useDispatch();
   const { orders, wsConnected, total, totalToday} = useSelector(store => store.ws);
 
@@ -35,8 +33,6 @@ export default function FeedPage() {
   // console.log(messages.total);
 
   // const orders = [];
-
-  console.log(orders);
 
   return (
     <main className={styles.main}>

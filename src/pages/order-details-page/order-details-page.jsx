@@ -4,8 +4,8 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 import styles from './order-details-page.module.css';
 
-import Modal from '../components/modal/modal.jsx';
-import FullOrderCard from "../components/full-order-card/full-order-card.jsx";
+import Modal from '../../components/modal/modal.jsx';
+import FullOrderCard from "../../components/full-order-card/full-order-card.jsx";
 
 
 export default function OrderDetailsPage() {
@@ -24,10 +24,7 @@ export default function OrderDetailsPage() {
 
   console.log("Order Details Page");
 
-  console.log(allIngredients);
-
   if (!allIngredients) {
-    console.log('azaza');
     return ( <p className="text text_type_main-medium">Загружаем данные...</p>
     )
   };

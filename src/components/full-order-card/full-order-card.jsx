@@ -26,8 +26,6 @@ export default function FullOrderCard() {
 
   const {id} = useParams();
 
-  console.log(id);
-
   const dispatch = useDispatch();
   // const { orders, wsConnected, total, totalToday} = useSelector(store => store.ws);
 
@@ -40,17 +38,12 @@ export default function FullOrderCard() {
   const allIngredients = useSelector(store => store.allIngredients.items);
   const orders = useSelector(store => store.ws.orders);
 
-  console.log(orders);
-
   if (!orders) {
     return ( <p className="text text_type_main-medium">Загружаем данные...</p>
     )
   };
 
-  console.log(orders);
-
   const currentOrder = orders.find((order) => order._id === id);
-  console.log(currentOrder);
 
   const number = currentOrder.number;
   const ingredients = currentOrder.ingredients;
@@ -65,7 +58,6 @@ export default function FullOrderCard() {
   const uniqIngredientsObj = {};
 
   const ingredientsObj = {...ingredients};
-  console.log(ingredientsObj);
 
   ingredients.forEach((ingredient) => {
     if (!uniqIngredientsObj[ingredient]) {
@@ -75,10 +67,7 @@ export default function FullOrderCard() {
     }
   });
 
-  console.log(uniqIngredientsObj);
-
   const uniqIngredients = Object.entries(uniqIngredientsObj);
-  console.log(uniqIngredients);
 
   const priceArray = [];
   ingredients.forEach((ingredient) => {

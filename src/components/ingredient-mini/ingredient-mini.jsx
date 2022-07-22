@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import PropTypes from 'prop-types';
 
 import styles from './ingredient-mini.module.css';
 
@@ -7,8 +8,6 @@ import { defaultBunUrl } from "../../utils/utils";
 
 
 export default function IngredientMini({ingredient}) {
-
-  console.log(ingredient);
 
   if (ingredient === null) {
     return <img className={styles.image} src={defaultBunUrl}></img>
@@ -52,4 +51,8 @@ export default function IngredientMini({ingredient}) {
       }
     </>
   )
+};
+
+IngredientMini.propTypes = {
+  ingredient: PropTypes.string.isRequired
 }

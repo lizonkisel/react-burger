@@ -1,6 +1,7 @@
 import React from "react";
 
 import { useSelector } from "react-redux";
+import PropTypes from 'prop-types';
 
 import styles from './ingredient-card.module.css';
 
@@ -8,11 +9,11 @@ import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components
 
 import IngredientMini from "../ingredient-mini/ingredient-mini";
 
+import { orderPropTypes } from "../../utils/prop-types";
+
 export default function IngredientCard({ingredient, order, amount}) {
 
   const currentOrder = order;
-
-  console.log(currentOrder);
 
   const number = currentOrder.number;
   // const name = currentOrder.name;
@@ -35,4 +36,10 @@ export default function IngredientCard({ingredient, order, amount}) {
       </div>
     </div>
   )
+};
+
+IngredientCard.propTypes = {
+  ingredient: PropTypes.string.isRequired,
+  order: orderPropTypes.isRequired,
+  amount: PropTypes.number.isRequired
 }

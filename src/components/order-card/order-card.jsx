@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useLocation, useRouteMatch} from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
@@ -8,6 +9,8 @@ import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components
 import IngredientMini from "../ingredient-mini/ingredient-mini.jsx";
 import moment from 'moment';
 import 'moment/locale/ru';
+
+import { orderPropTypes } from "../../utils/prop-types";
 
 import styles from './order-card.module.css';
 
@@ -53,8 +56,6 @@ export default function OrderCard({ order }) {
 
   const { path } = useRouteMatch();
 
-  console.log(path);
-
   // console.log(ingredients);
 
   // const cost = ingredients.reduce((sum, ingredient) => sum + ingredient.price, 0);
@@ -98,5 +99,9 @@ export default function OrderCard({ order }) {
         </article>
       </Link>
   )
+};
+
+OrderCard.propTypes = {
+  order: orderPropTypes.isRequired
 }
 
