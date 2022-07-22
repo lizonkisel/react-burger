@@ -1,0 +1,32 @@
+.card {
+  margin-top: 122px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 16px;
+}
+
+.number {
+  align-self: center;
+}
+
+.order_header {
+  margin: 40px 0 12px 0;
+}
+
+.composition {
+  margin-right: 24px;
+}
+
+.time_and_cost {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.cost_field {
+  display: flex;
+  flex-direction: row;
+  column-gap: 4px;
+}

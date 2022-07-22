@@ -1,14 +1,95 @@
-import React from "react";
-import { useSelector } from 'react-redux';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import moment from 'moment';
+import 'moment/locale/ru';
+
+import styles from './full-order-card.module.css';
+
+import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import IngredientMini from "../ingredient-mini/ingredient-mini";
+import IngredientCard from "../ingredient-card/ingredient-card";
+import { statuses } from "../../utils/utils";
+
+import { WS_CONNECTION_START } from "../../services/actions/wsActionTypes";
 
 export default function FullOrderCard() {
 
+  moment.locale('ru', {
+    calendar : {
+      lastDay : '[Вчера,] LT',
+      sameDay : '[Сегодня,] LT',
+      // lastWeek: '[Прошлый] dddd',
+      sameElse: 'DD/MM/YYYY',
+  }
+  });
+
   const {id} = useParams();
 
-  // const currentIngredient = useSelector(store => store.currentIngredient);
+  console.log(id);
+
+  const dispatch = useDispatch();
+  // const { orders, wsConnected, total, totalToday} = useSelector(store => store.ws);
+
+  useEffect(() => {
+    dispatch({type: WS_CONNECTION_START})
+  }, []);
+
+
 
   const allIngredients = useSelector(store => store.allIngredients.items);
+  const orders = useSelector(store => store.ws.orders);
+
+  console.log(orders);
+
+  if (!orders) {
+    return ( <p className="text text_type_main-medium">Загружаем данные...</p>
+    )
+  };
+
+  console.log(orders);
+
+  const currentOrder = orders.find((order) => order._id === id);
+  console.log(currentOrder);
+
+  const number = currentOrder.number;
+  const ingredients = currentOrder.ingredients;
+  const name = currentOrder.name;
+  const date = Date.parse(currentOrder.createdAt);
+  const currentStatus = currentOrder.status;
+
+  const status = statuses[currentStatus];
+
+
+
+  const uniqIngredientsObj = {};
+
+  const ingredientsObj = {...ingredients};
+  console.log(ingredientsObj);
+
+  ingredients.forEach((ingredient) => {
+    if (!uniqIngredientsObj[ingredient]) {
+      uniqIngredientsObj[ingredient] = 1
+    } else {
+      uniqIngredientsObj[ingredient] += 1
+    }
+  });
+
+  console.log(uniqIngredientsObj);
+
+  const uniqIngredients = Object.entries(uniqIngredientsObj);
+  console.log(uniqIngredients);
+
+  const priceArray = [];
+  ingredients.forEach((ingredient) => {
+    const neededIngredient = allIngredients.find((element) => element._id === ingredient);
+    priceArray.push(neededIngredient.price);
+  })
+
+  const cost = priceArray.reduce((sum, price) => sum + price, 0);
+
+
+  // const currentIngredient = useSelector(store => store.currentIngredient);
 
   if (!allIngredients) {
     return ( <p className="text text_type_main-medium">Загружаем данные...</p>
@@ -16,6 +97,30 @@ export default function FullOrderCard() {
   };
 
   return (
-    <div>Card</div>
+    <section className={styles.card}>
+      <span className={`text text_type_digits-default ${styles.number}`}>#{number}</span>
+      <h2 className={`text text_type_main-medium ${styles.order_header}`}>{name}</h2>
+      <span className={styles.status}>{status}</span>
+
+      <div className={styles.composition}>
+        <span className="text text_type_main-medium mt-15 mb-6">Состав:</span>
+        {
+          uniqIngredients.map((ingredient) => {
+            return (
+              <IngredientCard order={currentOrder} ingredient={ingredient[0]} amount={ingredient[1]}></IngredientCard>
+            )
+          })
+
+          }
+      </div>
+
+      <div className={styles.time_and_cost}>
+        <time className="text text_type_main-default text_color_inactive">{`${moment(date).utcOffset("+03:00").calendar()} i-GMT+3`}</time>
+        <div className={styles.cost_field}>
+          <div className='text text_type_digits-default'>{cost}</div>
+          <CurrencyIcon type="primary" />
+        </div>
+      </div>
+    </section>
   )
 }

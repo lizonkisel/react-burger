@@ -95,7 +95,7 @@ function App() {
               <FeedPage/>
             </Route>
 
-            <Route path='/feed:id' exact={true}>
+            <Route path='/feed/:id' exact={true}>
               <OrderDetailsPage/>
             </Route>
 
@@ -117,17 +117,29 @@ function App() {
           </Switch>
 
           {background && (
-            <Route
-              path="/ingredients/:id"
-              children={
-                <Modal title="Детали ингредиента" onClose={closeIngredientModal} >
-                {/* <Modal title="Детали ингредиента"> */}
-                  <IngredientDetails />
-                </Modal>
-              }
-            />)
+            <>
+              <Route
+                path="/ingredients/:id"
+                children={
+                  <Modal title="Детали ингредиента" onClose={closeIngredientModal} >
+                  {/* <Modal title="Детали ингредиента"> */}
+                    <IngredientDetails />
+                  </Modal>
+                }
+              />
+
+              <Route
+                path="/feed/:id"
+                children={
+                  <Modal title="Детали заказа" onClose={closeOrderModal}>
+                    <FullOrderCard></FullOrderCard>
+                  </Modal>
+                }
+              />
+            </>
+            )
           }
-          {background && (
+          {/* {background && (
             <Route
               path="/feed/:id"
               children={
@@ -136,7 +148,7 @@ function App() {
                 </Modal>
               }
             />)
-          }
+          } */}
         {/* </BrowserRouter> */}
 
     </>

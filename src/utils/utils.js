@@ -109,6 +109,12 @@ const fetchWithRefresh = async (url, options) => {
   }
 };
 
+const statuses = {
+  'done': 'Выполнен',
+  'created': 'Создан',
+  'pending': 'Готовится'
+}
 
-export {baseUrl, wsUrl, defaultBunUrl, regExp, checkResponse, setCookie, getCookie, fetchWithRefresh};
+
+export {baseUrl, wsUrl, defaultBunUrl, regExp, checkResponse, setCookie, getCookie, fetchWithRefresh, statuses};
 

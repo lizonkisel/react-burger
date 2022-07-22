@@ -2,6 +2,8 @@ import React, { useCallback } from "react";
 import { useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 
+import styles from './order-details-page.module.css';
+
 import Modal from '../components/modal/modal.jsx';
 import FullOrderCard from "../components/full-order-card/full-order-card.jsx";
 
@@ -20,7 +22,12 @@ export default function OrderDetailsPage() {
 
   const location = useLocation();
 
+  console.log("Order Details Page");
+
+  console.log(allIngredients);
+
   if (!allIngredients) {
+    console.log('azaza');
     return ( <p className="text text_type_main-medium">Загружаем данные...</p>
     )
   };
@@ -33,7 +40,7 @@ export default function OrderDetailsPage() {
   //   )
   // } else {
     return (
-      <main>
+      <main className={styles.main}>
         <FullOrderCard></FullOrderCard>
       </main>
     )

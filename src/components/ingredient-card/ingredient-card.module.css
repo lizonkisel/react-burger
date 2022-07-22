@@ -1,0 +1,12 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  column-gap: 16px;
+  align-items: center;
+}
+
+.amount_and_price {
+  display: flex;
+  flex-direction: row;
+  column-gap: 4px;
+}
