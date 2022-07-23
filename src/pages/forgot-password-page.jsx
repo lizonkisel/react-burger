@@ -64,7 +64,7 @@ export default function ForgotPasswordPage() {
     <main className={styles.main}>
       <h1 className="text text_type_main-medium">Восстановление пароля</h1>
 
-      <form className={styles.form} action="">
+      <form className={styles.form} action="" onSubmit={recover}>
         <fieldset className={styles.fieldset}>
           <Input
             type={'email'}
@@ -80,7 +80,8 @@ export default function ForgotPasswordPage() {
             size={'default'}
           />
         </fieldset>
-        <Button type="primary" size="medium" onClick={recover} disabled={cantResetPassword}>
+        {/* <Button type="primary" size="medium" onClick={recover} disabled={cantResetPassword}> */}
+        <Button type="primary" size="medium" disabled={cantResetPassword}>
           Восстановить
         </Button>
       </form>

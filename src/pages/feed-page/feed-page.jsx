@@ -13,9 +13,9 @@ export default function FeedPage() {
   const dispatch = useDispatch();
   const { orders, wsConnected, total, totalToday, error} = useSelector(store => store.ws);
 
-  // const resetError = useCallback(() => {
-  //   dispatch({type: WS_CONNECTION_ERROR});
-  // }, [dispatch]);
+  const resetError = useCallback(() => {
+    dispatch({type: WS_CONNECTION_ERROR});
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch({type: WS_CONNECTION_START});
@@ -24,26 +24,14 @@ export default function FeedPage() {
     };
   }, [dispatch]);
 
-  // if (error) {
-  //   dispatch({type: WS_RESET_ERROR});
-  // };
+  if (error) {
+    dispatch({type: WS_RESET_ERROR});
+  };
 
   // if (!wsConnected) {
   //   return ( <p className="text text_type_main-medium">Загружаем данные...</p>
   //   )
   // };
-
-  // const messagesObj = messages[0];
-  // const orders = messagesObj.orders;
-  // const orders = messages["orders"];
-
-  // console.log(orders);
-
-  // console.log(messages);
-  // console.log(messages[0]);
-  // console.log(messages.total);
-
-  // const orders = [];
 
   return (
     <main className={styles.main}>

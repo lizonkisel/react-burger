@@ -33,12 +33,12 @@ export default function OrderDetailsPage({ secured }) {
   useEffect(() => {
     secured
     ? dispatch(wsInitWithToken(`wss://norma.nomoreparties.space/orders?token=${accessToken}`))
-    : dispatch({type: WS_CONNECTION_START})
+    : dispatch({type: WS_CONNECTION_START});
 
     return () => {
       dispatch({type: WS_CONNECTION_CLOSED});
     };
-  }, [dispatch]);
+  }, [dispatch, accessToken]);
 
   console.log("Order Details Page");
 

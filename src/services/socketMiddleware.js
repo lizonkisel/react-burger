@@ -31,6 +31,7 @@ export const socketMiddleware = (wsUrl, wsActions) => {
 
         socket.onerror = event => {
           console.log(event);
+          console.log(`Ошибка ${event.message}`)
           dispatch({ type: onError, payload: event });
         };
 

@@ -20,14 +20,7 @@ function App() {
 
   const dispatch = useDispatch();
 
-  // console.log(location);
-  // const background = location.state?.background;
-  // const { background } = location.state || { background: location };
-
   console.log(getCookie('token'));
-
-  // const allIngredients = useSelector(store => store.allIngredients.items);
-  // console.log(allIngredients);
 
   useEffect(()=> {
     dispatch(getAllIngredients());
@@ -49,17 +42,23 @@ function App() {
     }, [history]
   );
 
+  // const closeOrderModal = useCallback(
+  //   () => {
+  //     history.replace({pathname: '/feed'})
+  //   }, [history]
+  // );
+
   const closeOrderModal = useCallback(
     () => {
-      history.replace({pathname: '/feed'})
+      history.goBack()
     }, [history]
   );
 
-  // const closePersonalOrderModal = useCallback(
-  //   () => {
-  //     history.replace({pathname: '/profile/orders'})
-  //   }, [history]
-  // );
+  const closeSecuredOrderModal = useCallback(
+    () => {
+      history.replace({pathname: '/profile/orders'})
+    }, [history]
+  );
 
 
   const location = useLocation();
@@ -70,8 +69,16 @@ function App() {
   console.log(background);
   console.log(location.pathname);
 
+
   // const closeOrderModal = useCallback(
   //   () => {
+  //     history.replace({pathname: `${background.pathname}`})
+  //   }, [history]
+  // );
+
+  // const closeOrderModal = useCallback(
+  //   () => {
+  //     // history.replace({pathname: '/feed'})
   //     history.replace({pathname: `${background.pathname}`})
   //   }, [history]
   // );

@@ -68,7 +68,7 @@ export default function ResetPasswordPage() {
     <main className={styles.main}>
       <h1 className="text text_type_main-medium">Восстановление пароля</h1>
 
-      <form className={styles.form} action="">
+      <form className={styles.form} action="" onSubmit={changePassword}>
         <fieldset className={styles.fieldset}>
           <Input
             type={'password'}
@@ -97,7 +97,8 @@ export default function ResetPasswordPage() {
             size={'default'}
           />
         </fieldset>
-        <Button type="primary" size="medium" onClick={changePassword}>
+        {/* <Button type="primary" size="medium" onClick={changePassword}> */}
+        <Button type="primary" size="medium">
           Сохранить
         </Button>
       </form>
