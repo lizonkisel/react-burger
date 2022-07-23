@@ -11,7 +11,8 @@ import IngredientMini from "../ingredient-mini/ingredient-mini";
 import IngredientCard from "../ingredient-card/ingredient-card";
 import { statuses } from "../../utils/utils";
 
-import { WS_CONNECTION_START } from "../../services/actions/wsActionTypes";
+import { WS_CONNECTION_START, WS_CONNECTION_CLOSED } from "../../services/actions/wsActionTypes";
+import { wsActions } from "../../services/actions/wsActions";
 
 export default function FullOrderCard() {
 
@@ -29,13 +30,25 @@ export default function FullOrderCard() {
   const dispatch = useDispatch();
   // const { orders, wsConnected, total, totalToday} = useSelector(store => store.ws);
 
-  useEffect(() => {
-    dispatch({type: WS_CONNECTION_START})
-  }, []);
+
+  // const {onClose} = wsActions;
+
+  // useEffect(() => {
+  //   dispatch({type: WS_CONNECTION_START});
+  //   return () => {
+  //     dispatch({type: WS_CONNECTION_CLOSED});
+  //   };
+  // }, [dispatch]);
 
 
 
   const allIngredients = useSelector(store => store.allIngredients.items);
+
+  // if (!allIngredients) {
+  //   return ( <p className="text text_type_main-medium">Загружаем данные...</p>
+  //   )
+  // };
+
   const orders = useSelector(store => store.ws.orders);
 
   if (!orders) {
@@ -44,6 +57,14 @@ export default function FullOrderCard() {
   };
 
   const currentOrder = orders.find((order) => order._id === id);
+
+  console.log(orders);
+  console.log(currentOrder);
+
+  if (currentOrder === undefined) {
+    return ( <p className="text text_type_main-medium">Не удалось найти такой заказ...</p>
+    )
+  }
 
   const number = currentOrder.number;
   const ingredients = currentOrder.ingredients;
@@ -79,6 +100,11 @@ export default function FullOrderCard() {
 
 
   // const currentIngredient = useSelector(store => store.currentIngredient);
+
+  if (!orders) {
+    return ( <p className="text text_type_main-medium">Загружаем данные...</p>
+    )
+  };
 
   if (!allIngredients) {
     return ( <p className="text text_type_main-medium">Загружаем данные...</p>

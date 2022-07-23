@@ -20,6 +20,11 @@ export default function IngredientCard({ingredient, order, amount}) {
 
   const allIngredients = useSelector(store => store.allIngredients.items);
 
+  if (!allIngredients) {
+    return ( <p className="text text_type_main-medium">Загружаем данные...</p>
+    )
+  };
+
   const neededIngredient = allIngredients.find((element) => element._id === ingredient);
   const name = neededIngredient.name;
   const price = neededIngredient.price;

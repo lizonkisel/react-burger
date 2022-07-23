@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import styles from './feed-page.module.css';
@@ -6,16 +6,27 @@ import styles from './feed-page.module.css';
 import OrderCard from "../../components/order-card/order-card";
 import OrdersList from "../../components/orders-list/orders-list";
 
-import { WS_CONNECTION_START } from "../../services/actions/wsActionTypes";
+import { WS_CONNECTION_START, WS_CONNECTION_CLOSED, WS_CONNECTION_ERROR, WS_RESET_ERROR } from "../../services/actions/wsActionTypes";
 
 export default function FeedPage() {
 
   const dispatch = useDispatch();
-  const { orders, wsConnected, total, totalToday} = useSelector(store => store.ws);
+  const { orders, wsConnected, total, totalToday, error} = useSelector(store => store.ws);
+
+  // const resetError = useCallback(() => {
+  //   dispatch({type: WS_CONNECTION_ERROR});
+  // }, [dispatch]);
 
   useEffect(() => {
-    dispatch({type: WS_CONNECTION_START})
-  }, []);
+    dispatch({type: WS_CONNECTION_START});
+    return () => {
+      dispatch({type: WS_CONNECTION_CLOSED});
+    };
+  }, [dispatch]);
+
+  // if (error) {
+  //   dispatch({type: WS_RESET_ERROR});
+  // };
 
   // if (!wsConnected) {
   //   return ( <p className="text text_type_main-medium">Загружаем данные...</p>

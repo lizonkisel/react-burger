@@ -21,11 +21,11 @@ export default function OrdersPage() {
 
   useEffect(() => {
     dispatch(wsInitWithToken(`wss://norma.nomoreparties.space/orders?token=${accessToken}`));
-    // return () => {
-    //   dispatch({type: WS_CONNECTION_CLOSED});
-    // };
-  // }, [dispatch, accessToken]);
-}, []);
+    return () => {
+      dispatch({type: WS_CONNECTION_CLOSED});
+    };
+  }, [dispatch, accessToken]);
+// }, []);
 
   console.log('Orders page');
 

@@ -4,7 +4,8 @@ import {
   WS_CONNECTION_SUCCESS,
   WS_CONNECTION_ERROR,
   WS_CONNECTION_CLOSED,
-  WS_GET_MESSAGE
+  WS_GET_MESSAGE,
+  WS_RESET_ERROR
 } from './wsActionTypes.js';
 
 export const wsActions = {
@@ -18,7 +19,8 @@ export const wsActions = {
   onOpen: WS_CONNECTION_SUCCESS,
   onClose: WS_CONNECTION_CLOSED,
   onError: WS_CONNECTION_ERROR,
-  onMessage: WS_GET_MESSAGE
+  onMessage: WS_GET_MESSAGE,
+  wsResetError: WS_RESET_ERROR
 };
 
 export const wsInitWithToken = (url) => {

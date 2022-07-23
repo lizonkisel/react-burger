@@ -4,7 +4,8 @@ import {
   WS_CONNECTION_SUCCESS,
   WS_CONNECTION_ERROR,
   WS_CONNECTION_CLOSED,
-  WS_GET_MESSAGE
+  WS_GET_MESSAGE,
+  WS_RESET_ERROR
 } from '../actions/wsActionTypes.js';
 
 
@@ -80,6 +81,17 @@ export const wsReducer = (state = initialState, action) => {
         // messages: [...state.messages, action.payload]
 
       };
+
+      case WS_RESET_ERROR:
+        return {
+          ...state,
+          wsConnected: false,
+          orders: null,
+          total: null,
+          totalToday: null,
+          error: undefined
+        }
+
     default:
       return state;
   }

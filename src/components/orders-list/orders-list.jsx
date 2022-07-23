@@ -20,6 +20,11 @@ export default function OrdersList({status}) {
     }
   });
 
+  if (!orders) {
+    return ( <p className="text text_type_main-medium">Загружаем данные...</p>
+    )
+  };
+
   return (
 
     <div className={styles.orders_list}>

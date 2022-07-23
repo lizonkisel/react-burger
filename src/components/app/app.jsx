@@ -109,7 +109,7 @@ function App() {
             </Route>
 
             <Route path='/feed/:id' exact={true}>
-              <OrderDetailsPage/>
+              <OrderDetailsPage secured={false}/>
             </Route>
 
             <ProtectedRoute path='/profile' exact={true}>
@@ -121,7 +121,7 @@ function App() {
             </ProtectedRoute>
 
             <ProtectedRoute path='/profile/orders/:id' exact={true}>
-              <OrderDetailsPage/>
+              <OrderDetailsPage secured={true}/>
             </ProtectedRoute>
 
             <Route path='/ingredients/:id' exact={true}>

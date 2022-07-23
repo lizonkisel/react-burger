@@ -43,6 +43,12 @@ export default function OrderCard({ order }) {
 
 
   const allIngredients = useSelector(store => store.allIngredients.items);
+
+  if (!allIngredients) {
+    return ( <p className="text text_type_main-medium">Загружаем данные...</p>
+    )
+  };
+
   const priceArray = [];
 
   ingredients.forEach((ingredient) => {
