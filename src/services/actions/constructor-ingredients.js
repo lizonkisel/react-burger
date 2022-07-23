@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 const REORDER_INGREDIENT = 'REORDER_INGREDIENT';
 const ADD_TO_CONSTRUCTOR = 'ADD_TO_CONSTRUCTOR';
 const DELETE_FROM_CONSTRUCTOR = 'DELETE_FROM_CONSTRUCTOR';
+// const CLEAR_CONSTRUCTOR = 'CLEAR_CONSTRUCTOR';
 
 function addToConstructor(item) {
   return {
@@ -27,5 +28,6 @@ function reorderIngredient(dragIndex, hoverIndex) {
     hoverIndex: hoverIndex
   }
 }
+
 
 export { ADD_TO_CONSTRUCTOR, DELETE_FROM_CONSTRUCTOR, REORDER_INGREDIENT, addToConstructor, deleteFromConstructor, reorderIngredient};

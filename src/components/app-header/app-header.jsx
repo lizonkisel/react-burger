@@ -27,9 +27,11 @@ export default function AppHeader() {
           <span className="pl-2">Личный кабинет</span>
         </NavLink>
       </nav>
-      <div className={appHeader.logo}>
-        <Logo />
-      </div>
+      <NavLink to='/'>
+        <div className={appHeader.logo}>
+          <Logo />
+        </div>
+      </NavLink>
     </header>
   )
 }

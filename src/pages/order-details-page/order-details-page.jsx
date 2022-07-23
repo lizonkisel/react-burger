@@ -34,10 +34,6 @@ export default function OrderDetailsPage({ secured }) {
     secured
     ? dispatch(wsInitWithToken(`wss://norma.nomoreparties.space/orders?token=${accessToken}`))
     : dispatch({type: WS_CONNECTION_START});
-
-    return () => {
-      dispatch({type: WS_CONNECTION_CLOSED});
-    };
   }, [dispatch, accessToken]);
 
   console.log("Order Details Page");
@@ -47,13 +43,6 @@ export default function OrderDetailsPage({ secured }) {
     )
   };
 
-  // if (location.state !== undefined && location.state.prevPath === '/feed') {
-  //   return (
-  //     <Modal title="Детали заказа" onClose={closeOrderModal}>
-  //       <FullOrderCard></FullOrderCard>
-  //     </Modal>
-  //   )
-  // } else {
     return (
       <main className={styles.main}>
         <FullOrderCard></FullOrderCard>

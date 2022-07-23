@@ -42,54 +42,21 @@ function App() {
     }, [history]
   );
 
-  // const closeOrderModal = useCallback(
-  //   () => {
-  //     history.replace({pathname: '/feed'})
-  //   }, [history]
-  // );
-
   const closeOrderModal = useCallback(
     () => {
       history.goBack()
     }, [history]
   );
 
-  const closeSecuredOrderModal = useCallback(
-    () => {
-      history.replace({pathname: '/profile/orders'})
-    }, [history]
-  );
-
 
   const location = useLocation();
-  console.log(location);
 
-  // const background = location.state?.background;
   const { background } = location.state || { location };
-  console.log(background);
-  console.log(location.pathname);
-
-
-  // const closeOrderModal = useCallback(
-  //   () => {
-  //     history.replace({pathname: `${background.pathname}`})
-  //   }, [history]
-  // );
-
-  // const closeOrderModal = useCallback(
-  //   () => {
-  //     // history.replace({pathname: '/feed'})
-  //     history.replace({pathname: `${background.pathname}`})
-  //   }, [history]
-  // );
 
   return (
     <>
-        {/* <AppHeader /> */}
-        {/* <BrowserRouter> */}
         <AppHeader />
           <Switch location={background}>
-          {/* <Switch> */}
             <Route path='/' exact={true}>
               <ConstructorPage/>
             </Route>
@@ -172,18 +139,6 @@ function App() {
             </>
             )
           }
-          {/* {background && (
-            <Route
-              path="/feed/:id"
-              children={
-                <Modal title="Детали заказа" onClose={closeOrderModal}>
-                  <FullOrderCard></FullOrderCard>
-                </Modal>
-              }
-            />)
-          } */}
-        {/* </BrowserRouter> */}
-
     </>
   );
 }
