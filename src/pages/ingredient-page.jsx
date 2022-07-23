@@ -25,19 +25,19 @@ export default function IngredientPage() {
     )
   };
 
-  if (location.state !== undefined && location.state.prevPath === '/') {
-    return (
-      <Modal title="Детали ингредиента" onClose={closeIngredientModal}>
-      <IngredientDetails />
-    </Modal>
-    )
-  } else {
+  // if (location.state !== undefined && location.state.prevPath === '/') {
+  //   return (
+  //     <Modal title="Детали ингредиента" onClose={closeIngredientModal}>
+  //     <IngredientDetails />
+  //   </Modal>
+  //   )
+  // } else {
     return (
       <main>
         <IngredientDetails />
       </main>
     )
-  };
+  // };
 
   // return (
   //   <main>

@@ -16,6 +16,7 @@
     "core-js": "^3.22.5",
     "immutability-helper": "^3.1.1",
     "jsx-runtime": "^1.2.0",
+    "moment": "^2.29.4",
     "react": "^16.8.6",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",

@@ -15,6 +15,16 @@ const ingredientPropTypes = PropTypes.shape({
   image_mobile: PropTypes.string.isRequired,
   image_large: PropTypes.string.isRequired,
   __v: PropTypes.number.isRequired
-})
+});
 
-export {ingredientPropTypes}
+const orderPropTypes = PropTypes.shape({
+  _id: PropTypes.string.isRequired,
+  ingredients: PropTypes.array.isRequired,
+  status: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
+  updatedAt: PropTypes.string.isRequired,
+  number: PropTypes.number.isRequired,
+});
+
+export {ingredientPropTypes, orderPropTypes}

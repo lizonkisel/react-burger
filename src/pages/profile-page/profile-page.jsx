@@ -128,7 +128,7 @@ export default function ProfilePage() {
 
       <ProfileMenu />
 
-      <form className={formStyles.form} action="">
+      <form className={formStyles.form} action="" onSubmit={editCurrentUser}>
         <fieldset className={formStyles.fieldset}>
           <Input
             type={'text'}
@@ -181,7 +181,8 @@ export default function ProfilePage() {
           <Button type="secondary" size="medium" onClick={resetNewData}>
             Отмена
           </Button>
-          <Button type="primary" size="medium" onClick={editCurrentUser} disabled={isInvalidInputs}>
+          {/* <Button type="primary" size="medium" onClick={editCurrentUser} disabled={isInvalidInputs}> */}
+          <Button type="primary" size="medium" disabled={isInvalidInputs}>
             Сохранить
           </Button>
         </div>

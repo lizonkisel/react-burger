@@ -1,0 +1,57 @@
+.card {
+  /* margin-top: 122px; */
+  width: 640px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* row-gap: 16px; */
+}
+
+.number {
+  align-self: center;
+}
+
+.order_header {
+  margin: 40px 0 12px 0;
+}
+
+.status {
+  margin: 0 0 60px 0;
+}
+
+.composition {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+
+  margin-right: 24px;
+}
+
+.ingredients_area {
+  /* display: flex;
+  flex-direction: column;
+  row-gap: 24px; */
+
+  margin-bottom: 40px;
+}
+
+.time_and_cost {
+  /* width: calc(640/1920 * 100vw); */
+  width: 100%;
+  max-width: 640px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  margin-bottom: 24px;
+}
+
+.cost_field {
+  display: flex;
+  flex-direction: row;
+  column-gap: 4px;
+}

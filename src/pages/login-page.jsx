@@ -64,7 +64,7 @@ export default function LoginPage() {
     <main className={styles.main}>
       <h1 className="text text_type_main-medium">Вход</h1>
 
-      <form className={styles.form} action="">
+      <form className={styles.form} action="" onSubmit={loginUser}>
         <fieldset className={styles.fieldset}>
           <EmailInput
             onChange={e => setEmailValue(e.target.value)}
@@ -77,7 +77,8 @@ export default function LoginPage() {
             name={'password'}
           />
         </fieldset>
-        <Button type="primary" size="medium" onClick={loginUser}>
+        {/* <Button type="primary" size="medium" onClick={loginUser}> */}
+        <Button type="primary" size="medium">
           Войти
         </Button>
       </form>

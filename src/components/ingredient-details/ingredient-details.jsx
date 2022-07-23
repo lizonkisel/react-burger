@@ -11,6 +11,12 @@ export default function IngredientDetails() {
   // const currentIngredient = useSelector(store => store.currentIngredient);
 
   const allIngredients = useSelector(store => store.allIngredients.items);
+
+  if (!allIngredients) {
+    return ( <p className="text text_type_main-medium">Загружаем данные...</p>
+    )
+  };
+
   const currentIngredient = allIngredients.find(function(ingredient) {
     return ingredient._id === id;
   });
