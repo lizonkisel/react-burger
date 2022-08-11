@@ -15,6 +15,7 @@ import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {Button} from '@ya.praktikum/react-developer-burger-ui-components';
 
 import { addToConstructor } from '../../services/actions/constructor-ingredients.js';
+// import { CLEAR_CONSTRUCTOR } from '../../services/actions/constructor-ingredients.js';
 import {getOrder} from '../../services/actions/order.js';
 import { closeOrder} from '../../services/actions/order.js';
 
@@ -76,7 +77,8 @@ export default function BurgerConstructor () {
 
       history.replace({pathname: '/login'})
     } else {
-      dispatch(getOrder(getIngredientsIdArray()))
+      dispatch(getOrder(getIngredientsIdArray()));
+      // dispatch({type: CLEAR_CONSTRUCTOR});
     }
   }
 

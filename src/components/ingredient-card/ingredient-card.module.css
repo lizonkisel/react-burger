@@ -1,0 +1,28 @@
+.card {
+  /* width: calc(640/1920 * 100vw); */
+  width: 100%;
+  max-width: 640px;
+
+  display: flex;
+  flex-direction: row;
+  column-gap: 16px;
+  /* justify-content: space-between; */
+  align-items: center;
+
+  margin-left: 16px;
+
+  /* width: calc(640/1920) * 100vw;
+  max-width: 640px; */
+}
+
+.name {
+  /* width: calc(414/1920 * 100vw); */
+  width: 100%;
+  max-width: 414px;
+}
+
+.amount_and_price {
+  display: flex;
+  flex-direction: row;
+  column-gap: 4px;
+}

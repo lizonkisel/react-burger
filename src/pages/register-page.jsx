@@ -52,7 +52,7 @@ export default function RegisterPage() {
     <main className={styles.main}>
       <h1 className="text text_type_main-medium">Регистрация</h1>
 
-      <form className={styles.form} action="">
+      <form className={styles.form} action="" onSubmit={createUser}>
         <fieldset className={styles.fieldset}>
           <Input
               type={'text'}
@@ -78,7 +78,8 @@ export default function RegisterPage() {
               name={'password'}
             />
         </fieldset>
-        <Button type="primary" size="medium" onClick={createUser}>
+        {/* <Button type="primary" size="medium" onClick={createUser}> */}
+        <Button type="primary" size="medium">
           Зарегистрироваться
         </Button>
       </form>

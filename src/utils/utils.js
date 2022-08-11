@@ -1,6 +1,8 @@
 import { refreshToken } from "../services/actions/refreshToken";
 
 const baseUrl = 'https://norma.nomoreparties.space/api';
+const wsUrl = 'wss://norma.nomoreparties.space/orders/all';
+const defaultBunUrl = "https://code.s3.yandex.net/react/code/bun-02.png";
 
 const regExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -94,7 +96,8 @@ const fetchWithRefresh = async (url, options) => {
           ...options,
             headers: {
               ...options.headers,
-              Authotization: 'Bearer ' + refreshData.accessToken
+              // Authotization: 'Bearer ' + refreshData.accessToken
+              Authotization: refreshData.accessToken
             }
         });
         const data = await checkResponse(res);
@@ -107,6 +110,12 @@ const fetchWithRefresh = async (url, options) => {
   }
 };
 
+const statuses = {
+  'done': 'Выполнен',
+  'created': 'Создан',
+  'pending': 'Готовится'
+}
 
-export {baseUrl, regExp, checkResponse, setCookie, getCookie, fetchWithRefresh};
+
+export {baseUrl, wsUrl, defaultBunUrl, regExp, checkResponse, setCookie, getCookie, fetchWithRefresh, statuses};
 

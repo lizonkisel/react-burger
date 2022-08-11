@@ -66,6 +66,13 @@ const constructorIngredientsReducer = (state = constructorInitialState, action) 
       }
       }
     }
+    // case CLEAR_CONSTRUCTOR: {
+    //   return {
+    //     ...state,
+    //     ingredients: null,
+    //     ingredientsCount: null
+    //   }
+    // }
     default:
       return state
   }
