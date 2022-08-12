@@ -1,4 +1,4 @@
-import {baseUrl, checkResponse} from '../../utils/utils.js';
+import {baseUrl, checkResponse} from '../../utils/utils.ts';
 
 const REFRESH_TOKEN = 'REFRESH_TOKEN';
 const REFRESH_TOKEN_SUCCESS = 'REFRESH_TOKEN_SUCCESS';

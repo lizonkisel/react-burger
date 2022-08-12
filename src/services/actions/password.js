@@ -1,4 +1,4 @@
-import {baseUrl, checkResponse} from '../../utils/utils.js';
+import {baseUrl, checkResponse} from '../../utils/utils.ts';
 
 const RECOVER_PASSWORD = 'RECOVER_PASSWORD';
 const RECOVER_PASSWORD_SUCCESS = 'RECOVER_PASSWORD_SUCCESS';

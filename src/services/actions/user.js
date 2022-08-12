@@ -1,4 +1,4 @@
-import {baseUrl, getCookie, fetchWithRefresh} from '../../utils/utils.js';
+import {baseUrl, getCookie, fetchWithRefresh} from '../../utils/utils.ts';
 console.log(getCookie('token'));
 
 const GET_USER = 'GET_USER';

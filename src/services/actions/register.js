@@ -1,4 +1,4 @@
-import {baseUrl, checkResponse} from '../../utils/utils.js';
+import {baseUrl, checkResponse} from '../../utils/utils.ts';
 
 const REGISTER = 'REGISTER';
 const REGISTER_SUCCESS = 'REGISTER_SUCCESS';

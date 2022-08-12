@@ -4,7 +4,7 @@ import { compose, createStore, applyMiddleware } from 'redux';
 import { rootReducer } from '../services/reducers/index.js';
 import { socketMiddleware } from './socketMiddleware.js';
 
-import { wsUrl } from '../utils/utils.js';
+import { wsUrl } from '../utils/utils.ts';
 import { wsActions } from './actions/wsActions.js';
 
 console.log(wsActions);

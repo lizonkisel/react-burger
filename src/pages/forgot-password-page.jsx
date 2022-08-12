@@ -6,7 +6,7 @@ import styles from './inputs-pages.module.css';
 
 import {Button, Input} from '@ya.praktikum/react-developer-burger-ui-components';
 
-import {regExp} from '../utils/utils.js';
+import {regExp} from '../utils/utils.ts';
 
 import { recoverPassword } from "../services/actions/password";
 

@@ -6,14 +6,30 @@ const defaultBunUrl = "https://code.s3.yandex.net/react/code/bun-02.png";
 
 const regExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-function checkResponse(res) {
+// type TResponse = {
+//   'type': string;
+//   'url': string;
+//   'redirected': boolean;
+//   status: 200;
+//   ok: true;
+//   statusText: "OK";
+//   headers: Headers;
+//   body: ReadableStream;
+//   bodyUsed: false;
+// }
+
+function checkResponse<T>(res: Response): Promise<T> {
   console.log(res);
   console.log(res.ok);
   return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
 };
 
 // function setCookie(name, value, props) {
-  function setCookie(name, value, props) {
+  function setCookie(name: string, value: string, props?: Record<string, string | number | Date | boolean>) {
+    console.log(`name: ${name}`);
+    console.log(`value: ${value}`);
+    console.log(`props: ${props}`);
+    console.log(props);
   // // props = props || {};
   // // let exp = props.expires;
   // // if (typeof exp == 'number' && exp) {
@@ -51,7 +67,7 @@ function checkResponse(res) {
     d.setTime(d.getTime() + exp * 1000);
     exp = props.expires = d;
   }
-  if (exp && exp.toUTCString) {
+  if (exp && exp instanceof Date && exp.toUTCString) {
     props.expires = exp.toUTCString();
   }
   value = encodeURIComponent(value);
@@ -66,14 +82,14 @@ function checkResponse(res) {
   document.cookie = updatedCookie;
 };
 
-function getCookie(name) {
+function getCookie(name: string) {
   const matches = document.cookie.match(
     new RegExp('(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)')
   );
   return matches ? decodeURIComponent(matches[1]) : undefined;
 };
 
-const fetchWithRefresh = async (url, options) => {
+const fetchWithRefresh = async (url: any, options: any) => {
   try {
     const res = await fetch(url, options);
     console.log(res);
@@ -82,14 +98,18 @@ const fetchWithRefresh = async (url, options) => {
     return data;
   } catch (err) {
     console.log(err);
+    // @ts-ignore
     if (err.message === 'jwt expired') {
       const currentRefreshToken = localStorage.getItem('refreshToken');
       const refreshData = await refreshToken(currentRefreshToken);
       console.log(refreshData);
+      // @ts-ignore
       if (!refreshData.success) {
         return Promise.reject(refreshData);
       } else {
+        // @ts-ignore
         localStorage.setItem('refreshToken', refreshData.refreshToken);
+        // @ts-ignore
         setCookie('token', refreshData.accessToken.split('Bearer ')[1]);
 
         const res = await fetch(url, {
@@ -97,6 +117,7 @@ const fetchWithRefresh = async (url, options) => {
             headers: {
               ...options.headers,
               // Authotization: 'Bearer ' + refreshData.accessToken
+              // @ts-ignore
               Authotization: refreshData.accessToken
             }
         });

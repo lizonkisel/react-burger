@@ -1,4 +1,4 @@
-import {baseUrl, getCookie, checkResponse} from '../../utils/utils.js';
+import {baseUrl, getCookie, checkResponse} from '../../utils/utils.ts';
 
 const GET_ORDER = 'GET_ORDER';
 const GET_ORDER_SUCCESS = 'GET_ORDER_SUCCESS';

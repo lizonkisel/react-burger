@@ -3,7 +3,7 @@ import {LOGIN, LOGIN_SUCCESS, LOGIN_FAILED} from '../actions/login.js';
 import {RESET_PASSWORD, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_FAILED, RECOVER_PASSWORD, RECOVER_PASSWORD_SUCCESS, RECOVER_PASSWORD_FAILED, recoverPassword, resetPassword} from '../actions/password.js';
 import {GET_USER, GET_USER_SUCCESS, GET_USER_FAILED, EDIT_USER, EDIT_USER_SUCCESS, EDIT_USER_FAILED} from '../actions/user.js' ;
 import { LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAILED } from '../actions/logout.js';
-import {setCookie, getCookie} from '../../utils/utils.js';
+import {setCookie, getCookie} from '../../utils/utils.ts';
 
 const initialState = {
   isLoading: false,
