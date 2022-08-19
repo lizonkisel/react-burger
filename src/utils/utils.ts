@@ -6,18 +6,6 @@ const defaultBunUrl = "https://code.s3.yandex.net/react/code/bun-02.png";
 
 const regExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-// type TResponse = {
-//   'type': string;
-//   'url': string;
-//   'redirected': boolean;
-//   status: 200;
-//   ok: true;
-//   statusText: "OK";
-//   headers: Headers;
-//   body: ReadableStream;
-//   bodyUsed: false;
-// }
-
 function checkResponse<T>(res: Response): Promise<T> {
   console.log(res);
   console.log(res.ok);
@@ -26,39 +14,10 @@ function checkResponse<T>(res: Response): Promise<T> {
 
 // function setCookie(name, value, props) {
   function setCookie(name: string, value: string, props?: Record<string, string | number | Date | boolean>) {
-    console.log(`name: ${name}`);
-    console.log(`value: ${value}`);
-    console.log(`props: ${props}`);
-    console.log(props);
-  // // props = props || {};
-  // // let exp = props.expires;
-  // // if (typeof exp == 'number' && exp) {
-  // //   const d = new Date();
-  // //   d.setTime(d.getTime() + exp * 1000);
-  // //   exp = props.expires = d;
-  // // }
-  // // if (exp && exp.toUTCString) {
-  // //   props.expires = exp.toUTCString();
-  // // }
-  // value = value.split(' ')[1];
-  // value = encodeURIComponent(value);
-  // const updatedCookie = name + '=' + value;
-  // // let updatedCookie = name + '=' + value;
-  // // for (const propName in props) {
-  // //   updatedCookie += '; ' + propName;
-  // //   const propValue = props[propName];
-  // //   if (propValue !== true) {
-  // //     updatedCookie += '=' + propValue;
-  // //   }
-  // // }
-  // document.cookie = updatedCookie;
-
-  // console.log(value);
-  // if (value.indexOf('Bearer') === 0) {
-  //   // Отделяем схему авторизации от "полезной нагрузки токена",
-  //   // Стараемся экономить память в куках (доступно 4кб)
-  //   value = value.split('Bearer ')[1];
-  // }
+  console.log(`name: ${name}`);
+  console.log(`value: ${value}`);
+  console.log(`props: ${props}`);
+  console.log(props);
 
   props = props || {};
   let exp = props.expires;
@@ -89,35 +48,35 @@ function getCookie(name: string) {
   return matches ? decodeURIComponent(matches[1]) : undefined;
 };
 
-const fetchWithRefresh = async (url: any, options: any) => {
+
+const fetchWithRefresh = async (url: string, options: RequestInit = {}) => {
   try {
     const res = await fetch(url, options);
     console.log(res);
     const data = await checkResponse(res);
     console.log(data);
     return data;
-  } catch (err) {
-    console.log(err);
-    // @ts-ignore
-    if (err.message === 'jwt expired') {
+  } catch (error) {
+    const err = error as Response;
+    const errorData = await err.json();
+    console.log('Error data');
+    console.log(errorData);
+    if (errorData.message === 'jwt expired') {
       const currentRefreshToken = localStorage.getItem('refreshToken');
-      const refreshData = await refreshToken(currentRefreshToken);
-      console.log(refreshData);
-      // @ts-ignore
+      const newData = await refreshToken(currentRefreshToken);
+      console.log(newData);
+      const refreshData = await newData.json();
+
       if (!refreshData.success) {
         return Promise.reject(refreshData);
       } else {
-        // @ts-ignore
         localStorage.setItem('refreshToken', refreshData.refreshToken);
-        // @ts-ignore
         setCookie('token', refreshData.accessToken.split('Bearer ')[1]);
-
         const res = await fetch(url, {
           ...options,
             headers: {
               ...options.headers,
               // Authotization: 'Bearer ' + refreshData.accessToken
-              // @ts-ignore
               Authotization: refreshData.accessToken
             }
         });
