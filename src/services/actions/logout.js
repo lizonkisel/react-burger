@@ -1,8 +1,9 @@
 import {baseUrl, checkResponse} from '../../utils/utils.ts';
+import {LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAILED} from '../constants/index.ts';
 
-const LOGOUT = 'LOGOUT';
-const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
-const LOGOUT_FAILED = 'LOGOUT_FAILED';
+// const LOGOUT = 'LOGOUT';
+// const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+// const LOGOUT_FAILED = 'LOGOUT_FAILED';
 
 function logout() {
 
@@ -44,4 +45,5 @@ function logout() {
   }
 }
 
-export {LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAILED, logout};
+// export {LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAILED, logout};
+export {logout};

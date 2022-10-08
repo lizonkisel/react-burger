@@ -9,7 +9,7 @@ import {LoginPage, ConstructorPage, RegisterPage, ForgotPasswordPage, ResetPassw
 
 import { getUser } from '../../services/actions/user';
 import { getCookie } from '../../utils/utils';
-import {getAllIngredients} from '../../services/actions/all-ingredients.js';
+import {getAllIngredients} from '../../services/actions/all-ingredients.ts';
 
 import Modal from '../../components/modal/modal.jsx';
 import IngredientDetails from "../../components/ingredient-details/ingredient-details";

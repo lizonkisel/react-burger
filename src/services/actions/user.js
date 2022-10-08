@@ -1,13 +1,15 @@
 import {baseUrl, getCookie, fetchWithRefresh} from '../../utils/utils.ts';
+import {GET_USER, GET_USER_SUCCESS, GET_USER_FAILED, EDIT_USER, EDIT_USER_SUCCESS, EDIT_USER_FAILED} from '../constants/index.ts';
+
 console.log(getCookie('token'));
 
-const GET_USER = 'GET_USER';
-const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
-const GET_USER_FAILED = 'GET_USER_FAILED';
+// const GET_USER = 'GET_USER';
+// const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
+// const GET_USER_FAILED = 'GET_USER_FAILED';
 
-const EDIT_USER = 'EDIT_USER';
-const EDIT_USER_SUCCESS = 'EDIT_USER_SUCCESS';
-const EDIT_USER_FAILED = 'EDIT_USER_FAILED';
+// const EDIT_USER = 'EDIT_USER';
+// const EDIT_USER_SUCCESS = 'EDIT_USER_SUCCESS';
+// const EDIT_USER_FAILED = 'EDIT_USER_FAILED';
 
 function getUser() {
 
@@ -71,4 +73,5 @@ function editUser(newUserData) {
   }
 }
 
-export {GET_USER, GET_USER_SUCCESS, GET_USER_FAILED, EDIT_USER, EDIT_USER_SUCCESS, EDIT_USER_FAILED, getUser, editUser};
+// export {GET_USER, GET_USER_SUCCESS, GET_USER_FAILED, EDIT_USER, EDIT_USER_SUCCESS, EDIT_USER_FAILED, getUser, editUser};
+export {getUser, editUser};

@@ -1,8 +1,10 @@
 import {baseUrl, checkResponse} from '../../utils/utils.ts';
 
-const LOGIN = 'LOGIN';
-const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-const LOGIN_FAILED = 'LOGIN_FAILED';
+import {LOGIN, LOGIN_SUCCESS, LOGIN_FAILED} from '../constants/index.ts';
+
+// const LOGIN = 'LOGIN';
+// const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+// const LOGIN_FAILED = 'LOGIN_FAILED';
 
 function login(email, password) {
 
@@ -52,4 +54,5 @@ function login(email, password) {
   }
 }
 
-export {LOGIN, LOGIN_SUCCESS, LOGIN_FAILED, login};
+// export {LOGIN, LOGIN_SUCCESS, LOGIN_FAILED, login};
+export {login};

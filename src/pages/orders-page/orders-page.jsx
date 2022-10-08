@@ -5,7 +5,7 @@ import styles from './orders-page.module.css';
 
 import ProfileMenu from '../../components/profile-menu/profile-menu.jsx';
 import OrderCard from "../../components/order-card/order-card";
-import { WS_CONNECTION_CLOSED } from "../../services/actions/wsActionTypes";
+import { WS_CONNECTION_CLOSED } from "../../services/constants/wsActionTypes";
 import { wsInitWithToken, wsActions } from "../../services/actions/wsActions";
 import { getCookie } from "../../utils/utils";
 

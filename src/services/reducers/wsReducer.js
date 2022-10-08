@@ -6,7 +6,7 @@ import {
   WS_CONNECTION_CLOSED,
   WS_GET_MESSAGE,
   WS_RESET_ERROR
-} from '../actions/wsActionTypes.js';
+} from '../constants/wsActionTypes.ts';
 
 
 const initialState = {

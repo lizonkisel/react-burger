@@ -7,7 +7,7 @@ import styles from './order-details-page.module.css';
 import Modal from '../../components/modal/modal.jsx';
 import FullOrderCard from "../../components/full-order-card/full-order-card.jsx";
 
-import { WS_CONNECTION_START, WS_CONNECTION_CLOSED } from "../../services/actions/wsActionTypes";
+import { WS_CONNECTION_START, WS_CONNECTION_CLOSED } from "../../services/constants/wsActionTypes";
 import { wsInitWithToken } from "../../services/actions/wsActions";
 
 import { getCookie } from "../../utils/utils";

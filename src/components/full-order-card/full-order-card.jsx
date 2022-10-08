@@ -11,7 +11,7 @@ import IngredientMini from "../ingredient-mini/ingredient-mini";
 import IngredientCard from "../ingredient-card/ingredient-card";
 import { statuses } from "../../utils/utils";
 
-import { WS_CONNECTION_START, WS_CONNECTION_CLOSED } from "../../services/actions/wsActionTypes";
+import { WS_CONNECTION_START, WS_CONNECTION_CLOSED } from "../../services/constants/wsActionTypes";
 import { wsActions } from "../../services/actions/wsActions";
 
 export default function FullOrderCard() {

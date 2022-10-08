@@ -1,8 +1,9 @@
 import {baseUrl, checkResponse} from '../../utils/utils.ts';
+import {REFRESH_TOKEN, REFRESH_TOKEN_SUCCESS, REFRESH_TOKEN_FAILED} from '../constants/index.ts';
 
-const REFRESH_TOKEN = 'REFRESH_TOKEN';
-const REFRESH_TOKEN_SUCCESS = 'REFRESH_TOKEN_SUCCESS';
-const REFRESH_TOKEN_FAILED = 'REFRESH_TOKEN_FAILED';
+// const REFRESH_TOKEN = 'REFRESH_TOKEN';
+// const REFRESH_TOKEN_SUCCESS = 'REFRESH_TOKEN_SUCCESS';
+// const REFRESH_TOKEN_FAILED = 'REFRESH_TOKEN_FAILED';
 
 const refreshToken = (refreshToken) => {
   console.log(localStorage.getItem('refreshToken'));
@@ -26,4 +27,5 @@ const refreshToken = (refreshToken) => {
   .then(checkResponse)
 };
 
-export {REFRESH_TOKEN, REFRESH_TOKEN_SUCCESS, REFRESH_TOKEN_FAILED, refreshToken};
+// export {REFRESH_TOKEN, REFRESH_TOKEN_SUCCESS, REFRESH_TOKEN_FAILED, refreshToken};
+export {refreshToken};

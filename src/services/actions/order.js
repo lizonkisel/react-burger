@@ -1,9 +1,10 @@
 import {baseUrl, getCookie, checkResponse} from '../../utils/utils.ts';
+import { GET_ORDER, GET_ORDER_SUCCESS, GET_ORDER_FAILED, CLOSE_ORDER } from '../constants/index.ts';
 
-const GET_ORDER = 'GET_ORDER';
-const GET_ORDER_SUCCESS = 'GET_ORDER_SUCCESS';
-const GET_ORDER_FAILED = 'GET_ORDER_FAILED';
-const CLOSE_ORDER = "CLOSE_ORDER";
+// const GET_ORDER = 'GET_ORDER';
+// const GET_ORDER_SUCCESS = 'GET_ORDER_SUCCESS';
+// const GET_ORDER_FAILED = 'GET_ORDER_FAILED';
+// const CLOSE_ORDER = "CLOSE_ORDER";
 
 function getOrder(ingredientsIdArray) {
   return function(dispatch) {
@@ -53,4 +54,5 @@ function closeOrder() {
   }
 }
 
-export { GET_ORDER, GET_ORDER_SUCCESS, GET_ORDER_FAILED, CLOSE_ORDER, getOrder, closeOrder };
+// export { GET_ORDER, GET_ORDER_SUCCESS, GET_ORDER_FAILED, CLOSE_ORDER, getOrder, closeOrder };
+export { getOrder, closeOrder };

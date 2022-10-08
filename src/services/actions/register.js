@@ -1,8 +1,9 @@
 import {baseUrl, checkResponse} from '../../utils/utils.ts';
+import {REGISTER, REGISTER_SUCCESS, REGISTER_FAILED} from '../constants/index.ts';
 
-const REGISTER = 'REGISTER';
-const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
-const REGISTER_FAILED = 'REGISTER_FAILED';
+// const REGISTER = 'REGISTER';
+// const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+// const REGISTER_FAILED = 'REGISTER_FAILED';
 
 function register(name, email, password) {
   console.log(name, email, password);
@@ -52,4 +53,5 @@ function register(name, email, password) {
   }
 }
 
-export {REGISTER, REGISTER_SUCCESS, REGISTER_FAILED, register};
+// export {REGISTER, REGISTER_SUCCESS, REGISTER_FAILED, register};
+export {register};

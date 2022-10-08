@@ -1,4 +1,5 @@
-import {GET_ORDER, GET_ORDER_SUCCESS, GET_ORDER_FAILED, CLOSE_ORDER} from '../actions/order.js';
+// import {GET_ORDER, GET_ORDER_SUCCESS, GET_ORDER_FAILED, CLOSE_ORDER} from '../actions/order.js';
+import {GET_ORDER, GET_ORDER_SUCCESS, GET_ORDER_FAILED, CLOSE_ORDER} from '../constants/index.ts';
 
 const orderInitialState = {
   isOrderModalClosed: true,
