@@ -60,9 +60,8 @@ function getAllIngredientsFailedAction(): IGetAllIngredientsFailedAction {
 };
 
 
-// Прописать типизацию AppThunk
-
-function getAllIngredients() {
+// function getAllIngredients() {
+const getAllIngredients: AppThunk = () => {
   return function(dispatch: AppDispatch) {
     // dispatch({
     //   type: GET_ALL_INGREDIENTS,
@@ -73,7 +72,8 @@ function getAllIngredients() {
 
     fetch(`${baseUrl}/ingredients`)
       .then(checkResponse)
-      .then (res => {
+      // Избавиться от any. Но не ясно, что тут писать
+      .then ((res: any) => {
         console.log(res);
         // dispatch({
         //   type: GET_ALL_INGREDIENTS_SUCCESS,
@@ -82,7 +82,7 @@ function getAllIngredients() {
         //   items: res.data
         // })
 
-        // Ругается, видимо, потому, что надо вынести fetch-запрос в отдельную функцию
+        // Ругается, видимо, потому, что надо вынести fetch-запрос в отдельную функцию - кажется, нет. Какие-то проблемы с типом res
         dispatch(getAllIngredientsSuccessAction(res.data))
       })
       .catch(err =>
