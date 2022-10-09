@@ -10,7 +10,7 @@ import {ingredientPropTypes} from '../../utils/prop-types.js';
 import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components';
 import {DragIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 
-import {deleteFromConstructor, reorderIngredient} from '../../services/actions/constructor-ingredients.js';
+import {deleteFromConstructor, reorderIngredient} from '../../services/actions/constructor-ingredients';
 
 export default function FillingIngredient({ item, index }) {
 

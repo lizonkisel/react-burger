@@ -6,7 +6,7 @@ import {
   WS_CONNECTION_CLOSED,
   WS_GET_MESSAGE,
   WS_RESET_ERROR
-} from '../constants/wsActionTypes.ts';
+} from '../constants/wsActionTypes';
 
 export const wsActions = {
   wsInit: WS_CONNECTION_START,
@@ -23,7 +23,14 @@ export const wsActions = {
   wsResetError: WS_RESET_ERROR
 };
 
-export const wsInitWithToken = (url) => {
+interface IWsConnectionStartWithToken {
+  readonly type: typeof WS_CONNECTION_START_WITH_TOKEN,
+  payload: string
+}
+
+export type TWsActions = IWsConnectionStartWithToken;
+
+export const wsInitWithToken = (url: string): IWsConnectionStartWithToken => {
   return {
     type: WS_CONNECTION_START_WITH_TOKEN,
     payload: url,

@@ -5,7 +5,7 @@ import { rootReducer } from '../services/reducers/index.js';
 import { socketMiddleware } from './socketMiddleware.js';
 
 import { wsUrl } from '../utils/utils.ts';
-import { wsActions } from './actions/wsActions.js';
+import { wsActions } from './actions/wsActions';
 
 console.log(wsActions);
 

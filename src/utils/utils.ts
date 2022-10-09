@@ -63,7 +63,8 @@ const fetchWithRefresh = async (url: string, options: RequestInit = {}) => {
     console.log(errorData);
     if (errorData.message === 'jwt expired') {
       const currentRefreshToken = localStorage.getItem('refreshToken');
-      const newData = await refreshToken(currentRefreshToken);
+      // Убрать any
+      const newData: any = await refreshToken(currentRefreshToken);
       console.log(newData);
       const refreshData = await newData.json();
 

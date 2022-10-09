@@ -11,7 +11,7 @@ import {ingredientPropTypes} from '../../utils/prop-types.js';
 import {Counter} from '@ya.praktikum/react-developer-burger-ui-components';
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 
-import {getCurrentIngredient} from '../../services/actions/current-ingredient.js';
+import {getCurrentIngredient} from '../../services/actions/current-ingredient';
 
 export default function DraggableIngredient({ingredient}) {
 

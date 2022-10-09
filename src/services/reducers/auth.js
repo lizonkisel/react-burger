@@ -5,7 +5,7 @@ import {LOGIN, LOGIN_SUCCESS, LOGIN_FAILED,
   REGISTER, REGISTER_SUCCESS, REGISTER_FAILED,
   GET_USER, GET_USER_SUCCESS, GET_USER_FAILED, EDIT_USER, EDIT_USER_SUCCESS, EDIT_USER_FAILED
 } from '../constants/index.ts';
-import {recoverPassword, resetPassword} from '../actions/password.js';
+import {recoverPassword, resetPassword} from '../actions/password';
 import {setCookie, getCookie} from '../../utils/utils.ts';
 
 const initialState = {

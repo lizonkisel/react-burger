@@ -14,10 +14,10 @@ import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-compon
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {Button} from '@ya.praktikum/react-developer-burger-ui-components';
 
-import { addToConstructor } from '../../services/actions/constructor-ingredients.js';
+import { addToConstructor } from '../../services/actions/constructor-ingredients';
 // import { CLEAR_CONSTRUCTOR } from '../../services/actions/constructor-ingredients.js';
-import {getOrder} from '../../services/actions/order.js';
-import { closeOrder} from '../../services/actions/order.js';
+import {getOrder} from '../../services/actions/order';
+import { closeOrder} from '../../services/actions/order';
 
 
 export default function BurgerConstructor () {
