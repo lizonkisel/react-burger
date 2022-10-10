@@ -4,11 +4,37 @@ import {LOGIN, LOGIN_SUCCESS, LOGIN_FAILED,
   RECOVER_PASSWORD, RECOVER_PASSWORD_SUCCESS, RECOVER_PASSWORD_FAILED,
   REGISTER, REGISTER_SUCCESS, REGISTER_FAILED,
   GET_USER, GET_USER_SUCCESS, GET_USER_FAILED, EDIT_USER, EDIT_USER_SUCCESS, EDIT_USER_FAILED
-} from '../constants/index.ts';
-import {recoverPassword, resetPassword} from '../actions/password';
-import {setCookie, getCookie} from '../../utils/utils.ts';
+} from '../constants/index';
+import { TLoginActions } from '../actions/login';
+import { TLogoutActions } from '../actions/logout';
+import { TPasswordActions } from '../actions/password';
+import { TRegisterActions } from '../actions/register';
+import { TUserActions } from '../actions/user';
 
-const initialState = {
+import { TUser } from '../types/server-data';
+
+import {recoverPassword, resetPassword} from '../actions/password';
+import {setCookie, getCookie} from '../../utils/utils';
+
+type TAuthActions =
+  TLoginActions |
+  TLogoutActions |
+  TPasswordActions |
+  TRegisterActions |
+  TUserActions
+;
+
+type TAuthState = {
+  isLoading: boolean;
+  isFailed: boolean,
+  user: TUser | null,
+  accessToken: string | null,
+  isAuth: boolean,
+  isAuthChecked: boolean,
+  isLogoutChecked: boolean
+}
+
+const initialState: TAuthState = {
   isLoading: false,
   isFailed: false,
   user: null,
@@ -16,10 +42,9 @@ const initialState = {
   isAuth: false,
   isAuthChecked: false,
   isLogoutChecked: false
-  // isLogoutChecked: false
 };
 
-const authReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action: TAuthActions): TAuthState => {
   switch (action.type) {
     case REGISTER: {
       return {

@@ -2,6 +2,7 @@ import {baseUrl, getCookie, fetchWithRefresh} from '../../utils/utils';
 import { AppDispatch, AppThunk } from '../types';
 
 import {GET_USER, GET_USER_SUCCESS, GET_USER_FAILED, EDIT_USER, EDIT_USER_SUCCESS, EDIT_USER_FAILED} from '../constants/index';
+import { TUser } from '../types/server-data';
 
 console.log(getCookie('token'));
 
@@ -21,7 +22,7 @@ interface IGetUserAction {
 
 interface IGetUserSuccessAction {
   readonly type: typeof GET_USER_SUCCESS,
-  readonly user: {email: string; name: string},
+  readonly user: TUser,
   readonly isAuth: true,
   readonly isAuthChecked: true,
   readonly isLogoutChecked: true
@@ -40,7 +41,7 @@ interface IEditUserAction {
 
 interface IEditUserSuccessAction {
   readonly type: typeof EDIT_USER_SUCCESS,
-  readonly user: {email: string; name: string}
+  readonly user: TUser
 }
 
 interface IEditUserFailedAction {

@@ -4,6 +4,7 @@
 import {GET_CURRENT_INGREDIENT, GET_CURRENT_INGREDIENT_SUCCESS, GET_CURRENT_INGREDIENT_FAILED} from '../constants/index.ts';
 
 
+
 const currentIngredientReducer = (state = null, action) => {
   switch (action.type) {
     case GET_CURRENT_INGREDIENT: {

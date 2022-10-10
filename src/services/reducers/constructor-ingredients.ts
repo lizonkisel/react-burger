@@ -1,9 +1,22 @@
 // import { ADD_TO_CONSTRUCTOR, DELETE_FROM_CONSTRUCTOR, REORDER_INGREDIENT } from '../actions/constructor-ingredients.js';
-import { ADD_TO_CONSTRUCTOR, DELETE_FROM_CONSTRUCTOR, REORDER_INGREDIENT } from '../constants/index.ts';
+import { ADD_TO_CONSTRUCTOR, DELETE_FROM_CONSTRUCTOR, REORDER_INGREDIENT } from '../constants/index';
+import { TIngredientInConstructorActions } from '../actions/constructor-ingredients';
+
+import { TIngredient } from '../types/server-data';
+import { TIngredientWithCount } from '../types/server-data';
+
 import update from 'immutability-helper'
 // import { v4 as uuidv4 } from 'uuid';
 
-const constructorInitialState = {
+type TConstructorState = {
+  ingredients: {
+    bun: TIngredient | null;
+    fillings: ReadonlyArray<TIngredient>
+  };
+  ingredientsCount: ReadonlyArray<TIngredientWithCount>
+};
+
+const constructorInitialState: TConstructorState = {
   ingredients: {
     bun: null,
     fillings: []
@@ -11,7 +24,7 @@ const constructorInitialState = {
   ingredientsCount: []
 }
 
-const constructorIngredientsReducer = (state = constructorInitialState, action) => {
+const constructorIngredientsReducer = (state = constructorInitialState, action: TIngredientInConstructorActions): TConstructorState => {
   switch (action.type) {
     case ADD_TO_CONSTRUCTOR: {
 

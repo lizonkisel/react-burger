@@ -2,6 +2,7 @@ import {baseUrl, checkResponse} from '../../utils/utils';
 import { AppDispatch, AppThunk } from '../types';
 
 import {REGISTER, REGISTER_SUCCESS, REGISTER_FAILED} from '../constants/index';
+import { TUser } from '../types/server-data';
 
 // const REGISTER = 'REGISTER';
 // const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
@@ -18,7 +19,7 @@ interface IRegisterSuccessAction {
   readonly type: typeof REGISTER_SUCCESS,
   readonly isLoading: false,
   readonly isFailed: false,
-  readonly user: string,
+  readonly user: TUser,
   readonly accessToken: string,
   readonly refreshToken: string,
   readonly isAuth: true

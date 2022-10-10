@@ -1,13 +1,22 @@
 // import {GET_ALL_INGREDIENTS, GET_ALL_INGREDIENTS_SUCCESS, GET_ALL_INGREDIENTS_FAILED} from '../actions/all-ingredients.js';
-import {GET_ALL_INGREDIENTS, GET_ALL_INGREDIENTS_SUCCESS, GET_ALL_INGREDIENTS_FAILED} from '../constants/index.ts';
+import {GET_ALL_INGREDIENTS, GET_ALL_INGREDIENTS_SUCCESS, GET_ALL_INGREDIENTS_FAILED} from '../constants/index';
+import { TAllIngredientsActions } from '../actions/all-ingredients';
+import {TIngredient} from '../types/server-data';
 
-const initialState = {
+type TAllIngredientsState = {
+  isLoading: boolean;
+  isFailed: boolean,
+  items: ReadonlyArray<TIngredient> | null
+};
+
+const initialState: TAllIngredientsState = {
   isLoading: false,
   isFailed: false,
   items: null
 };
 
-const allIngredientsReducer = (state = initialState, action) => {
+
+const allIngredientsReducer = (state = initialState, action: TAllIngredientsActions): TAllIngredientsState => {
   switch (action.type) {
     case GET_ALL_INGREDIENTS: {
       return {

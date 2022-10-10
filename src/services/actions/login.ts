@@ -3,6 +3,7 @@ import {baseUrl, checkResponse} from '../../utils/utils';
 import { AppDispatch, AppThunk } from '../types';
 
 import {LOGIN, LOGIN_SUCCESS, LOGIN_FAILED} from '../constants/index';
+import { TUser } from '../types/server-data';
 
 // const LOGIN = 'LOGIN';
 // const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -19,7 +20,7 @@ interface ILoginSuccessAction {
   readonly type: typeof LOGIN_SUCCESS,
   readonly isLoading: false,
   readonly isFailed: false,
-  readonly user: string,
+  readonly user: TUser,
   readonly accessToken: string,
   readonly refreshToken: string,
   readonly isAuth: true,

@@ -19,7 +19,7 @@ interface IGetOrderSuccessAction {
   readonly type: typeof GET_ORDER_SUCCESS,
   readonly isOrderModalClosed: false,
   readonly isOrderSent: false,
-  readonly isOrderRejectedd: false,
+  readonly isOrderRejected: false,
   readonly number: number
 }
 
@@ -45,7 +45,7 @@ function getOrderSuccessAction(res: any): IGetOrderSuccessAction {
     type: GET_ORDER_SUCCESS,
     isOrderModalClosed: false,
     isOrderSent: false,
-    isOrderRejectedd: false,
+    isOrderRejected: false,
     number: res.order.number
   }
 };

@@ -11,4 +11,16 @@ export type TIngredient = {
   readonly image_mobile: string;
   readonly image_large: string;
   readonly __v: number;
-}
+  readonly uId?: string
+};
+
+export type TIngredientWithCount = {
+  itemId: string;
+  count: number
+};
+
+
+export type TUser = {
+  readonly email: string;
+  readonly name: string
+};
