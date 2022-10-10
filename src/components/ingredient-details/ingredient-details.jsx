@@ -8,8 +8,6 @@ export default function IngredientDetails() {
 
   const {id} = useParams();
 
-  // const currentIngredient = useSelector(store => store.currentIngredient);
-
   const allIngredients = useSelector(store => store.allIngredients.items);
 
   if (!allIngredients) {

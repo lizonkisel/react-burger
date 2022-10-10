@@ -99,8 +99,6 @@ export default function FullOrderCard() {
   const cost = priceArray.reduce((sum, price) => sum + price, 0);
 
 
-  // const currentIngredient = useSelector(store => store.currentIngredient);
-
   if (!orders) {
     return ( <p className="text text_type_main-medium">Загружаем данные...</p>
     )

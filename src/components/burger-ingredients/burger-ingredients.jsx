@@ -9,7 +9,6 @@ import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
 import {IngredientVariants} from '../ingredient-variants/ingredient-variants.jsx';
 import Modal from '../modal/modal.jsx';
 import IngredientDetails from '../ingredient-details/ingredient-details.jsx';
-import {getCurrentIngredient} from '../../services/actions/current-ingredient'
 
 export default function BurgerIngredients() {
 
@@ -61,8 +60,6 @@ export default function BurgerIngredients() {
     return ingredient.type === "main";
   })
 
-  const ingredientInModal = useSelector(store => store.currentIngredient);
-
   return (
     <>
       <section className={burgerIngredients.section}>
@@ -84,11 +81,6 @@ export default function BurgerIngredients() {
           <IngredientVariants ingredientName='Начинки' listOfIngredients={mainList} titleId='mains' ref={mainRef}/>
         </article>
       </section>
-
-      {/* {ingredientInModal &&
-      <Modal title="Детали ингредиента" onClose={() => dispatch(getCurrentIngredient(null))}>
-        <IngredientDetails />
-      </Modal>} */}
     </>
   )
 }

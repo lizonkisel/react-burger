@@ -11,8 +11,6 @@ import {ingredientPropTypes} from '../../utils/prop-types.js';
 import {Counter} from '@ya.praktikum/react-developer-burger-ui-components';
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 
-import {getCurrentIngredient} from '../../services/actions/current-ingredient';
-
 export default function DraggableIngredient({ingredient}) {
 
   const ingredientsCount = useSelector(store => store.constructorIngredients.ingredientsCount);
@@ -35,10 +33,6 @@ export default function DraggableIngredient({ingredient}) {
 
   const dispatch = useDispatch();
 
-  function chooseIngredient(ingredient) {
-    dispatch(getCurrentIngredient(ingredient));
-  };
-
   const location = useLocation();
 
   const [, dragRef] = useDrag({
@@ -47,7 +41,6 @@ export default function DraggableIngredient({ingredient}) {
   });
 
   return (
-    // <li className={` ${styles.card}`} onClick={() => {chooseIngredient(ingredient)}} ref={dragRef} draggable>
     <li className={` ${styles.card}`} ref={dragRef} draggable>
       {/* <Link className={styles.link} to={{pathname: `/ingredients/${id}`, state: { prevPath: location.pathname }}}> */}
       <Link className={styles.link} to={{pathname: `/ingredients/${id}`, state: {background: location}}}>

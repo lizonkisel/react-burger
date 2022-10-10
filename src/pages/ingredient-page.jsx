@@ -38,13 +38,4 @@ export default function IngredientPage() {
       </main>
     )
   // };
-
-  // return (
-  //   <main>
-  //     {/* <Modal title="Детали ингредиента" onClose={() => dispatch(getCurrentIngredient(null))}> */}
-  //     <Modal title="Детали ингредиента" onClose={closeIngredientModal}>
-  //       <IngredientDetails />
-  //     </Modal>
-  //   </main>
-  // )
 }

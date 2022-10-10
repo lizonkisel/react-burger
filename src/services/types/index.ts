@@ -3,7 +3,6 @@ import { Action, ActionCreator } from 'redux';
 import { store } from '../store';
 import {TAllIngredientsActions} from '../actions/all-ingredients';
 import { TIngredientInConstructorActions } from '../actions/constructor-ingredients';
-import { TCurrentIngredientAction } from '../actions/current-ingredient';
 import { TLoginActions } from '../actions/login';
 import { TLogoutActions } from '../actions/logout';
 import { TOrderActions } from '../actions/order';
@@ -19,7 +18,6 @@ import { useDispatch as dispatchHook } from 'react-redux';
 type TApplicationActions =
   TAllIngredientsActions |
   TIngredientInConstructorActions |
-  TCurrentIngredientAction |
   TLoginActions |
   TLogoutActions |
   TOrderActions |
