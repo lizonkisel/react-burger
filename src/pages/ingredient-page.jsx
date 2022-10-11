@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
+import { useSelector } from '../services/hooks';
 import { useHistory, useLocation } from 'react-router-dom';
 
 import Modal from '../components/modal/modal.jsx';

@@ -1,5 +1,6 @@
 import React, { useRef }  from 'react';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
+import { useDispatch } from '../../services/hooks';
 import { useDrag, useDrop } from 'react-dnd';
 
 import styles from './filling-ingredient.module.css';

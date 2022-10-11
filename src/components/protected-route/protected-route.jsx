@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Redirect, useLocation } from 'react-router-dom';
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
+import { useSelector } from '../../services/hooks';
 
 export default function ProtectedRoute({ children, ...rest }) {
 

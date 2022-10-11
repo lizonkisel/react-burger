@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+// import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from '../../services/hooks';
 import { useDrop } from 'react-dnd';
 import {useHistory} from 'react-router-dom';
 // import { v4 as uuidv4 } from 'uuid';

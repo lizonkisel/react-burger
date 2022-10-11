@@ -1,5 +1,6 @@
 import React, { useEffect, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../../services/hooks';
 import { Switch, BrowserRouter, Route, useLocation, useHistory } from 'react-router-dom';
 
 import AppHeader from '../app-header/app-header.jsx';
@@ -14,6 +15,7 @@ import {getAllIngredients} from '../../services/actions/all-ingredients.ts';
 import Modal from '../../components/modal/modal.jsx';
 import IngredientDetails from "../../components/ingredient-details/ingredient-details";
 import FullOrderCard from '../full-order-card/full-order-card.jsx';
+
 
 
 function App() {

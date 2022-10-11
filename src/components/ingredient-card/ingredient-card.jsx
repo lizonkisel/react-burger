@@ -1,6 +1,7 @@
 import React from "react";
 
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
+import { useSelector } from '../../services/hooks';
 import PropTypes from 'prop-types';
 
 import styles from './ingredient-card.module.css';

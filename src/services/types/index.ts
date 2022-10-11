@@ -11,7 +11,7 @@ import { TRegisterActions } from '../actions/register';
 import { TUserActions } from '../actions/user';
 import { TWsActions } from '../actions/wsActions';
 
-import { useDispatch as dispatchHook } from 'react-redux';
+// import { useDispatch as dispatchHook } from 'react-redux';
 
 
 // TApplicationActions дополнить всеми типами экшенов

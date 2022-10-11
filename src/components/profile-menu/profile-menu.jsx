@@ -1,5 +1,6 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
+import { useDispatch } from '../../services/hooks';
 import { NavLink, useHistory } from 'react-router-dom';
 
 import styles from './profile-menu.module.css';
