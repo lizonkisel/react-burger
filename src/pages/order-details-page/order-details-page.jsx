@@ -8,7 +8,7 @@ import Modal from '../../components/modal/modal.jsx';
 import FullOrderCard from "../../components/full-order-card/full-order-card.jsx";
 
 import { WS_CONNECTION_START, WS_CONNECTION_CLOSED } from "../../services/constants/wsActionTypes";
-import { wsInitWithToken } from "../../services/actions/wsActions";
+import { wsInitAction, wsInitWithTokenAction } from "../../services/actions/wsActions";
 
 import { getCookie } from "../../utils/utils";
 
@@ -32,8 +32,8 @@ export default function OrderDetailsPage({ secured }) {
 
   useEffect(() => {
     secured
-    ? dispatch(wsInitWithToken(`wss://norma.nomoreparties.space/orders?token=${accessToken}`))
-    : dispatch({type: WS_CONNECTION_START});
+    ? dispatch(wsInitWithTokenAction(`wss://norma.nomoreparties.space/orders?token=${accessToken}`))
+    : dispatch(wsInitAction());
   }, [dispatch, accessToken]);
 
   console.log("Order Details Page");

@@ -6,7 +6,8 @@ import styles from './orders-page.module.css';
 import ProfileMenu from '../../components/profile-menu/profile-menu.jsx';
 import OrderCard from "../../components/order-card/order-card";
 import { WS_CONNECTION_CLOSED } from "../../services/constants/wsActionTypes";
-import { wsInitWithToken, wsActions } from "../../services/actions/wsActions";
+import { wsActions } from "../../services/constants/wsActionTypes";
+import { wsInitWithTokenAction, wsCloseAction } from "../../services/actions/wsActions";
 import { getCookie } from "../../utils/utils";
 
 
@@ -20,9 +21,9 @@ export default function OrdersPage() {
   const { orders, wsConnected, total, totalToday} = useSelector(store => store.ws);
 
   useEffect(() => {
-    dispatch(wsInitWithToken(`wss://norma.nomoreparties.space/orders?token=${accessToken}`));
+    dispatch(wsInitWithTokenAction(`wss://norma.nomoreparties.space/orders?token=${accessToken}`));
     return () => {
-      dispatch({type: WS_CONNECTION_CLOSED});
+      dispatch(wsCloseAction());
     };
   }, [dispatch, accessToken]);
 // }, []);

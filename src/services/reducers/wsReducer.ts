@@ -1,24 +1,32 @@
 import {
-  WS_CONNECTION_START,
-  WS_CONNECTION_START_WITH_TOKEN,
   WS_CONNECTION_SUCCESS,
   WS_CONNECTION_ERROR,
   WS_CONNECTION_CLOSED,
   WS_GET_MESSAGE,
   WS_RESET_ERROR
-} from '../constants/wsActionTypes.ts';
+} from '../constants/wsActionTypes';
 
+import { TOrder } from '../types/server-data';
+import { TWsActions } from '../actions/wsActions';
 
-const initialState = {
+type TWsState = {
+  wsConnected: boolean,
+  orders: ReadonlyArray<TOrder> | null,
+  total: number | null,
+  totalToday: number | null,
+  // кажется, для error нужно прописать ещё какой-то тип
+  error: undefined
+};
+
+const initialState: TWsState = {
   wsConnected: false,
-  // messages: [],
   orders: null,
   total: null,
   totalToday: null,
   error: undefined
 };
 
-export const wsReducer = (state = initialState, action) => {
+export const wsReducer = (state = initialState, action: TWsActions): TWsState => {
   switch (action.type) {
 
     // case WS_CONNECTION_START:
@@ -60,9 +68,9 @@ export const wsReducer = (state = initialState, action) => {
 
       const allOrders = action.payload.orders;
       console.log(allOrders);
-      const rightOrders = [];
+      const rightOrders: Array<TOrder> = [];
 
-      allOrders.forEach((order) => {
+      allOrders.forEach((order: TOrder) => {
         if (!order.ingredients.includes(null)) {
           rightOrders.push(order);
         }
@@ -82,15 +90,15 @@ export const wsReducer = (state = initialState, action) => {
 
       };
 
-      case WS_RESET_ERROR:
-        return {
-          ...state,
-          wsConnected: false,
-          orders: null,
-          total: null,
-          totalToday: null,
-          error: undefined
-        }
+      // case WS_RESET_ERROR:
+      //   return {
+      //     ...state,
+      //     wsConnected: false,
+      //     orders: null,
+      //     total: null,
+      //     totalToday: null,
+      //     error: undefined
+      //   }
 
     default:
       return state;

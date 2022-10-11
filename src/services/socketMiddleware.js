@@ -1,3 +1,5 @@
+import { wsConnectionSuccessAction, wsGetMessageAction, wsErrorAction, wsCloseAction } from './actions/wsActions';
+
 export const socketMiddleware = (wsUrl, wsActions) => {
   return store => {
     let socket = null;
@@ -26,13 +28,15 @@ export const socketMiddleware = (wsUrl, wsActions) => {
 
       if (socket) {
         socket.onopen = event => {
-          dispatch({ type: onOpen, payload: event });
+          // dispatch({ type: onOpen, payload: event });
+          dispatch(wsConnectionSuccessAction(event))
         };
 
         socket.onerror = event => {
           console.log(event);
           console.log(`Ошибка ${event.message}`)
-          dispatch({ type: onError, payload: event });
+          // dispatch({ type: onError, payload: event });
+          dispatch(wsErrorAction(event));
         };
 
         socket.onmessage = event => {
@@ -42,11 +46,13 @@ export const socketMiddleware = (wsUrl, wsActions) => {
 
           console.log(parsedData);
 
-          dispatch({ type: onMessage, payload: restParsedData });
+          // dispatch({ type: onMessage, payload: restParsedData });
+          dispatch(wsGetMessageAction(restParsedData));
         };
 
         socket.onclose = event => {
-          dispatch({ type: onClose, payload: event });
+          // dispatch({ type: onClose, payload: event });
+          dispatch(wsCloseAction())
         };
 
         console.log(socket);

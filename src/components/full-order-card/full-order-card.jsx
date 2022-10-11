@@ -12,7 +12,7 @@ import IngredientCard from "../ingredient-card/ingredient-card";
 import { statuses } from "../../utils/utils";
 
 import { WS_CONNECTION_START, WS_CONNECTION_CLOSED } from "../../services/constants/wsActionTypes";
-import { wsActions } from "../../services/actions/wsActions";
+import { wsActions } from "../../services/constants/wsActionTypes";
 
 export default function FullOrderCard() {
 
