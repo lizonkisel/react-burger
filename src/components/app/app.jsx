@@ -10,10 +10,10 @@ import {LoginPage, ConstructorPage, RegisterPage, ForgotPasswordPage, ResetPassw
 
 import { getUser } from '../../services/actions/user';
 import { getCookie } from '../../utils/utils';
-import {getAllIngredients} from '../../services/actions/all-ingredients.ts';
+import {getAllIngredients} from '../../services/actions/all-ingredients';
 
-import Modal from '../../components/modal/modal.jsx';
-import IngredientDetails from "../../components/ingredient-details/ingredient-details";
+import Modal from '../modal/modal.jsx';
+import IngredientDetails from "../ingredient-details/ingredient-details";
 import FullOrderCard from '../full-order-card/full-order-card.jsx';
 
 

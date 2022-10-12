@@ -66,7 +66,10 @@ function getUserAction(): IGetUserAction {
 };
 
 // Убрать any
-function getUserSuccessAction(res: any): IGetUserSuccessAction {
+// function getUserSuccessAction(res: {success: true; user: TUser}): IGetUserSuccessAction {
+  function getUserSuccessAction(res: {success: true; user: TUser}): IGetUserSuccessAction {
+  console.log('azaza success');
+  console.log(res);
   return {
     type: GET_USER_SUCCESS,
     user: res.user,
@@ -76,7 +79,9 @@ function getUserSuccessAction(res: any): IGetUserSuccessAction {
   }
 };
 
-function getUserFailedAction(): IGetUserFailedAction {
+function getUserFailedAction(err: any): IGetUserFailedAction {
+  console.log('azaza failed');
+  console.log(err);
   return {
     type: GET_USER_FAILED,
     isAuth: false,
@@ -92,7 +97,7 @@ function editUserAction(): IEditUserAction {
 };
 
 // Убрать any
-function editUserSuccessAction(res: any): IEditUserSuccessAction {
+function editUserSuccessAction(res: {success: true; user: TUser}): IEditUserSuccessAction {
   return {
     type: EDIT_USER_SUCCESS,
     user: res.user
@@ -116,11 +121,13 @@ const getUser: AppThunk = () => {
     // })
     dispatch(getUserAction())
 
+    // fetchWithRefresh(`${baseUrl}/auth/user`, {
     fetchWithRefresh(`${baseUrl}/auth/user`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + getCookie('token')
+        // Authorization: 'Bearer ' + getCookie('token') + "dfhjfj"
         // Authorization: getCookie('token')
       }
     })
@@ -142,7 +149,7 @@ const getUser: AppThunk = () => {
       //   isAuthChecked: true,
       //   isLogoutChecked: true
       // })
-      dispatch(getUserFailedAction())
+      dispatch(getUserFailedAction(err))
     )
   }
 };

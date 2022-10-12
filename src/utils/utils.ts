@@ -1,19 +1,21 @@
 import { refreshToken } from "../services/actions/refreshToken";
+import { TUser } from "../services/types/server-data";
 
-const baseUrl = 'https://norma.nomoreparties.space/api';
-const wsUrl = 'wss://norma.nomoreparties.space/orders/all';
-const defaultBunUrl = "https://code.s3.yandex.net/react/code/bun-02.png";
+const baseUrl: string = 'https://norma.nomoreparties.space/api';
+const wsUrl: string = 'wss://norma.nomoreparties.space/orders/all';
+const defaultBunUrl: string = "https://code.s3.yandex.net/react/code/bun-02.png";
 
 const regExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function checkResponse<T>(res: Response): Promise<T> {
   console.log(res);
   console.log(res.ok);
+  // return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
   return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
 };
 
 // function setCookie(name, value, props) {
-  function setCookie(name: string, value: string, props?: Record<string, string | number | Date | boolean>) {
+  function setCookie(name: string, value: string, props?: Record<string, string | number | Date | boolean>): void {
   console.log(`name: ${name}`);
   console.log(`value: ${value}`);
   console.log(`props: ${props}`);
@@ -41,7 +43,7 @@ function checkResponse<T>(res: Response): Promise<T> {
   document.cookie = updatedCookie;
 };
 
-function getCookie(name: string) {
+function getCookie(name: string): string | undefined {
   const matches = document.cookie.match(
     new RegExp('(?:^|; )' + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + '=([^;]*)')
   );
@@ -49,11 +51,18 @@ function getCookie(name: string) {
 };
 
 
-const fetchWithRefresh = async (url: string, options: RequestInit = {}) => {
+// const fetchWithRefresh = async (url: string, options: RequestInit = {}) => {
+// const fetchWithRefresh = async (url: string, options: RequestInit = {}): Promise<Response> => {
+const fetchWithRefresh = async (url: string, options: RequestInit = {}): Promise<{success: true; user: TUser}> => {
   try {
-    const res = await fetch(url, options);
+    const res: Response = await fetch(url, options)
+    // await fetch(url, options)
+    // .then(checkResponse)
+    // .then(res => console.log(res))
     console.log(res);
-    const data = await checkResponse(res);
+    console.log('azaza');
+    const data: {success: true; user: TUser} = await checkResponse(res);
+    // const data = checkResponse(res);
     console.log(data);
     return data;
   } catch (error) {
@@ -67,6 +76,9 @@ const fetchWithRefresh = async (url: string, options: RequestInit = {}) => {
       const newData: any = await refreshToken(currentRefreshToken);
       console.log(newData);
       const refreshData = await newData.json();
+      // const refreshData = await refreshToken(currentRefreshToken);
+      // console.log(newData);
+      // const refreshData = await newData.json();
 
       if (!refreshData.success) {
         return Promise.reject(refreshData);
@@ -81,11 +93,12 @@ const fetchWithRefresh = async (url: string, options: RequestInit = {}) => {
               Authotization: refreshData.accessToken
             }
         });
-        const data = await checkResponse(res);
+        const data: {success: true; user: TUser} = await checkResponse(res);
         console.log('Всё успешно');
         return data;
       }
     } else {
+      console.log('test');
       return Promise.reject(err)
     }
   }
