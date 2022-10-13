@@ -1,4 +1,4 @@
-import React, { useCallback} from "react";
+import React, { useCallback, FormEvent} from "react";
 // import { useDispatch, useSelector } from "react-redux";
 import { useDispatch, useSelector } from '../services/hooks';
 import {useHistory, Redirect} from 'react-router-dom';
@@ -13,9 +13,9 @@ export default function RegisterPage() {
 
   const { user } = useSelector(store => store.auth);
 
-  const [nameValue, setNameValue] = React.useState('');
-  const [emailValue, setEmailValue] = React.useState('');
-  const [passwordValue, setPasswordValue] = React.useState('');
+  const [nameValue, setNameValue] = React.useState<string>('');
+  const [emailValue, setEmailValue] = React.useState<string>('');
+  const [passwordValue, setPasswordValue] = React.useState<string>('');
 
   const inputRef = React.useRef(null);
   const onIconClick = () => {
@@ -33,7 +33,7 @@ export default function RegisterPage() {
     }, [history]
   );
 
-  function createUser(e) {
+  function createUser(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     dispatch(register(nameValue, emailValue, passwordValue));
   }

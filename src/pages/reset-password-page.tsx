@@ -1,4 +1,4 @@
-import React, { useCallback} from "react";
+import React, { useCallback, FormEvent} from "react";
 // import { useDispatch, useSelector } from "react-redux";
 import { useDispatch, useSelector } from '../services/hooks';
 import {useHistory, Redirect, useLocation} from 'react-router-dom';
@@ -14,8 +14,8 @@ export default function ResetPasswordPage() {
   const { user } = useSelector(store => store.auth);
   console.log(user);
 
-  const [newPasswordValue, setNewPasswordValue] = React.useState('');
-  const [codeValue, setCodeValue] = React.useState('');
+  const [newPasswordValue, setNewPasswordValue] = React.useState<string>('');
+  const [codeValue, setCodeValue] = React.useState<string>('');
 
   const inputRef = React.useRef(null);
   const onIconClick = () => {
@@ -27,6 +27,7 @@ export default function ResetPasswordPage() {
   const history = useHistory();
   const location = useLocation();
 
+  //@ts-ignore
   const { from } = location.state || { from: { pathname: '/' } };
 
   if (from.pathname !== '/forgot-password') {
@@ -44,7 +45,7 @@ export default function ResetPasswordPage() {
     }, [history]
   );
 
-  function changePassword(e) {
+  function changePassword(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     (async () => {

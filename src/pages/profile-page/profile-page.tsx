@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, MouseEvent, FormEvent } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 import { useDispatch, useSelector } from '../../services/hooks';
 
@@ -14,23 +14,25 @@ import { regExp } from "../../utils/utils";
 
 export default function ProfilePage() {
 
+  //@ts-ignore
   const currentName = useSelector(store => store.auth.user.name);
+  //@ts-ignore
   const currentEmail = useSelector(store => store.auth.user.email);
 
-  const [nameValue, setNameValue] = React.useState(currentName);
-  const [loginValue, setLoginValue] = React.useState(currentEmail);
-  const [passwordValue, setPasswordValue] = React.useState('');
+  const [nameValue, setNameValue] = React.useState<string>(currentName);
+  const [loginValue, setLoginValue] = React.useState<string>(currentEmail);
+  const [passwordValue, setPasswordValue] = React.useState<string>('');
   const inputRef = React.useRef(null);
   const onIconClick = () => {
     setIsButtonsVisible(true);
   };
 
-  const [isNameError, setIsNameError] = useState(false);
-  const [isEmailError, setIsEmailError] = useState(false);
-  const [isPasswordError, setIsPasswordError] = useState(false);
+  const [isNameError, setIsNameError] = useState<boolean>(false);
+  const [isEmailError, setIsEmailError] = useState<boolean>(false);
+  const [isPasswordError, setIsPasswordError] = useState<boolean>(false);
 
-  const [isInvalidInputs, setIsInvalidInputs] = useState(false);
-  const [isButtonsVisible, setIsButtonsVisible] = useState(false);
+  const [isInvalidInputs, setIsInvalidInputs] = useState<boolean>(false);
+  const [isButtonsVisible, setIsButtonsVisible] = useState<boolean>(false);
 
   const dispatch = useDispatch();
 
@@ -92,11 +94,13 @@ export default function ProfilePage() {
     clearPasswordErrors();
   };
 
-  function resetNewData(e) {
+  function resetNewData(e: React.SyntheticEvent<Element, Event>): void {
     e.preventDefault();
     clearAllErrors();
     if (isInvalidInputs) {
-      return null
+      // Вот тут раньше был null. Потестить, можно ли без него обойтись
+      // return null
+      return
     };
     setNameValue(currentName);
     setLoginValue(currentEmail);
@@ -104,11 +108,11 @@ export default function ProfilePage() {
     setIsButtonsVisible(false);
   };
 
-  const changeUserData = async (newUserData) => {
+  const changeUserData = async (newUserData: {name: string; email: string; password: string}) => {
     await dispatch(editUser(newUserData));
   };
 
-  const editCurrentUser = async (e) => {
+  const editCurrentUser = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     checkFormValidity();
     const newUserData = {
@@ -175,6 +179,7 @@ export default function ProfilePage() {
             onIconClick={onIconClick}
             errorText={'Пароль должен содержать от 8 до 20 символов'}
             size={'default'}
+            //@ts-ignore
             required={false}
           />
         </fieldset>

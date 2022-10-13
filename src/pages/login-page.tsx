@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, FormEvent } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 import { useDispatch, useSelector } from '../services/hooks';
 import {useHistory, useLocation, Redirect} from 'react-router-dom';
@@ -15,8 +15,8 @@ export default function LoginPage() {
 
   const { user } = useSelector(store => store.auth);
 
-  const [emailValue, setEmailValue] = React.useState('');
-  const [passwordValue, setPasswordValue] = React.useState('');
+  const [emailValue, setEmailValue] = React.useState<string>('');
+  const [passwordValue, setPasswordValue] = React.useState<string>('');
 
   const dispatch = useDispatch();
 
@@ -36,13 +36,14 @@ export default function LoginPage() {
     }, [history]
   );
 
-  function loginUser(e) {
+  function loginUser(e: FormEvent<HTMLFormElement>): void {
     e.preventDefault();
     console.log('Dispatch login');
     dispatch(login(emailValue, passwordValue));
   }
 
 
+  //@ts-ignore
   const { from } = location.state || { from: { pathname: '/' } };
 
   const {isLogoutChecked} = useSelector(store => store.auth);

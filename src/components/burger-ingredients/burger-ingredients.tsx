@@ -15,11 +15,12 @@ export default function BurgerIngredients() {
 
   const dispatch = useDispatch();
 
-  const [currentTab, setCurrentTab] = React.useState('buns');
+  const [currentTab, setCurrentTab] = React.useState<string>('buns');
 
-  function tabClick(tab) {
+  function tabClick(tab: string): void {
     setCurrentTab(tab);
     const element = document.getElementById(tab);
+    //@ts-ignore
     element.scrollIntoView({behavior: 'smooth', block: 'start'});
     console.log(element);
   };
@@ -49,14 +50,17 @@ export default function BurgerIngredients() {
 
   const listOfIngredients = useSelector(store => store.allIngredients.items);
 
+  //@ts-ignore
   const bunList = listOfIngredients.filter((ingredient) => {
     return ingredient.type === "bun";
   })
 
+  //@ts-ignore
   const sauceList = listOfIngredients.filter((ingredient) => {
     return ingredient.type === "sauce";
   })
 
+  //@ts-ignore
   const mainList = listOfIngredients.filter((ingredient) => {
     return ingredient.type === "main";
   })
@@ -77,9 +81,21 @@ export default function BurgerIngredients() {
           </Tab>
         </nav>
         <article className={burgerIngredients.ingredients} >
-          <IngredientVariants ingredientName='Булки' listOfIngredients={bunList} titleId='buns' ref={bunRef}/>
+          {
+            //@ts-ignore
+            <IngredientVariants ingredientName='Булки' listOfIngredients={bunList} titleId='buns' ref={bunRef}/>
+          }
+          {
+            //@ts-ignore
+            <IngredientVariants ingredientName='Соусы' listOfIngredients={sauceList} titleId='sauces' ref={sauceRef}/>
+          }
+          {
+            //@ts-ignore
+            <IngredientVariants ingredientName='Начинки' listOfIngredients={mainList} titleId='mains' ref={mainRef}/>
+          }
+          {/* <IngredientVariants ingredientName='Булки' listOfIngredients={bunList} titleId='buns' ref={bunRef}/>
           <IngredientVariants ingredientName='Соусы' listOfIngredients={sauceList} titleId='sauces' ref={sauceRef}/>
-          <IngredientVariants ingredientName='Начинки' listOfIngredients={mainList} titleId='mains' ref={mainRef}/>
+          <IngredientVariants ingredientName='Начинки' listOfIngredients={mainList} titleId='mains' ref={mainRef}/> */}
         </article>
       </section>
     </>

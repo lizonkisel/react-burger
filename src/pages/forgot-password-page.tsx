@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, FormEvent } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 import { useDispatch, useSelector } from '../services/hooks';
 import {useHistory, Redirect, useLocation} from 'react-router-dom';
@@ -7,14 +7,14 @@ import styles from './inputs-pages.module.css';
 
 import {Button, Input} from '@ya.praktikum/react-developer-burger-ui-components';
 
-import {regExp} from '../utils/utils.ts';
+import {regExp} from '../utils/utils';
 
 import { recoverPassword } from "../services/actions/password";
 
 export default function ForgotPasswordPage() {
 
   const { user } = useSelector(store => store.auth);
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = React.useState<string>('');
   const inputRef = React.useRef(null);
   const onIconClick = () => {
     // setTimeout(() => inputRef.current.focus(), 0)
@@ -41,7 +41,7 @@ export default function ForgotPasswordPage() {
     }, [history]
   );
 
-  function recover(e) {
+  function recover(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     (async () => {
       await dispatch(recoverPassword(value));
