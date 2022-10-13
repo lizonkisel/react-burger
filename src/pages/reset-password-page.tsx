@@ -9,6 +9,8 @@ import {Button, Input} from '@ya.praktikum/react-developer-burger-ui-components'
 
 import { resetPassword } from "../services/actions/password";
 
+import { TEmptyFunction } from "../services/types/utils";
+
 export default function ResetPasswordPage() {
 
   const { user } = useSelector(store => store.auth);
@@ -39,7 +41,7 @@ export default function ResetPasswordPage() {
     )
   };
 
-  const login = useCallback(
+  const login = useCallback<TEmptyFunction>(
     () => {
       history.replace({pathname: '/login'})
     }, [history]

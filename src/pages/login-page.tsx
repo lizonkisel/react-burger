@@ -9,6 +9,8 @@ import {Button, EmailInput, PasswordInput} from '@ya.praktikum/react-developer-b
 
 import { login } from "../services/actions/login";
 
+import { TEmptyFunction } from "../services/types/utils";
+
 export default function LoginPage() {
 
   console.log('Login');
@@ -24,13 +26,13 @@ export default function LoginPage() {
 
   const location = useLocation();
 
-  const register = useCallback(
+  const register = useCallback<TEmptyFunction>(
     () => {
       history.replace({pathname: '/register'});
     }, [history]
   );
 
-  const forgotPassword = useCallback(
+  const forgotPassword = useCallback<TEmptyFunction>(
     () => {
       history.replace({pathname: '/forgot-password'})
     }, [history]

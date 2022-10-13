@@ -9,12 +9,14 @@ import { OrdersList } from "../../components/orders-list/orders-list";
 
 import { WS_CONNECTION_START, WS_CONNECTION_CLOSED, WS_CONNECTION_ERROR, WS_RESET_ERROR } from "../../services/constants/wsActionTypes";
 
+import { TEmptyFunction } from "../../services/types/utils";
+
 export default function FeedPage() {
 
   const dispatch = useDispatch();
   const { orders, wsConnected, total, totalToday, error} = useSelector(store => store.ws);
 
-  const resetError = useCallback(() => {
+  const resetError = useCallback<TEmptyFunction>(() => {
     dispatch({type: WS_CONNECTION_ERROR});
   }, [dispatch]);
 
@@ -60,7 +62,10 @@ export default function FeedPage() {
               </div>
               <div className={styles.status_in_progress}>
                 <p className="text text_type_main-medium">В работе:</p>
-                <OrdersList></OrdersList>
+                {
+                  //@ts-ignore
+                  <OrdersList></OrdersList>
+                }
               </div>
             </div>
             <div className={styles.complete_all}>

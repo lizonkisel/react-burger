@@ -13,6 +13,8 @@ import { wsInitAction, wsInitWithTokenAction } from "../../services/actions/wsAc
 
 import { getCookie } from "../../utils/utils";
 
+import { TEmptyFunction } from '../../services/types/utils';
+
 interface IOrderDetailsPageProps {
   secured: boolean
 }
@@ -24,7 +26,7 @@ export const OrderDetailsPage: FunctionComponent<IOrderDetailsPageProps> = ({ se
 
   const history = useHistory();
 
-  const closeOrderModal = useCallback(
+  const closeOrderModal = useCallback<TEmptyFunction>(
     () => {
       history.replace({pathname: '/feed'})
     }, [history]

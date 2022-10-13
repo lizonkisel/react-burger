@@ -10,6 +10,7 @@ import {Button, Input} from '@ya.praktikum/react-developer-burger-ui-components'
 import {regExp} from '../utils/utils';
 
 import { recoverPassword } from "../services/actions/password";
+import { TEmptyFunction } from "../services/types/utils";
 
 export default function ForgotPasswordPage() {
 
@@ -35,7 +36,7 @@ export default function ForgotPasswordPage() {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const login = useCallback(
+  const login = useCallback<TEmptyFunction>(
     () => {
       history.replace({pathname: '/login'})
     }, [history]

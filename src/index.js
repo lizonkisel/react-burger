@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
-import App from './components/app/app.jsx';
+import App from './components/app/app';
 import {store} from './services/store.js';
 
 

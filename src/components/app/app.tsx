@@ -16,7 +16,7 @@ import {Modal} from '../modal/modal';
 import IngredientDetails from "../ingredient-details/ingredient-details";
 import FullOrderCard from '../full-order-card/full-order-card';
 
-
+import { TEmptyFunction } from '../../services/types/utils';
 
 function App() {
 
@@ -38,13 +38,13 @@ function App() {
 
   const history = useHistory();
 
-  const closeIngredientModal = useCallback(
+  const closeIngredientModal = useCallback<TEmptyFunction>(
     () => {
       history.replace({pathname: '/'})
     }, [history]
   );
 
-  const closeOrderModal = useCallback(
+  const closeOrderModal = useCallback<TEmptyFunction>(
     () => {
       history.goBack()
     }, [history]
@@ -53,6 +53,7 @@ function App() {
 
   const location = useLocation();
 
+  //@ts-ignore
   const { background } = location.state || { location };
 
   return (
@@ -88,17 +89,26 @@ function App() {
               <OrderDetailsPage secured={false}/>
             </Route>
 
-            <ProtectedRoute path='/profile' exact={true}>
-              <ProfilePage/>
-            </ProtectedRoute>
+            {
+              //@ts-ignore
+              <ProtectedRoute path='/profile' exact={true}>
+                <ProfilePage/>
+              </ProtectedRoute>
+            }
 
-            <ProtectedRoute path='/profile/orders' exact={true}>
-              <OrdersPage/>
-            </ProtectedRoute>
+            {
+              //@ts-ignore
+              <ProtectedRoute path='/profile/orders' exact={true}>
+                <OrdersPage/>
+              </ProtectedRoute>
+            }
 
-            <ProtectedRoute path='/profile/orders/:id' exact={true}>
-              <OrderDetailsPage secured={true}/>
-            </ProtectedRoute>
+            {
+              //@ts-ignore
+              <ProtectedRoute path='/profile/orders/:id' exact={true}>
+                <OrderDetailsPage secured={true}/>
+              </ProtectedRoute>
+            }
 
             <Route path='/ingredients/:id' exact={true}>
               <IngredientPage/>

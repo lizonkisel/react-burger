@@ -9,6 +9,8 @@ import {Input, Button, EmailInput, PasswordInput} from '@ya.praktikum/react-deve
 
 import { register } from "../services/actions/register";
 
+import { TEmptyFunction } from "../services/types/utils";
+
 export default function RegisterPage() {
 
   const { user } = useSelector(store => store.auth);
@@ -27,7 +29,7 @@ export default function RegisterPage() {
 
   const history = useHistory();
 
-  const login = useCallback(
+  const login = useCallback<TEmptyFunction>(
     () => {
       history.replace({pathname: '/login'})
     }, [history]

@@ -6,6 +6,8 @@ import { useHistory, useLocation } from 'react-router-dom';
 // import Modal from '../components/modal/modal.jsx';
 import IngredientDetails from "../components/ingredient-details/ingredient-details";
 
+import { TEmptyFunction } from "../services/types/utils";
+
 
 export default function IngredientPage() {
 
@@ -13,7 +15,7 @@ export default function IngredientPage() {
 
   const history = useHistory();
 
-  const closeIngredientModal = useCallback(
+  const closeIngredientModal = useCallback<TEmptyFunction>(
     () => {
       history.replace({pathname: '/'})
     }, [history]
