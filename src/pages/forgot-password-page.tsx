@@ -1,4 +1,4 @@
-import React, { useState, useCallback, FormEvent } from "react";
+import React, { useState, useRef, useCallback, FormEvent } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 import { useDispatch, useSelector } from '../services/hooks';
 import {useHistory, Redirect, useLocation} from 'react-router-dom';
@@ -14,8 +14,8 @@ import { recoverPassword } from "../services/actions/password";
 export default function ForgotPasswordPage() {
 
   const { user } = useSelector(store => store.auth);
-  const [value, setValue] = React.useState<string>('');
-  const inputRef = React.useRef(null);
+  const [value, setValue] = useState<string>('');
+  const inputRef = useRef<HTMLInputElement>(null);
   const onIconClick = () => {
     // setTimeout(() => inputRef.current.focus(), 0)
     // alert('Icon Click Callback')

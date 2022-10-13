@@ -25,7 +25,7 @@ export const FillingIngredient: FunctionComponent<IFillingIngProps> = ({ item, i
 
   const dispatch = useDispatch();
 
-  const ref = useRef(null);
+  const ref = useRef<HTMLLIElement>(null);
   const id = item.uId;
 
   const [{ handlerId }, drop] = useDrop({
@@ -48,7 +48,7 @@ export const FillingIngredient: FunctionComponent<IFillingIngProps> = ({ item, i
       if (dragIndex === hoverIndex) {
         return;
       }
-      // @ts-ignore
+
       const hoverBoundingRect = ref.current.getBoundingClientRect();
       const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
       const clientOffset = monitor.getClientOffset();

@@ -1,4 +1,4 @@
-import React, { useCallback, FormEvent} from "react";
+import React, { useRef, useCallback, FormEvent} from "react";
 // import { useDispatch, useSelector } from "react-redux";
 import { useDispatch, useSelector } from '../services/hooks';
 import {useHistory, Redirect, useLocation} from 'react-router-dom';
@@ -17,7 +17,7 @@ export default function ResetPasswordPage() {
   const [newPasswordValue, setNewPasswordValue] = React.useState<string>('');
   const [codeValue, setCodeValue] = React.useState<string>('');
 
-  const inputRef = React.useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const onIconClick = () => {
     // setTimeout(() => inputRef.current.focus(), 0)
     // alert('Icon Click Callback')

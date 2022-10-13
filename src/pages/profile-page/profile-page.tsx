@@ -1,4 +1,4 @@
-import React, { useEffect, useState, MouseEvent, FormEvent } from "react";
+import React, { useRef, useEffect, useState, MouseEvent, FormEvent } from "react";
 // import { useDispatch, useSelector } from "react-redux";
 import { useDispatch, useSelector } from '../../services/hooks';
 
@@ -22,7 +22,7 @@ export default function ProfilePage() {
   const [nameValue, setNameValue] = React.useState<string>(currentName);
   const [loginValue, setLoginValue] = React.useState<string>(currentEmail);
   const [passwordValue, setPasswordValue] = React.useState<string>('');
-  const inputRef = React.useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const onIconClick = () => {
     setIsButtonsVisible(true);
   };
