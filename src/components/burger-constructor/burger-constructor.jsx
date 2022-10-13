@@ -7,9 +7,9 @@ import {useHistory} from 'react-router-dom';
 
 import burgerConstructor from './burger-constructor.module.css';
 
-import FillingIngredient from '../filling-ingredient/filling-ingredient';
-import Modal from '../modal/modal.jsx';
-import OrderDetails from '../order-details/order-details.jsx';
+import { FillingIngredient } from '../filling-ingredient/filling-ingredient';
+import { Modal } from '../modal/modal';
+import { OrderDetails } from '../order-details/order-details';
 
 import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components';
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';

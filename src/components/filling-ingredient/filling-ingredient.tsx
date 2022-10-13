@@ -1,4 +1,4 @@
-import React, { useRef }  from 'react';
+import React, { useRef, FunctionComponent }  from 'react';
 // import { useDispatch } from 'react-redux';
 import { useDispatch } from '../../services/hooks';
 import { useDrag, useDrop } from 'react-dnd';
@@ -13,7 +13,15 @@ import {DragIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 
 import {deleteFromConstructor, reorderIngredient} from '../../services/actions/constructor-ingredients';
 
-export default function FillingIngredient({ item, index }) {
+import { TIngredient } from '../../services/types/server-data';
+
+interface IFillingIngProps {
+  item: TIngredient & {uId: string},
+  index: number
+}
+
+// export default function FillingIngredient({ item, index }) {
+export const FillingIngredient: FunctionComponent<IFillingIngProps> = ({ item, index }) => {
 
   const dispatch = useDispatch();
 
@@ -28,18 +36,23 @@ export default function FillingIngredient({ item, index }) {
       };
     },
     hover(item, monitor) {
+      console.log(item);
+      console.log(monitor);
       if (!ref.current) {
         return;
       }
-      const dragIndex = item.index;
+      // @ts-ignore
+      const dragIndex: number = item.index;
       const hoverIndex = index;
 
       if (dragIndex === hoverIndex) {
         return;
       }
+      // @ts-ignore
       const hoverBoundingRect = ref.current.getBoundingClientRect();
       const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
       const clientOffset = monitor.getClientOffset();
+      // @ts-ignore
       const hoverClientY = clientOffset.y - hoverBoundingRect.top;
 
       if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
@@ -50,6 +63,7 @@ export default function FillingIngredient({ item, index }) {
       };
 
       dispatch(reorderIngredient(dragIndex, hoverIndex));
+      // @ts-ignore
       item.index = hoverIndex;
     },
   });
@@ -82,7 +96,7 @@ export default function FillingIngredient({ item, index }) {
   )
 }
 
-FillingIngredient.propTypes = {
-  item: ingredientPropTypes.isRequired,
-  index: PropTypes.number.isRequired
-}
+// FillingIngredient.propTypes = {
+//   item: ingredientPropTypes.isRequired,
+//   index: PropTypes.number.isRequired
+// }

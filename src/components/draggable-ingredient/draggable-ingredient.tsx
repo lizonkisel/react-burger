@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 // import { useSelector, useDispatch } from 'react-redux';
 import { useDispatch, useSelector } from '../../services/hooks';
 import { Link, useLocation } from 'react-router-dom';
@@ -12,7 +12,14 @@ import {ingredientPropTypes} from '../../utils/prop-types.js';
 import {Counter} from '@ya.praktikum/react-developer-burger-ui-components';
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 
-export default function DraggableIngredient({ingredient}) {
+import { TIngredient } from '../../services/types/server-data';
+
+interface IDragIngProps {
+  ingredient: TIngredient
+}
+
+// export default function DraggableIngredient: FunctionComponent<IDragIngProps>({ingredient}) {
+export const DraggableIngredient: FunctionComponent<IDragIngProps> = ({ingredient}) => {
 
   const ingredientsCount = useSelector(store => store.constructorIngredients.ingredientsCount);
   const bun = useSelector(store => store.constructorIngredients.ingredients.bun);
@@ -26,6 +33,7 @@ export default function DraggableIngredient({ingredient}) {
     }
     const count = ingredientsCount.find(element => element.itemId === ingredient._id) === undefined ?
     null :
+    // @ts-ignore
     ingredientsCount.find(element => element.itemId === ingredient._id).count;
     return count;
   };
@@ -47,6 +55,7 @@ export default function DraggableIngredient({ingredient}) {
       <Link className={styles.link} to={{pathname: `/ingredients/${id}`, state: {background: location}}}>
         <img className={`ml-4 mr-4 ${styles.image}`} src={ingredient.image} />
         { startCount &&
+          // @ts-ignore
           <Counter count={setCount()} size="default" />
         }
         <div className={styles.priceArea}>
@@ -59,6 +68,6 @@ export default function DraggableIngredient({ingredient}) {
   )
 };
 
-DraggableIngredient.propTypes = {
-  ingredient: ingredientPropTypes.isRequired
-}
+// DraggableIngredient.propTypes = {
+//   ingredient: ingredientPropTypes.isRequired
+// }

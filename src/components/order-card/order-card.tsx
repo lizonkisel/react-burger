@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 // import { useSelector } from "react-redux";
 import { useSelector } from '../../services/hooks';
 import { Link, useLocation, useRouteMatch} from 'react-router-dom';
@@ -7,15 +7,22 @@ import PropTypes from 'prop-types';
 
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
-import IngredientMini from "../ingredient-mini/ingredient-mini.jsx";
+import { IngredientMini } from "../ingredient-mini/ingredient-mini";
 import moment from 'moment';
 import 'moment/locale/ru';
 
 import { orderPropTypes } from "../../utils/prop-types";
 
+import { TOrder } from "../../services/types/server-data";
+
 import styles from './order-card.module.css';
 
-export default function OrderCard({ order }) {
+interface IOrderCardProps {
+  order: TOrder
+}
+
+// export default function OrderCard({ order }) {
+export const OrderCard: FunctionComponent<IOrderCardProps> = ({ order }) => {
   moment.locale('ru', {
     calendar : {
       lastDay : '[Вчера,] LT',
@@ -50,13 +57,16 @@ export default function OrderCard({ order }) {
     )
   };
 
+  //@ts-ignore
   const priceArray = [];
 
   ingredients.forEach((ingredient) => {
     const neededIngredient = allIngredients.find((element) => element._id === ingredient);
+    //@ts-ignore
     priceArray.push(neededIngredient.price);
   })
 
+  //@ts-ignore
   const cost = priceArray.reduce((sum, price) => sum + price, 0);
 
   const location = useLocation();
@@ -83,6 +93,7 @@ export default function OrderCard({ order }) {
               // ingredients.map((ingredient) => {
                 drawableIngredients.map((ingredient) => {
                 return (
+                  //@ts-ignore
                   <IngredientMini ingredient={ingredient}>
                   </IngredientMini>
                 )
@@ -92,8 +103,11 @@ export default function OrderCard({ order }) {
               <div className={styles.rest_ingredients}>
                 <div className={`text text_type_main-default ${styles.additional_quantity}`}>+{ingredients.length - 5}</div>
                 <div className={styles.shadow}>
-                  <IngredientMini ingredient={ingredients[5]}>
-                  </IngredientMini>
+                  {
+                    //@ts-ignore
+                    <IngredientMini ingredient={ingredients[5]}>
+                    </IngredientMini>
+                  }
                 </div>
               </div>
             }

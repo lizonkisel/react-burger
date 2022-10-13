@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 // import { useSelector } from "react-redux";
 import { useSelector } from '../../services/hooks';
 import PropTypes from 'prop-types';
@@ -7,8 +7,12 @@ import styles from './ingredient-mini.module.css';
 
 import { defaultBunUrl } from "../../utils/utils";
 
+interface IIngredientMiniProps {
+  ingredient: string
+}
 
-export default function IngredientMini({ingredient}) {
+// export default function IngredientMini({ingredient}) {
+export const IngredientMini: FunctionComponent<IIngredientMiniProps> = ({ingredient}) => {
 
   if (ingredient === null) {
     return <img className={styles.image} src={defaultBunUrl}></img>
@@ -30,6 +34,7 @@ export default function IngredientMini({ingredient}) {
   //   console.log(ingredientData.image);
   // }
 
+  //@ts-ignore
   const ingredientData = allIngredients.find(element => element._id === ingredient);
   // console.log(ingredientData.name);
   // console.log(ingredientData.image);
@@ -46,7 +51,10 @@ export default function IngredientMini({ingredient}) {
       {
         allIngredients &&
         <div className={styles.image_wrapper}>
+          {
+            //@ts-ignore
           <img className={styles.image} src={ingredientData.image}></img>
+          }
         </div>
 
       }

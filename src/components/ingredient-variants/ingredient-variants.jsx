@@ -5,7 +5,7 @@ import ingredientVariants from './ingredient-variants.module.css';
 import PropTypes from 'prop-types';
 import {ingredientPropTypes} from '../../utils/prop-types.js';
 
-import DraggableIngredient from '../draggable-ingredient/draggable-ingredient.jsx';
+import { DraggableIngredient } from '../draggable-ingredient/draggable-ingredient';
 
 
 export const IngredientVariants = React.forwardRef((props, ref) => {

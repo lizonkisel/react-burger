@@ -3,7 +3,7 @@ import React, { useCallback } from "react";
 import { useSelector } from '../services/hooks';
 import { useHistory, useLocation } from 'react-router-dom';
 
-import Modal from '../components/modal/modal.jsx';
+// import Modal from '../components/modal/modal.jsx';
 import IngredientDetails from "../components/ingredient-details/ingredient-details";
 
 

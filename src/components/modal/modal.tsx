@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FunctionComponent, ReactNode } from 'react';
 import ReactDOM from 'react-dom';
 
 import modal from './modal.module.css'
@@ -7,17 +7,25 @@ import PropTypes from 'prop-types';
 
 import {CloseIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 
-import ModalOverlay from '../modal-overlay/modal-overlay.jsx';
+import { ModalOverlay } from '../modal-overlay/modal-overlay';
 
 
 const modalsContainer = document.querySelector('#modals');
 
-export default function Modal({title, onClose, children}) {
+interface IModalProps {
+  title?: string,
+  onClose: () => void,
+  children: ReactNode
+}
+
+// export default function Modal({title, onClose, children}) {
+export const Modal: FunctionComponent<IModalProps> = ({title, onClose, children}) => {
 
   function closeModal() {
     onClose();
   }
 
+  //@ts-ignore
   function onEscapeClick(event) {
     if (event.key === "Escape") {
       closeModal();
@@ -54,7 +62,7 @@ export default function Modal({title, onClose, children}) {
 
       <ModalOverlay onOverlayClick={closeModal}/>
     </>),
-
+  //@ts-ignore
     modalsContainer
   )
 };

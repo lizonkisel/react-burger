@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 
 // import { useSelector } from "react-redux";
 import { useSelector } from '../../services/hooks';
@@ -8,12 +8,20 @@ import styles from './ingredient-card.module.css';
 
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
-import IngredientMini from "../ingredient-mini/ingredient-mini";
+import { IngredientMini } from "../ingredient-mini/ingredient-mini";
 
 import { orderPropTypes } from "../../utils/prop-types";
 
-export default function IngredientCard({ingredient, order, amount}) {
+import { TOrder } from '../../services/types/server-data';
 
+interface IIngCardProps {
+  ingredient: string,
+  order: TOrder,
+  amount: number
+}
+
+// export default function IngredientCard({ingredient, order, amount}) {
+export const IngredientCard: FunctionComponent<IIngCardProps> = ({ingredient, order, amount}) => {
   const currentOrder = order;
 
   const number = currentOrder.number;
@@ -27,7 +35,9 @@ export default function IngredientCard({ingredient, order, amount}) {
   };
 
   const neededIngredient = allIngredients.find((element) => element._id === ingredient);
+  //@ts-ignore
   const name = neededIngredient.name;
+  //@ts-ignore
   const price = neededIngredient.price;
 
   return (

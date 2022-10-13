@@ -9,7 +9,7 @@ import styles from './full-order-card.module.css';
 
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import IngredientMini from "../ingredient-mini/ingredient-mini";
-import IngredientCard from "../ingredient-card/ingredient-card";
+import {IngredientCard} from "../ingredient-card/ingredient-card";
 import { statuses } from "../../utils/utils";
 
 import { WS_CONNECTION_START, WS_CONNECTION_CLOSED } from "../../services/constants/wsActionTypes";

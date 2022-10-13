@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from '../../services/hooks';
 import styles from './orders-page.module.css';
 
 import ProfileMenu from '../../components/profile-menu/profile-menu.jsx';
-import OrderCard from "../../components/order-card/order-card";
+import { OrderCard } from "../../components/order-card/order-card";
 import { WS_CONNECTION_CLOSED } from "../../services/constants/wsActionTypes";
 import { wsActions } from "../../services/constants/wsActionTypes";
 import { wsInitWithTokenAction, wsCloseAction } from "../../services/actions/wsActions";

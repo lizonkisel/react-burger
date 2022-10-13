@@ -12,9 +12,9 @@ import { getUser } from '../../services/actions/user';
 import { getCookie } from '../../utils/utils';
 import {getAllIngredients} from '../../services/actions/all-ingredients';
 
-import Modal from '../modal/modal.jsx';
+import {Modal} from '../modal/modal';
 import IngredientDetails from "../ingredient-details/ingredient-details";
-import FullOrderCard from '../full-order-card/full-order-card.jsx';
+import FullOrderCard from '../full-order-card/full-order-card';
 
 
 

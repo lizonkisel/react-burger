@@ -1,4 +1,4 @@
-import React  from 'react'
+import React, { FunctionComponent }  from 'react'
 
 import orderDetails from './order-details.module.css';
 
@@ -6,7 +6,12 @@ import PropTypes from 'prop-types';
 
 import done from '../../images/done.png';
 
-export default function OrderDetails({orderNumber}) {
+interface IOrderDetailsProps {
+  orderNumber: number
+}
+
+// export default function OrderDetails({orderNumber}) {
+export const OrderDetails: FunctionComponent<IOrderDetailsProps> = ({orderNumber}) => {
 
   return (
     <article className={orderDetails.card}>

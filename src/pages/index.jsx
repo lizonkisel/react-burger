@@ -7,7 +7,7 @@ import ProfilePage from './profile-page/profile-page.jsx';
 import OrdersPage from './orders-page/orders-page.jsx';
 import IngredientPage from './ingredient-page.jsx';
 import FeedPage from './feed-page/feed-page.jsx';
-import OrderDetailsPage from './order-details-page/order-details-page.jsx';
+import { OrderDetailsPage}  from './order-details-page/order-details-page';
 import Page404 from './not-found-page/not-found-page.jsx';
 
 export {LoginPage, ConstructorPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, ProfilePage, OrdersPage, IngredientPage, FeedPage, OrderDetailsPage, Page404};

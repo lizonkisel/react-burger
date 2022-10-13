@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from '../../services/hooks';
 
 import styles from './feed-page.module.css';
 
-import OrderCard from "../../components/order-card/order-card";
-import OrdersList from "../../components/orders-list/orders-list";
+import { OrderCard } from "../../components/order-card/order-card";
+import { OrdersList } from "../../components/orders-list/orders-list";
 
 import { WS_CONNECTION_START, WS_CONNECTION_CLOSED, WS_CONNECTION_ERROR, WS_RESET_ERROR } from "../../services/constants/wsActionTypes";
 
