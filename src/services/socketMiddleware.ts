@@ -1,14 +1,30 @@
 import { wsConnectionSuccessAction, wsGetMessageAction, wsErrorAction, wsCloseAction } from './actions/wsActions';
 import { IWsActions } from './constants/wsActionTypes';
+import { TWsActions } from './actions/wsActions';
+// import { wsActions } from './constants/wsActionTypes';
 import { Middleware } from 'redux';
 import { RootState } from './types';
 import { AppDispatch } from './types';
 
-export const socketMiddleware = (wsUrl: string, wsActions: IWsActions): Middleware<{}, RootState, AppDispatch> => {
+// interface IWsAction {
+//   type: TWsActions
+//   payload?: unknown
+// }
+
+function isWsAction(action: {type: string; payload?: unknown} ): action is TWsActions {
+  return action.hasOwnProperty('type') === true
+};
+
+export const socketMiddleware = (wsUrl: string, wsActions: IWsActions): Middleware<{}, RootState> => {
   return store => {
     let socket: WebSocket | null = null;
 
     return next => action => {
+      // Удостовериться, что это вообще адекватно
+      if (!isWsAction(action) && action.type !== 'WS_CONNECTION_START' && action.type !== 'WS_CONNECTION_CLOSED') {
+        return
+      };
+
       const { dispatch } = store;
       const { type, payload } = action;
       const { wsInit, wsInitWithToken, onOpen, onClose, onError, onMessage } = wsActions;
@@ -26,7 +42,8 @@ export const socketMiddleware = (wsUrl: string, wsActions: IWsActions): Middlewa
 
       console.log(socket);
 
-      if (type === onClose) {
+      // if (type === onClose) {
+      if (type === onClose && socket !== null) {
         socket.close();
       };
 
@@ -38,7 +55,7 @@ export const socketMiddleware = (wsUrl: string, wsActions: IWsActions): Middlewa
 
         socket.onerror = event => {
           console.log(event);
-          console.log(`Ошибка ${event.message}`)
+          // console.log(`Ошибка ${event.message}`)
           // dispatch({ type: onError, payload: event });
           dispatch(wsErrorAction(event));
         };
