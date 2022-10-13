@@ -81,7 +81,7 @@ function getUserAction(): IGetUserAction {
 
 function getUserFailedAction(err: any): IGetUserFailedAction {
   console.log('azaza failed');
-  console.log(err);
+  // console.log(err);
   return {
     type: GET_USER_FAILED,
     isAuth: false,

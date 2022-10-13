@@ -6,7 +6,17 @@ export const WS_CONNECTION_CLOSED: 'WS_CONNECTION_CLOSED' = 'WS_CONNECTION_CLOSE
 export const WS_GET_MESSAGE: 'WS_GET_MESSAGE' = 'WS_GET_MESSAGE';
 export const WS_RESET_ERROR: 'WS_RESET_ERROR' = 'WS_RESET_ERROR';
 
-export const wsActions = {
+export interface IWsActions {
+  wsInit: string,
+  wsInitWithToken: string,
+  onOpen: string,
+  onClose: string,
+  onError: string,
+  onMessage: string,
+  wsResetError: string
+}
+
+export const wsActions: IWsActions = {
   wsInit: WS_CONNECTION_START,
   wsInitWithToken: WS_CONNECTION_START_WITH_TOKEN,
   onOpen: WS_CONNECTION_SUCCESS,

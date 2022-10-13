@@ -1,8 +1,12 @@
 import { wsConnectionSuccessAction, wsGetMessageAction, wsErrorAction, wsCloseAction } from './actions/wsActions';
+import { IWsActions } from './constants/wsActionTypes';
+import { Middleware } from 'redux';
+import { RootState } from './types';
+import { AppDispatch } from './types';
 
-export const socketMiddleware = (wsUrl, wsActions) => {
+export const socketMiddleware = (wsUrl: string, wsActions: IWsActions): Middleware<{}, RootState, AppDispatch> => {
   return store => {
-    let socket = null;
+    let socket: WebSocket | null = null;
 
     return next => action => {
       const { dispatch } = store;
