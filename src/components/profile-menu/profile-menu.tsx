@@ -22,8 +22,9 @@ export default function ProfileMenu() {
   const logoutFromAccount = () => {
     console.log('Exit click');
     signOut().then(() => {
-      //@ts-ignore
-      setCookie('token', null, { expires: -1 });
+
+      // setCookie('token', null, { expires: -1 });
+      setCookie('token', '', { expires: -1 });
       history.replace({ pathname: '/login' });
     });
   };

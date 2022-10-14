@@ -6,9 +6,10 @@ import PropTypes from 'prop-types';
 import styles from './ingredient-mini.module.css';
 
 import { defaultBunUrl } from "../../utils/utils";
+import { TIngredient } from "../../services/types/server-data";
 
 interface IIngredientMiniProps {
-  ingredient: string
+  ingredient: string | null
 }
 
 // export default function IngredientMini({ingredient}) {
@@ -49,14 +50,10 @@ export const IngredientMini: FunctionComponent<IIngredientMiniProps> = ({ingredi
         isLoading && !allIngredients && <p className="text text_type_main-medium">Загружаем данные...</p>
       }
       {
-        allIngredients &&
+        allIngredients && ingredientData  &&
         <div className={styles.image_wrapper}>
-          {
-            //@ts-ignore
           <img className={styles.image} src={ingredientData.image}></img>
-          }
         </div>
-
       }
     </>
   )

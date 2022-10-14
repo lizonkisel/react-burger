@@ -16,7 +16,7 @@ import {deleteFromConstructor, reorderIngredient} from '../../services/actions/c
 import { TIngredient } from '../../services/types/server-data';
 
 interface IFillingIngProps {
-  item: TIngredient & {uId: string},
+  item: TIngredient & {uId?: string},
   index: number
 }
 
@@ -35,14 +35,14 @@ export const FillingIngredient: FunctionComponent<IFillingIngProps> = ({ item, i
         handlerId: monitor.getHandlerId(),
       };
     },
-    hover(item, monitor) {
+    hover(item: any, monitor) {
       console.log(item);
       console.log(monitor);
       if (!ref.current) {
         return;
       }
-      // @ts-ignore
-      const dragIndex: number = item.index;
+
+      const dragIndex = item.index;
       const hoverIndex = index;
 
       if (dragIndex === hoverIndex) {
@@ -51,8 +51,7 @@ export const FillingIngredient: FunctionComponent<IFillingIngProps> = ({ item, i
 
       const hoverBoundingRect = ref.current.getBoundingClientRect();
       const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-      const clientOffset = monitor.getClientOffset();
-      // @ts-ignore
+      const clientOffset: any = monitor.getClientOffset();
       const hoverClientY = clientOffset.y - hoverBoundingRect.top;
 
       if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
@@ -63,7 +62,6 @@ export const FillingIngredient: FunctionComponent<IFillingIngProps> = ({ item, i
       };
 
       dispatch(reorderIngredient(dragIndex, hoverIndex));
-      // @ts-ignore
       item.index = hoverIndex;
     },
   });

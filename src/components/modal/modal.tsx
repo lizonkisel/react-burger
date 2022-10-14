@@ -25,8 +25,8 @@ export const Modal: FunctionComponent<IModalProps> = ({title, onClose, children}
     onClose();
   }
 
-  //@ts-ignore
-  function onEscapeClick(event) {
+
+  function onEscapeClick(event: KeyboardEvent) {
     if (event.key === "Escape") {
       closeModal();
     }

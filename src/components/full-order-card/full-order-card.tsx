@@ -76,10 +76,12 @@ export default function FullOrderCard() {
   const date = Date.parse(currentOrder.createdAt);
   const currentStatus = currentOrder.status;
 
+  console.log(currentStatus);
+
   //@ts-ignore
   const status = statuses[currentStatus];
 
-
+  console.log(status);
 
   const uniqIngredientsObj = {};
 
@@ -98,8 +100,8 @@ export default function FullOrderCard() {
 
   const uniqIngredients = Object.entries(uniqIngredientsObj);
 
-  //@ts-ignore
-  const priceArray = [];
+
+  const priceArray: Array<number> = [];
   ingredients.forEach((ingredient) => {
     //@ts-ignore
     const neededIngredient = allIngredients.find((element) => element._id === ingredient);
@@ -107,7 +109,6 @@ export default function FullOrderCard() {
     priceArray.push(neededIngredient.price);
   })
 
-  //@ts-ignore
   const cost: number = priceArray.reduce((sum, price) => sum + price, 0);
 
 

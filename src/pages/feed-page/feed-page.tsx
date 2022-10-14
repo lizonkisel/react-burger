@@ -62,10 +62,7 @@ export default function FeedPage() {
               </div>
               <div className={styles.status_in_progress}>
                 <p className="text text_type_main-medium">В работе:</p>
-                {
-                  //@ts-ignore
-                  <OrdersList></OrdersList>
-                }
+                <OrdersList></OrdersList>
               </div>
             </div>
             <div className={styles.complete_all}>

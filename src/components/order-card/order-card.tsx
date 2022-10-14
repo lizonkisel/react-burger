@@ -57,16 +57,19 @@ export const OrderCard: FunctionComponent<IOrderCardProps> = ({ order }) => {
     )
   };
 
-  //@ts-ignore
-  const priceArray = [];
+
+  const priceArray: Array<number> = [];
 
   ingredients.forEach((ingredient) => {
     const neededIngredient = allIngredients.find((element) => element._id === ingredient);
-    //@ts-ignore
-    priceArray.push(neededIngredient.price);
+
+    // priceArray.push(neededIngredient.price);
+
+    if (neededIngredient) {
+      priceArray.push(neededIngredient.price);
+    }
   })
 
-  //@ts-ignore
   const cost = priceArray.reduce((sum, price) => sum + price, 0);
 
   const location = useLocation();
@@ -93,7 +96,6 @@ export const OrderCard: FunctionComponent<IOrderCardProps> = ({ order }) => {
               // ingredients.map((ingredient) => {
                 drawableIngredients.map((ingredient) => {
                 return (
-                  //@ts-ignore
                   <IngredientMini ingredient={ingredient}>
                   </IngredientMini>
                 )
@@ -103,11 +105,8 @@ export const OrderCard: FunctionComponent<IOrderCardProps> = ({ order }) => {
               <div className={styles.rest_ingredients}>
                 <div className={`text text_type_main-default ${styles.additional_quantity}`}>+{ingredients.length - 5}</div>
                 <div className={styles.shadow}>
-                  {
-                    //@ts-ignore
-                    <IngredientMini ingredient={ingredients[5]}>
-                    </IngredientMini>
-                  }
+                  <IngredientMini ingredient={ingredients[5]}>
+                  </IngredientMini>
                 </div>
               </div>
             }

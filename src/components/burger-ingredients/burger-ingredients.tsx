@@ -10,6 +10,7 @@ import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
 import {IngredientVariants} from '../ingredient-variants/ingredient-variants';
 import {Modal} from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
+import { TIngredient } from '../../services/types/server-data';
 
 export default function BurgerIngredients() {
 

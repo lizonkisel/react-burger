@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import styles from './orders-list.module.css';
 
 interface IOrderListProps {
-  status: string
+  status?: string
 }
 
 // export default function OrdersList({status}) {
@@ -14,13 +14,15 @@ export const OrdersList: FunctionComponent<IOrderListProps> = ({status}) => {
 
   const {orders} = useSelector(store => store.ws);
 
-  //@ts-ignore
-  const doneOrders = [];
+  const doneOrders: Array<number> = [];
 
-  //@ts-ignore
-  const inProgressOrders = [];
+  const inProgressOrders: Array<number> = [];
 
-  //@ts-ignore
+  if (!orders) {
+    return ( <p className="text text_type_main-medium">Загружаем данные...</p>
+    )
+  };
+
   orders.forEach((order) => {
     if (order.status === "done") {
       doneOrders.push(order.number);
@@ -29,22 +31,20 @@ export const OrdersList: FunctionComponent<IOrderListProps> = ({status}) => {
     }
   });
 
-  if (!orders) {
-    return ( <p className="text text_type_main-medium">Загружаем данные...</p>
-    )
-  };
+  // if (!orders) {
+  //   return ( <p className="text text_type_main-medium">Загружаем данные...</p>
+  //   )
+  // };
 
   return (
 
     <div className={styles.orders_list}>
       { status === 'done' &&
-        //@ts-ignore
         doneOrders.map((number) => {
           return <span className={`text text_type_digits-default ${styles.order_done}`}>#{number}</span>
         })
       }
       {
-        //@ts-ignore
         inProgressOrders.map((number) => {
           return <span className="text text_type_digits-default">#{number}</span>
         })
@@ -53,6 +53,6 @@ export const OrdersList: FunctionComponent<IOrderListProps> = ({status}) => {
   )
 };
 
-OrdersList.propTypes = {
-  status: PropTypes.string.isRequired
-}
+// OrdersList.propTypes = {
+//   status: PropTypes.string.isRequired
+// }

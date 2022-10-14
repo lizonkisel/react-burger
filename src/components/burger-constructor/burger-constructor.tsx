@@ -103,7 +103,7 @@ export default function BurgerConstructor () {
           <ul className={burgerConstructor.compositionChangebleList}>
 
               {constructorIngredients && constructorIngredients.map((ingredient, i) => (
-                //@ts-ignore
+
                 <FillingIngredient item={ingredient} index={i} key={ingredient.uId}>
                 </FillingIngredient>
               ))}

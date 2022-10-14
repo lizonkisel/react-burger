@@ -5,7 +5,7 @@ import { Switch, BrowserRouter, Route, useLocation, useHistory, RouteComponentPr
 
 import AppHeader from '../app-header/app-header';
 
-import ProtectedRoute from '../protected-route/protected-route';
+import { ProtectedRoute } from '../protected-route/protected-route';
 import {LoginPage, ConstructorPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, ProfilePage, OrdersPage, IngredientPage, FeedPage, OrderDetailsPage, Page404} from '../../pages/index.jsx';
 
 import { getUser } from '../../services/actions/user';
@@ -100,21 +100,20 @@ function App() {
             </Route>
 
             {
-              //@ts-ignore
               <ProtectedRoute path='/profile' exact={true}>
                 <ProfilePage/>
               </ProtectedRoute>
             }
 
             {
-              //@ts-ignore
+
               <ProtectedRoute path='/profile/orders' exact={true}>
                 <OrdersPage/>
               </ProtectedRoute>
             }
 
             {
-              //@ts-ignore
+
               <ProtectedRoute path='/profile/orders/:id' exact={true}>
                 <OrderDetailsPage secured={true}/>
               </ProtectedRoute>

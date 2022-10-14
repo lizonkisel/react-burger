@@ -12,7 +12,8 @@ type TAllIngredientsState = {
 const initialState: TAllIngredientsState = {
   isLoading: false,
   isFailed: false,
-  items: null
+  // items: null
+  items: []
 };
 
 
