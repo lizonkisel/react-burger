@@ -5,7 +5,7 @@ import { useSelector } from '../../services/hooks';
 
 export default function ProtectedRoute({ children, ...rest }) {
 
-  const location = useLocation();
+  // const location = useLocation();
 
   const { user } = useSelector(store => store.auth);
 

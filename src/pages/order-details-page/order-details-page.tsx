@@ -32,7 +32,7 @@ export const OrderDetailsPage: FunctionComponent<IOrderDetailsPageProps> = ({ se
     }, [history]
   );
 
-  const location = useLocation();
+  // const location = useLocation();
 
   const accessToken = getCookie('token');
 

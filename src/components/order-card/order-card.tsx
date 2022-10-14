@@ -71,7 +71,7 @@ export const OrderCard: FunctionComponent<IOrderCardProps> = ({ order }) => {
 
   const location = useLocation();
 
-  const { path } = useRouteMatch();
+  const { path } = useRouteMatch<string>();
 
   // console.log(ingredients);
 

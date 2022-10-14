@@ -21,7 +21,7 @@ export default function IngredientPage() {
     }, [history]
   );
 
-  const location = useLocation();
+  // const location = useLocation();
 
   if (!allIngredients) {
     return ( <p className="text text_type_main-medium">Загружаем данные...</p>

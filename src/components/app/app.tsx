@@ -52,12 +52,19 @@ function App() {
 
   const location = useLocation();
 
+  console.log(location);
   // type TLocationState = {
-
+  //   key: string
+  //   pathname: string
+  //   search: string
+  //   hash: string
+  //   state: {}
   // }
 
   //@ts-ignore
   const { background } = location.state || { location };
+
+  console.log(background);
 
   return (
     <>

@@ -27,9 +27,8 @@ export default function ResetPasswordPage() {
 
   const dispatch = useDispatch();
   const history = useHistory();
-  const location = useLocation();
+  const location = useLocation<{from: {pathname: string}}>();
 
-  //@ts-ignore
   const { from } = location.state || { from: { pathname: '/' } };
 
   if (from.pathname !== '/forgot-password') {

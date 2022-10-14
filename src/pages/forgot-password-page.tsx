@@ -34,7 +34,7 @@ export default function ForgotPasswordPage() {
 
   const history = useHistory();
   const dispatch = useDispatch();
-  const location = useLocation();
+  const location = useLocation<string>();
 
   const login = useCallback<TEmptyFunction>(
     () => {

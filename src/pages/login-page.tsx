@@ -24,7 +24,7 @@ export default function LoginPage() {
 
   const history = useHistory();
 
-  const location = useLocation();
+  const location = useLocation<{from: string}>();
 
   const register = useCallback<TEmptyFunction>(
     () => {
@@ -44,8 +44,6 @@ export default function LoginPage() {
     dispatch(login(emailValue, passwordValue));
   }
 
-
-  //@ts-ignore
   const { from } = location.state || { from: { pathname: '/' } };
 
   const {isLogoutChecked} = useSelector(store => store.auth);
