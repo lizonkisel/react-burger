@@ -19,6 +19,7 @@ import { addToConstructor } from '../../services/actions/constructor-ingredients
 // import { CLEAR_CONSTRUCTOR } from '../../services/actions/constructor-ingredients.js';
 import {getOrder} from '../../services/actions/order';
 import { closeOrder} from '../../services/actions/order';
+import { TIngredient } from '../../services/types/server-data';
 
 
 export default function BurgerConstructor () {
@@ -60,12 +61,13 @@ export default function BurgerConstructor () {
 
   const [, dropRef] = useDrop({
     accept: 'ingredient',
-    drop(item) {
+    drop(item: TIngredient): void {
       // dispatch({
       //   type: ADD_TO_CONSTRUCTOR,
       //   item: item,
       //   uId: uuidv4()
       // })
+
       dispatch(addToConstructor(item))
     }
   });
@@ -89,7 +91,8 @@ export default function BurgerConstructor () {
         <article className={`${burgerConstructor.compositionArea} pt-5`} ref={dropRef}>
           {
             bun &&
-            <ConstructorElement className={burgerConstructor.element}
+            // <ConstructorElement className={burgerConstructor.element}
+            <ConstructorElement
             type="top"
             isLocked={true}
             text={`${bun.name} (верх)`}
@@ -100,6 +103,7 @@ export default function BurgerConstructor () {
           <ul className={burgerConstructor.compositionChangebleList}>
 
               {constructorIngredients && constructorIngredients.map((ingredient, i) => (
+                //@ts-ignore
                 <FillingIngredient item={ingredient} index={i} key={ingredient.uId}>
                 </FillingIngredient>
               ))}

@@ -7,7 +7,7 @@ import formStyles from '../inputs-pages.module.css';
 
 import { Input, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 
-import ProfileMenu from '../../components/profile-menu/profile-menu.jsx';
+import ProfileMenu from '../../components/profile-menu/profile-menu';
 import { editUser } from "../../services/actions/user";
 import { regExp } from "../../utils/utils";
 

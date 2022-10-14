@@ -5,7 +5,7 @@ import { Switch, BrowserRouter, Route, useLocation, useHistory, RouteComponentPr
 
 import AppHeader from '../app-header/app-header';
 
-import ProtectedRoute from '../protected-route/protected-route.jsx';
+import ProtectedRoute from '../protected-route/protected-route';
 import {LoginPage, ConstructorPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, ProfilePage, OrdersPage, IngredientPage, FeedPage, OrderDetailsPage, Page404} from '../../pages/index.jsx';
 
 import { getUser } from '../../services/actions/user';

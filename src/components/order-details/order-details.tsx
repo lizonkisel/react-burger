@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import done from '../../images/done.png';
 
 interface IOrderDetailsProps {
-  orderNumber: number
+  orderNumber: number | null
 }
 
 // export default function OrderDetails({orderNumber}) {

@@ -5,7 +5,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 import styles from './order-details-page.module.css';
 
-// import Modal from '../../components/modal/modal.jsx';
+// import Modal from '../../components/modal/modal';
 import FullOrderCard from "../../components/full-order-card/full-order-card";
 
 import { WS_CONNECTION_START, WS_CONNECTION_CLOSED } from "../../services/constants/wsActionTypes";

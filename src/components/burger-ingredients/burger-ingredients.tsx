@@ -7,9 +7,9 @@ import burgerIngredients from './burger-ingredients.module.css';
 
 import {Tab} from '@ya.praktikum/react-developer-burger-ui-components';
 
-import {IngredientVariants} from '../ingredient-variants/ingredient-variants.jsx';
+import {IngredientVariants} from '../ingredient-variants/ingredient-variants';
 import {Modal} from '../modal/modal';
-import IngredientDetails from '../ingredient-details/ingredient-details.jsx';
+import IngredientDetails from '../ingredient-details/ingredient-details';
 
 export default function BurgerIngredients() {
 
