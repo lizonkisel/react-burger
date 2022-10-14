@@ -1,9 +1,9 @@
 import React, { useEffect, useCallback } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 import { useDispatch, useSelector } from '../../services/hooks';
-import { Switch, BrowserRouter, Route, useLocation, useHistory } from 'react-router-dom';
+import { Switch, BrowserRouter, Route, useLocation, useHistory, RouteComponentProps } from 'react-router-dom';
 
-import AppHeader from '../app-header/app-header.jsx';
+import AppHeader from '../app-header/app-header';
 
 import ProtectedRoute from '../protected-route/protected-route.jsx';
 import {LoginPage, ConstructorPage, RegisterPage, ForgotPasswordPage, ResetPasswordPage, ProfilePage, OrdersPage, IngredientPage, FeedPage, OrderDetailsPage, Page404} from '../../pages/index.jsx';
@@ -50,8 +50,11 @@ function App() {
     }, [history]
   );
 
-
   const location = useLocation();
+
+  // type TLocationState = {
+
+  // }
 
   //@ts-ignore
   const { background } = location.state || { location };

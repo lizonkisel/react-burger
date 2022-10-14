@@ -5,9 +5,13 @@ import { useParams } from 'react-router-dom';
 
 import ingredientDetails from './ingredient-details.module.css';
 
+type TIdParam = {
+  id: string
+};
+
 export default function IngredientDetails() {
 
-  const {id} = useParams();
+  const {id} = useParams<TIdParam>();
 
   const allIngredients = useSelector(store => store.allIngredients.items);
 
@@ -22,24 +26,43 @@ export default function IngredientDetails() {
 
   return (
     <article className={ingredientDetails.card}>
-      <img className={ingredientDetails.image} src={currentIngredient.image_large} />
-      <h4 className='mt-4 mb-8 text text_type_main-medium'>{currentIngredient.name}</h4>
+      {
+        // @ts-ignore
+        <img className={ingredientDetails.image} src={currentIngredient.image_large} />
+      }
+      {
+        // @ts-ignore
+        <h4 className='mt-4 mb-8 text text_type_main-medium'>{currentIngredient.name}</h4>
+      }
       <ul className={`mb-15 ${ingredientDetails.nutritionalValue}`}>
         <li className={`text text_type_main-default text_color_inactive ${ingredientDetails.component}`}>
           <p className={ingredientDetails.componentName}>Калории,ккал</p>
-          <span className='text_type_digits-default'>{currentIngredient.calories}</span>
+          {
+            // @ts-ignore
+            <span className='text_type_digits-default'>{currentIngredient.calories}</span>
+          }
         </li>
         <li className={`text text_type_main-default text_color_inactive ${ingredientDetails.component}`}>
           <p className={ingredientDetails.componentName}>Белки, г</p>
-          <span className='text_type_digits-default'>{currentIngredient.proteins}</span>
+          {
+            // @ts-ignore
+            <span className='text_type_digits-default'>{currentIngredient.proteins}</span>
+          }
+
         </li>
         <li className={`text text_type_main-default text_color_inactive ${ingredientDetails.component}`}>
           <p className={ingredientDetails.componentName}>Жиры, г</p>
-          <span className='text_type_digits-default'>{currentIngredient.fat}</span>
+          {
+            // @ts-ignore
+            <span className='text_type_digits-default'>{currentIngredient.fat}</span>
+          }
         </li>
         <li className={`text text_type_main-default text_color_inactive ${ingredientDetails.component}`}>
           <p className={ingredientDetails.componentName}>Углеводы, г</p>
-          <span className='text_type_digits-default'>{currentIngredient.carbohydrates}</span>
+          {
+            // @ts-ignore
+            <span className='text_type_digits-default'>{currentIngredient.carbohydrates}</span>
+          }
         </li>
       </ul>
     </article>

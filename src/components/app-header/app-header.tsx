@@ -5,9 +5,13 @@ import appHeader from './app-header.module.css';
 
 import { Logo, BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
+type TLocationState = {
+  pathname: string
+};
+
 export default function AppHeader() {
 
-  const {pathname} = useLocation();
+  const {pathname} = useLocation<TLocationState>();
 
   return (
     <header className={`mt-10 ${appHeader.header}`}>

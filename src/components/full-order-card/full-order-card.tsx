@@ -8,12 +8,15 @@ import 'moment/locale/ru';
 import styles from './full-order-card.module.css';
 
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import IngredientMini from "../ingredient-mini/ingredient-mini";
 import {IngredientCard} from "../ingredient-card/ingredient-card";
 import { statuses } from "../../utils/utils";
 
 import { WS_CONNECTION_START, WS_CONNECTION_CLOSED } from "../../services/constants/wsActionTypes";
 import { wsActions } from "../../services/constants/wsActionTypes";
+
+type TIdParam = {
+  id: string
+};
 
 export default function FullOrderCard() {
 
@@ -26,7 +29,7 @@ export default function FullOrderCard() {
   }
   });
 
-  const {id} = useParams();
+  const {id} = useParams<TIdParam>();
 
   const dispatch = useDispatch();
   // const { orders, wsConnected, total, totalToday} = useSelector(store => store.ws);
@@ -73,6 +76,7 @@ export default function FullOrderCard() {
   const date = Date.parse(currentOrder.createdAt);
   const currentStatus = currentOrder.status;
 
+  //@ts-ignore
   const status = statuses[currentStatus];
 
 
@@ -82,22 +86,29 @@ export default function FullOrderCard() {
   const ingredientsObj = {...ingredients};
 
   ingredients.forEach((ingredient) => {
+    //@ts-ignore
     if (!uniqIngredientsObj[ingredient]) {
+      //@ts-ignore
       uniqIngredientsObj[ingredient] = 1
     } else {
+      //@ts-ignore
       uniqIngredientsObj[ingredient] += 1
     }
   });
 
   const uniqIngredients = Object.entries(uniqIngredientsObj);
 
+  //@ts-ignore
   const priceArray = [];
   ingredients.forEach((ingredient) => {
+    //@ts-ignore
     const neededIngredient = allIngredients.find((element) => element._id === ingredient);
+    //@ts-ignore
     priceArray.push(neededIngredient.price);
   })
 
-  const cost = priceArray.reduce((sum, price) => sum + price, 0);
+  //@ts-ignore
+  const cost: number = priceArray.reduce((sum, price) => sum + price, 0);
 
 
   if (!orders) {
@@ -122,6 +133,7 @@ export default function FullOrderCard() {
           {
             uniqIngredients.map((ingredient) => {
               return (
+                //@ts-ignore
                 <IngredientCard order={currentOrder} ingredient={ingredient[0]} amount={ingredient[1]}></IngredientCard>
               )
             })

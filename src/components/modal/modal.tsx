@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { useEffect, FunctionComponent, ReactNode } from 'react';
 import ReactDOM from 'react-dom';
 
 import modal from './modal.module.css'
@@ -36,7 +36,7 @@ export const Modal: FunctionComponent<IModalProps> = ({title, onClose, children}
     closeModal();
   }
 
-  React.useEffect(
+  useEffect(
     () => {
       document.addEventListener('keydown', onEscapeClick);
 
