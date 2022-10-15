@@ -7,6 +7,7 @@ import {
   WS_GET_MESSAGE,
   WS_RESET_ERROR
 } from '../constants/wsActionTypes';
+import { TOrder, TWsMessageData } from '../types/server-data';
 
 
 interface IWsInitAction {
@@ -18,19 +19,16 @@ interface IWsConnectionStartWithTokenAction {
   payload: string
 }
 
-// Убрать any
 interface IWsConnectionSuccessAction {
   readonly type: typeof WS_CONNECTION_SUCCESS,
   payload: any
 }
 
-// Убрать any
 interface IWsGetMessageAction {
   readonly type: typeof WS_GET_MESSAGE,
-  payload: any
+  payload: TWsMessageData
 }
 
-// Убрать any
 interface IWsErrorAction {
   readonly type: typeof WS_CONNECTION_ERROR,
   payload: any
@@ -67,21 +65,19 @@ export function wsInitWithTokenAction (url: string): IWsConnectionStartWithToken
   };
 }
 
-// Убрать any
 export function wsConnectionSuccessAction(event: any): IWsConnectionSuccessAction {
+  console.log(event);
   return {
     type: WS_CONNECTION_SUCCESS, payload: event
   }
 };
 
-// Убрать any
-export function wsGetMessageAction(data: any): IWsGetMessageAction {
+export function wsGetMessageAction(data: TWsMessageData): IWsGetMessageAction {
   return {
     type: WS_GET_MESSAGE, payload: data
   }
 };
 
-// Убрать any
 export function wsErrorAction(event: any): IWsErrorAction {
   return {
     type: WS_CONNECTION_ERROR, payload: event

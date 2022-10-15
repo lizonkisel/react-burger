@@ -78,36 +78,59 @@ export default function FullOrderCard() {
 
   console.log(currentStatus);
 
-  //@ts-ignore
   const status = statuses[currentStatus];
 
   console.log(status);
 
-  const uniqIngredientsObj = {};
+  const uniqIngredientsObj: {
+    [key: string]: number
+  } = {};
 
   const ingredientsObj = {...ingredients};
 
-  ingredients.forEach((ingredient) => {
-    //@ts-ignore
-    if (!uniqIngredientsObj[ingredient]) {
-      //@ts-ignore
-      uniqIngredientsObj[ingredient] = 1
-    } else {
-      //@ts-ignore
-      uniqIngredientsObj[ingredient] += 1
-    }
-  });
+  if (ingredients !== null) {
+    ingredients.forEach((ingredient) => {
+      if (ingredient !== null) {
+        if (!uniqIngredientsObj[ingredient]) {
+          uniqIngredientsObj[ingredient] = 1
+        } else {
+          uniqIngredientsObj[ingredient] += 1
+        }
+      }
+    });
+  }
+
+  // ingredients.forEach((ingredient) => {
+  //   //@ts-ignore
+  //   if (!uniqIngredientsObj[ingredient]) {
+  //     //@ts-ignore
+  //     uniqIngredientsObj[ingredient] = 1
+  //   } else {
+  //     //@ts-ignore
+  //     uniqIngredientsObj[ingredient] += 1
+  //   }
+  // });
 
   const uniqIngredients = Object.entries(uniqIngredientsObj);
 
 
   const priceArray: Array<number> = [];
-  ingredients.forEach((ingredient) => {
-    //@ts-ignore
-    const neededIngredient = allIngredients.find((element) => element._id === ingredient);
-    //@ts-ignore
-    priceArray.push(neededIngredient.price);
-  })
+
+  if (allIngredients !== null) {
+    ingredients.forEach((ingredient) => {
+      const neededIngredient = allIngredients.find((element) => element._id === ingredient);
+      if (neededIngredient) {
+        priceArray.push(neededIngredient.price);
+      }
+    })
+  }
+
+  // ingredients.forEach((ingredient) => {
+  //   //@ts-ignore
+  //   const neededIngredient = allIngredients.find((element) => element._id === ingredient);
+  //   //@ts-ignore
+  //   priceArray.push(neededIngredient.price);
+  // })
 
   const cost: number = priceArray.reduce((sum, price) => sum + price, 0);
 

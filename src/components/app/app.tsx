@@ -50,7 +50,13 @@ function App() {
     }, [history]
   );
 
-  const location = useLocation();
+  const location = useLocation<{background: {
+    key: string
+    pathname: string
+    search: string
+    hash: string
+    state: unknown
+  }}>();
 
   console.log(location);
   // type TLocationState = {
@@ -61,7 +67,7 @@ function App() {
   //   state: {}
   // }
 
-  //@ts-ignore
+
   const { background } = location.state || { location };
 
   console.log(background);

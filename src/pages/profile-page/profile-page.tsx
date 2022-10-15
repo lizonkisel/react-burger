@@ -14,13 +14,34 @@ import { regExp } from "../../utils/utils";
 
 export default function ProfilePage() {
 
-  //@ts-ignore
-  const currentName = useSelector(store => store.auth.user.name);
-  //@ts-ignore
-  const currentEmail = useSelector(store => store.auth.user.email);
+  const [nameValue, setNameValue] = React.useState<string>('');
+  const [loginValue, setLoginValue] = React.useState<string>('');
 
-  const [nameValue, setNameValue] = React.useState<string>(currentName);
-  const [loginValue, setLoginValue] = React.useState<string>(currentEmail);
+  const user = useSelector(store => store.auth.user);
+
+  useEffect(() => {
+    if (user) {
+      setLoginValue(user.email);
+      setNameValue(user.name);
+    }
+  }, [user]);
+
+
+  // if (user !== null) {
+  //   currentName = user.name;
+  //   currentEmail = user.email;
+  // } else {
+  //   currentName = '';
+  //   currentEmail = '';
+  // }
+
+  // //@ts-ignore
+  // const currentName = useSelector(store => store.auth.user.name);
+  // //@ts-ignore
+  // const currentEmail = useSelector(store => store.auth.user.email);
+
+  // const [nameValue, setNameValue] = React.useState<string>(currentName);
+  // const [loginValue, setLoginValue] = React.useState<string>(currentEmail);
   const [passwordValue, setPasswordValue] = React.useState<string>('');
   const inputRef = useRef<HTMLInputElement>(null);
   const onIconClick = () => {
@@ -102,8 +123,10 @@ export default function ProfilePage() {
       // return null
       return
     };
-    setNameValue(currentName);
-    setLoginValue(currentEmail);
+    // setNameValue(currentName);
+    // setLoginValue(currentEmail);
+    setNameValue(nameValue);
+    setLoginValue(loginValue);
     setPasswordValue('');
     setIsButtonsVisible(false);
   };
@@ -179,8 +202,8 @@ export default function ProfilePage() {
             onIconClick={onIconClick}
             errorText={'Пароль должен содержать от 8 до 20 символов'}
             size={'default'}
-            //@ts-ignore
-            required={false}
+
+            // required={false}
           />
         </fieldset>
         <div className={`${styles.buttons_wrapper} ${isButtonsVisible ? styles.buttons_wrapper_visible : null}`}>

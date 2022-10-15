@@ -2,6 +2,7 @@ import {baseUrl, getCookie, checkResponse} from '../../utils/utils';
 import { AppDispatch, AppThunk } from '../types';
 
 import { GET_ORDER, GET_ORDER_SUCCESS, GET_ORDER_FAILED, CLOSE_ORDER } from '../constants/index';
+import { TGetOrderResponse } from '../types/server-data';
 
 // const GET_ORDER = 'GET_ORDER';
 // const GET_ORDER_SUCCESS = 'GET_ORDER_SUCCESS';
@@ -39,8 +40,7 @@ function getOrderAction(): IGetOrderAction {
   }
 };
 
-// Убрать any
-function getOrderSuccessAction(res: any): IGetOrderSuccessAction {
+function getOrderSuccessAction(res: TGetOrderResponse): IGetOrderSuccessAction {
   return {
     type: GET_ORDER_SUCCESS,
     isOrderModalClosed: false,
@@ -81,7 +81,7 @@ const getOrder: AppThunk = (ingredientsIdArray: Array<string>) => {
         "ingredients": ingredientsIdArray
       })
     })
-    .then(checkResponse)
+    .then(res => checkResponse<TGetOrderResponse>(res))
     .then(res => {
       // dispatch({
       //   type: GET_ORDER_SUCCESS,

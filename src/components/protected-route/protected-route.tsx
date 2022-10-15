@@ -1,4 +1,4 @@
-import React, { ReactElement, FunctionComponent } from "react";
+import React, { ReactElement, ReactNode, FunctionComponent } from "react";
 import { Route, Redirect, useLocation } from 'react-router-dom';
 // import { useSelector } from "react-redux";
 import { useSelector } from '../../services/hooks';
@@ -14,10 +14,11 @@ interface IProtectedRouteProps {
 
 
 // export default function ProtectedRoute({ children, ...rest }) {
-//@ts-ignore
+
+
 export const ProtectedRoute: FunctionComponent<IProtectedRouteProps> = ({ children, ...rest }) => {
 
-  // const location = useLocation();
+  const location = useLocation();
 
   const { user } = useSelector(store => store.auth);
 
@@ -28,7 +29,7 @@ export const ProtectedRoute: FunctionComponent<IProtectedRouteProps> = ({ childr
     )
   };
 
-  if (isAuthChecked) {
+  // if (isAuthChecked) {
     return (
       <Route
         {...rest}
@@ -44,6 +45,6 @@ export const ProtectedRoute: FunctionComponent<IProtectedRouteProps> = ({ childr
         }
       />
     )
-  };
+  // };
 
 }

@@ -104,7 +104,9 @@ const fetchWithRefresh = async (url: string, options: RequestInit = {}): Promise
   }
 };
 
-const statuses = {
+const statuses: {
+  [key: string]: string
+} = {
   done: 'Выполнен',
   created: 'Создан',
   pending: 'Готовится'

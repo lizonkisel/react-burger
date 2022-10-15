@@ -62,8 +62,8 @@ export const Modal: FunctionComponent<IModalProps> = ({title, onClose, children}
 
       <ModalOverlay onOverlayClick={closeModal}/>
     </>),
-  //@ts-ignore
-    modalsContainer
+
+    modalsContainer!
   )
 };
 

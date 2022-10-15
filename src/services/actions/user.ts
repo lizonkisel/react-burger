@@ -65,7 +65,6 @@ function getUserAction(): IGetUserAction {
   }
 };
 
-// Убрать any
 // function getUserSuccessAction(res: {success: true; user: TUser}): IGetUserSuccessAction {
   function getUserSuccessAction(res: {success: true; user: TUser}): IGetUserSuccessAction {
   console.log('azaza success');
@@ -79,8 +78,8 @@ function getUserAction(): IGetUserAction {
   }
 };
 
-function getUserFailedAction(err: any): IGetUserFailedAction {
-  console.log('azaza failed');
+function getUserFailedAction(): IGetUserFailedAction {
+  // console.log('azaza failed');
   // console.log(err);
   return {
     type: GET_USER_FAILED,
@@ -96,7 +95,6 @@ function editUserAction(): IEditUserAction {
   }
 };
 
-// Убрать any
 function editUserSuccessAction(res: {success: true; user: TUser}): IEditUserSuccessAction {
   return {
     type: EDIT_USER_SUCCESS,
@@ -149,7 +147,7 @@ const getUser: AppThunk = () => {
       //   isAuthChecked: true,
       //   isLogoutChecked: true
       // })
-      dispatch(getUserFailedAction(err))
+      dispatch(getUserFailedAction())
     )
   }
 };

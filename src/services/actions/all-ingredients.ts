@@ -4,6 +4,7 @@ import { AppDispatch, AppThunk } from '../types';
 
 import {GET_ALL_INGREDIENTS, GET_ALL_INGREDIENTS_SUCCESS, GET_ALL_INGREDIENTS_FAILED} from '../constants/index';
 import {TIngredient} from '../types/server-data';
+import { TAllIngredientsResponse } from '../types/server-data';
 
 // const GET_ALL_INGREDIENTS: 'GET_ALL_INGREDIENTS' = 'GET_ALL_INGREDIENTS';
 // const GET_ALL_INGREDIENTS_SUCCESS: 'GET_ALL_INGREDIENTS_SUCCESS'  = 'GET_ALL_INGREDIENTS_SUCCESS';
@@ -59,6 +60,11 @@ function getAllIngredientsFailedAction(): IGetAllIngredientsFailedAction {
   }
 };
 
+// type TTest = {
+//   success: boolean;
+//   data: ReadonlyArray<TIngredient>
+// }
+
 
 // function getAllIngredients() {
 const getAllIngredients: AppThunk = () => {
@@ -71,9 +77,8 @@ const getAllIngredients: AppThunk = () => {
     dispatch(getAllIngredientsAction())
 
     fetch(`${baseUrl}/ingredients`)
-      .then(checkResponse)
-      // Избавиться от any. Но не ясно, что тут писать
-      .then ((res: any) => {
+      .then(res => checkResponse<TAllIngredientsResponse>(res))
+      .then ((res) => {
         console.log(res);
         // dispatch({
         //   type: GET_ALL_INGREDIENTS_SUCCESS,

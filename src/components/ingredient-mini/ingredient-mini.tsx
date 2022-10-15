@@ -35,8 +35,11 @@ export const IngredientMini: FunctionComponent<IIngredientMiniProps> = ({ingredi
   //   console.log(ingredientData.image);
   // }
 
-  //@ts-ignore
-  const ingredientData = allIngredients.find(element => element._id === ingredient);
+  let ingredientData;
+
+  if (allIngredients != null) {
+    ingredientData = allIngredients.find(element => element._id === ingredient);
+  }
   // console.log(ingredientData.name);
   // console.log(ingredientData.image);
   // const ingredientImage = ingredientData.image;

@@ -34,3 +34,33 @@ export type TOrder = {
   readonly updatedAt: string;
   readonly number: number
 }
+
+export type TAllIngredientsResponse = {
+  success: boolean;
+  data: ReadonlyArray<TIngredient>
+};
+
+export type TLoginResponse = {
+  success: boolean;
+  user: TUser;
+  accessToken: string;
+  refreshToken: string
+};
+
+export type TGetOrderResponse = {
+  success: boolean;
+  order: TOrder
+};
+
+export type TRegistrationResponse = {
+  success: boolean;
+  user: TUser;
+  accessToken: string;
+  refreshToken: string
+};
+
+export type TWsMessageData = {
+  orders: ReadonlyArray<TOrder>;
+  total: number;
+  totalToday: number
+};

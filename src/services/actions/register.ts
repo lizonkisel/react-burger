@@ -3,6 +3,7 @@ import { AppDispatch, AppThunk } from '../types';
 
 import {REGISTER, REGISTER_SUCCESS, REGISTER_FAILED} from '../constants/index';
 import { TUser } from '../types/server-data';
+import { TRegistrationResponse } from '../types/server-data';
 
 // const REGISTER = 'REGISTER';
 // const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
@@ -47,8 +48,7 @@ function registerAction(): IRegisterAction {
   }
 };
 
-// Убрать any
-function registerSuccessAction(res: any): IRegisterSuccessAction {
+function registerSuccessAction(res: TRegistrationResponse): IRegisterSuccessAction {
   return {
     type: REGISTER_SUCCESS,
     isLoading: false,
@@ -101,7 +101,7 @@ const register: AppThunk = (name: string, email: string, password: string) => {
         })
       }
     )
-    .then(checkResponse)
+    .then(res => checkResponse<TRegistrationResponse>(res))
     .then(res =>
       // dispatch({
       //   type: REGISTER_SUCCESS,

@@ -4,6 +4,7 @@ import { AppDispatch, AppThunk } from '../types';
 
 import {LOGIN, LOGIN_SUCCESS, LOGIN_FAILED} from '../constants/index';
 import { TUser } from '../types/server-data';
+import { TLoginResponse } from '../types/server-data';
 
 // const LOGIN = 'LOGIN';
 // const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -50,8 +51,7 @@ function loginAction(): ILoginAction {
   }
 };
 
-// Убрать any
-function loginSuccessAction(res: any): ILoginSuccessAction {
+function loginSuccessAction(res: TLoginResponse): ILoginSuccessAction {
   return {
     type: LOGIN_SUCCESS,
     isLoading: false,
@@ -103,9 +103,8 @@ const login: AppThunk = (email: string, password: string) => {
         })
       }
     )
-    .then(checkResponse)
-    // Убрать any
-    .then((res: any) =>
+    .then(res => checkResponse<TLoginResponse>(res))
+    .then((res) =>
       // dispatch({
       //   type: LOGIN_SUCCESS,
       //   isLoading: false,
