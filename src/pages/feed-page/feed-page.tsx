@@ -1,6 +1,5 @@
 import React, { useEffect, useCallback } from "react";
 import { v4 as uuidv4 } from 'uuid';
-// import { useDispatch, useSelector } from "react-redux";
 import { useDispatch, useSelector } from '../../services/hooks';
 
 import styles from './feed-page.module.css';
@@ -31,11 +30,6 @@ export default function FeedPage() {
   if (error) {
     dispatch({type: WS_RESET_ERROR});
   };
-
-  // if (!wsConnected) {
-  //   return ( <p className="text text_type_main-medium">Загружаем данные...</p>
-  //   )
-  // };
 
   return (
     <main className={styles.main}>

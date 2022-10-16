@@ -6,10 +6,6 @@ import {LOGIN, LOGIN_SUCCESS, LOGIN_FAILED} from '../constants/index';
 import { TUser } from '../types/server-data';
 import { TLoginResponse } from '../types/server-data';
 
-// const LOGIN = 'LOGIN';
-// const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-// const LOGIN_FAILED = 'LOGIN_FAILED';
-
 interface ILoginAction {
   readonly type: typeof LOGIN,
   readonly isLoading: true,
@@ -75,15 +71,8 @@ function loginFailedAction(): ILoginFailedAction {
 };
 
 
-// function login(email: string, password: string) {
 const login: AppThunk = (email: string, password: string) => {
   return function(dispatch: AppDispatch) {
-    // dispatch({
-    //   type: LOGIN,
-    //   isLoading: true,
-    //   isFailed: false,
-    //   isAuth: false
-    // })
     dispatch(loginAction())
 
     fetch(`${baseUrl}/auth/login`,
@@ -105,30 +94,12 @@ const login: AppThunk = (email: string, password: string) => {
     )
     .then(res => checkResponse<TLoginResponse>(res))
     .then((res) =>
-      // dispatch({
-      //   type: LOGIN_SUCCESS,
-      //   isLoading: false,
-      //   isFailed: false,
-      //   user: res.user,
-      //   accessToken: res.accessToken,
-      //   refreshToken: res.refreshToken,
-      //   isAuth: true,
-      //   isLogoutChecked: true
-      // })
       dispatch(loginSuccessAction(res))
     )
     .catch(err =>
-      // dispatch({
-      //   type: LOGIN_FAILED,
-      //   isLoading: false,
-      //   isFailed: true,
-      //   isAuth: false,
-      //   isLogoutChecked: true
-      // })
       dispatch(loginFailedAction())
     )
   }
 }
 
-// export {LOGIN, LOGIN_SUCCESS, LOGIN_FAILED, login};
 export {login};

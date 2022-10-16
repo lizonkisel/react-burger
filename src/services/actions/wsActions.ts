@@ -34,11 +34,6 @@ interface IWsErrorAction {
   payload: any
 }
 
-// interface IWsResetErrorAction {
-//   readonly type: typeof WS_RESET_ERROR,
-
-// }
-
 interface IWsCloseAction {
   readonly type: typeof WS_CONNECTION_CLOSED
 }

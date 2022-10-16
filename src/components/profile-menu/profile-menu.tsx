@@ -1,5 +1,4 @@
 import React from "react";
-// import { useDispatch } from "react-redux";
 import { useDispatch } from '../../services/hooks';
 import { NavLink, useHistory } from 'react-router-dom';
 
@@ -20,8 +19,6 @@ export default function ProfileMenu() {
 
   const logoutFromAccount = () => {
     signOut().then(() => {
-
-      // setCookie('token', null, { expires: -1 });
       setCookie('token', '', { expires: -1 });
       history.replace({ pathname: '/login' });
     });

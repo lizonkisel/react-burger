@@ -1,5 +1,4 @@
 import React, { useCallback, FormEvent } from "react";
-// import { useDispatch, useSelector } from "react-redux";
 import { useDispatch, useSelector } from '../services/hooks';
 import {useHistory, useLocation, Redirect} from 'react-router-dom';
 
@@ -75,7 +74,6 @@ export default function LoginPage() {
             name={'password'}
           />
         </fieldset>
-        {/* <Button type="primary" size="medium" onClick={loginUser}> */}
         <Button type="primary" size="medium">
           Войти
         </Button>

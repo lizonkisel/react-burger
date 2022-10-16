@@ -1,5 +1,4 @@
 import React, { useEffect, useCallback } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
 import { useDispatch, useSelector } from '../../services/hooks';
 import { Switch, BrowserRouter, Route, useLocation, useHistory, RouteComponentProps } from 'react-router-dom';
 

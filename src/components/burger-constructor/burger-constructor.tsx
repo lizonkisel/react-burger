@@ -1,9 +1,7 @@
 import React, { useMemo } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
 import { useDispatch, useSelector } from '../../services/hooks';
 import { useDrop } from 'react-dnd';
 import {useHistory} from 'react-router-dom';
-// import { v4 as uuidv4 } from 'uuid';
 
 import burgerConstructor from './burger-constructor.module.css';
 
@@ -16,7 +14,6 @@ import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 import {Button} from '@ya.praktikum/react-developer-burger-ui-components';
 
 import { addToConstructor } from '../../services/actions/constructor-ingredients';
-// import { CLEAR_CONSTRUCTOR } from '../../services/actions/constructor-ingredients.js';
 import {getOrder} from '../../services/actions/order';
 import { closeOrder} from '../../services/actions/order';
 import { TIngredient } from '../../services/types/server-data';
@@ -62,12 +59,6 @@ export default function BurgerConstructor () {
   const [, dropRef] = useDrop({
     accept: 'ingredient',
     drop(item: TIngredient): void {
-      // dispatch({
-      //   type: ADD_TO_CONSTRUCTOR,
-      //   item: item,
-      //   uId: uuidv4()
-      // })
-
       dispatch(addToConstructor(item))
     }
   });
@@ -81,7 +72,6 @@ export default function BurgerConstructor () {
       history.replace({pathname: '/login'})
     } else {
       dispatch(getOrder(getIngredientsIdArray()));
-      // dispatch({type: CLEAR_CONSTRUCTOR});
     }
   }
 
@@ -91,7 +81,6 @@ export default function BurgerConstructor () {
         <article className={`${burgerConstructor.compositionArea} pt-5`} ref={dropRef}>
           {
             bun &&
-            // <ConstructorElement className={burgerConstructor.element}
             <ConstructorElement
             type="top"
             isLocked={true}
@@ -131,7 +120,6 @@ export default function BurgerConstructor () {
               <CurrencyIcon type="primary" />
             </div>
           </div>
-          {/* <Button type="primary" size="large" onClick={() => {dispatch(getOrder(getIngredientsIdArray()))}}> */}
           <Button type="primary" size="large" onClick={() => {placeOrder()}}>
             Оформить заказ
           </Button>

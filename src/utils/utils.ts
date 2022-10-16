@@ -9,12 +9,10 @@ const defaultBunUrl: string = "https://code.s3.yandex.net/react/code/bun-02.png"
 const regExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function checkResponse<T>(res: Response): Promise<T> {
-  // return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
   return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
 };
 
-// function setCookie(name, value, props) {
-  function setCookie(name: string, value: string, props?: Record<string, string | number | Date | boolean>): void {
+function setCookie(name: string, value: string, props?: Record<string, string | number | Date | boolean>): void {
 
   props = props || {};
   let exp = props.expires;
@@ -46,28 +44,18 @@ function getCookie(name: string): string | undefined {
 };
 
 
-// const fetchWithRefresh = async (url: string, options: RequestInit = {}) => {
-// const fetchWithRefresh = async (url: string, options: RequestInit = {}): Promise<Response> => {
 const fetchWithRefresh = async (url: string, options: RequestInit = {}): Promise<{success: true; user: TUser}> => {
   try {
-    const res: Response = await fetch(url, options)
-    // await fetch(url, options)
-    // .then(checkResponse)
-    // .then(res => console.log(res))
+    const res: Response = await fetch(url, options);
     const data: {success: true; user: TUser} = await checkResponse(res);
-    // const data = checkResponse(res);
     return data;
   } catch (error) {
     const err = error as Response;
     const errorData = await err.json();
     if (errorData.message === 'jwt expired') {
       const currentRefreshToken = localStorage.getItem('refreshToken');
-      // Убрать any
       const newData: any = await refreshToken(currentRefreshToken);
       const refreshData = await newData.json();
-      // const refreshData = await refreshToken(currentRefreshToken);
-      // const refreshData = await newData.json();
-
       if (!refreshData.success) {
         return Promise.reject(refreshData);
       } else {
@@ -77,7 +65,6 @@ const fetchWithRefresh = async (url: string, options: RequestInit = {}): Promise
           ...options,
             headers: {
               ...options.headers,
-              // Authotization: 'Bearer ' + refreshData.accessToken
               Authotization: refreshData.accessToken
             }
         });

@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from "react";
 import { v4 as uuidv4 } from 'uuid';
-// import { useSelector } from "react-redux";
 import { useSelector } from '../../services/hooks';
 
 import styles from './orders-list.module.css';
@@ -9,7 +8,6 @@ interface IOrderListProps {
   status?: string
 }
 
-// export default function OrdersList({status}) {
 export const OrdersList: FunctionComponent<IOrderListProps> = ({status}) => {
 
   const {orders} = useSelector(store => store.ws);
@@ -30,11 +28,6 @@ export const OrdersList: FunctionComponent<IOrderListProps> = ({status}) => {
       inProgressOrders.push(order.number);
     }
   });
-
-  // if (!orders) {
-  //   return ( <p className="text text_type_main-medium">Загружаем данные...</p>
-  //   )
-  // };
 
   return (
 

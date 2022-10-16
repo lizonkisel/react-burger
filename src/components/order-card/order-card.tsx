@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from "react";
 import { v4 as uuidv4 } from 'uuid';
-// import { useSelector } from "react-redux";
 import { useSelector } from '../../services/hooks';
 import { Link, useLocation, useRouteMatch} from 'react-router-dom';
 
@@ -18,13 +17,11 @@ interface IOrderCardProps {
   order: TOrder
 }
 
-// export default function OrderCard({ order }) {
 export const OrderCard: FunctionComponent<IOrderCardProps> = ({ order }) => {
   moment.locale('ru', {
     calendar : {
       lastDay : '[Вчера,] LT',
       sameDay : '[Сегодня,] LT',
-      // lastWeek: '[Прошлый] dddd',
       sameElse: 'DD/MM/YYYY',
   }
   });
@@ -57,8 +54,6 @@ export const OrderCard: FunctionComponent<IOrderCardProps> = ({ order }) => {
   ingredients.forEach((ingredient) => {
     const neededIngredient = allIngredients.find((element) => element._id === ingredient);
 
-    // priceArray.push(neededIngredient.price);
-
     if (neededIngredient) {
       priceArray.push(neededIngredient.price);
     }
@@ -70,10 +65,7 @@ export const OrderCard: FunctionComponent<IOrderCardProps> = ({ order }) => {
 
   const { path } = useRouteMatch<string>();
 
-  // const cost = ingredients.reduce((sum, ingredient) => sum + ingredient.price, 0);
-
   return (
-      // <Link className={styles.link} to={{pathname: `/feed/${id}`, state: {background: location}}}>
       <Link className={styles.link} to={{pathname: `${path}/${id}`, state: {background: location}}}>
         <article className={styles.card}>
         <div className={styles.order_data}>
@@ -84,7 +76,6 @@ export const OrderCard: FunctionComponent<IOrderCardProps> = ({ order }) => {
         <div className={styles.ingredients_and_cost}>
           <div className={styles.ingredients}>
             {
-              // ingredients.map((ingredient) => {
                 drawableIngredients.map((ingredient) => {
                 return (
                   <IngredientMini key={uuidv4()} ingredient={ingredient}>

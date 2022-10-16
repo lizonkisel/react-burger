@@ -3,10 +3,6 @@ import { AppDispatch, AppThunk } from '../types';
 
 import {LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAILED} from '../constants/index';
 
-// const LOGOUT = 'LOGOUT';
-// const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
-// const LOGOUT_FAILED = 'LOGOUT_FAILED';
-
 interface ILogoutAction {
   readonly type: typeof LOGOUT,
   readonly isLogoutChecked: false
@@ -53,18 +49,12 @@ function logoutSuccessAction(): ILogoutSuccessAction {
 function logoutFailedAction(): ILogoutFailedAction {
   return {
     type: LOGOUT_FAILED,
-    // isLogoutChecked: false
     isLogoutChecked: true
   }
 };
 
-// function logout() {
 const logout: AppThunk = () => {
   return function(dispatch: AppDispatch) {
-    // dispatch({
-    //   type: LOGOUT,
-    //   isLogoutChecked: false
-    // })
     dispatch(logoutAction())
 
     fetch(`${baseUrl}/auth/logout`,
@@ -80,26 +70,12 @@ const logout: AppThunk = () => {
     )
     .then(checkResponse)
     .then(res => {
-      // dispatch({
-      //   type: LOGOUT_SUCCESS,
-      //   user: null,
-      //   accessToken: null,
-      //   isAuth: false,
-      //   isAuthChecked: true,
-      //   isLogoutChecked: true
-      // })
       dispatch(logoutSuccessAction())
     })
     .catch(err => {
-      // dispatch({
-      //   type: LOGOUT_FAILED,
-      //   // isLogoutChecked: false
-      //   isLogoutChecked: true
-      // })
       dispatch(logoutFailedAction())
     })
   }
 }
 
-// export {LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAILED, logout};
 export {logout};

@@ -1,6 +1,5 @@
 import React, { FunctionComponent } from "react";
 
-// import { useSelector } from "react-redux";
 import { useSelector } from '../../services/hooks';
 
 import styles from './ingredient-card.module.css';
@@ -17,12 +16,10 @@ interface IIngCardProps {
   amount: number
 }
 
-// export default function IngredientCard({ingredient, order, amount}) {
 export const IngredientCard: FunctionComponent<IIngCardProps> = ({ingredient, order, amount}) => {
   const currentOrder = order;
 
   const number = currentOrder.number;
-  // const name = currentOrder.name;
 
   const allIngredients = useSelector(store => store.allIngredients.items);
 

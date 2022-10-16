@@ -1,4 +1,3 @@
-// import { ADD_TO_CONSTRUCTOR, DELETE_FROM_CONSTRUCTOR, REORDER_INGREDIENT } from '../actions/constructor-ingredients.js';
 import { ADD_TO_CONSTRUCTOR, DELETE_FROM_CONSTRUCTOR, REORDER_INGREDIENT } from '../constants/index';
 import { TIngredientInConstructorActions } from '../actions/constructor-ingredients';
 
@@ -6,7 +5,6 @@ import { TIngredient } from '../types/server-data';
 import { TIngredientWithCount } from '../types/server-data';
 
 import update from 'immutability-helper'
-// import { v4 as uuidv4 } from 'uuid';
 
 type TConstructorState = {
   ingredients: {
@@ -80,13 +78,7 @@ const constructorIngredientsReducer = (state = constructorInitialState, action: 
       }
       }
     }
-    // case CLEAR_CONSTRUCTOR: {
-    //   return {
-    //     ...state,
-    //     ingredients: null,
-    //     ingredientsCount: null
-    //   }
-    // }
+
     default:
       return state
   }

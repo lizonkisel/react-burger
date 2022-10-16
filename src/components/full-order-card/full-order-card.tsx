@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
-// import { useDispatch, useSelector } from 'react-redux';
 import { useDispatch, useSelector } from '../../services/hooks';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
@@ -25,7 +24,6 @@ export default function FullOrderCard() {
     calendar : {
       lastDay : '[Вчера,] LT',
       sameDay : '[Сегодня,] LT',
-      // lastWeek: '[Прошлый] dddd',
       sameElse: 'DD/MM/YYYY',
   }
   });
@@ -33,26 +31,8 @@ export default function FullOrderCard() {
   const {id} = useParams<TIdParam>();
 
   const dispatch = useDispatch();
-  // const { orders, wsConnected, total, totalToday} = useSelector(store => store.ws);
-
-
-  // const {onClose} = wsActions;
-
-  // useEffect(() => {
-  //   dispatch({type: WS_CONNECTION_START});
-  //   return () => {
-  //     dispatch({type: WS_CONNECTION_CLOSED});
-  //   };
-  // }, [dispatch]);
-
-
 
   const allIngredients = useSelector(store => store.allIngredients.items);
-
-  // if (!allIngredients) {
-  //   return ( <p className="text text_type_main-medium">Загружаем данные...</p>
-  //   )
-  // };
 
   const orders = useSelector(store => store.ws.orders);
 

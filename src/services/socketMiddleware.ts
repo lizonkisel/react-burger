@@ -1,16 +1,9 @@
-// import { wsConnectionSuccessAction, wsGetMessageAction, wsErrorAction, wsCloseAction } from './actions/wsActions';
 import { WS_CONNECTION_START, WS_CONNECTION_CLOSED } from './constants/wsActionTypes';
 import { IWsActions } from './constants/wsActionTypes';
 import { TWsActions } from './actions/wsActions';
-// import { wsActions } from './constants/wsActionTypes';
 import { Middleware, MiddlewareAPI } from 'redux';
 import { RootState } from './types';
 import { AppDispatch } from './types';
-
-// interface IWsAction {
-//   type: TWsActions
-//   payload?: unknown
-// }
 
 function isWsAction(action: {type: string; payload?: unknown} ): action is TWsActions {
   return action.hasOwnProperty('type') === true
@@ -37,7 +30,6 @@ export const socketMiddleware = (wsUrl: string, wsActions: IWsActions): Middlewa
         socket = new WebSocket(payload);
       };
 
-      // if (type === onClose) {
       if (type === onClose && socket !== null) {
         socket.close();
       };
@@ -45,12 +37,10 @@ export const socketMiddleware = (wsUrl: string, wsActions: IWsActions): Middlewa
       if (socket) {
         socket.onopen = event => {
           dispatch({ type: onOpen, payload: event });
-          // dispatch(wsConnectionSuccessAction(event))
         };
 
         socket.onerror = event => {
           dispatch({ type: onError, payload: event });
-          // dispatch(wsErrorAction(event));
         };
 
         socket.onmessage = event => {
@@ -59,19 +49,11 @@ export const socketMiddleware = (wsUrl: string, wsActions: IWsActions): Middlewa
           const { success, ...restParsedData } = parsedData;
 
           dispatch({ type: onMessage, payload: restParsedData });
-          // dispatch(wsGetMessageAction(restParsedData));
         };
 
         socket.onclose = event => {
           dispatch({ type: onClose, payload: event });
-          // dispatch(wsCloseAction())
         };
-
-        // if (type === wsSendMessage) {
-        //   // Ваш код здесь
-        //   const message = {...payload, token: user.token};
-        //   socket.send(JSON.stringify(message))
-        // }
       }
 
       next(action);

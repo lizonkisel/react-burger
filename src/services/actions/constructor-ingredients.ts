@@ -3,14 +3,6 @@ import { v4 as uuidv4 } from 'uuid';
 import {ADD_TO_CONSTRUCTOR, DELETE_FROM_CONSTRUCTOR, REORDER_INGREDIENT} from '../constants/index';
 import {TIngredient} from '../types/server-data';
 
-// const REORDER_INGREDIENT = 'REORDER_INGREDIENT';
-// const ADD_TO_CONSTRUCTOR = 'ADD_TO_CONSTRUCTOR';
-// const DELETE_FROM_CONSTRUCTOR = 'DELETE_FROM_CONSTRUCTOR';
-
-
-// Это нигде не используется
-// const CLEAR_CONSTRUCTOR = 'CLEAR_CONSTRUCTOR';
-
 interface IAddToConstructorAction {
   readonly type: typeof ADD_TO_CONSTRUCTOR,
   readonly item: TIngredient,
@@ -59,8 +51,5 @@ function reorderIngredient(dragIndex: number, hoverIndex: number): IReorderIngre
     hoverIndex: hoverIndex
   }
 };
-
-
-// export { ADD_TO_CONSTRUCTOR, DELETE_FROM_CONSTRUCTOR, REORDER_INGREDIENT, addToConstructor, deleteFromConstructor, reorderIngredient};
 
 export {addToConstructor, deleteFromConstructor, reorderIngredient};

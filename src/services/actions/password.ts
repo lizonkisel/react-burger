@@ -4,14 +4,6 @@ import { AppDispatch, AppThunk } from '../types';
 import {RESET_PASSWORD, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_FAILED,
   RECOVER_PASSWORD, RECOVER_PASSWORD_SUCCESS, RECOVER_PASSWORD_FAILED} from '../constants/index';
 
-// const RECOVER_PASSWORD = 'RECOVER_PASSWORD';
-// const RECOVER_PASSWORD_SUCCESS = 'RECOVER_PASSWORD_SUCCESS';
-// const RECOVER_PASSWORD_FAILED = 'RECOVER_PASSWORD_FAILED';
-
-// const RESET_PASSWORD = 'RESET_PASSWORD';
-// const RESET_PASSWORD_SUCCESS = 'RESET_PASSWORD_SUCCESS';
-// const RESET_PASSWORD_FAILED = 'RESET_PASSWORD_FAILED';
-
 interface IRecoverPasswordAction {
   readonly type: typeof RECOVER_PASSWORD
 }
@@ -82,12 +74,8 @@ function resetPasswordFailedAction(): IResetPasswordFailedAction {
 };
 
 
-// function recoverPassword(email) {
 const recoverPassword: AppThunk = (email: string) => {
   return function(dispatch: AppDispatch) {
-    // dispatch({
-    //   type: RECOVER_PASSWORD,
-    // })
     dispatch(recoverPasswordAction())
 
     fetch(`${baseUrl}/password-reset`,
@@ -103,26 +91,16 @@ const recoverPassword: AppThunk = (email: string) => {
     )
     .then(checkResponse)
     .then(res =>
-      // dispatch({
-      //   type: RECOVER_PASSWORD_SUCCESS,
-      // })
       dispatch(recoverPasswordSuccessAction())
     )
     .catch(err =>
-      // dispatch({
-      //   type: RECOVER_PASSWORD_FAILED,
-      // })
       dispatch(recoverPasswordFailedAction())
     )
   }
 };
 
-// function resetPassword (newPassword, emailToken) {
 const resetPassword: AppThunk = (newPassword: string, emailToken: string) => {
   return function(dispatch: AppDispatch) {
-    // dispatch({
-    //   type: RESET_PASSWORD,
-    // })
     dispatch(resetPasswordAction())
 
     fetch(`${baseUrl}/password-reset/reset`,
@@ -139,19 +117,12 @@ const resetPassword: AppThunk = (newPassword: string, emailToken: string) => {
     )
     .then(checkResponse)
     .then(res =>
-      // dispatch({
-      //   type: RESET_PASSWORD_SUCCESS
-      // })
       dispatch(resetPasswordSuccessAction())
     )
     .catch(err =>
-      // dispatch({
-      //   type: RESET_PASSWORD_FAILED
-      // })
       dispatch(resetPasswordFailedAction())
     )
   }
 }
 
-// export {RESET_PASSWORD, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_FAILED, RECOVER_PASSWORD, RECOVER_PASSWORD_SUCCESS, RECOVER_PASSWORD_FAILED, recoverPassword, resetPassword};
 export {recoverPassword, resetPassword};

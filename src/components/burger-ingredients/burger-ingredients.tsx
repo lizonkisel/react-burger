@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
 import { useDispatch, useSelector } from '../../services/hooks';
 import { useInView } from 'react-intersection-observer';
 

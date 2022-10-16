@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from "react";
-// import { useSelector } from "react-redux";
 import { useSelector } from '../../services/hooks';
 
 import styles from './ingredient-mini.module.css';
@@ -11,7 +10,6 @@ interface IIngredientMiniProps {
   ingredient: string | null
 }
 
-// export default function IngredientMini({ingredient}) {
 export const IngredientMini: FunctionComponent<IIngredientMiniProps> = ({ingredient}) => {
 
   if (ingredient === null) {
@@ -21,26 +19,13 @@ export const IngredientMini: FunctionComponent<IIngredientMiniProps> = ({ingredi
   const allIngredients = useSelector(store => store.allIngredients.items);
   const isLoading = useSelector(store => store.allIngredients.isLoading);
 
-  // if (isLoading) {
-  //   return <p className="text text_type_main-medium">Загружаем данные...</p>
-  // }
-
-  // let ingredientData = {image: 'sdkjsdk'};
-
-  // if (allIngredients) {
-  //   ingredientData = allIngredients.find(element => element._id === ingredient);
-  // }
-
   let ingredientData;
 
   if (allIngredients != null) {
     ingredientData = allIngredients.find(element => element._id === ingredient);
   }
 
-  // const ingredientImage = ingredientData.image;
-
   return (
-    // <img src={ingredientData.image}></img>
     <>
       {
         isLoading && !allIngredients && <p className="text text_type_main-medium">Загружаем данные...</p>

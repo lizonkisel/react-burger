@@ -1,6 +1,5 @@
 import React, { ReactElement, ReactNode, FunctionComponent } from "react";
 import { Route, Redirect, useLocation } from 'react-router-dom';
-// import { useSelector } from "react-redux";
 import { useSelector } from '../../services/hooks';
 
 
@@ -8,13 +7,6 @@ interface IProtectedRouteProps {
   path: string,
   exact: boolean
 }
-
-
-
-
-
-// export default function ProtectedRoute({ children, ...rest }) {
-
 
 export const ProtectedRoute: FunctionComponent<IProtectedRouteProps> = ({ children, ...rest }) => {
 
@@ -29,22 +21,20 @@ export const ProtectedRoute: FunctionComponent<IProtectedRouteProps> = ({ childr
     )
   };
 
-  // if (isAuthChecked) {
-    return (
-      <Route
-        {...rest}
-        render={({ location }) =>
-          user ? (
-            children
-          ) : (
-            <Redirect to={{
-              pathname: '/login',
-              state: { from: location }
-            }} />
-          )
-        }
-      />
-    )
-  // };
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        user ? (
+          children
+        ) : (
+          <Redirect to={{
+            pathname: '/login',
+            state: { from: location }
+          }} />
+        )
+      }
+    />
+  )
 
 }

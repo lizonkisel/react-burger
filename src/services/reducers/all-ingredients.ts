@@ -1,4 +1,3 @@
-// import {GET_ALL_INGREDIENTS, GET_ALL_INGREDIENTS_SUCCESS, GET_ALL_INGREDIENTS_FAILED} from '../actions/all-ingredients.js';
 import {GET_ALL_INGREDIENTS, GET_ALL_INGREDIENTS_SUCCESS, GET_ALL_INGREDIENTS_FAILED} from '../constants/index';
 import { TAllIngredientsActions } from '../actions/all-ingredients';
 import {TIngredient} from '../types/server-data';
@@ -12,7 +11,6 @@ type TAllIngredientsState = {
 const initialState: TAllIngredientsState = {
   isLoading: false,
   isFailed: false,
-  // items: null
   items: []
 };
 

@@ -5,10 +5,6 @@ import {REGISTER, REGISTER_SUCCESS, REGISTER_FAILED} from '../constants/index';
 import { TUser } from '../types/server-data';
 import { TRegistrationResponse } from '../types/server-data';
 
-// const REGISTER = 'REGISTER';
-// const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
-// const REGISTER_FAILED = 'REGISTER_FAILED';
-
 interface IRegisterAction {
   readonly type: typeof REGISTER,
   readonly isLoading: true,
@@ -70,16 +66,9 @@ function registerFailedAction(): IRegisterFailedAction {
 };
 
 
-// function register(name, email, password) {
 const register: AppThunk = (name: string, email: string, password: string) => {
 
   return function(dispatch: AppDispatch) {
-    // dispatch({
-    //   type: REGISTER,
-    //   isLoading: true,
-    //   isFailed: false,
-    //   isAuth: false
-    // })
     dispatch(registerAction())
 
     fetch(`${baseUrl}/auth/register`,
@@ -102,28 +91,12 @@ const register: AppThunk = (name: string, email: string, password: string) => {
     )
     .then(res => checkResponse<TRegistrationResponse>(res))
     .then(res =>
-      // dispatch({
-      //   type: REGISTER_SUCCESS,
-      //   isLoading: false,
-      //   isFailed: false,
-      //   user: res.user,
-      //   accessToken: res.accessToken,
-      //   refreshToken: res.refreshToken,
-      //   isAuth: true
-      // })
       dispatch(registerSuccessAction(res))
     )
     .catch(err =>
-      // dispatch({
-      //   type: REGISTER_FAILED,
-      //   isLoading: false,
-      //   isFailed: true,
-      //   isAuth: false
-      // })
       dispatch(registerFailedAction())
     )
   }
 }
 
-// export {REGISTER, REGISTER_SUCCESS, REGISTER_FAILED, register};
 export {register};

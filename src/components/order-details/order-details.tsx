@@ -8,7 +8,6 @@ interface IOrderDetailsProps {
   orderNumber: number | null
 }
 
-// export default function OrderDetails({orderNumber}) {
 export const OrderDetails: FunctionComponent<IOrderDetailsProps> = ({orderNumber}) => {
 
   return (

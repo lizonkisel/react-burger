@@ -1,5 +1,4 @@
 import React, { useRef, useCallback, FormEvent} from "react";
-// import { useDispatch, useSelector } from "react-redux";
 import { useDispatch, useSelector } from '../services/hooks';
 import {useHistory, Redirect, useLocation} from 'react-router-dom';
 
@@ -96,7 +95,6 @@ export default function ResetPasswordPage() {
             size={'default'}
           />
         </fieldset>
-        {/* <Button type="primary" size="medium" onClick={changePassword}> */}
         <Button type="primary" size="medium">
           Сохранить
         </Button>

@@ -1,11 +1,9 @@
 import React, { useEffect, useCallback, FunctionComponent } from "react";
-// import { useDispatch, useSelector } from 'react-redux';
 import { useDispatch, useSelector } from '../../services/hooks';
 import { useHistory, useLocation } from 'react-router-dom';
 
 import styles from './order-details-page.module.css';
 
-// import Modal from '../../components/modal/modal';
 import FullOrderCard from "../../components/full-order-card/full-order-card";
 
 import { WS_CONNECTION_START, WS_CONNECTION_CLOSED } from "../../services/constants/wsActionTypes";
@@ -19,7 +17,6 @@ interface IOrderDetailsPageProps {
   secured: boolean
 }
 
-// export default function OrderDetailsPage({ secured }) {
 export const OrderDetailsPage: FunctionComponent<IOrderDetailsPageProps> = ({ secured }) => {
 
   const allIngredients = useSelector(store => store.allIngredients.items);
@@ -31,8 +28,6 @@ export const OrderDetailsPage: FunctionComponent<IOrderDetailsPageProps> = ({ se
       history.replace({pathname: '/feed'})
     }, [history]
   );
-
-  // const location = useLocation();
 
   const accessToken = getCookie('token');
 

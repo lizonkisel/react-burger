@@ -1,5 +1,4 @@
 import React, { useRef, FunctionComponent }  from 'react';
-// import { useDispatch } from 'react-redux';
 import { useDispatch } from '../../services/hooks';
 import { useDrag, useDrop } from 'react-dnd';
 
@@ -17,7 +16,6 @@ interface IFillingIngProps {
   index: number
 }
 
-// export default function FillingIngredient({ item, index }) {
 export const FillingIngredient: FunctionComponent<IFillingIngProps> = ({ item, index }) => {
 
   const dispatch = useDispatch();

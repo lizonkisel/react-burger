@@ -1,5 +1,4 @@
 import React, { useState, useRef, useCallback, FormEvent } from "react";
-// import { useDispatch, useSelector } from "react-redux";
 import { useDispatch, useSelector } from '../services/hooks';
 import {useHistory, Redirect, useLocation} from 'react-router-dom';
 
@@ -18,8 +17,6 @@ export default function ForgotPasswordPage() {
   const [value, setValue] = useState<string>('');
   const inputRef = useRef<HTMLInputElement>(null);
   const onIconClick = () => {
-    // setTimeout(() => inputRef.current.focus(), 0)
-    // alert('Icon Click Callback')
   };
 
   const [cantResetPassword, setCantResetPassword] = useState(true);
@@ -80,7 +77,6 @@ export default function ForgotPasswordPage() {
             size={'default'}
           />
         </fieldset>
-        {/* <Button type="primary" size="medium" onClick={recover} disabled={cantResetPassword}> */}
         <Button type="primary" size="medium" disabled={cantResetPassword}>
           Восстановить
         </Button>

@@ -6,8 +6,7 @@ interface IModalOverlayProps {
   onOverlayClick: () => void
 }
 
-// export default function ModalOverlay({onOverlayClick}) {
-  export const ModalOverlay: FunctionComponent<IModalOverlayProps> = ({onOverlayClick}) => {
+export const ModalOverlay: FunctionComponent<IModalOverlayProps> = ({onOverlayClick}) => {
   return (
     <div className={modalOverlay.overlay} onClick={onOverlayClick}></div>
   )

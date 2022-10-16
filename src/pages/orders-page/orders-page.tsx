@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid';
-// import { useDispatch, useSelector } from "react-redux";
 import { useDispatch, useSelector } from '../../services/hooks';
 
 import styles from './orders-page.module.css';

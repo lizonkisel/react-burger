@@ -4,14 +4,6 @@ import { AppDispatch, AppThunk } from '../types';
 import {GET_USER, GET_USER_SUCCESS, GET_USER_FAILED, EDIT_USER, EDIT_USER_SUCCESS, EDIT_USER_FAILED} from '../constants/index';
 import { TUser } from '../types/server-data';
 
-// const GET_USER = 'GET_USER';
-// const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
-// const GET_USER_FAILED = 'GET_USER_FAILED';
-
-// const EDIT_USER = 'EDIT_USER';
-// const EDIT_USER_SUCCESS = 'EDIT_USER_SUCCESS';
-// const EDIT_USER_FAILED = 'EDIT_USER_FAILED';
-
 interface IGetUserAction {
   readonly type: typeof GET_USER,
   readonly isAuth: false,
@@ -63,8 +55,7 @@ function getUserAction(): IGetUserAction {
   }
 };
 
-// function getUserSuccessAction(res: {success: true; user: TUser}): IGetUserSuccessAction {
-  function getUserSuccessAction(res: {success: true; user: TUser}): IGetUserSuccessAction {
+function getUserSuccessAction(res: {success: true; user: TUser}): IGetUserSuccessAction {
   return {
     type: GET_USER_SUCCESS,
     user: res.user,
@@ -103,55 +94,28 @@ function editUserFailedAction(): IEditUserFailedAction {
 };
 
 
-// function getUser() {
 const getUser: AppThunk = () => {
   return function(dispatch: AppDispatch) {
-    // dispatch({
-    //   type: GET_USER,
-    //   isAuth: false,
-    //   isAuthChecked: false
-    // })
     dispatch(getUserAction())
 
-    // fetchWithRefresh(`${baseUrl}/auth/user`, {
     fetchWithRefresh(`${baseUrl}/auth/user`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + getCookie('token')
-        // Authorization: 'Bearer ' + getCookie('token') + "dfhjfj"
-        // Authorization: getCookie('token')
       }
     })
     .then(res =>
-      // dispatch({
-      //   type: GET_USER_SUCCESS,
-      //   user: res.user,
-      //   isAuth: true,
-      //   isAuthChecked: true,
-      //   // isLogout: false
-      //   isLogoutChecked: true
-      // })
       dispatch(getUserSuccessAction(res))
     )
     .catch(err =>
-      // dispatch({
-      //   type: GET_USER_FAILED,
-      //   isAuth: false,
-      //   isAuthChecked: true,
-      //   isLogoutChecked: true
-      // })
       dispatch(getUserFailedAction())
     )
   }
 };
 
-// function editUser(newUserData) {
 const editUser : AppThunk = (newUserData: {name: string; email: string; password: string}) => {
   return function(dispatch: AppDispatch) {
-    // dispatch({
-    //   type: EDIT_USER
-    // })
     dispatch(editUserAction())
 
     fetchWithRefresh(`${baseUrl}/auth/user`, {
@@ -165,20 +129,12 @@ const editUser : AppThunk = (newUserData: {name: string; email: string; password
       )
     })
     .then(res =>
-      // dispatch({
-      //   type: EDIT_USER_SUCCESS,
-      //   user: res.user,
-      // })
       dispatch(editUserSuccessAction(res))
     )
     .catch(err =>
-      // dispatch({
-      //   type: EDIT_USER_FAILED
-      // })
       dispatch(editUserFailedAction())
     )
   }
 }
 
-// export {GET_USER, GET_USER_SUCCESS, GET_USER_FAILED, EDIT_USER, EDIT_USER_SUCCESS, EDIT_USER_FAILED, getUser, editUser};
 export {getUser, editUser};

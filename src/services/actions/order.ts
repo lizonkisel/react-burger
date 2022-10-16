@@ -4,11 +4,6 @@ import { AppDispatch, AppThunk } from '../types';
 import { GET_ORDER, GET_ORDER_SUCCESS, GET_ORDER_FAILED, CLOSE_ORDER } from '../constants/index';
 import { TGetOrderResponse } from '../types/server-data';
 
-// const GET_ORDER = 'GET_ORDER';
-// const GET_ORDER_SUCCESS = 'GET_ORDER_SUCCESS';
-// const GET_ORDER_FAILED = 'GET_ORDER_FAILED';
-// const CLOSE_ORDER = "CLOSE_ORDER";
-
 interface IGetOrderAction {
   readonly type: typeof GET_ORDER,
   readonly isOrderModalClosed: true,
@@ -60,15 +55,8 @@ function getOrderFailedAction(): IGetOrderFailedAction {
 };
 
 
-// function getOrder(ingredientsIdArray) {
 const getOrder: AppThunk = (ingredientsIdArray: Array<string>) => {
   return function(dispatch: AppDispatch) {
-    // dispatch({
-    //   type: GET_ORDER,
-    //   isOrderModalClosed: true,
-    //   isOrderSent: true,
-    //   isOrderRejected: false,
-    // });
     dispatch(getOrderAction())
 
     fetch(`${baseUrl}/orders`, {
@@ -83,22 +71,9 @@ const getOrder: AppThunk = (ingredientsIdArray: Array<string>) => {
     })
     .then(res => checkResponse<TGetOrderResponse>(res))
     .then(res => {
-      // dispatch({
-      //   type: GET_ORDER_SUCCESS,
-      //   isOrderModalClosed: false,
-      //   isOrderSent: false,
-      //   isOrderRejectedd: false,
-      //   number: res.order.number
-      // })
       dispatch(getOrderSuccessAction(res))
     })
     .catch(err => {console.log(err, err.status);
-      // dispatch({
-      //   type: GET_ORDER_FAILED,
-      //   isOrderModalClosed: true,
-      //   isOrderSent: false,
-      //   isOrderRejected: true
-      // })
       dispatch(getOrderFailedAction())
     })
   }
@@ -125,5 +100,4 @@ function closeOrder(): ICloseOrderAction {
   }
 }
 
-// export { GET_ORDER, GET_ORDER_SUCCESS, GET_ORDER_FAILED, CLOSE_ORDER, getOrder, closeOrder };
 export { getOrder, closeOrder };

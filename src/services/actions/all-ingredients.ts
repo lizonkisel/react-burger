@@ -6,10 +6,6 @@ import {GET_ALL_INGREDIENTS, GET_ALL_INGREDIENTS_SUCCESS, GET_ALL_INGREDIENTS_FA
 import {TIngredient} from '../types/server-data';
 import { TAllIngredientsResponse } from '../types/server-data';
 
-// const GET_ALL_INGREDIENTS: 'GET_ALL_INGREDIENTS' = 'GET_ALL_INGREDIENTS';
-// const GET_ALL_INGREDIENTS_SUCCESS: 'GET_ALL_INGREDIENTS_SUCCESS'  = 'GET_ALL_INGREDIENTS_SUCCESS';
-// const GET_ALL_INGREDIENTS_FAILED: 'GET_ALL_INGREDIENTS_FAILED' = 'GET_ALL_INGREDIENTS_FAILED';
-
 interface IGetAllIngredientsAction {
   readonly type: typeof GET_ALL_INGREDIENTS,
   readonly isLoading: true,
@@ -60,45 +56,20 @@ function getAllIngredientsFailedAction(): IGetAllIngredientsFailedAction {
   }
 };
 
-// type TTest = {
-//   success: boolean;
-//   data: ReadonlyArray<TIngredient>
-// }
 
-
-// function getAllIngredients() {
 const getAllIngredients: AppThunk = () => {
   return function(dispatch: AppDispatch) {
-    // dispatch({
-    //   type: GET_ALL_INGREDIENTS,
-    //   isLoading: true,
-    //   isFailed: false,
-    // })
     dispatch(getAllIngredientsAction())
 
     fetch(`${baseUrl}/ingredients`)
       .then(res => checkResponse<TAllIngredientsResponse>(res))
       .then ((res) => {
-        // dispatch({
-        //   type: GET_ALL_INGREDIENTS_SUCCESS,
-        //   isLoading: false,
-        //   isFailed: false,
-        //   items: res.data
-        // })
-
-        // Ругается, видимо, потому, что надо вынести fetch-запрос в отдельную функцию - кажется, нет. Какие-то проблемы с типом res
         dispatch(getAllIngredientsSuccessAction(res.data))
       })
       .catch(err =>
-        // dispatch({
-        //   type: GET_ALL_INGREDIENTS_FAILED,
-        //   isLoading: false,
-        //   isFailed: true,
-        // })
         dispatch(getAllIngredientsFailedAction())
       )
   }
 };
 
-// export {GET_ALL_INGREDIENTS, GET_ALL_INGREDIENTS_SUCCESS, GET_ALL_INGREDIENTS_FAILED, getAllIngredients};
 export {getAllIngredients};

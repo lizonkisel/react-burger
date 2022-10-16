@@ -16,7 +16,6 @@ interface IModalProps {
   children: ReactNode
 }
 
-// export default function Modal({title, onClose, children}) {
 export const Modal: FunctionComponent<IModalProps> = ({title, onClose, children}) => {
 
   function closeModal() {

@@ -78,23 +78,10 @@ export const wsReducer = (state = initialState, action: TWsActions): TWsState =>
       return {
         ...state,
         orders: rightOrders,
-        // orders: action.payload.orders,
         total: action.payload.total,
         totalToday: action.payload.totalToday,
         error: undefined
-        // messages: [...state.messages, action.payload]
-
       };
-
-      // case WS_RESET_ERROR:
-      //   return {
-      //     ...state,
-      //     wsConnected: false,
-      //     orders: null,
-      //     total: null,
-      //     totalToday: null,
-      //     error: undefined
-      //   }
 
     default:
       return state;

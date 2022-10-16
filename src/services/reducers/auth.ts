@@ -149,8 +149,6 @@ const authReducer = (state = initialState, action: TAuthActions): TAuthState => 
       }
     }
     case GET_USER_SUCCESS: {
-      // localStorage.setItem('refreshToken', action.refreshToken);
-
       return {
         ...state,
         user: action.user,
@@ -159,6 +157,7 @@ const authReducer = (state = initialState, action: TAuthActions): TAuthState => 
         isLogoutChecked: action.isLogoutChecked
       }
     }
+
     case GET_USER_FAILED: {
 
       return {
@@ -175,14 +174,12 @@ const authReducer = (state = initialState, action: TAuthActions): TAuthState => 
       }
     }
     case EDIT_USER_SUCCESS: {
-      // localStorage.setItem('refreshToken', action.refreshToken);
-
-
       return {
         ...state,
         user: action.user,
       }
     }
+
     case EDIT_USER_FAILED: {
       return {
         ...state
@@ -197,9 +194,6 @@ const authReducer = (state = initialState, action: TAuthActions): TAuthState => 
     }
 
     case LOGOUT_SUCCESS: {
-      // setCookie('token', null, { expires: -1 });
-      // localStorage.setItem('refreshToken', null);
-
       return {
         ...state,
         user: action.user,

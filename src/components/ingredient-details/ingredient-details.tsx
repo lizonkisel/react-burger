@@ -1,5 +1,4 @@
 import React  from 'react';
-// import { useSelector } from 'react-redux';
 import {  useSelector } from '../../services/hooks';
 import { useParams } from 'react-router-dom';
 

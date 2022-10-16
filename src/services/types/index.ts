@@ -12,10 +12,6 @@ import { TUserActions } from '../actions/user';
 import { TWsActions } from '../actions/wsActions';
 import { rootReducer } from '../reducers';
 
-// import { useDispatch as dispatchHook } from 'react-redux';
-
-
-// TApplicationActions дополнить всеми типами экшенов
 type TApplicationActions =
   TAllIngredientsActions |
   TIngredientInConstructorActions |
@@ -28,7 +24,6 @@ type TApplicationActions =
   TWsActions
 ;
 
-// export type RootState = ReturnType<typeof store.getState>;
 export type RootState = ReturnType<typeof rootReducer>;
 export type AppDispatch = typeof store.dispatch;
 export type AppThunk<ReturnType = void> = ActionCreator<

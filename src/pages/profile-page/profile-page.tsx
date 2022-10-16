@@ -1,5 +1,4 @@
 import React, { useRef, useEffect, useState, MouseEvent, FormEvent } from "react";
-// import { useDispatch, useSelector } from "react-redux";
 import { useDispatch, useSelector } from '../../services/hooks';
 
 import styles from './profile-page.module.css';
@@ -26,17 +25,6 @@ export default function ProfilePage() {
     }
   }, [user]);
 
-
-  // if (user !== null) {
-  //   currentName = user.name;
-  //   currentEmail = user.email;
-  // } else {
-  //   currentName = '';
-  //   currentEmail = '';
-  // }
-
-  // const [nameValue, setNameValue] = React.useState<string>(currentName);
-  // const [loginValue, setLoginValue] = React.useState<string>(currentEmail);
   const [passwordValue, setPasswordValue] = React.useState<string>('');
   const inputRef = useRef<HTMLInputElement>(null);
   const onIconClick = () => {
@@ -63,7 +51,6 @@ export default function ProfilePage() {
       setIsNameError(true);
       setIsInvalidInputs(true)
     }
-    // (nameValue.length >=2 && nameValue.length < 21) ? (setIsNameError(false)) : (setIsNameError(true), setIsInvalidInputs(true));
   };
 
   function validateEmail() {
@@ -76,14 +63,12 @@ export default function ProfilePage() {
   };
 
   function validatePassword() {
-    // if (passwordValue.length === 0 || (passwordValue.length >=8 && passwordValue.length < 21)) {
     if ((passwordValue.length >=8 && passwordValue.length < 21)) {
       setIsPasswordError(false)
     } else {
       setIsPasswordError(true);
       setIsInvalidInputs(true)
     }
-    // (passwordValue.length >=8 && passwordValue.length < 21) ? (setIsPasswordError(false)) : (setIsPasswordError(true), setIsInvalidInputs(true));
   }
 
   function checkFormValidity() {
@@ -114,12 +99,8 @@ export default function ProfilePage() {
     e.preventDefault();
     clearAllErrors();
     if (isInvalidInputs) {
-      // Вот тут раньше был null. Потестить, можно ли без него обойтись
-      // return null
       return
     };
-    // setNameValue(currentName);
-    // setLoginValue(currentEmail);
     setNameValue(nameValue);
     setLoginValue(loginValue);
     setPasswordValue('');
@@ -195,15 +176,12 @@ export default function ProfilePage() {
             onIconClick={onIconClick}
             errorText={'Пароль должен содержать от 8 до 20 символов'}
             size={'default'}
-
-            // required={false}
           />
         </fieldset>
         <div className={`${styles.buttons_wrapper} ${isButtonsVisible ? styles.buttons_wrapper_visible : null}`}>
           <Button type="secondary" size="medium" onClick={resetNewData}>
             Отмена
           </Button>
-          {/* <Button type="primary" size="medium" onClick={editCurrentUser} disabled={isInvalidInputs}> */}
           <Button type="primary" size="medium" disabled={isInvalidInputs}>
             Сохранить
           </Button>

@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
 import { useDispatch, useSelector } from '../../services/hooks';
 import { Link, useLocation } from 'react-router-dom';
 import { useDrag } from 'react-dnd';
@@ -15,7 +14,6 @@ interface IDragIngProps {
   ingredient: TIngredient
 }
 
-// export default function DraggableIngredient: FunctionComponent<IDragIngProps>({ingredient}) {
 export const DraggableIngredient: FunctionComponent<IDragIngProps> = ({ingredient}) => {
 
   const ingredientsCount = useSelector(store => store.constructorIngredients.ingredientsCount);
@@ -48,7 +46,6 @@ export const DraggableIngredient: FunctionComponent<IDragIngProps> = ({ingredien
 
   return (
     <li className={` ${styles.card}`} ref={dragRef} draggable>
-      {/* <Link className={styles.link} to={{pathname: `/ingredients/${id}`, state: { prevPath: location.pathname }}}> */}
       <Link className={styles.link} to={{pathname: `/ingredients/${id}`, state: {background: location}}}>
         <img className={`ml-4 mr-4 ${styles.image}`} src={ingredient.image} />
         { startCount &&
