@@ -94,17 +94,6 @@ export default function FullOrderCard() {
     });
   }
 
-  // ingredients.forEach((ingredient) => {
-  //   //@ts-ignore
-  //   if (!uniqIngredientsObj[ingredient]) {
-  //     //@ts-ignore
-  //     uniqIngredientsObj[ingredient] = 1
-  //   } else {
-  //     //@ts-ignore
-  //     uniqIngredientsObj[ingredient] += 1
-  //   }
-  // });
-
   const uniqIngredients = Object.entries(uniqIngredientsObj);
 
 
@@ -118,13 +107,6 @@ export default function FullOrderCard() {
       }
     })
   }
-
-  // ingredients.forEach((ingredient) => {
-  //   //@ts-ignore
-  //   const neededIngredient = allIngredients.find((element) => element._id === ingredient);
-  //   //@ts-ignore
-  //   priceArray.push(neededIngredient.price);
-  // })
 
   const cost: number = priceArray.reduce((sum, price) => sum + price, 0);
 

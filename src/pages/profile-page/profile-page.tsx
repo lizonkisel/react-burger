@@ -35,11 +35,6 @@ export default function ProfilePage() {
   //   currentEmail = '';
   // }
 
-  // //@ts-ignore
-  // const currentName = useSelector(store => store.auth.user.name);
-  // //@ts-ignore
-  // const currentEmail = useSelector(store => store.auth.user.email);
-
   // const [nameValue, setNameValue] = React.useState<string>(currentName);
   // const [loginValue, setLoginValue] = React.useState<string>(currentEmail);
   const [passwordValue, setPasswordValue] = React.useState<string>('');

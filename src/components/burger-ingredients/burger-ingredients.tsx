@@ -70,20 +70,6 @@ export default function BurgerIngredients() {
       return ingredient.type === "main";
     })
   }
-  // //@ts-ignore
-  // const bunList = listOfIngredients.filter((ingredient) => {
-  //   return ingredient.type === "bun";
-  // })
-
-  // //@ts-ignore
-  // const sauceList = listOfIngredients.filter((ingredient) => {
-  //   return ingredient.type === "sauce";
-  // })
-
-  // //@ts-ignore
-  // const mainList = listOfIngredients.filter((ingredient) => {
-  //   return ingredient.type === "main";
-  // })
 
   return (
     <>
