@@ -11,7 +11,7 @@ import FullOrderCard from "../../components/full-order-card/full-order-card";
 import { WS_CONNECTION_START, WS_CONNECTION_CLOSED } from "../../services/constants/wsActionTypes";
 import { wsInitAction, wsInitWithTokenAction } from "../../services/actions/wsActions";
 
-import { getCookie } from "../../utils/utils";
+import { wsBaseUrl, getCookie } from "../../utils/utils";
 
 import { TEmptyFunction } from '../../services/types/utils';
 
@@ -40,7 +40,7 @@ export const OrderDetailsPage: FunctionComponent<IOrderDetailsPageProps> = ({ se
 
   useEffect(() => {
     secured
-    ? dispatch(wsInitWithTokenAction(`wss://norma.nomoreparties.space/orders?token=${accessToken}`))
+    ? dispatch(wsInitWithTokenAction(`${wsBaseUrl}/orders?token=${accessToken}`))
     : dispatch(wsInitAction());
   }, [dispatch, accessToken]);
 

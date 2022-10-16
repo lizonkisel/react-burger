@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { v4 as uuidv4 } from 'uuid';
 // import { useDispatch, useSelector } from "react-redux";
 import { useDispatch, useSelector } from '../../services/hooks';
 
@@ -9,7 +10,7 @@ import { OrderCard } from "../../components/order-card/order-card";
 import { WS_CONNECTION_CLOSED } from "../../services/constants/wsActionTypes";
 import { wsActions } from "../../services/constants/wsActionTypes";
 import { wsInitWithTokenAction, wsCloseAction } from "../../services/actions/wsActions";
-import { getCookie } from "../../utils/utils";
+import { wsBaseUrl, getCookie } from "../../utils/utils";
 
 
 export default function OrdersPage() {
@@ -22,7 +23,7 @@ export default function OrdersPage() {
   const { orders, wsConnected, total, totalToday} = useSelector(store => store.ws);
 
   useEffect(() => {
-    dispatch(wsInitWithTokenAction(`wss://norma.nomoreparties.space/orders?token=${accessToken}`));
+    dispatch(wsInitWithTokenAction(`${wsBaseUrl}/orders?token=${accessToken}`));
     return () => {
       dispatch(wsCloseAction());
     };
@@ -41,7 +42,7 @@ export default function OrdersPage() {
       <section className={styles.order_feed}>
         {orders.map((order) => {
           return (
-            <OrderCard order={order}>
+            <OrderCard key={uuidv4()} order={order}>
 
             </OrderCard>
           )

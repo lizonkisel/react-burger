@@ -2,6 +2,7 @@ import { refreshToken } from "../services/actions/refreshToken";
 import { TUser } from "../services/types/server-data";
 
 const baseUrl: string = 'https://norma.nomoreparties.space/api';
+const wsBaseUrl: string = 'wss://norma.nomoreparties.space';
 const wsUrl: string = 'wss://norma.nomoreparties.space/orders/all';
 const defaultBunUrl: string = "https://code.s3.yandex.net/react/code/bun-02.png";
 
@@ -113,5 +114,5 @@ const statuses: {
 }
 
 
-export {baseUrl, wsUrl, defaultBunUrl, regExp, checkResponse, setCookie, getCookie, fetchWithRefresh, statuses};
+export {baseUrl, wsBaseUrl, wsUrl, defaultBunUrl, regExp, checkResponse, setCookie, getCookie, fetchWithRefresh, statuses};
 

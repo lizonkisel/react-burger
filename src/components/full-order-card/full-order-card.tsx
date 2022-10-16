@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { v4 as uuidv4 } from 'uuid';
 // import { useDispatch, useSelector } from 'react-redux';
 import { useDispatch, useSelector } from '../../services/hooks';
 import { useParams } from 'react-router-dom';
@@ -156,9 +157,9 @@ export default function FullOrderCard() {
         <div className={styles.ingredients_area}>
           {
             uniqIngredients.map((ingredient) => {
+              console.log(ingredient);
               return (
-                //@ts-ignore
-                <IngredientCard order={currentOrder} ingredient={ingredient[0]} amount={ingredient[1]}></IngredientCard>
+                <IngredientCard key={uuidv4()} order={currentOrder} ingredient={ingredient[0]} amount={ingredient[1]}></IngredientCard>
               )
             })
           }

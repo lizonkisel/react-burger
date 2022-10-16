@@ -7,13 +7,13 @@ export const WS_GET_MESSAGE: 'WS_GET_MESSAGE' = 'WS_GET_MESSAGE';
 export const WS_RESET_ERROR: 'WS_RESET_ERROR' = 'WS_RESET_ERROR';
 
 export interface IWsActions {
-  wsInit: string,
-  wsInitWithToken: string,
-  onOpen: string,
-  onClose: string,
-  onError: string,
-  onMessage: string,
-  wsResetError: string
+  wsInit: typeof WS_CONNECTION_START,
+  wsInitWithToken: typeof WS_CONNECTION_START_WITH_TOKEN,
+  onOpen: typeof WS_CONNECTION_SUCCESS,
+  onClose: typeof WS_CONNECTION_CLOSED,
+  onError: typeof WS_CONNECTION_ERROR,
+  onMessage: typeof WS_GET_MESSAGE,
+  wsResetError: typeof WS_RESET_ERROR
 }
 
 export const wsActions: IWsActions = {

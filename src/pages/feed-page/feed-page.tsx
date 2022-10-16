@@ -1,4 +1,5 @@
 import React, { useEffect, useCallback } from "react";
+import { v4 as uuidv4 } from 'uuid';
 // import { useDispatch, useSelector } from "react-redux";
 import { useDispatch, useSelector } from '../../services/hooks';
 
@@ -48,7 +49,7 @@ export default function FeedPage() {
           <section className={styles.order_feed}>
             {orders.map((order) => {
               return (
-                <OrderCard order={order}>
+                <OrderCard key={uuidv4()} order={order}>
 
                 </OrderCard>
               )

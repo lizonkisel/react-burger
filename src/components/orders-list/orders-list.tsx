@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from "react";
+import { v4 as uuidv4 } from 'uuid';
 // import { useSelector } from "react-redux";
 import { useSelector } from '../../services/hooks';
 
@@ -40,12 +41,12 @@ export const OrdersList: FunctionComponent<IOrderListProps> = ({status}) => {
     <div className={styles.orders_list}>
       { status === 'done' &&
         doneOrders.map((number) => {
-          return <span className={`text text_type_digits-default ${styles.order_done}`}>#{number}</span>
+          return <span key={uuidv4()} className={`text text_type_digits-default ${styles.order_done}`}>#{number}</span>
         })
       }
       {
         inProgressOrders.map((number) => {
-          return <span className="text text_type_digits-default">#{number}</span>
+          return <span key={uuidv4()} className="text text_type_digits-default">#{number}</span>
         })
       }
     </div>

@@ -1,8 +1,9 @@
-import { wsConnectionSuccessAction, wsGetMessageAction, wsErrorAction, wsCloseAction } from './actions/wsActions';
+// import { wsConnectionSuccessAction, wsGetMessageAction, wsErrorAction, wsCloseAction } from './actions/wsActions';
+import { WS_CONNECTION_START, WS_CONNECTION_CLOSED } from './constants/wsActionTypes';
 import { IWsActions } from './constants/wsActionTypes';
 import { TWsActions } from './actions/wsActions';
 // import { wsActions } from './constants/wsActionTypes';
-import { Middleware } from 'redux';
+import { Middleware, MiddlewareAPI } from 'redux';
 import { RootState } from './types';
 import { AppDispatch } from './types';
 
@@ -16,12 +17,11 @@ function isWsAction(action: {type: string; payload?: unknown} ): action is TWsAc
 };
 
 export const socketMiddleware = (wsUrl: string, wsActions: IWsActions): Middleware<{}, RootState> => {
-  return store => {
+  return (store: MiddlewareAPI<AppDispatch, RootState>) => {
     let socket: WebSocket | null = null;
 
     return next => action => {
-      // Удостовериться, что это вообще адекватно
-      if (!isWsAction(action) && action.type !== 'WS_CONNECTION_START' && action.type !== 'WS_CONNECTION_CLOSED') {
+      if (!isWsAction(action) && action.type !== WS_CONNECTION_START && action.type !== WS_CONNECTION_CLOSED) {
         return
       };
 
@@ -49,15 +49,15 @@ export const socketMiddleware = (wsUrl: string, wsActions: IWsActions): Middlewa
 
       if (socket) {
         socket.onopen = event => {
-          // dispatch({ type: onOpen, payload: event });
-          dispatch(wsConnectionSuccessAction(event))
+          dispatch({ type: onOpen, payload: event });
+          // dispatch(wsConnectionSuccessAction(event))
         };
 
         socket.onerror = event => {
           console.log(event);
           // console.log(`Ошибка ${event.message}`)
-          // dispatch({ type: onError, payload: event });
-          dispatch(wsErrorAction(event));
+          dispatch({ type: onError, payload: event });
+          // dispatch(wsErrorAction(event));
         };
 
         socket.onmessage = event => {
@@ -67,13 +67,13 @@ export const socketMiddleware = (wsUrl: string, wsActions: IWsActions): Middlewa
 
           console.log(parsedData);
 
-          // dispatch({ type: onMessage, payload: restParsedData });
-          dispatch(wsGetMessageAction(restParsedData));
+          dispatch({ type: onMessage, payload: restParsedData });
+          // dispatch(wsGetMessageAction(restParsedData));
         };
 
         socket.onclose = event => {
-          // dispatch({ type: onClose, payload: event });
-          dispatch(wsCloseAction())
+          dispatch({ type: onClose, payload: event });
+          // dispatch(wsCloseAction())
         };
 
         console.log(socket);

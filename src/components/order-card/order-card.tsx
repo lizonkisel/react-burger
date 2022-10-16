@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from "react";
+import { v4 as uuidv4 } from 'uuid';
 // import { useSelector } from "react-redux";
 import { useSelector } from '../../services/hooks';
 import { Link, useLocation, useRouteMatch} from 'react-router-dom';
@@ -92,7 +93,7 @@ export const OrderCard: FunctionComponent<IOrderCardProps> = ({ order }) => {
               // ingredients.map((ingredient) => {
                 drawableIngredients.map((ingredient) => {
                 return (
-                  <IngredientMini ingredient={ingredient}>
+                  <IngredientMini key={uuidv4()} ingredient={ingredient}>
                   </IngredientMini>
                 )
               })
