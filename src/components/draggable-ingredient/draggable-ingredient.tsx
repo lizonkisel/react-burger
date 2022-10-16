@@ -6,9 +6,6 @@ import { useDrag } from 'react-dnd';
 
 import styles from './draggable-ingredient.module.css';
 
-import PropTypes from 'prop-types';
-import {ingredientPropTypes} from '../../utils/prop-types.js';
-
 import {Counter} from '@ya.praktikum/react-developer-burger-ui-components';
 import {CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 
@@ -69,7 +66,3 @@ export const DraggableIngredient: FunctionComponent<IDragIngProps> = ({ingredien
     </li>
   )
 };
-
-// DraggableIngredient.propTypes = {
-//   ingredient: ingredientPropTypes.isRequired
-// }

@@ -2,8 +2,6 @@ import React, { FunctionComponent }  from 'react'
 
 import orderDetails from './order-details.module.css';
 
-import PropTypes from 'prop-types';
-
 import done from '../../images/done.png';
 
 interface IOrderDetailsProps {
@@ -25,8 +23,4 @@ export const OrderDetails: FunctionComponent<IOrderDetailsProps> = ({orderNumber
 
     </article>
   )
-}
-
-OrderDetails.propTypes = {
-  orderNumber: PropTypes.number.isRequired
 }

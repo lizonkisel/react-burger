@@ -1,7 +1,6 @@
 import React, { FunctionComponent } from "react";
 // import { useSelector } from "react-redux";
 import { useSelector } from '../../services/hooks';
-import PropTypes from 'prop-types';
 
 import styles from './orders-list.module.css';
 
@@ -52,7 +51,3 @@ export const OrdersList: FunctionComponent<IOrderListProps> = ({status}) => {
     </div>
   )
 };
-
-// OrdersList.propTypes = {
-//   status: PropTypes.string.isRequired
-// }

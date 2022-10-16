@@ -2,15 +2,12 @@ import React, { FunctionComponent } from "react";
 
 // import { useSelector } from "react-redux";
 import { useSelector } from '../../services/hooks';
-import PropTypes from 'prop-types';
 
 import styles from './ingredient-card.module.css';
 
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import { IngredientMini } from "../ingredient-mini/ingredient-mini";
-
-import { orderPropTypes } from "../../utils/prop-types";
 
 import { TOrder } from '../../services/types/server-data';
 
@@ -53,9 +50,3 @@ export const IngredientCard: FunctionComponent<IIngCardProps> = ({ingredient, or
     </div>
   )
 };
-
-IngredientCard.propTypes = {
-  ingredient: PropTypes.string.isRequired,
-  order: orderPropTypes.isRequired,
-  amount: PropTypes.number.isRequired
-}

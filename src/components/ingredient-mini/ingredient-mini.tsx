@@ -1,7 +1,6 @@
 import React, { FunctionComponent } from "react";
 // import { useSelector } from "react-redux";
 import { useSelector } from '../../services/hooks';
-import PropTypes from 'prop-types';
 
 import styles from './ingredient-mini.module.css';
 
@@ -61,7 +60,3 @@ export const IngredientMini: FunctionComponent<IIngredientMiniProps> = ({ingredi
     </>
   )
 };
-
-IngredientMini.propTypes = {
-  ingredient: PropTypes.string.isRequired
-}

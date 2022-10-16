@@ -2,16 +2,12 @@ import React, { FunctionComponent } from "react";
 // import { useSelector } from "react-redux";
 import { useSelector } from '../../services/hooks';
 import { Link, useLocation, useRouteMatch} from 'react-router-dom';
-import PropTypes from 'prop-types';
-
 
 import { CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import { IngredientMini } from "../ingredient-mini/ingredient-mini";
 import moment from 'moment';
 import 'moment/locale/ru';
-
-import { orderPropTypes } from "../../utils/prop-types";
 
 import { TOrder } from "../../services/types/server-data";
 
@@ -120,8 +116,3 @@ export const OrderCard: FunctionComponent<IOrderCardProps> = ({ order }) => {
       </Link>
   )
 };
-
-OrderCard.propTypes = {
-  order: orderPropTypes.isRequired
-}
-

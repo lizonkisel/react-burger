@@ -1,7 +1,5 @@
 import modalOverlay from './modal-overlay.module.css';
 
-import PropTypes from 'prop-types';
-
 import React, { FunctionComponent }  from 'react';
 
 interface IModalOverlayProps {
@@ -13,8 +11,4 @@ interface IModalOverlayProps {
   return (
     <div className={modalOverlay.overlay} onClick={onOverlayClick}></div>
   )
-}
-
-ModalOverlay.propTypes = {
-  onOverlayClick: PropTypes.func.isRequired
 }

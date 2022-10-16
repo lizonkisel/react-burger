@@ -5,9 +5,6 @@ import { useDrag, useDrop } from 'react-dnd';
 
 import styles from './filling-ingredient.module.css';
 
-import PropTypes from 'prop-types';
-import {ingredientPropTypes} from '../../utils/prop-types.js';
-
 import {ConstructorElement} from '@ya.praktikum/react-developer-burger-ui-components';
 import {DragIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 
@@ -93,8 +90,3 @@ export const FillingIngredient: FunctionComponent<IFillingIngProps> = ({ item, i
     </li>
   )
 }
-
-// FillingIngredient.propTypes = {
-//   item: ingredientPropTypes.isRequired,
-//   index: PropTypes.number.isRequired
-// }

@@ -2,9 +2,6 @@ import React, {forwardRef}  from 'react';
 
 import ingredientVariants from './ingredient-variants.module.css';
 
-import PropTypes from 'prop-types';
-import {ingredientPropTypes} from '../../utils/prop-types.js';
-
 import { DraggableIngredient } from '../draggable-ingredient/draggable-ingredient';
 import { TIngredient } from '../../services/types/server-data';
 
@@ -34,10 +31,3 @@ export const IngredientVariants = forwardRef<Ref, Props>((props, ref) => {
     </section>
   )
 })
-
-// IngredientVariants.propTypes = {
-//   listOfIngredients: PropTypes.arrayOf(ingredientPropTypes.isRequired).isRequired,
-//   titleId: PropTypes.oneOf(['buns', 'sauces', 'mains']).isRequired,
-//   ingredientName: PropTypes.oneOf(['Булки', 'Соусы', 'Начинки']).isRequired
-// }
-
