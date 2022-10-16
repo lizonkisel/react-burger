@@ -13,8 +13,6 @@ import { TEmptyFunction } from "../services/types/utils";
 
 export default function LoginPage() {
 
-  console.log('Login');
-
   const { user } = useSelector(store => store.auth);
 
   const [emailValue, setEmailValue] = React.useState<string>('');
@@ -40,7 +38,6 @@ export default function LoginPage() {
 
   function loginUser(e: FormEvent<HTMLFormElement>): void {
     e.preventDefault();
-    console.log('Dispatch login');
     dispatch(login(emailValue, passwordValue));
   }
 
@@ -54,7 +51,6 @@ export default function LoginPage() {
   };
 
   if (user) {
-    console.log('Redirect');
     return (
       <Redirect
         to={from}

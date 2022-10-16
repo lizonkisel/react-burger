@@ -4,8 +4,6 @@ import { AppDispatch, AppThunk } from '../types';
 import {GET_USER, GET_USER_SUCCESS, GET_USER_FAILED, EDIT_USER, EDIT_USER_SUCCESS, EDIT_USER_FAILED} from '../constants/index';
 import { TUser } from '../types/server-data';
 
-console.log(getCookie('token'));
-
 // const GET_USER = 'GET_USER';
 // const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
 // const GET_USER_FAILED = 'GET_USER_FAILED';
@@ -67,8 +65,6 @@ function getUserAction(): IGetUserAction {
 
 // function getUserSuccessAction(res: {success: true; user: TUser}): IGetUserSuccessAction {
   function getUserSuccessAction(res: {success: true; user: TUser}): IGetUserSuccessAction {
-  console.log('azaza success');
-  console.log(res);
   return {
     type: GET_USER_SUCCESS,
     user: res.user,
@@ -79,8 +75,6 @@ function getUserAction(): IGetUserAction {
 };
 
 function getUserFailedAction(): IGetUserFailedAction {
-  // console.log('azaza failed');
-  // console.log(err);
   return {
     type: GET_USER_FAILED,
     isAuth: false,
@@ -154,7 +148,6 @@ const getUser: AppThunk = () => {
 
 // function editUser(newUserData) {
 const editUser : AppThunk = (newUserData: {name: string; email: string; password: string}) => {
-  console.log(newUserData);
   return function(dispatch: AppDispatch) {
     // dispatch({
     //   type: EDIT_USER

@@ -41,8 +41,6 @@ export const DraggableIngredient: FunctionComponent<IDragIngProps> = ({ingredien
 
   const location = useLocation();
 
-  // console.log(location);
-
   const [, dragRef] = useDrag({
     type: 'ingredient',
     item: ingredient

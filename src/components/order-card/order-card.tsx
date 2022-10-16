@@ -44,9 +44,6 @@ export const OrderCard: FunctionComponent<IOrderCardProps> = ({ order }) => {
     drawableIngredients = ingredients.slice(0, 5);
   };
 
-  console.log(drawableIngredients);
-
-
   const allIngredients = useSelector(store => store.allIngredients.items);
 
   if (!allIngredients) {
@@ -73,10 +70,7 @@ export const OrderCard: FunctionComponent<IOrderCardProps> = ({ order }) => {
 
   const { path } = useRouteMatch<string>();
 
-  // console.log(ingredients);
-
   // const cost = ingredients.reduce((sum, ingredient) => sum + ingredient.price, 0);
-  // console.log(cost);
 
   return (
       // <Link className={styles.link} to={{pathname: `/feed/${id}`, state: {background: location}}}>

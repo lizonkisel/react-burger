@@ -25,7 +25,6 @@ export default function BurgerIngredients() {
     if (element !== null) {
       element.scrollIntoView({behavior: 'smooth', block: 'start'});
     }
-    console.log(element);
   };
 
   const [bunRef, inViewBun] = useInView({

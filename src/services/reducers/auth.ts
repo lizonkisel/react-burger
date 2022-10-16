@@ -58,7 +58,6 @@ const authReducer = (state = initialState, action: TAuthActions): TAuthState => 
       localStorage.setItem('refreshToken', action.refreshToken);
       setCookie('token', action.accessToken.split('Bearer ')[1]);
 
-      console.log(getCookie('token'));
       return {
         ...state,
         isLoading: action.isLoading,
@@ -110,19 +109,16 @@ const authReducer = (state = initialState, action: TAuthActions): TAuthState => 
     }
 
     case RECOVER_PASSWORD: {
-      console.log('1');
       return {
         ...state,
       }
     }
     case RECOVER_PASSWORD_SUCCESS: {
-      console.log('Recover success');
       return {
         ...state,
       }
     }
     case RECOVER_PASSWORD_FAILED: {
-      console.log('Recover failed');
       return {
         ...state,
       }
@@ -154,8 +150,6 @@ const authReducer = (state = initialState, action: TAuthActions): TAuthState => 
     }
     case GET_USER_SUCCESS: {
       // localStorage.setItem('refreshToken', action.refreshToken);
-
-      console.log('Get user');
 
       return {
         ...state,
@@ -204,10 +198,8 @@ const authReducer = (state = initialState, action: TAuthActions): TAuthState => 
 
     case LOGOUT_SUCCESS: {
       // setCookie('token', null, { expires: -1 });
-      // console.log(getCookie('token'));
       // localStorage.setItem('refreshToken', null);
 
-      // console.log('logout');
       return {
         ...state,
         user: action.user,

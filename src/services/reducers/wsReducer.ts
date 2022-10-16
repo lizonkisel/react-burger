@@ -67,7 +67,6 @@ export const wsReducer = (state = initialState, action: TWsActions): TWsState =>
     case WS_GET_MESSAGE:
 
       const allOrders = action.payload.orders;
-      console.log(allOrders);
       const rightOrders: Array<TOrder> = [];
 
       allOrders.forEach((order: TOrder) => {
@@ -75,9 +74,6 @@ export const wsReducer = (state = initialState, action: TWsActions): TWsState =>
           rightOrders.push(order);
         }
       });
-
-      console.log(allOrders.length);
-      console.log(rightOrders.length);
 
       return {
         ...state,

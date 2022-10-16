@@ -46,13 +46,11 @@ export default function ForgotPasswordPage() {
     e.preventDefault();
     (async () => {
       await dispatch(recoverPassword(value));
-      console.log('test');
       history.replace({pathname: '/reset-password', state: { from: location }})
     })();
   };
 
   if (user) {
-    console.log('Redirect');
     return (
       <Redirect
         to={{

@@ -79,7 +79,6 @@ const getAllIngredients: AppThunk = () => {
     fetch(`${baseUrl}/ingredients`)
       .then(res => checkResponse<TAllIngredientsResponse>(res))
       .then ((res) => {
-        console.log(res);
         // dispatch({
         //   type: GET_ALL_INGREDIENTS_SUCCESS,
         //   isLoading: false,

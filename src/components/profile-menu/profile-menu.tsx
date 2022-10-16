@@ -16,11 +16,9 @@ export default function ProfileMenu() {
 
   const signOut = async () => {
     await dispatch(logout());
-    console.log(getCookie('token'));
-  }
+  };
 
   const logoutFromAccount = () => {
-    console.log('Exit click');
     signOut().then(() => {
 
       // setCookie('token', null, { expires: -1 });

@@ -41,7 +41,6 @@ export default function RegisterPage() {
   }
 
   if (user) {
-    console.log('Redirect');
     return (
       <Redirect
         to={{

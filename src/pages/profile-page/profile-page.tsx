@@ -143,10 +143,8 @@ export default function ProfilePage() {
       'email': loginValue,
       'password': passwordValue
     };
-    console.log(newUserData);
     changeUserData(newUserData).then(() => {
       setIsButtonsVisible(false);
-      console.log("Edit User");
     });
   };
 

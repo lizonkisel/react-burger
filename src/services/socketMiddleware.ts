@@ -33,14 +33,9 @@ export const socketMiddleware = (wsUrl: string, wsActions: IWsActions): Middlewa
         socket = new WebSocket(`${wsUrl}`);
       };
 
-      console.log(action);
-      console.log(payload);
-
       if (type === wsInitWithToken) {
         socket = new WebSocket(payload);
       };
-
-      console.log(socket);
 
       // if (type === onClose) {
       if (type === onClose && socket !== null) {
@@ -54,8 +49,6 @@ export const socketMiddleware = (wsUrl: string, wsActions: IWsActions): Middlewa
         };
 
         socket.onerror = event => {
-          console.log(event);
-          // console.log(`Ошибка ${event.message}`)
           dispatch({ type: onError, payload: event });
           // dispatch(wsErrorAction(event));
         };
@@ -65,8 +58,6 @@ export const socketMiddleware = (wsUrl: string, wsActions: IWsActions): Middlewa
           const parsedData = JSON.parse(data);
           const { success, ...restParsedData } = parsedData;
 
-          console.log(parsedData);
-
           dispatch({ type: onMessage, payload: restParsedData });
           // dispatch(wsGetMessageAction(restParsedData));
         };
@@ -75,8 +66,6 @@ export const socketMiddleware = (wsUrl: string, wsActions: IWsActions): Middlewa
           dispatch({ type: onClose, payload: event });
           // dispatch(wsCloseAction())
         };
-
-        console.log(socket);
 
         // if (type === wsSendMessage) {
         //   // Ваш код здесь

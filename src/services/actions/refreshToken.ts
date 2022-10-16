@@ -8,7 +8,6 @@ import {REFRESH_TOKEN, REFRESH_TOKEN_SUCCESS, REFRESH_TOKEN_FAILED} from '../con
 
 
 const refreshToken = (refreshToken: string | null) => {
-  console.log(localStorage.getItem('refreshToken'));
   return fetch(`${baseUrl}/auth/token`,
     {
       method: 'POST',

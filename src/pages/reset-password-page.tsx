@@ -14,7 +14,6 @@ import { TEmptyFunction } from "../services/types/utils";
 export default function ResetPasswordPage() {
 
   const { user } = useSelector(store => store.auth);
-  console.log(user);
 
   const [newPasswordValue, setNewPasswordValue] = React.useState<string>('');
   const [codeValue, setCodeValue] = React.useState<string>('');
@@ -32,7 +31,6 @@ export default function ResetPasswordPage() {
   const { from } = location.state || { from: { pathname: '/' } };
 
   if (from.pathname !== '/forgot-password') {
-    console.log('Redirect');
     return (
       <Redirect
         to={from}
@@ -51,13 +49,11 @@ export default function ResetPasswordPage() {
 
     (async () => {
       await dispatch(resetPassword(newPasswordValue, codeValue));
-      console.log('test 2');
       history.replace({pathname: '/profile'});
     })();
   };
 
   if (user) {
-    console.log('Redirect');
     return (
       <Redirect
         to={{

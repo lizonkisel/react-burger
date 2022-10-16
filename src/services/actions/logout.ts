@@ -80,7 +80,6 @@ const logout: AppThunk = () => {
     )
     .then(checkResponse)
     .then(res => {
-      console.log(res)
       // dispatch({
       //   type: LOGOUT_SUCCESS,
       //   user: null,
@@ -92,7 +91,6 @@ const logout: AppThunk = () => {
       dispatch(logoutSuccessAction())
     })
     .catch(err => {
-      console.log(err)
       // dispatch({
       //   type: LOGOUT_FAILED,
       //   // isLogoutChecked: false

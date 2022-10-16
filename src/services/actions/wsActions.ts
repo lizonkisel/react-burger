@@ -66,7 +66,6 @@ export function wsInitWithTokenAction (url: string): IWsConnectionStartWithToken
 }
 
 export function wsConnectionSuccessAction(event: any): IWsConnectionSuccessAction {
-  console.log(event);
   return {
     type: WS_CONNECTION_SUCCESS, payload: event
   }

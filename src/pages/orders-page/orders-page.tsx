@@ -18,7 +18,6 @@ export default function OrdersPage() {
   const dispatch = useDispatch();
 
   const accessToken = getCookie('token');
-  console.log(accessToken);
 
   const { orders, wsConnected, total, totalToday} = useSelector(store => store.ws);
 
@@ -28,9 +27,6 @@ export default function OrdersPage() {
       dispatch(wsCloseAction());
     };
   }, [dispatch, accessToken]);
-// }, []);
-
-  console.log('Orders page');
 
   if (!orders) {
     return <p className="text text_type_main-medium">Загружаем данные...</p>

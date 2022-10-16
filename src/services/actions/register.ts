@@ -72,7 +72,6 @@ function registerFailedAction(): IRegisterFailedAction {
 
 // function register(name, email, password) {
 const register: AppThunk = (name: string, email: string, password: string) => {
-  console.log(name, email, password);
 
   return function(dispatch: AppDispatch) {
     // dispatch({

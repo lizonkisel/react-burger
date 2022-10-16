@@ -63,9 +63,6 @@ export default function FullOrderCard() {
 
   const currentOrder = orders.find((order) => order._id === id);
 
-  console.log(orders);
-  console.log(currentOrder);
-
   if (currentOrder === undefined) {
     return ( <p className="text text_type_main-medium">Не удалось найти такой заказ...</p>
     )
@@ -77,11 +74,7 @@ export default function FullOrderCard() {
   const date = Date.parse(currentOrder.createdAt);
   const currentStatus = currentOrder.status;
 
-  console.log(currentStatus);
-
   const status = statuses[currentStatus];
-
-  console.log(status);
 
   const uniqIngredientsObj: {
     [key: string]: number
@@ -157,7 +150,6 @@ export default function FullOrderCard() {
         <div className={styles.ingredients_area}>
           {
             uniqIngredients.map((ingredient) => {
-              console.log(ingredient);
               return (
                 <IngredientCard key={uuidv4()} order={currentOrder} ingredient={ingredient[0]} amount={ingredient[1]}></IngredientCard>
               )

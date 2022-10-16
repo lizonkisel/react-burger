@@ -21,12 +21,8 @@ import { TEmptyFunction } from '../../services/types/utils';
 function App() {
 
   const dispatch = useDispatch();
-
-  console.log(getCookie('token'));
-
   useEffect(()=> {
     dispatch(getAllIngredients());
-    console.log(allIngredients);
   }, []);
 
   useEffect(() => {
@@ -34,7 +30,6 @@ function App() {
   }, []);
 
   const allIngredients = useSelector(store => store.allIngredients.items);
-  console.log(allIngredients);
 
   const history = useHistory();
 
@@ -58,19 +53,7 @@ function App() {
     state: unknown
   }}>();
 
-  console.log(location);
-  // type TLocationState = {
-  //   key: string
-  //   pathname: string
-  //   search: string
-  //   hash: string
-  //   state: {}
-  // }
-
-
   const { background } = location.state || { location };
-
-  console.log(background);
 
   return (
     <>

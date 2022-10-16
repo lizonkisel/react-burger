@@ -33,8 +33,6 @@ export const FillingIngredient: FunctionComponent<IFillingIngProps> = ({ item, i
       };
     },
     hover(item: any, monitor) {
-      console.log(item);
-      console.log(monitor);
       if (!ref.current) {
         return;
       }

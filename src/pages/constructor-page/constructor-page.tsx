@@ -11,8 +11,6 @@ import BurgerConstructor from '../../components/burger-constructor/burger-constr
 
 export default function ConstructorPage() {
 
-  console.log('Constructor Page');
-
   const {isLoading, isFailed} = useSelector(store => store.allIngredients);
   const listOfIngredients = useSelector(store => store.allIngredients.items);
 

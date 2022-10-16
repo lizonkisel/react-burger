@@ -84,7 +84,6 @@ function resetPasswordFailedAction(): IResetPasswordFailedAction {
 
 // function recoverPassword(email) {
 const recoverPassword: AppThunk = (email: string) => {
-  console.log('Recover password');
   return function(dispatch: AppDispatch) {
     // dispatch({
     //   type: RECOVER_PASSWORD,

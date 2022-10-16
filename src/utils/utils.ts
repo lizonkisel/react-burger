@@ -9,18 +9,12 @@ const defaultBunUrl: string = "https://code.s3.yandex.net/react/code/bun-02.png"
 const regExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function checkResponse<T>(res: Response): Promise<T> {
-  console.log(res);
-  console.log(res.ok);
   // return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
   return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
 };
 
 // function setCookie(name, value, props) {
   function setCookie(name: string, value: string, props?: Record<string, string | number | Date | boolean>): void {
-  console.log(`name: ${name}`);
-  console.log(`value: ${value}`);
-  console.log(`props: ${props}`);
-  console.log(props);
 
   props = props || {};
   let exp = props.expires;
@@ -60,25 +54,18 @@ const fetchWithRefresh = async (url: string, options: RequestInit = {}): Promise
     // await fetch(url, options)
     // .then(checkResponse)
     // .then(res => console.log(res))
-    console.log(res);
-    console.log('azaza');
     const data: {success: true; user: TUser} = await checkResponse(res);
     // const data = checkResponse(res);
-    console.log(data);
     return data;
   } catch (error) {
     const err = error as Response;
     const errorData = await err.json();
-    console.log('Error data');
-    console.log(errorData);
     if (errorData.message === 'jwt expired') {
       const currentRefreshToken = localStorage.getItem('refreshToken');
       // Убрать any
       const newData: any = await refreshToken(currentRefreshToken);
-      console.log(newData);
       const refreshData = await newData.json();
       // const refreshData = await refreshToken(currentRefreshToken);
-      // console.log(newData);
       // const refreshData = await newData.json();
 
       if (!refreshData.success) {
@@ -95,11 +82,9 @@ const fetchWithRefresh = async (url: string, options: RequestInit = {}): Promise
             }
         });
         const data: {success: true; user: TUser} = await checkResponse(res);
-        console.log('Всё успешно');
         return data;
       }
     } else {
-      console.log('test');
       return Promise.reject(err)
     }
   }
