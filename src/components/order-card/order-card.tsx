@@ -41,13 +41,14 @@ export const OrderCard: FunctionComponent<IOrderCardProps> = ({ order }) => {
     drawableIngredients = ingredients.slice(0, 5);
   };
 
+  console.log(drawableIngredients);
+
   const allIngredients = useSelector(store => store.allIngredients.items);
 
   if (!allIngredients) {
     return ( <p className="text text_type_main-medium">Загружаем данные...</p>
     )
   };
-
 
   const priceArray: Array<number> = [];
 
@@ -77,8 +78,9 @@ export const OrderCard: FunctionComponent<IOrderCardProps> = ({ order }) => {
           <div className={styles.ingredients}>
             {
                 drawableIngredients.map((ingredient) => {
+                const uId = uuidv4();
                 return (
-                  <IngredientMini key={uuidv4()} ingredient={ingredient}>
+                  <IngredientMini key={uId} ingredient={ingredient}>
                   </IngredientMini>
                 )
               })

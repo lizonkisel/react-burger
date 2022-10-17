@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { v4 as uuidv4 } from 'uuid';
 import { useDispatch, useSelector } from '../../services/hooks';
 import { useParams } from 'react-router-dom';
 import moment from 'moment';
@@ -76,7 +75,6 @@ export default function FullOrderCard() {
 
   const uniqIngredients = Object.entries(uniqIngredientsObj);
 
-
   const priceArray: Array<number> = [];
 
   if (allIngredients !== null) {
@@ -113,7 +111,7 @@ export default function FullOrderCard() {
           {
             uniqIngredients.map((ingredient) => {
               return (
-                <IngredientCard key={uuidv4()} order={currentOrder} ingredient={ingredient[0]} amount={ingredient[1]}></IngredientCard>
+                <IngredientCard key={ingredient[0]} order={currentOrder} ingredient={ingredient[0]} amount={ingredient[1]}></IngredientCard>
               )
             })
           }
