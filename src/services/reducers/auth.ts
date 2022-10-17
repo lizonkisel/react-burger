@@ -141,7 +141,6 @@ const authReducer = (state = initialState, action: TAuthActions): TAuthState => 
     }
 
     case GET_USER: {
-
       return {
         ...state,
         isAuth: action.isAuth,
@@ -159,7 +158,6 @@ const authReducer = (state = initialState, action: TAuthActions): TAuthState => 
     }
 
     case GET_USER_FAILED: {
-
       return {
         ...state,
         isAuth: action.isAuth,

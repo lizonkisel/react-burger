@@ -21,8 +21,8 @@ export const IngredientVariants = forwardRef<Ref, Props>((props, ref) => {
       <h3 className="text text_type_main-medium">{props.ingredientName}</h3>
       <ul className={`pl-4 pr-4 pb-10 pt-6 ${ingredientVariants.list}`} ref={ref}>
         {
-          ingredients.map((ingredient, index) => (
-            <DraggableIngredient ingredient={ingredient} key={index}>
+          ingredients.map((ingredient) => (
+            <DraggableIngredient key={ingredient._id} ingredient={ingredient}>
             </DraggableIngredient>
           ))
         }

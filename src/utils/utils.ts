@@ -13,7 +13,6 @@ function checkResponse<T>(res: Response): Promise<T> {
 };
 
 function setCookie(name: string, value: string, props?: Record<string, string | number | Date | boolean>): void {
-
   props = props || {};
   let exp = props.expires;
   if (typeof exp == 'number' && exp) {

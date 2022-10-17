@@ -97,7 +97,6 @@ function editUserFailedAction(): IEditUserFailedAction {
 const getUser: AppThunk = () => {
   return function(dispatch: AppDispatch) {
     dispatch(getUserAction())
-
     fetchWithRefresh(`${baseUrl}/auth/user`, {
       method: 'GET',
       headers: {

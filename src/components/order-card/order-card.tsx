@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from "react";
-import { v4 as uuidv4 } from 'uuid';
 import { useSelector } from '../../services/hooks';
 import { Link, useLocation, useRouteMatch} from 'react-router-dom';
 
@@ -41,8 +40,6 @@ export const OrderCard: FunctionComponent<IOrderCardProps> = ({ order }) => {
     drawableIngredients = ingredients.slice(0, 5);
   };
 
-  console.log(drawableIngredients);
-
   const allIngredients = useSelector(store => store.allIngredients.items);
 
   if (!allIngredients) {
@@ -77,10 +74,9 @@ export const OrderCard: FunctionComponent<IOrderCardProps> = ({ order }) => {
         <div className={styles.ingredients_and_cost}>
           <div className={styles.ingredients}>
             {
-                drawableIngredients.map((ingredient) => {
-                const uId = uuidv4();
+                drawableIngredients.map((ingredient, index) => {
                 return (
-                  <IngredientMini key={uId} ingredient={ingredient}>
+                  <IngredientMini key={index} ingredient={ingredient}>
                   </IngredientMini>
                 )
               })
