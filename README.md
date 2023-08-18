@@ -34,6 +34,6 @@ This project will works correctly with **node v16.16.0**
 
 3. Do `npm run start` and the project gets up on localhost:3000 automatically
 
-4. That's great, you are incredable! :mechanical_arm:
+4. That's great, you are incredible! :mechanical_arm:
 
 [Наверх](#top)
