@@ -1,48 +1,39 @@
-# <a id="top" /> Stellar Burger
+# Stellar Burger
+
+Test the project: https://lizonkisel.github.io/react-burger/
 
 ---
 
-## Оглавление
+## Table of contents
 
-- [Описание проекта](#description)
-- [Технологии](#technologies)
-- [Как запустить](#instruction)
+- [Description](#description)
+- [Stack](#technologies)
+- [Install and start-up](#instruction)
 
 ---
 
-## <a id="description" /> Описание проекта
+## <a id="description" /> Description
 
-Учебный проект курса "Веб-разработчик+" от Яндекс.Практикума. Сайт космической бургерной, где пользователь может из ингредиентов собрать собственный бургер и оформить заказ.
+Web-site for space burgershop. User can select different ingredients, create burger and make an order.Study Project in [Yandex.Practicum](https://practicum.yandex.ru/)
 
-Потестить работу проекта: https://lizonkisel.github.io/react-burger/
-
-[Наверх](#top)
+Сайт космической бургерной, где пользователь может из ингредиентов собрать собственный бургер и оформить заказ. Учебный проект [Яндекс.Практикума](https://practicum.yandex.ru/)
 
 
-## <a id="technologies" /> Технологии
+## <a id="technologies" /> Stack
 
-:heavy_check_mark: HTML
-
-:heavy_check_mark: CSS
-
-:heavy_check_mark: JS
-
-:heavy_check_mark: [React](https://reactjs.org/)
-
-:heavy_check_mark: [Redux](https://redux.js.org/)
-
-:heavy_check_mark: [React DnD](https://react-dnd.github.io/react-dnd/docs/tutorial)
-
-:heavy_check_mark: [Webpack]()
-
-[Наверх](#top)
+:heavy_check_mark: HTML, CSS, Typescript, [React](https://reactjs.org/), [Redux](https://redux.js.org/), [React DnD](https://react-dnd.github.io/react-dnd/docs/tutorial)
 
 
-## <a id="instruction" /> Как запустить
+## <a id="instruction" /> Install and start-up
 
-- Скачайте и разархивируйте проект
-- В консоли перейдите в директорию проекта
-- Запустите команду `npm i`. Это позволит Вам установить все нужные для работы проекта зависимости
-- Запустите команду `npm start`. Проект автоматически запустится на локальном сервере. Здорово, вы великолепны! :mechanical_arm:
+This project will works correctly with **node v16.16.0**
+
+1. Copy this project to you machine, using `git clone`
+
+2. Go to the folder with the project and do `npm ci` to set up all needed dependencies
+
+3. Do `npm run start` and the project gets up on localhost:3000 automatically
+
+4. That's great, you are incredible! :mechanical_arm:
 
 [Наверх](#top)
