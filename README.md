@@ -26,7 +26,7 @@ Web-site for space burgershop. User can select different ingredients, create bur
 
 ## <a id="instruction" /> Install and start-up
 
-This project will works correctly with **node v18.17.1**
+This project will works correctly with **node v16.16.0**
 
 1. Copy this project to you machine, using `git clone`
 
