@@ -36,4 +36,9 @@ This project will works correctly with **node v16.16.0**
 
 4. That's great, you are incredible! :mechanical_arm:
 
+## Improvement plans
+
+* Fix scrollbars
+* Add visual difference for authorized user
+
 [Наверх](#top)
