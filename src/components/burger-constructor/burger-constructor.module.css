@@ -6,7 +6,8 @@
 }
 
 .compositionArea {
-  height: calc(656/1080 * 100vh);
+  /* height: calc(656/1080 * 100vh); */
+  height: calc(100vh - 356px);
   display: flex;
   flex-direction: column;
   row-gap: 16px;
@@ -20,7 +21,20 @@
   margin: 0;
   padding: 0;
   max-height: calc(464/1080 * 100vh);
-  overflow-y: scroll;
+  overflow-y: auto;
+  scrollbar-color: #8585AD #2F2F37;
+  scrollbar-width: thin;
+}
+
+.compositionChangebleList::-webkit-scrollbar {
+  width: 3px;
+  height: 6px;
+  background-color: #2F2F37 /* or add it to the track */
+}
+
+/* Add a thumb */
+.compositionChangebleList::-webkit-scrollbar-thumb {
+  background: #8585AD;
 }
 
 /* .element {
