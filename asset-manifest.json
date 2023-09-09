@@ -1,7 +1,7 @@
 {
-  "main.css": "/react-burger/static/css/main.b70fc81d.chunk.css",
-  "main.js": "/react-burger/static/js/main.0fb87929.chunk.js",
-  "main.js.map": "/react-burger/static/js/main.0fb87929.chunk.js.map",
+  "main.css": "/react-burger/static/css/main.7b9c143d.chunk.css",
+  "main.js": "/react-burger/static/js/main.b701a8fc.chunk.js",
+  "main.js.map": "/react-burger/static/js/main.b701a8fc.chunk.js.map",
   "static/js/1.a26479ed.chunk.js": "/react-burger/static/js/1.a26479ed.chunk.js",
   "static/js/1.a26479ed.chunk.js.map": "/react-burger/static/js/1.a26479ed.chunk.js.map",
   "static/css/2.5709bac9.chunk.css": "/react-burger/static/css/2.5709bac9.chunk.css",
@@ -12,9 +12,9 @@
   "static/media/not-found-page.module.css": "/react-burger/static/media/page-404.8ce36121.webp",
   "static/media/done.png": "/react-burger/static/media/done.04891082.png",
   "static/media/fonts.css": "/react-burger/static/media/iceland.df042be2.woff",
-  "static/css/main.b70fc81d.chunk.css.map": "/react-burger/static/css/main.b70fc81d.chunk.css.map",
+  "static/css/main.7b9c143d.chunk.css.map": "/react-burger/static/css/main.7b9c143d.chunk.css.map",
   "static/css/2.5709bac9.chunk.css.map": "/react-burger/static/css/2.5709bac9.chunk.css.map",
   "index.html": "/react-burger/index.html",
-  "precache-manifest.14c0d74ad128fd6b2435d0810e5dc128.js": "/react-burger/precache-manifest.14c0d74ad128fd6b2435d0810e5dc128.js",
+  "precache-manifest.b93902c0ed34c4ad6c873f041a801289.js": "/react-burger/precache-manifest.b93902c0ed34c4ad6c873f041a801289.js",
   "service-worker.js": "/react-burger/service-worker.js"
 }

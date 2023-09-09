@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "0fb87929ab2d661f837a",
-    "url": "/react-burger/static/css/main.b70fc81d.chunk.css"
+    "revision": "b701a8fc6516654bc851",
+    "url": "/react-burger/static/css/main.7b9c143d.chunk.css"
   },
   {
-    "revision": "0fb87929ab2d661f837a",
-    "url": "/react-burger/static/js/main.0fb87929.chunk.js"
+    "revision": "b701a8fc6516654bc851",
+    "url": "/react-burger/static/js/main.b701a8fc.chunk.js"
   },
   {
     "revision": "a26479ed8aaa88ddcb16",
@@ -36,16 +36,16 @@ self.__precacheManifest = [
     "url": "/react-burger/static/media/JetBrainsMono-Regular.21ba2c11.woff2"
   },
   {
+    "revision": "a492f7427b1561cc96ace88f5756d94e",
+    "url": "/react-burger/static/media/JetBrainsMono-Bold.a492f742.woff2"
+  },
+  {
     "revision": "2fe9a2bdaa6daf61e770a2edb7252040",
     "url": "/react-burger/static/media/JetBrainsMono-Regular.2fe9a2bd.woff"
   },
   {
     "revision": "44e2d48cffc1c5da01730f6103fe9eaa",
     "url": "/react-burger/static/media/iceland.44e2d48c.woff2"
-  },
-  {
-    "revision": "a492f7427b1561cc96ace88f5756d94e",
-    "url": "/react-burger/static/media/JetBrainsMono-Bold.a492f742.woff2"
   },
   {
     "revision": "896f23850b33cd1df94eb955d4b60079",
@@ -56,7 +56,7 @@ self.__precacheManifest = [
     "url": "/react-burger/static/media/iceland.df042be2.woff"
   },
   {
-    "revision": "c314d435fb56b728474065d22c20aeef",
+    "revision": "8f4166be11286e6535c0b197a7c50178",
     "url": "/react-burger/index.html"
   }
 ];
