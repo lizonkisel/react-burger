@@ -1,27 +1,27 @@
 self.__precacheManifest = [
   {
-    "revision": "4e259a55c0016cb49215",
-    "url": "/react-burger/static/css/main.d84426c4.chunk.css"
+    "revision": "0fb87929ab2d661f837a",
+    "url": "/react-burger/static/css/main.b70fc81d.chunk.css"
   },
   {
-    "revision": "4e259a55c0016cb49215",
-    "url": "/react-burger/static/js/main.4e259a55.chunk.js"
+    "revision": "0fb87929ab2d661f837a",
+    "url": "/react-burger/static/js/main.0fb87929.chunk.js"
   },
   {
-    "revision": "540e49fc9eacff39157c",
-    "url": "/react-burger/static/js/1.540e49fc.chunk.js"
+    "revision": "a26479ed8aaa88ddcb16",
+    "url": "/react-burger/static/js/1.a26479ed.chunk.js"
   },
   {
-    "revision": "a631dc72a4311157dd55",
-    "url": "/react-burger/static/css/2.1294f1b3.chunk.css"
+    "revision": "43609c3c1a35b15f9922",
+    "url": "/react-burger/static/css/2.5709bac9.chunk.css"
   },
   {
-    "revision": "a631dc72a4311157dd55",
-    "url": "/react-burger/static/js/2.a631dc72.chunk.js"
+    "revision": "43609c3c1a35b15f9922",
+    "url": "/react-burger/static/js/2.43609c3c.chunk.js"
   },
   {
-    "revision": "63dd91775c611d49aafb",
-    "url": "/react-burger/static/js/runtime~main.63dd9177.js"
+    "revision": "5b1df44f64ab2406b9b9",
+    "url": "/react-burger/static/js/runtime~main.5b1df44f.js"
   },
   {
     "revision": "8ce361216e7dd57aed566a9e9e976dd9",
@@ -40,6 +40,10 @@ self.__precacheManifest = [
     "url": "/react-burger/static/media/JetBrainsMono-Regular.2fe9a2bd.woff"
   },
   {
+    "revision": "44e2d48cffc1c5da01730f6103fe9eaa",
+    "url": "/react-burger/static/media/iceland.44e2d48c.woff2"
+  },
+  {
     "revision": "a492f7427b1561cc96ace88f5756d94e",
     "url": "/react-burger/static/media/JetBrainsMono-Bold.a492f742.woff2"
   },
@@ -52,11 +56,7 @@ self.__precacheManifest = [
     "url": "/react-burger/static/media/iceland.df042be2.woff"
   },
   {
-    "revision": "44e2d48cffc1c5da01730f6103fe9eaa",
-    "url": "/react-burger/static/media/iceland.44e2d48c.woff2"
-  },
-  {
-    "revision": "1b929cb03512fa2a2297bb90601e27c1",
+    "revision": "c314d435fb56b728474065d22c20aeef",
     "url": "/react-burger/index.html"
   }
 ];
