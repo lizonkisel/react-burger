@@ -7,7 +7,7 @@
 
 .compositionArea {
   /* height: calc(656/1080 * 100vh); */
-  height: calc(100vh - 356);
+  height: calc(100vh - 356px);
   display: flex;
   flex-direction: column;
   row-gap: 16px;

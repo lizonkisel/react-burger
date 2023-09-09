@@ -9,10 +9,10 @@
 }
 
 .order_feed {
-  width: calc(768px / 1920px * 100vw);
+  width: calc(768 / 1920 * 100vw);
   max-width: 768px;
 
-  height: calc(852px / 1080px * 100vh);;
+  height: calc(852 / 1080 * 100vh);;
   max-height: 852px;
 
   display: flex;
